@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 18686,
+  "error_codes": {
+    "17": 1
+  },
+  "dissatisfied": {
+    "matching": 38.1,
+    "pickup": 52.5,
+    "ride": 90.4
+  },
+  "registered": {
+    "reputation": 112,
+    "invitation": 25
+  },
+  "left": 86,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 89,
+      "active": 37
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 62,
+      "active": 27
+    }
+  ],
+  "owners": [
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 299000,
+      "chairs": 20
+    },
+    {
+      "name": "つばさ交通",
+      "sales": 344400,
+      "chairs": 22
+    },
+    {
+      "name": "迅行タクシー",
+      "sales": 285100,
+      "chairs": 19
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 226300,
+      "chairs": 16
+    },
+    {
+      "name": "GoEase",
+      "sales": 371400,
+      "chairs": 23
+    }
+  ],
+  "warn_count": 1,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 1526200,
+  "total_chairs": 100
+}
