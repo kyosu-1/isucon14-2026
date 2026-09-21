@@ -454,13 +454,21 @@ func (s *memState) addStatus(ctx context.Context, rideID, statusID, status strin
 }
 
 // ライドが評価されて完了した。
+// 椅子の統計を先に更新してから COMPLETED を積む（同じロックの中で）。
+// COMPLETED を積んだ瞬間に SSE が利用者へ送るので、統計が後だと
+// 「椅子の総乗車回数が一致しません」の WARN になった。
 func (s *memState) complete(ctx context.Context, rideID, statusID string, evaluation int, updatedAt time.Time) error {
-	if err := s.addStatus(ctx, rideID, statusID, "COMPLETED"); err != nil {
-		return err
-	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	rs := s.rides[rideID]
+	rs, err := s.rideLocked(ctx, rideID)
+	if err != nil {
+		return err
+	}
+	for _, e := range rs.Statuses {
+		if e.ID == statusID {
+			return nil // DBから読み込んだ時点で反映済み（統計も loadState / rideLocked 側の扱い）
+		}
+	}
 	rs.UpdatedAt = updatedAt
 	cs := s.chairStats[rs.ChairID]
 	if cs == nil {
@@ -469,6 +477,9 @@ func (s *memState) complete(ctx context.Context, rideID, statusID string, evalua
 	}
 	cs.Count++
 	cs.SumEvaluation += evaluation
+	rs.Statuses = append(rs.Statuses, &statusEntry{ID: statusID, Status: "COMPLETED"})
+	wake(s.userWake, rs.UserID)
+	wake(s.chairWake, rs.ChairID)
 	return nil
 }
 
