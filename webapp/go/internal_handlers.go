@@ -4,6 +4,7 @@ import (
 	"log/slog"
 	"net/http"
 	"sort"
+	"strings"
 	"sync"
 	"time"
 )
@@ -100,16 +101,28 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		plans = append(plans, matchingPlan{RideID: ride.ID, ChairID: chairs[best].ID})
 	}
 
+	// 割り当ては UPDATE 1文にまとめる。1件ずつ往復すると 150件で約2.5秒かかり、
+	// その間ライドが待たされていた（matching の呼び出しが5秒に2回まで落ちていた）。
+	// マッチングは matcher から直列に呼ばれるので、chair_id IS NULL の競合は起きない。
 	assigned := 0
-	for _, p := range plans {
-		// updated_at はメモリにも同じ値を持ちたいので、DBの ON UPDATE に任せず明示する
+	if len(plans) > 0 {
 		now := time.Now().UTC().Truncate(time.Microsecond)
-		res, err := db.ExecContext(ctx, "UPDATE rides SET chair_id = ?, updated_at = ? WHERE id = ? AND chair_id IS NULL", p.ChairID, now, p.RideID)
-		if err != nil {
+		query := "UPDATE rides SET updated_at = ?, chair_id = CASE id"
+		args := make([]any, 0, len(plans)*3+1)
+		args = append(args, now)
+		for _, p := range plans {
+			query += " WHEN ? THEN ?"
+			args = append(args, p.RideID, p.ChairID)
+		}
+		query += " END WHERE id IN (?" + strings.Repeat(",?", len(plans)-1) + ") AND chair_id IS NULL"
+		for _, p := range plans {
+			args = append(args, p.RideID)
+		}
+		if _, err := db.ExecContext(ctx, query, args...); err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
-		if n, _ := res.RowsAffected(); n == 1 {
+		for _, p := range plans {
 			if err := st.assignChair(ctx, p.RideID, p.ChairID, now); err != nil {
 				writeError(w, http.StatusInternalServerError, err)
 				return
