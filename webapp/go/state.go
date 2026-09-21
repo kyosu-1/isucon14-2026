@@ -101,6 +101,7 @@ type memState struct {
 	rides           map[string]*rideState
 	userLatestRide  map[string]*rideState   // user_id -> 最新(created_at)のライド
 	waitingRides    map[string]*rideState   // マッチング待ち（椅子未割り当て・MATCHING）のライド
+	freeChairs      map[string]*chairInfo   // 稼働中で、ライドが無いか前のライドの COMPLETED を通知済みの椅子（猶予は使う側で判定）
 	userRides       map[string][]*rideState // user_id -> ライド（作成順）
 	ownerNames      map[string]string       // owner_id -> オーナー名
 	chairLatestRide map[string]*rideState   // chair_id -> 最後に割り当てられたライド
@@ -365,6 +366,12 @@ func loadState(ctx context.Context) error {
 	st.userLatestRide = s.userLatestRide
 	st.userRides = s.userRides
 	st.waitingRides = s.waitingRides
+	st.freeChairs = make(map[string]*chairInfo)
+	for _, c := range s.chairs {
+		if c.IsActive && chairIdle(s.chairLatestRide[c.ID]) {
+			st.freeChairs[c.ID] = c
+		}
+	}
 	st.ownerNames = s.ownerNames
 	st.chairLatestRide = s.chairLatestRide
 	st.chairs = s.chairs
@@ -510,6 +517,7 @@ func (s *memState) assignChairs(ctx context.Context, plans []matchingPlan) (time
 		rs.AssignPending = true
 		s.chairLatestRide[p.ChairID] = rs
 		delete(s.waitingRides, rs.ID)
+		delete(s.freeChairs, p.ChairID)
 	}
 	return now, nil
 }
@@ -620,7 +628,24 @@ func (s *memState) setChairActive(chairID string, active bool) {
 	defer s.mu.Unlock()
 	if c := s.chairs[chairID]; c != nil {
 		c.IsActive = active
+		if active && chairIdle(s.chairLatestRide[chairID]) {
+			s.freeChairs[chairID] = c
+		} else {
+			delete(s.freeChairs, chairID)
+		}
 	}
+}
+
+// 椅子が次のライドを受けられる状態か（ライドが無い、または COMPLETED を椅子に通知済み）。猶予は含めない
+func chairIdle(rs *rideState) bool {
+	if rs == nil {
+		return true
+	}
+	if len(rs.Statuses) == 0 {
+		return false
+	}
+	last := rs.Statuses[len(rs.Statuses)-1]
+	return last.Status == "COMPLETED" && last.ChairSent
 }
 
 // 座標を記録する。移動距離の合計（owner/chairs 用）もここで積み上げ、DBへは flushChairDistances がまとめて書く。

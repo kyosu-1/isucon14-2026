@@ -238,6 +238,11 @@ func (s *memState) nextChairNotificationLocked(chairID string, initial bool) (*c
 		status = sending.Status
 		sending.ChairSent = true
 		sending.ChairSentAt = time.Now()
+		if sending.Status == "COMPLETED" {
+			if c := s.chairs[chairID]; c != nil && c.IsActive {
+				s.freeChairs[chairID] = c
+			}
+		}
 	}
 	userName, ok := s.userNames[ride.UserID]
 	return &chairGetNotificationResponseData{

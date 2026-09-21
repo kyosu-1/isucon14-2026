@@ -66,8 +66,8 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	}
 	chairs := make([]freeChair, 0)
 	if len(waiting) > 0 {
-		for _, c := range st.chairs {
-			// 空いている椅子 = 稼働中・前のライドの COMPLETED を椅子に通知済み
+		for _, c := range st.freeChairs {
+			// 空いている椅子 = 稼働中・前のライドの COMPLETED を椅子に通知済み（+ 猶予）
 			if !c.IsActive {
 				continue
 			}

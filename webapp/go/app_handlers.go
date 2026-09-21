@@ -819,7 +819,8 @@ func appGetNearbyChairs(w http.ResponseWriter, r *http.Request) {
 	st.mu.Lock()
 	// マッチングは割り当て時刻をロックの中で決めるので、ここもロックの中で取る
 	retrievedAt := time.Now()
-	for _, chair := range st.chairs {
+	// 空いている可能性のある椅子（数十脚）だけを見る。全椅子(~2000)を毎回走査していた
+	for _, chair := range st.freeChairs {
 		if !chair.IsActive || !chair.HasLocation {
 			continue
 		}
