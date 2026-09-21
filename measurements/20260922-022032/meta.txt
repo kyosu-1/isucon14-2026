@@ -1,0 +1,8 @@
+timestamp : 20260922-022032
+commit    : a62b33b  users: 招待コードの使用回数をメモリで予約する（FOR UPDATE をやめる）/ 招待報酬コードを一意に
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 統計の順序 / 招待コード予約
+dirty     : 0 files uncommitted (webapp/ etc/)

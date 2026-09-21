@@ -1,0 +1,72 @@
+{
+  "pass": true,
+  "score": 430410,
+  "error_codes": {
+    "7": 11,
+    "17": 4
+  },
+  "dissatisfied": {
+    "matching": 89.9,
+    "pickup": 1.1,
+    "ride": 18.1
+  },
+  "registered": {
+    "reputation": 113,
+    "invitation": 3624
+  },
+  "left": 39,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2339,
+      "active": 2318
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1761,
+      "active": 1735
+    }
+  ],
+  "owners": [
+    {
+      "name": "Chair Charm",
+      "sales": 8422000,
+      "chairs": 191
+    },
+    {
+      "name": "迅行タクシー",
+      "sales": 9767200,
+      "chairs": 251
+    },
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 7138600,
+      "chairs": 165
+    },
+    {
+      "name": "座心工房",
+      "sales": 7719600,
+      "chairs": 175
+    },
+    {
+      "name": "GoEase",
+      "sales": 8699500,
+      "chairs": 194
+    }
+  ],
+  "warn_count": 15,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 11,
+      "msg": "\"ユーザーがライド履歴の取得に失敗しました (CODE=N): ライドの完了日時が期待したものと異なります: id=<ID>\""
+    },
+    {
+      "count": 4,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 41746900,
+  "total_chairs": 976
+}

@@ -1,0 +1,6 @@
+      1 2026/09/21 17:21:37 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Bernhard8527' for key 'users.username'"
+      1 2026/09/21 17:21:20 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Moen3347' for key 'users.username'"
+      1 2026/09/21 17:21:17 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Shanahan9126' for key 'users.username'"
+      1 2026/09/21 17:21:13 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Kozey5369' for key 'users.username'"
+      1 2026/09/21 17:20:34 ERROR error response wrote !BADKEY="app_session cookie is required"
+      1 2026/09/21 17:20:33 ERROR error response wrote !BADKEY="app_session cookie is required"
