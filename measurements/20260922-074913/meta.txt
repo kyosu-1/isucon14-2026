@@ -1,0 +1,8 @@
+timestamp : 20260922-074913
+commit    : 1f5aaa4  nginx: 椅子の登録と稼働開始だけ access log を取る
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 登録・稼働開始だけ access log（計測）
+dirty     : 0 files uncommitted (webapp/ etc/)

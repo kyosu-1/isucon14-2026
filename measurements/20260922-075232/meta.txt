@@ -1,0 +1,8 @@
+timestamp : 20260922-075232
+commit    : a72220d  椅子の登録と稼働開始をメモリで応答し、DB へは FIFO で後から書く
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 椅子の登録・稼働開始をメモリで（DB は後から）
+dirty     : 0 files uncommitted (webapp/ etc/)

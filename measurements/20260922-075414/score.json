@@ -1,0 +1,75 @@
+{
+  "pass": true,
+  "score": 1187052,
+  "error_codes": {
+    "30": 40
+  },
+  "dissatisfied": {
+    "matching": 83.8,
+    "pickup": 3.0,
+    "ride": 49.8
+  },
+  "registered": {
+    "reputation": 159,
+    "invitation": 3478
+  },
+  "left": 244,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2298,
+      "active": 2139
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1414,
+      "active": 1283
+    }
+  ],
+  "owners": [
+    {
+      "name": "Artisan Seats",
+      "sales": 26035400,
+      "chairs": 445
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 22391300,
+      "chairs": 392
+    },
+    {
+      "name": "ReSit & Renew",
+      "sales": 21038600,
+      "chairs": 362
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 18333900,
+      "chairs": 322
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 24323300,
+      "chairs": 418
+    }
+  ],
+  "warn_count": 40,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 32,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNVNTNNJMNEHZKCNFEEXNの椅子は既にライド中です\""
+    },
+    {
+      "count": 7,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNVNJNFHHVNPNEVGKNSの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNVGNENENHSDRMNQPNCの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 112122500,
+  "total_chairs": 1939
+}

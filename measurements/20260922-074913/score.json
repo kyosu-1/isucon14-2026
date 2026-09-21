@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "score": 1160128,
+  "error_codes": {
+    "30": 5
+  },
+  "dissatisfied": {
+    "matching": 88.0,
+    "pickup": 2.9,
+    "ride": 42.6
+  },
+  "registered": {
+    "reputation": 161,
+    "invitation": 3856
+  },
+  "left": 185,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2403,
+      "active": 2308
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1668,
+      "active": 1570
+    }
+  ],
+  "owners": [
+    {
+      "name": "Sit Second Life",
+      "sales": 21796700,
+      "chairs": 390
+    },
+    {
+      "name": "Chair Charm",
+      "sales": 22636200,
+      "chairs": 437
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 22130500,
+      "chairs": 428
+    },
+    {
+      "name": "座和インダストリー",
+      "sales": 22149300,
+      "chairs": 510
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 22303700,
+      "chairs": 429
+    }
+  ],
+  "warn_count": 5,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNJCJNZDRJYSXFYAYGPTNGの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNJNDRSJDNRNNHAYAGFNCAの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 111016400,
+  "total_chairs": 2194
+}
