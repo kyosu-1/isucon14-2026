@@ -1,0 +1,8 @@
+timestamp : 20260922-013552
+commit    : a2c1d2b  app: リクエストごとのアクセスログ(chi middleware.Logger)を外す
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : アクセスログ削除
+dirty     : 0 files uncommitted (webapp/ etc/)

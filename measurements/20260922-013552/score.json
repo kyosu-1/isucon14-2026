@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 72399,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 57.7,
+    "pickup": 40.3,
+    "ride": 71.4
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 207
+  },
+  "left": 156,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 192,
+      "active": 114
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 160,
+      "active": 81
+    }
+  ],
+  "owners": [
+    {
+      "name": "Vintage Vibe Seats",
+      "sales": 936800,
+      "chairs": 43
+    },
+    {
+      "name": "椅子やいちば",
+      "sales": 1250000,
+      "chairs": 52
+    },
+    {
+      "name": "いすの道",
+      "sales": 881100,
+      "chairs": 42
+    },
+    {
+      "name": "LuxeLine Taxi",
+      "sales": 1214800,
+      "chairs": 52
+    },
+    {
+      "name": "Orbit Taxi",
+      "sales": 1877600,
+      "chairs": 68
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 6160300,
+  "total_chairs": 257
+}
