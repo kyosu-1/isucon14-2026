@@ -80,7 +80,8 @@ func setup() http.Handler {
 	}
 
 	mux := chi.NewRouter()
-	mux.Use(middleware.Logger)
+	// middleware.Logger は全リクエストを stdout → journald → rsyslog に流し、
+	// 1号機で journald 11% + rsyslogd 8% を使っていたので外す（エラーは writeError が出す）
 	mux.Use(middleware.Recoverer)
 	mux.HandleFunc("POST /api/initialize", postInitialize)
 
