@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 624935,
+  "error_codes": {
+    "3": 45
+  },
+  "dissatisfied": {
+    "matching": 89.0,
+    "pickup": 0.6,
+    "ride": 18.3
+  },
+  "registered": {
+    "reputation": 130,
+    "invitation": 5759
+  },
+  "left": 131,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 3566,
+      "active": 3495
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 2483,
+      "active": 2420
+    }
+  ],
+  "owners": [
+    {
+      "name": "迅行タクシー",
+      "sales": 11774300,
+      "chairs": 268
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 13618600,
+      "chairs": 348
+    },
+    {
+      "name": "LuxeLine Taxi",
+      "sales": 11619600,
+      "chairs": 254
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 11136900,
+      "chairs": 254
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 12737600,
+      "chairs": 288
+    }
+  ],
+  "warn_count": 45,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 45,
+      "msg": "\"椅子がライドを受理できませんでした (CODE=N): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \\\"https://isuride.xiv.isucon.net/api/chair/rides/<ID>/status\\\": EOF\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 60887000,
+  "total_chairs": 1412
+}

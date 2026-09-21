@@ -1,0 +1,166 @@
+time=02:54:00.292 level=INFO msg=負荷走行を開始します
+time=02:54:06.355 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=1
+time=02:54:06.356 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=2
+time=02:54:06.357 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=1
+time=02:54:08.155 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=2
+time=02:54:08.155 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=1
+time=02:54:08.156 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=3
+time=02:54:08.156 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=2
+time=02:54:08.159 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=2
+time=02:54:08.179 level=INFO msg=これまでに地域内の評判によって9人、既存ユーザーの招待経由で50人が新規登録しました
+time=02:54:08.179 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、52.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.0%のライドは椅子の実移動時間に不満がありました
+time=02:54:09.959 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=2
+time=02:54:09.959 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=3
+time=02:54:09.960 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=2
+time=02:54:09.962 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=4
+time=02:54:09.962 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=3
+time=02:54:11.762 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=4
+time=02:54:11.765 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=3
+time=02:54:11.766 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=4
+time=02:54:11.768 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=4
+time=02:54:11.771 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=5
+time=02:54:13.562 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=4
+time=02:54:13.570 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=6
+time=02:54:13.575 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=5
+time=02:54:13.575 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=5
+time=02:54:13.577 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=5
+time=02:54:13.579 level=INFO msg=これまでに地域内の評判によって20人、既存ユーザーの招待経由で217人が新規登録しました
+time=02:54:13.579 level=INFO msg=10.3%のライドは椅子がマッチされるまでの時間、17.9%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.0%のライドは椅子の実移動時間に不満がありました
+time=02:54:15.390 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=7
+time=02:54:15.401 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=8
+time=02:54:15.401 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=7
+time=02:54:15.404 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=9
+time=02:54:15.404 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=7
+time=02:54:17.195 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=7
+time=02:54:17.198 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=9
+time=02:54:17.204 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=02:54:17.206 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=10
+time=02:54:17.207 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=8
+time=02:54:18.979 level=INFO msg=これまでに地域内の評判によって33人、既存ユーザーの招待経由で703人が新規登録しました
+time=02:54:18.979 level=INFO msg=17.4%のライドは椅子がマッチされるまでの時間、5.6%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.6%のライドは椅子の実移動時間に不満がありました
+time=02:54:19.304 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=9
+time=02:54:19.350 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=9
+time=02:54:19.355 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=9
+time=02:54:19.356 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=02:54:19.443 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=8
+time=02:54:21.067 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=10
+time=02:54:21.094 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=7
+time=02:54:21.099 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=7
+time=02:54:21.099 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=9
+time=02:54:21.130 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=9
+time=02:54:23.068 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=8
+time=02:54:23.071 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=9
+time=02:54:23.077 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=10
+time=02:54:23.097 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=10
+time=02:54:23.109 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=11
+time=02:54:24.379 level=INFO msg=これまでに地域内の評判によって46人、既存ユーザーの招待経由で1463人が新規登録しました
+time=02:54:24.379 level=INFO msg=38.3%のライドは椅子がマッチされるまでの時間、2.6%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.4%のライドは椅子の実移動時間に不満がありました
+time=02:54:25.346 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=10
+time=02:54:25.348 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=9
+time=02:54:25.482 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=9
+time=02:54:25.518 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=02:54:25.612 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=12
+time=02:54:27.318 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=11
+time=02:54:27.319 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=10
+time=02:54:27.320 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=13
+time=02:54:27.324 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=11
+time=02:54:29.219 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=22
+time=02:54:29.779 level=INFO msg=これまでに地域内の評判によって58人、既存ユーザーの招待経由で2297人が新規登録しました
+time=02:54:29.779 level=INFO msg=59.3%のライドは椅子がマッチされるまでの時間、1.7%のライドはマッチされた椅子が乗車地点までに掛かる時間、2.1%のライドは椅子の実移動時間に不満がありました
+time=02:54:31.143 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=19
+time=02:54:31.238 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=21
+time=02:54:31.254 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=19
+time=02:54:31.365 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=22
+time=02:54:32.110 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=22
+time=02:54:33.705 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=22
+time=02:54:33.728 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=21
+time=02:54:33.758 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=22
+time=02:54:33.759 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=19
+time=02:54:35.179 level=INFO msg=これまでに地域内の評判によって70人、既存ユーザーの招待経由で2912人が新規登録しました
+time=02:54:35.179 level=INFO msg=71.1%のライドは椅子がマッチされるまでの時間、1.2%のライドはマッチされた椅子が乗車地点までに掛かる時間、4.7%のライドは椅子の実移動時間に不満がありました
+time=02:54:36.814 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=28
+time=02:54:38.552 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=21
+time=02:54:38.649 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=25
+time=02:54:38.998 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=21
+time=02:54:39.133 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=24
+time=02:54:40.580 level=INFO msg=これまでに地域内の評判によって82人、既存ユーザーの招待経由で3635人が新規登録しました
+time=02:54:40.580 level=INFO msg=これまでに低評価なライドによって5人が利用をやめました
+time=02:54:40.580 level=INFO msg=77.9%のライドは椅子がマッチされるまでの時間、1.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、8.1%のライドは椅子の実移動時間に不満がありました
+time=02:54:42.876 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=40
+time=02:54:45.952 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=49
+time=02:54:45.955 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=47
+time=02:54:45.957 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=46
+time=02:54:45.961 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=50
+time=02:54:45.980 level=INFO msg=これまでに地域内の評判によって94人、既存ユーザーの招待経由で4163人が新規登録しました
+time=02:54:45.980 level=INFO msg=これまでに低評価なライドによって19人が利用をやめました
+time=02:54:45.981 level=INFO msg=82.1%のライドは椅子がマッチされるまでの時間、0.8%のライドはマッチされた椅子が乗車地点までに掛かる時間、11.0%のライドは椅子の実移動時間に不満がありました
+time=02:54:51.193 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=52
+time=02:54:51.379 level=INFO msg=これまでに地域内の評判によって106人、既存ユーザーの招待経由で4703人が新規登録しました
+time=02:54:51.379 level=INFO msg=これまでに低評価なライドによって34人が利用をやめました
+time=02:54:51.379 level=INFO msg=85.3%のライドは椅子がマッチされるまでの時間、0.7%のライドはマッチされた椅子が乗車地点までに掛かる時間、13.5%のライドは椅子の実移動時間に不満がありました
+time=02:54:55.595 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="LuxeLine Taxi" 増加数=64
+time=02:54:56.839 level=INFO msg=これまでに地域内の評判によって118人、既存ユーザーの招待経由で5200人が新規登録しました
+time=02:54:56.839 level=INFO msg=これまでに低評価なライドによって59人が利用をやめました
+time=02:54:56.839 level=INFO msg=87.3%のライドは椅子がマッチされるまでの時間、0.7%のライドはマッチされた椅子が乗車地点までに掛かる時間、15.5%のライドは椅子の実移動時間に不満がありました
+time=02:54:58.506 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=椅子と暮らし舎 増加数=71
+time=02:54:58.510 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=迅行タクシー 増加数=75
+time=02:54:58.533 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=82
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7WY7KXTTS12FS151M95/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPBA2HZQ1D7AHV13BPAHG/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7V32WYKN2QZTENT9202/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7XSQR4P83V3ZV6BZ1BV/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8BZBS2MYQ437S4E2HKW/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7R7JD40E0GKEQSX2507/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPAYNHMKM41XXKZ0GTC48/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7SBVTJWP56Z664P1SXH/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8C4JV24JZSC2BBMRVHJ/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPBMJNMTMF7WREN3C42N4/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP80DN1J9T5JRP1A4FE54/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7MQEX2H10CSVE03GE3W/status\": EOF"
+time=02:55:00.933 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7YSPVHPRBYTNAMJHHK3/status\": EOF"
+time=02:55:00.934 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP82580SWTKPHR1GPSCTE/status\": EOF"
+time=02:55:00.934 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPA2X0AVZZPJQB2BCD81X/status\": EOF"
+time=02:55:00.934 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPA2G12AXN166KZBW9WJ6/status\": EOF"
+time=02:55:00.934 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8QY2DHD2ZK2ZHQ2PS3T/status\": EOF"
+time=02:55:00.934 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP81H6XKBV1DQ685YAVT7/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP81CDVFBQVBKK6Q5D139/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPB0SSMYZR46C184KSR7E/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP9MW17V1G1D6VS8CXNTH/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7KQR8M6VSWW8ZQCTK1Y/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7PCAN1J8Q6HFM6QQ0MM/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8733MDYD05DH4NCTZF2/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7PWYZJZVKGZT6C8GD26/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPA2G12AXN166M4QW21B2/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP877EM020A4N2QPQJH7C/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8Y6EGTJRM799DMBNSMK/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7P89BDQ6TGP9FJS8RW1/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPAMH90HD8AEAMN1GRHRH/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8D59KN281JWANEJYK1G/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8E25CN70JCCTG6MAVWG/status\": EOF"
+time=02:55:00.936 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7SCTPNTN9Z5G2NCPVQP/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8CNZQD5HT8M54WF7Q4T/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7S7KNK5QW7E50N9R29A/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7ZXE3D2W75C4AK8RT6W/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8JSQKX3763XKX7QPDCB/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP8EK4F87K0SGB0KVYAWA/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPCHAZER0E99E9S73G0WR/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP82NJKCFHPTFFV4NK165/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPARYG5J0VGCPE1EYR0Q6/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HPAKTW5PDYDFE220Q8YNK/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7KNCZZR2RPJ8Y8844GQ/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7X02403T3702C1W3YHS/status\": EOF"
+time=02:55:00.937 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32HP7F433V6ZZ3ZQPR3MDKS/status\": EOF"
+time=02:55:02.240 level=INFO msg=これまでに地域内の評判によって130人、既存ユーザーの招待経由で5759人が新規登録しました
+time=02:55:02.240 level=INFO msg=これまでに低評価なライドによって131人が利用をやめました
+time=02:55:02.240 level=INFO msg=88.7%のライドは椅子がマッチされるまでの時間、0.6%のライドはマッチされた椅子が乗車地点までに掛かる時間、17.7%のライドは椅子の実移動時間に不満がありました
+time=02:55:02.517 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Skyline Taxis" 増加数=103
+time=02:55:07.789 level=INFO msg=最終地域情報 名前=チェアタウン ユーザー登録数=3566 アクティブユーザー数=3495
+time=02:55:07.789 level=INFO msg=最終地域情報 名前=コシカケシティ ユーザー登録数=2483 アクティブユーザー数=2420
+time=02:55:07.789 level=INFO msg=最終オーナー情報 名前=迅行タクシー 売上=11774300 椅子数=268
+time=02:55:07.789 level=INFO msg=最終オーナー情報 名前="Skyline Taxis" 売上=13618600 椅子数=348
+time=02:55:07.789 level=INFO msg=最終オーナー情報 名前="LuxeLine Taxi" 売上=11619600 椅子数=254
+time=02:55:07.789 level=INFO msg=最終オーナー情報 名前=椅子と暮らし舎 売上=11136900 椅子数=254
+time=02:55:07.789 level=INFO msg=最終オーナー情報 名前=座り心地再生所 売上=12737600 椅子数=288
+time=02:55:07.789 level=INFO msg=89.0%のライドは椅子がマッチされるまでの時間、0.6%のライドはマッチされた椅子が乗車地点までに掛かる時間、18.3%のライドは椅子の実移動時間に不満がありました
+time=02:55:07.790 level=INFO msg=結果 pass=true スコア=624935 種別エラー数=map[3:45]
+time=02:55:07.790 level=INFO msg=負荷走行が終了しました

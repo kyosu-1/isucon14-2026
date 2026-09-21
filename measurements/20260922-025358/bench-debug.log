@@ -1,0 +1,67 @@
+time=02:54:00.292 level=DEBUG source=/tmp/isucon14/bench/cmd/run.go:90 msg=target targetURL=https://isuride.xiv.isucon.net targetAddr=10.100.0.235:443 benchrun.GetTargetAddress()="" paymentURL=http://10.100.0.90:12346
+time=02:54:04.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=60
+time=02:54:04.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=6 score="[0 0 0 3 3]" criteria="[6 3 6 6]"
+time=02:54:06.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=120
+time=02:54:06.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=22 score="[0 0 0 13 9]" criteria="[22 9 22 22]"
+time=02:54:08.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=180
+time=02:54:08.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=50 score="[0 0 0 26 24]" criteria="[50 24 50 50]"
+time=02:54:09.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=240
+time=02:54:09.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=86 score="[0 0 0 33 53]" criteria="[85 54 86 86]"
+time=02:54:11.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=300
+time=02:54:11.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=150 score="[0 0 0 44 106]" criteria="[144 112 150 150]"
+time=02:54:13.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=360
+time=02:54:13.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=234 score="[0 0 0 66 168]" criteria="[210 192 234 234]"
+time=02:54:15.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=420
+time=02:54:15.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=368 score="[0 0 0 93 275]" criteria="[319 325 368 367]"
+time=02:54:17.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=480
+time=02:54:17.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=554 score="[0 0 0 135 419]" criteria="[468 509 554 550]"
+time=02:54:18.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=540
+time=02:54:18.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=797 score="[0 0 0 193 604]" criteria="[658 752 797 788]"
+time=02:54:20.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=600
+time=02:54:20.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=1065 score="[0 0 0 290 775]" criteria="[831 1020 1065 1054]"
+time=02:54:22.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=660
+time=02:54:22.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=1392 score="[0 0 0 459 933]" criteria="[989 1347 1392 1381]"
+time=02:54:24.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=720
+time=02:54:24.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=1717 score="[0 0 4 709 1004]" criteria="[1060 1672 1717 1702]"
+time=02:54:26.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=780
+time=02:54:26.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=2074 score="[0 0 7 1013 1054]" criteria="[1110 2029 2074 2056]"
+time=02:54:27.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=840
+time=02:54:27.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=2421 score="[0 0 15 1340 1066]" criteria="[1122 2376 2421 2395]"
+time=02:54:29.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=900
+time=02:54:29.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=2761 score="[0 0 103 1592 1066]" criteria="[1124 2715 2761 2646]"
+time=02:54:31.580 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=960
+time=02:54:31.580 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=3117 score="[0 0 115 1936 1066]" criteria="[1124 3071 3117 2990]"
+time=02:54:33.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1020
+time=02:54:33.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=3459 score="[0 1 263 2129 1066]" criteria="[1125 3413 3458 3182]"
+time=02:54:35.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1080
+time=02:54:35.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=3896 score="[0 1 354 2475 1066]" criteria="[1125 3850 3895 3528]"
+time=02:54:36.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1140
+time=02:54:36.979 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=4261 score="[0 3 565 2627 1066]" criteria="[1125 4214 4257 3682]"
+time=02:54:38.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1200
+time=02:54:38.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=4625 score="[0 6 652 2901 1066]" criteria="[1125 4577 4610 3965]"
+time=02:54:40.580 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1260
+time=02:54:40.580 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=5080 score="[0 14 791 3209 1066]" criteria="[1125 5030 5057 4275]"
+time=02:54:42.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1320
+time=02:54:42.380 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=5453 score="[0 16 948 3423 1066]" criteria="[1125 5403 5426 4491]"
+time=02:54:44.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1380
+time=02:54:44.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=5865 score="[0 35 1092 3672 1066]" criteria="[1125 5814 5780 4780]"
+time=02:54:45.980 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1440
+time=02:54:45.980 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=6287 score="[0 42 1288 3891 1066]" criteria="[1125 6234 6193 5003]"
+time=02:54:47.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1500
+time=02:54:47.779 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=6704 score="[0 43 1416 4179 1066]" criteria="[1125 6651 6608 5292]"
+time=02:54:49.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1560
+time=02:54:49.579 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=7072 score="[0 61 1635 4310 1066]" criteria="[1125 7019 6941 5440]"
+time=02:54:51.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1620
+time=02:54:51.379 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=7640 score="[1 83 1883 4607 1066]" criteria="[1125 7585 7362 5862]"
+time=02:54:53.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1680
+time=02:54:53.179 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=8087 score="[1 110 2144 4766 1066]" criteria="[1125 8031 7769 6035]"
+time=02:54:55.017 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1740
+time=02:54:55.017 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=8454 score="[2 117 2264 5005 1066]" criteria="[1125 8396 8084 6319]"
+time=02:54:56.839 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1800
+time=02:54:56.839 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=8873 score="[3 152 2439 5213 1066]" criteria="[1125 8814 8371 6623]"
+time=02:54:58.639 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1860
+time=02:54:58.639 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=9256 score="[3 233 2579 5375 1066]" criteria="[1125 9197 8628 6830]"
+time=02:55:00.440 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1920
+time=02:55:00.440 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=9761 score="[4 320 2727 5644 1066]" criteria="[1125 9701 8962 7182]"
+time=02:55:02.240 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:315 msg=時間経過 tick=1980
+time=02:55:02.240 level=DEBUG source=/tmp/isucon14/bench/benchmarker/scenario/scenario.go:317 msg=eval reqs=9957 score="[4 356 2807 5724 1066]" criteria="[1125 9897 9081 7303]"
