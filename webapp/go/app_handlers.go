@@ -700,7 +700,6 @@ func (s *memState) nextAppNotificationLocked(userID string, initial bool) *appGe
 	if sending != nil {
 		status = sending.Status
 		sending.AppSent = true
-		s.pendingAppSent = append(s.pendingAppSent, sending.ID)
 	}
 	data := &appGetNotificationResponseData{
 		RideID: ride.ID,

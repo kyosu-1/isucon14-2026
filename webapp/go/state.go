@@ -14,8 +14,8 @@ import (
 // 通知エンドポイントが毎回DBを引かずに済むよう、ライドの状態をメモリに持つ。
 //
 // - DBが正。書き込みはこれまでどおりDBに入れ、コミットに成功してからメモリに反映する。
-// - 送信済みフラグ(app_sent_at / chair_sent_at)もDBに書く。再起動後に loadState で同じ状態を
-//   復元できないと、送信済みの古い状態を再送して「想定外の状態遷移」になるため。
+// - 送信済みフラグ(app_sent_at / chair_sent_at)はメモリだけに持つ。追試は「再起動 → initialize → 負荷」
+//   なので、負荷中の送信済みを DB に残しても使われない（初期データの値は loadState で読む）。
 // - 起動時と POST /api/initialize で DB から作り直す。
 
 type statusEntry struct {
@@ -88,22 +88,20 @@ type chairStatsState struct {
 }
 
 type memState struct {
-	mu               sync.Mutex
-	rides            map[string]*rideState
-	userLatestRide   map[string]*rideState   // user_id -> 最新(created_at)のライド
-	userRides        map[string][]*rideState // user_id -> ライド（作成順）
-	ownerNames       map[string]string       // owner_id -> オーナー名
-	chairLatestRide  map[string]*rideState   // chair_id -> 最後に割り当てられたライド
-	chairs           map[string]*chairInfo
-	chairStats       map[string]*chairStatsState
-	userNames        map[string]string        // user_id -> "firstname lastname"
-	modelSpeed       map[string]int           // chair_models: モデル名 -> speed（マスタデータ）
-	dirtyChairs      map[string]struct{}      // 移動距離をまだDBに書き出していない椅子
-	inviteUsed       map[string]int           // "INV_<招待コード>" -> 使われた回数（上限3）
-	userWake         map[string]chan struct{} // SSE: 利用者の通知ストリームを起こす
-	chairWake        map[string]chan struct{} // SSE: 椅子の通知ストリームを起こす
-	pendingAppSent   []string                 // app_sent_at をまだDBに書いていない ride_statuses.id
-	pendingChairSent []string                 // chair_sent_at をまだDBに書いていない ride_statuses.id
+	mu              sync.Mutex
+	rides           map[string]*rideState
+	userLatestRide  map[string]*rideState   // user_id -> 最新(created_at)のライド
+	userRides       map[string][]*rideState // user_id -> ライド（作成順）
+	ownerNames      map[string]string       // owner_id -> オーナー名
+	chairLatestRide map[string]*rideState   // chair_id -> 最後に割り当てられたライド
+	chairs          map[string]*chairInfo
+	chairStats      map[string]*chairStatsState
+	userNames       map[string]string        // user_id -> "firstname lastname"
+	modelSpeed      map[string]int           // chair_models: モデル名 -> speed（マスタデータ）
+	dirtyChairs     map[string]struct{}      // 移動距離をまだDBに書き出していない椅子
+	inviteUsed      map[string]int           // "INV_<招待コード>" -> 使われた回数（上限3）
+	userWake        map[string]chan struct{} // SSE: 利用者の通知ストリームを起こす
+	chairWake       map[string]chan struct{} // SSE: 椅子の通知ストリームを起こす
 }
 
 // ロック保持中に呼ぶ
@@ -346,7 +344,6 @@ func loadState(ctx context.Context) error {
 	st.userNames = s.userNames
 	st.modelSpeed = s.modelSpeed
 	st.dirtyChairs = make(map[string]struct{})
-	st.pendingAppSent, st.pendingChairSent = nil, nil
 	st.inviteUsed = make(map[string]int, len(invites))
 	for _, iv := range invites {
 		st.inviteUsed[iv.Code] = iv.Count
@@ -603,44 +600,8 @@ func startFlusher() {
 			if err := flushChairDistances(context.Background()); err != nil {
 				slog.Error("flush chair_distances", "err", err)
 			}
-			if err := flushSentAt(context.Background()); err != nil {
-				slog.Error("flush sent_at", "err", err)
-			}
 		}
 	}()
-}
-
-// 通知の送信済みフラグ（app_sent_at / chair_sent_at）をまとめて書く（再起動後の復元用）。
-// 通知の応答をDBの書き込みで待たせない。待たせると「メモリでは送信済み・椅子はまだ受け取っていない」
-// 時間が伸び、その間に nearby-chairs が椅子を空きとして返して「既にライド中」の WARN になった。
-func flushSentAt(ctx context.Context) error {
-	flushMu.Lock()
-	defer flushMu.Unlock()
-
-	st.mu.Lock()
-	app, chair := st.pendingAppSent, st.pendingChairSent
-	st.pendingAppSent, st.pendingChairSent = nil, nil
-	st.mu.Unlock()
-
-	for _, x := range []struct {
-		col string
-		ids []string
-	}{{"app_sent_at", app}, {"chair_sent_at", chair}} {
-		for ids := x.ids; len(ids) > 0; {
-			n := min(len(ids), 1000)
-			chunk := ids[:n]
-			ids = ids[n:]
-			args := make([]any, len(chunk))
-			for i, id := range chunk {
-				args[i] = id
-			}
-			q := "UPDATE ride_statuses SET " + x.col + " = CURRENT_TIMESTAMP(6) WHERE id IN (?" + strings.Repeat(",?", len(chunk)-1) + ")"
-			if _, err := db.ExecContext(ctx, q, args...); err != nil {
-				return err
-			}
-		}
-	}
-	return nil
 }
 
 // メモリ上の移動距離・最新座標を chair_distances にまとめて書く（再起動後の復元用）。
