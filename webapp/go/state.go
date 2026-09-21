@@ -89,11 +89,13 @@ type memState struct {
 	chairLatestRide  map[string]*rideState // chair_id -> 最後に割り当てられたライド
 	chairs           map[string]*chairInfo
 	chairStats       map[string]*chairStatsState
-	userNames        map[string]string   // user_id -> "firstname lastname"
-	modelSpeed       map[string]int      // chair_models: モデル名 -> speed（マスタデータ）
-	dirtyChairs      map[string]struct{} // 移動距離をまだDBに書き出していない椅子
-	pendingAppSent   []string            // app_sent_at をまだDBに書いていない ride_statuses.id
-	pendingChairSent []string            // chair_sent_at をまだDBに書いていない ride_statuses.id
+	userNames        map[string]string        // user_id -> "firstname lastname"
+	modelSpeed       map[string]int           // chair_models: モデル名 -> speed（マスタデータ）
+	dirtyChairs      map[string]struct{}      // 移動距離をまだDBに書き出していない椅子
+	userWake         map[string]chan struct{} // SSE: 利用者の通知ストリームを起こす
+	chairWake        map[string]chan struct{} // SSE: 椅子の通知ストリームを起こす
+	pendingAppSent   []string                 // app_sent_at をまだDBに書いていない ride_statuses.id
+	pendingChairSent []string                 // chair_sent_at をまだDBに書いていない ride_statuses.id
 }
 
 // ロック保持中に呼ぶ
@@ -317,6 +319,10 @@ func loadState(ctx context.Context) error {
 	st.modelSpeed = s.modelSpeed
 	st.dirtyChairs = make(map[string]struct{})
 	st.pendingAppSent, st.pendingChairSent = nil, nil
+	if st.userWake == nil {
+		st.userWake = make(map[string]chan struct{})
+		st.chairWake = make(map[string]chan struct{})
+	}
 	st.mu.Unlock()
 	return nil
 }
@@ -338,6 +344,29 @@ func newRideState(r *Ride, fare int) *rideState {
 		Fare:                 fare,
 		CreatedAt:            r.CreatedAt,
 		UpdatedAt:            r.UpdatedAt,
+	}
+}
+
+// ロック保持中に呼ぶ。SSE のストリームが待つチャネル（容量1。取りこぼしても次の判定で拾える）
+func wakeChan(m map[string]chan struct{}, key string) chan struct{} {
+	ch, ok := m[key]
+	if !ok {
+		ch = make(chan struct{}, 1)
+		m[key] = ch
+	}
+	return ch
+}
+
+// ロック保持中に呼ぶ
+func wake(m map[string]chan struct{}, key string) {
+	if key == "" {
+		return
+	}
+	if ch, ok := m[key]; ok {
+		select {
+		case ch <- struct{}{}:
+		default:
+		}
 	}
 }
 
@@ -382,20 +411,7 @@ func (s *memState) addRide(r *Ride, fare int, matchingStatusID string) {
 	rs.Statuses = []*statusEntry{{ID: matchingStatusID, Status: "MATCHING"}}
 	s.rides[rs.ID] = rs
 	s.userLatestRide[rs.UserID] = rs
-}
-
-// ライドに椅子を割り当てた。
-func (s *memState) assignChair(ctx context.Context, rideID, chairID string, updatedAt time.Time) error {
-	s.mu.Lock()
-	defer s.mu.Unlock()
-	rs, err := s.rideLocked(ctx, rideID)
-	if err != nil {
-		return err
-	}
-	rs.ChairID = chairID
-	rs.UpdatedAt = updatedAt
-	s.chairLatestRide[chairID] = rs
-	return nil
+	wake(s.userWake, rs.UserID)
 }
 
 // マッチング結果をまとめてメモリに反映し、割り当て時刻を返す。
@@ -413,6 +429,7 @@ func (s *memState) assignChairs(ctx context.Context, plans []matchingPlan) (time
 		rs.ChairID = p.ChairID
 		rs.UpdatedAt = now
 		s.chairLatestRide[p.ChairID] = rs
+		wake(s.chairWake, p.ChairID)
 	}
 	return now, nil
 }
@@ -431,6 +448,8 @@ func (s *memState) addStatus(ctx context.Context, rideID, statusID, status strin
 		}
 	}
 	rs.Statuses = append(rs.Statuses, &statusEntry{ID: statusID, Status: status})
+	wake(s.userWake, rs.UserID)
+	wake(s.chairWake, rs.ChairID)
 	return nil
 }
 

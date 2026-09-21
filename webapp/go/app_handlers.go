@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"sort"
 	"strconv"
@@ -674,20 +676,54 @@ type appGetNotificationResponseChairStats struct {
 	TotalEvaluationAvg float64 `json:"total_evaluation_avg"`
 }
 
+// ユーザー向け通知（SSE）。
+// 接続直後に最新のライドの状態を送り、以後は状態が変わるたびに、まだ送っていない状態を古い順に送る。
+// 状態の変化は memState がこの利用者のチャネルを起こして知らせる（ポーリングしない）。
 func appGetNotification(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	user := ctx.Value("user").(*User)
 
-	// ユーザーの最新ライドについて、まだ送っていない最古の状態（なければ最新の状態）を返す。
-	// 読み取りはすべてメモリから。送った状態だけ DB の app_sent_at にも記録する（再起動後の復元用）。
-	st.mu.Lock()
-	ride := st.userLatestRide[user.ID]
-	if ride == nil {
-		st.mu.Unlock()
-		writeJSON(w, http.StatusOK, &appGetNotificationResponse{
-			RetryAfterMs: notificationRetryAfterMs,
-		})
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		writeError(w, http.StatusInternalServerError, errors.New("streaming unsupported"))
 		return
+	}
+	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("X-Accel-Buffering", "no") // nginx にバッファさせない
+	w.WriteHeader(http.StatusOK)
+	flusher.Flush()
+
+	st.mu.Lock()
+	wakeCh := wakeChan(st.userWake, user.ID)
+	st.mu.Unlock()
+
+	initial := true
+	for {
+		st.mu.Lock()
+		data := st.nextAppNotificationLocked(user.ID, initial)
+		st.mu.Unlock()
+		if data != nil {
+			initial = false
+			if err := writeSSE(w, flusher, data); err != nil {
+				return
+			}
+			continue
+		}
+		select {
+		case <-ctx.Done():
+			return
+		case <-wakeCh:
+		}
+	}
+}
+
+// ロック保持中に呼ぶ。利用者の最新ライドについて、まだ送っていない最古の状態があれば送信済みにして返す。
+// initial なら未送信が無くても最新の状態を返す（SSE 接続直後の要件）。送るものが無ければ nil。
+func (s *memState) nextAppNotificationLocked(userID string, initial bool) *appGetNotificationResponseData {
+	ride := s.userLatestRide[userID]
+	if ride == nil {
+		return nil
 	}
 	var sending *statusEntry
 	for _, e := range ride.Statuses {
@@ -696,36 +732,38 @@ func appGetNotification(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
+	if sending == nil && !initial {
+		return nil
+	}
 	status := ride.latestStatus()
 	if sending != nil {
 		status = sending.Status
+		sending.AppSent = true
+		s.pendingAppSent = append(s.pendingAppSent, sending.ID)
 	}
-	response := &appGetNotificationResponse{
-		Data: &appGetNotificationResponseData{
-			RideID: ride.ID,
-			PickupCoordinate: Coordinate{
-				Latitude:  ride.PickupLatitude,
-				Longitude: ride.PickupLongitude,
-			},
-			DestinationCoordinate: Coordinate{
-				Latitude:  ride.DestinationLatitude,
-				Longitude: ride.DestinationLongitude,
-			},
-			Fare:      ride.Fare,
-			Status:    status,
-			CreatedAt: ride.CreatedAt.UnixMilli(),
-			UpdateAt:  ride.UpdatedAt.UnixMilli(),
+	data := &appGetNotificationResponseData{
+		RideID: ride.ID,
+		PickupCoordinate: Coordinate{
+			Latitude:  ride.PickupLatitude,
+			Longitude: ride.PickupLongitude,
 		},
-		RetryAfterMs: notificationRetryAfterMs,
+		DestinationCoordinate: Coordinate{
+			Latitude:  ride.DestinationLatitude,
+			Longitude: ride.DestinationLongitude,
+		},
+		Fare:      ride.Fare,
+		Status:    status,
+		CreatedAt: ride.CreatedAt.UnixMilli(),
+		UpdateAt:  ride.UpdatedAt.UnixMilli(),
 	}
 	if ride.ChairID != "" {
-		if c := st.chairs[ride.ChairID]; c != nil {
+		if c := s.chairs[ride.ChairID]; c != nil {
 			stats := appGetNotificationResponseChairStats{}
-			if cs := st.chairStats[c.ID]; cs != nil && cs.Count > 0 {
+			if cs := s.chairStats[c.ID]; cs != nil && cs.Count > 0 {
 				stats.TotalRidesCount = cs.Count
 				stats.TotalEvaluationAvg = float64(cs.SumEvaluation) / float64(cs.Count)
 			}
-			response.Data.Chair = &appGetNotificationResponseChair{
+			data.Chair = &appGetNotificationResponseChair{
 				ID:    c.ID,
 				Name:  c.Name,
 				Model: c.Model,
@@ -733,13 +771,20 @@ func appGetNotification(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	if sending != nil {
-		sending.AppSent = true
-		st.pendingAppSent = append(st.pendingAppSent, sending.ID)
-	}
-	st.mu.Unlock()
+	return data
+}
 
-	writeJSON(w, http.StatusOK, response)
+// SSE のメッセージを1件書いてすぐ送る（1行の JSON + 空行）
+func writeSSE(w http.ResponseWriter, flusher http.Flusher, v any) error {
+	buf, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	if _, err := fmt.Fprintf(w, "data: %s\n\n", buf); err != nil {
+		return err
+	}
+	flusher.Flush()
+	return nil
 }
 
 func getChairStats(ctx context.Context, tx *sqlx.Tx, chairID string) (appGetNotificationResponseChairStats, error) {

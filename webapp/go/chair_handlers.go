@@ -177,19 +177,59 @@ type chairGetNotificationResponseData struct {
 	Status                string     `json:"status"`
 }
 
+// 椅子向け通知（SSE）。最後に割り当てられたライドについて、接続直後に最新の状態を送り、
+// 以後はまだ送っていない状態を古い順に送る。
 func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	chair := ctx.Value("chair").(*Chair)
 
-	// 椅子に最後に割り当てられたライドについて、まだ送っていない最古の状態（なければ最新）を返す。
-	st.mu.Lock()
-	ride := st.chairLatestRide[chair.ID]
-	if ride == nil {
-		st.mu.Unlock()
-		writeJSON(w, http.StatusOK, &chairGetNotificationResponse{
-			RetryAfterMs: notificationRetryAfterMs,
-		})
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		writeError(w, http.StatusInternalServerError, errors.New("streaming unsupported"))
 		return
+	}
+	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("X-Accel-Buffering", "no") // nginx にバッファさせない
+	w.WriteHeader(http.StatusOK)
+	flusher.Flush()
+
+	st.mu.Lock()
+	wakeCh := wakeChan(st.chairWake, chair.ID)
+	st.mu.Unlock()
+
+	initial := true
+	for {
+		st.mu.Lock()
+		data, userID, needName := st.nextChairNotificationLocked(chair.ID, initial)
+		st.mu.Unlock()
+		if data != nil {
+			initial = false
+			if needName {
+				user := &User{}
+				if err := db.GetContext(ctx, user, "SELECT * FROM users WHERE id = ?", userID); err != nil {
+					return
+				}
+				data.User.Name = fmt.Sprintf("%s %s", user.Firstname, user.Lastname)
+			}
+			if err := writeSSE(w, flusher, data); err != nil {
+				return
+			}
+			continue
+		}
+		select {
+		case <-ctx.Done():
+			return
+		case <-wakeCh:
+		}
+	}
+}
+
+// ロック保持中に呼ぶ。椅子の最新ライドについて、まだ送っていない最古の状態があれば送信済みにして返す。
+func (s *memState) nextChairNotificationLocked(chairID string, initial bool) (*chairGetNotificationResponseData, string, bool) {
+	ride := s.chairLatestRide[chairID]
+	if ride == nil {
+		return nil, "", false
 	}
 	var sending *statusEntry
 	for _, e := range ride.Statuses {
@@ -198,12 +238,18 @@ func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
+	if sending == nil && !initial {
+		return nil, "", false
+	}
 	status := ride.latestStatus()
 	if sending != nil {
 		status = sending.Status
+		sending.ChairSent = true
+		sending.ChairSentAt = time.Now()
+		s.pendingChairSent = append(s.pendingChairSent, sending.ID)
 	}
-	userName, ok := st.userNames[ride.UserID]
-	data := &chairGetNotificationResponseData{
+	userName, ok := s.userNames[ride.UserID]
+	return &chairGetNotificationResponseData{
 		RideID: ride.ID,
 		User: simpleUser{
 			ID:   ride.UserID,
@@ -218,27 +264,7 @@ func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 			Longitude: ride.DestinationLongitude,
 		},
 		Status: status,
-	}
-	if sending != nil {
-		sending.ChairSent = true
-		sending.ChairSentAt = time.Now()
-		st.pendingChairSent = append(st.pendingChairSent, sending.ID)
-	}
-	st.mu.Unlock()
-
-	if !ok {
-		user := &User{}
-		if err := db.GetContext(ctx, user, "SELECT * FROM users WHERE id = ?", ride.UserID); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		data.User.Name = fmt.Sprintf("%s %s", user.Firstname, user.Lastname)
-	}
-
-	writeJSON(w, http.StatusOK, &chairGetNotificationResponse{
-		Data:         data,
-		RetryAfterMs: notificationRetryAfterMs,
-	})
+	}, ride.UserID, !ok
 }
 
 type postChairRidesRideIDStatusRequest struct {
