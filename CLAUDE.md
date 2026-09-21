@@ -169,7 +169,7 @@ git add measurements scores && git commit -m "bench: ..."
 aws login --profile personal
 
 # 作成（競技3台 c5.large + ベンチ1台 c5.xlarge）
-AWS_PROFILE=personal isuenv up isucon14 --nodes 3 --bench-instance-type c5.xlarge --ttl 8h
+AWS_PROFILE=personal isuenv up isucon14 --nodes 3 --bench-instance-type c5.2xlarge --ttl 8h
 make setup      # hosts生成 → ベンチ機のサービス停止 → 計測ツール導入 → deploy → 計測ON
 make bench
 

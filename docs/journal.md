@@ -135,3 +135,28 @@ done
 | username の UNIQUE を外す | 418749 | ベンチ側の名前が偶然衝突 |
 | COMPLETED → 決済の順 | 160395 FAIL | **revert**（評価応答前の完了は WARN 268） |
 | 決済: Idempotency-Key で即再送 | 495562 | 成功率3割、100ms待ち+照合で 1件 0.7s |
+
+### 02:50 ベンチ機を c5.2xlarge に（競技サーバーは変更なし）
+
+measurements/20260922-024630 でベンチ機(c5.xlarge)の idle が負荷終盤に 5% 未満の秒が 7/64 あり、
+アプリ側より先に頭打ちになりかけていた。ベンチ機は競技サーバーではないのでレギュレーション対象外。
+
+```sh
+export AWS_PROFILE=personal AWS_REGION=ap-northeast-1
+I=i-08a58155409fcad18   # isucon14-4
+aws ec2 stop-instances --instance-ids $I && aws ec2 wait instance-stopped --instance-ids $I
+aws ec2 modify-instance-attribute --instance-id $I --instance-type '{"Value":"c5.2xlarge"}'
+aws ec2 start-instances --instance-ids $I && aws ec2 wait instance-running --instance-ids $I
+# パブリックIPが変わるので ssh 設定を作り直す（isuenv ssh が再生成する）
+AWS_PROFILE=personal perl -e 'alarm 40; exec @ARGV' isuenv ssh isucon14-4 < /dev/null
+```
+
+API からの stop は OS の shutdown ではないので、isuenv の shutdown-behavior=terminate にはかからない。
+TTL（/var/lib/isuenv-expires-at）はディスクにあるので維持される。private IP も変わらない。
+次に作り直すときは `isuenv up isucon14 --nodes 3 --bench-instance-type c5.2xlarge` にする。
+
+### 02:45 nearby の猶予 1s は -20%（revert）
+
+nearby に空き椅子を出すのを COMPLETED 通知の1秒後にしたら WARN は 0 になったが、同一コード2回で
+457804 / 466938（前は 595402）。招待経由の新規登録が 2900→2190。nearby の見え方が需要に効く。
+WARN 3件/回は上限200件に対して十分小さいので、50ms に戻す。
