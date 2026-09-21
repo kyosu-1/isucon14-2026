@@ -1,0 +1,82 @@
+{
+  "pass": true,
+  "score": 16743,
+  "error_codes": {
+    "1": 3,
+    "3": 2,
+    "7": 1,
+    "21": 1
+  },
+  "dissatisfied": {
+    "matching": 50.6,
+    "pickup": 46.7,
+    "ride": 91.4
+  },
+  "registered": {
+    "reputation": 115,
+    "invitation": 22
+  },
+  "left": 95,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 88,
+      "active": 31
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 62,
+      "active": 22
+    }
+  ],
+  "owners": [
+    {
+      "name": "GoEase",
+      "sales": 334800,
+      "chairs": 22
+    },
+    {
+      "name": "ComfortWorks",
+      "sales": 188700,
+      "chairs": 14
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 248200,
+      "chairs": 18
+    },
+    {
+      "name": "CityRide",
+      "sales": 294000,
+      "chairs": 20
+    },
+    {
+      "name": "快旅タクシー",
+      "sales": 416100,
+      "chairs": 25
+    }
+  ],
+  "warn_count": 7,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 3,
+      "msg": "\"椅子の座標送信に失敗しました (CODE=N): POST /api/chair/coordinateへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    },
+    {
+      "count": 2,
+      "msg": "\"椅子がライドを受理できませんでした (CODE=N): POST /api/chair/rides/{rideID}/statusへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"ユーザーの支払い情報の登録に失敗しました (CODE=N): POST /api/app/payment-methodsへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"ユーザーがライド履歴の取得に失敗しました (CODE=N): GET /app/rides へのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 1481800,
+  "total_chairs": 99
+}

@@ -1,0 +1,5 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.9
+systemd-journal                0.0
+kworker/u8:1-events_power_efficient       0.0
+kworker/0:0-events             0.0

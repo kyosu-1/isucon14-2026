@@ -41,7 +41,8 @@ warn = Counter()
 err = Counter()
 
 for ln in lines:
-    m = re.search(r"msg=結果 pass=(\w+) スコア=(-?\d+) 種別エラー数=map\[([^\]]*)\]", ln)
+    # エラー種別が複数あると値が空白を含むので "map[1:3 3:2]" とクォートされる
+    m = re.search(r'msg=結果 pass=(\w+) スコア=(-?\d+) 種別エラー数="?map\[([^\]]*)\]', ln)
     if m:
         out["pass"] = m.group(1) == "true"
         out["score"] = int(m.group(2))
