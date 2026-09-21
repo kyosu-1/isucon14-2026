@@ -44,6 +44,39 @@ var matchingStats struct {
 	maxDur    time.Duration
 }
 
+// 椅子 0..nChairs-1 と候補ライド candRides の間で、コストの合計が最小になる割り当てを返す（[椅子, ライド] の組）。
+// 数の少ない側を行にしてハンガリアン法を解く（少ない側はすべて割り当てられる）。
+func minCostAssign(nChairs int, candRides []int, costOf func(ci, ri int) float64) [][2]int {
+	rowsAreChairs := nChairs <= len(candRides)
+	nr, nc := nChairs, len(candRides)
+	if !rowsAreChairs {
+		nr, nc = nc, nr
+	}
+	if nr == 0 {
+		return nil
+	}
+	a := make([][]float64, nr)
+	for i := range a {
+		a[i] = make([]float64, nc)
+		for j := range a[i] {
+			if rowsAreChairs {
+				a[i][j] = costOf(i, candRides[j])
+			} else {
+				a[i][j] = costOf(j, candRides[i])
+			}
+		}
+	}
+	out := make([][2]int, 0, nr)
+	for i, j := range hungarian(a) {
+		if rowsAreChairs {
+			out = append(out, [2]int{i, candRides[j]})
+		} else {
+			out = append(out, [2]int{j, candRides[i]})
+		}
+	}
+	return out
+}
+
 // ハンガリアン法を使う計算量の上限（行² × 列）。超える回は貪欲法
 const hungarianBudget = 20_000_000
 
@@ -242,29 +275,13 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	}
 	slices.Sort(candRides)
 	nr, nc := len(chairs), len(candRides)
-	rowsAreChairs := nr <= nc
-	if !rowsAreChairs {
+	if nr > nc {
 		nr, nc = nc, nr
 	}
 	usedHungarian = nr > 0 && nr*nr*nc <= hungarianBudget
 	if usedHungarian {
-		a := make([][]float64, nr)
-		for i := range a {
-			a[i] = make([]float64, nc)
-			for j := range a[i] {
-				if rowsAreChairs {
-					a[i][j] = costOf(i, candRides[j])
-				} else {
-					a[i][j] = costOf(j, candRides[i])
-				}
-			}
-		}
-		for i, j := range hungarian(a) {
-			ci, ri := i, candRides[j]
-			if !rowsAreChairs {
-				ci, ri = j, candRides[i]
-			}
-			plans = append(plans, matchingPlan{RideID: rides[ri].ID, ChairID: chairs[ci].ID})
+		for _, cr := range minCostAssign(len(chairs), candRides, costOf) {
+			plans = append(plans, matchingPlan{RideID: rides[cr[1]].ID, ChairID: chairs[cr[0]].ID})
 		}
 	} else {
 		slices.SortFunc(pairs, comparePair)
