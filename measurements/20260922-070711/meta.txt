@@ -1,0 +1,8 @@
+timestamp : 20260922-070711
+commit    : 39e16e2  matching: ハンガリアン法の上限を 2,000万に戻す / 1回の所要時間の内訳（ロック待ち・計算・DB）を計測
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : マッチングの所要時間の内訳
+dirty     : 0 files uncommitted (webapp/ etc/)
