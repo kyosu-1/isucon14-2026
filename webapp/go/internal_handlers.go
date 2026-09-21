@@ -106,6 +106,22 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	for ri, ride := range rides {
 		ages[ri] = now.Sub(ride.CreatedAt).Seconds()
 	}
+	// 乗車時間の項: 長いライドほど速い椅子に当てる（運搬時間の合計が減り、椅子が早く空く）。
+	// 乗車距離をそのまま足すと長いライドが後回しになる（どの依頼から配るかが変わる: 前回 -6%）ので、
+	// この回の空き椅子の速さの調和平均 vRef で運んだときの時間を引き、椅子全体で平均すると 0 になる形にする。
+	const rideTimeWeight = 1.0
+	vRef := 0.0
+	if len(chairs) > 0 {
+		inv := 0.0
+		for _, c := range chairs {
+			inv += 1 / float64(c.Speed)
+		}
+		vRef = float64(len(chairs)) / inv
+	}
+	rideDist := make([]float64, len(rides))
+	for ri, ride := range rides {
+		rideDist[ri] = float64(calculateDistance(ride.PickupLat, ride.PickupLon, ride.DestLat, ride.DestLon))
+	}
 	k := len(chairs)
 	pairs := make([]pair, 0, len(chairs)*min(k, len(rides)))
 	cand := make([]pair, 0, len(rides))
@@ -117,7 +133,9 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 			if c.HasLocation {
 				pickupDistance = calculateDistance(c.Latitude, c.Longitude, ride.PickupLat, ride.PickupLon)
 			}
-			cost := float64(pickupDistance)/float64(c.Speed) - agingPerSec*ages[ri]
+			cost := float64(pickupDistance)/float64(c.Speed) +
+				rideTimeWeight*rideDist[ri]*(1/float64(c.Speed)-1/vRef) -
+				agingPerSec*ages[ri]
 			cand = append(cand, pair{ri, ci, cost})
 		}
 		if len(cand) > k {
