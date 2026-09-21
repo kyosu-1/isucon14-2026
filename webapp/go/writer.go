@@ -21,8 +21,9 @@ type rideWrite struct {
 	statusID   string
 	rideID     string
 	status     string
-	at         time.Time // 遷移した時刻（ride_statuses.created_at）
+	at         time.Time // 遷移した時刻（ride_statuses.created_at）。割り当てのときは割り当て時刻
 	evaluation int       // COMPLETED のときだけ
+	chairID    string    // マッチングの割り当てのときだけ（status は空）
 	done       chan error
 }
 
@@ -115,22 +116,58 @@ func writeRideChunk(ctx context.Context, batch []*rideWrite) error {
 	}
 	defer tx.Rollback()
 
-	// 1. 履歴
-	args := make([]any, 0, len(batch)*4)
+	assigns := make([]*rideWrite, 0)
+	statuses := make([]*rideWrite, 0, len(batch))
 	for _, w := range batch {
+		if w.chairID != "" {
+			assigns = append(assigns, w)
+		} else {
+			statuses = append(statuses, w)
+		}
+	}
+
+	// 0. マッチングの割り当て。FIFO なので、同じライドのこれ以降の状態遷移・評価より必ず先に書かれる
+	//    （評価で決まる updated_at = 完了日時を、遅れて来た割り当てが上書きすることはない）
+	if len(assigns) > 0 {
+		args := make([]any, 0, len(assigns)*5)
+		q := "UPDATE rides SET updated_at = CASE id"
+		for _, w := range assigns {
+			q += " WHEN ? THEN ?"
+			args = append(args, w.rideID, w.at)
+		}
+		q += " END, chair_id = CASE id"
+		for _, w := range assigns {
+			q += " WHEN ? THEN ?"
+			args = append(args, w.rideID, w.chairID)
+		}
+		q += " END WHERE id IN (?" + strings.Repeat(",?", len(assigns)-1) + ") AND chair_id IS NULL"
+		for _, w := range assigns {
+			args = append(args, w.rideID)
+		}
+		if _, err := tx.ExecContext(ctx, q, args...); err != nil {
+			return err
+		}
+	}
+	if len(statuses) == 0 {
+		return tx.Commit()
+	}
+
+	// 1. 履歴
+	args := make([]any, 0, len(statuses)*4)
+	for _, w := range statuses {
 		args = append(args, w.statusID, w.rideID, w.status, w.at)
 	}
 	if _, err := tx.ExecContext(ctx,
 		"INSERT INTO ride_statuses (id, ride_id, status, created_at) VALUES "+
-			strings.TrimSuffix(strings.Repeat("(?, ?, ?, ?),", len(batch)), ","),
+			strings.TrimSuffix(strings.Repeat("(?, ?, ?, ?),", len(statuses)), ","),
 		args...); err != nil {
 		return err
 	}
 
 	// 2. 最新状態（同じライドが複数あれば FIFO の最後）。updated_at は据え置く
-	last := make(map[string]string, len(batch))
-	order := make([]string, 0, len(batch))
-	for _, w := range batch {
+	last := make(map[string]string, len(statuses))
+	order := make([]string, 0, len(statuses))
+	for _, w := range statuses {
 		if _, ok := last[w.rideID]; !ok {
 			order = append(order, w.rideID)
 		}
@@ -151,7 +188,7 @@ func writeRideChunk(ctx context.Context, batch []*rideWrite) error {
 	}
 
 	// 3. 評価（完了日時 = updated_at は評価した時刻）
-	for _, w := range batch {
+	for _, w := range statuses {
 		if w.status != "COMPLETED" {
 			continue
 		}

@@ -303,11 +303,10 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 
 	tCalc = time.Since(started) - tLock
 	dbStart := time.Now()
-	// 割り当ては「メモリ → DB」の順に反映する。
-	// DBを先にすると、UPDATE の数msの間に nearby-chairs がその椅子を空きとして返し、
-	// retrieved_at がマッチ時刻(updated_at)より後になって「既にライド中」の WARN になった。
-	// DB へは UPDATE 1文にまとめる（1件ずつだと 150件で約2.5秒かかっていた）。
-	// マッチングは matcher から直列に呼ばれるので、chair_id IS NULL の競合は起きない。
+	// 割り当てはメモリに反映して、すぐ椅子に通知する。DB へは状態遷移と同じ FIFO の writer が書く。
+	// 以前は UPDATE のコミットを待ってから通知していた（ピーク時に1回 最大 380ms、その間 椅子が待たされた）。
+	// FIFO なので、割り当ての書き込みは同じライドのこれ以降の状態遷移・評価より必ず先に DB に入る。
+	// 割り当て時刻はロックの中で決める（nearby-chairs の retrieved_at と前後関係をそろえる）。
 	assigned := 0
 	if len(plans) > 0 {
 		now, err := st.assignChairs(ctx, plans)
@@ -316,24 +315,10 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		assigned = len(plans)
-		query := "UPDATE rides SET updated_at = ?, chair_id = CASE id"
-		args := make([]any, 0, len(plans)*3+1)
-		args = append(args, now)
 		for _, p := range plans {
-			query += " WHEN ? THEN ?"
-			args = append(args, p.RideID, p.ChairID)
+			enqueueRideWrite(&rideWrite{rideID: p.RideID, chairID: p.ChairID, at: now})
 		}
-		query += " END WHERE id IN (?" + strings.Repeat(",?", len(plans)-1) + ") AND chair_id IS NULL"
-		for _, p := range plans {
-			args = append(args, p.RideID)
-		}
-		_, err = db.ExecContext(ctx, query, args...)
-		// 失敗しても椅子を止めたままにはしない（ログに残して通知は進める）
 		st.finishAssign(plans)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
 	}
 
 	tDB = time.Since(dbStart)
