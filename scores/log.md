@@ -33,3 +33,4 @@
 | 09-22 01:52 | 167236 | +37.6% | ok | 0 | 67/39/57 | 14304900 | nginx: upstream keepalive / keepalive_requests / TLSセッションキャッシュ / worker_connections | `6f141ef` | 20260922-015114 | nginx keepalive |
 | 09-22 01:56 | 196333 | +17.4% | ok | 2 | 92/37/40 | 17083100 | coordinate: 移動距離をメモリで積み上げ、DBへは200msごとにまとめて書く / owner/chairs はメモリから | `f9a6d00` | 20260922-015449 | coordinate メモリ化 |
 | 09-22 01:58 | 244124 | +24.3% | ok | 11 | 88/37/20 | 20649100 | topology: アプリとマッチャーを isucon14-3 へ（1号機は nginx 専用） | `d8d1928` | 20260922-015729 | app を isu3 へ |
+| 09-22 02:01 | 251778 | +3.1% | ok | 3 | 93/38/25 | 21795000 | deploy: sysctl --system の非0で中断しない / nginx は設定変更時に restart | `433511c` | 20260922-020020 | listen backlog / reuseport |

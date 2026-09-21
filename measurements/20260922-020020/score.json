@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "score": 251778,
+  "error_codes": {
+    "30": 3
+  },
+  "dissatisfied": {
+    "matching": 93.2,
+    "pickup": 37.6,
+    "ride": 25.4
+  },
+  "registered": {
+    "reputation": 130,
+    "invitation": 1271
+  },
+  "left": 225,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 799,
+      "active": 681
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 624,
+      "active": 510
+    }
+  ],
+  "owners": [
+    {
+      "name": "つばさ交通",
+      "sales": 3935200,
+      "chairs": 112
+    },
+    {
+      "name": "おもてなしタクシー",
+      "sales": 4363000,
+      "chairs": 107
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 4937600,
+      "chairs": 119
+    },
+    {
+      "name": "椅子再生工房",
+      "sales": 4352200,
+      "chairs": 117
+    },
+    {
+      "name": "Artisan Seats",
+      "sales": 4207000,
+      "chairs": 105
+    }
+  ],
+  "warn_count": 3,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNEKWCNZDMTFNDJNHSKHAKの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNEKBXQPGKNHXNJNBMANAFNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 21795000,
+  "total_chairs": 560
+}
