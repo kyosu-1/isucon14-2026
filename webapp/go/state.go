@@ -80,6 +80,15 @@ type memState struct {
 	chairs          map[string]*chairInfo
 	chairStats      map[string]*chairStatsState
 	userNames       map[string]string // user_id -> "firstname lastname"
+	modelSpeed      map[string]int    // chair_models: モデル名 -> speed（マスタデータ）
+}
+
+// ロック保持中に呼ぶ
+func (s *memState) chairSpeed(model string) int {
+	if v, ok := s.modelSpeed[model]; ok && v > 0 {
+		return v
+	}
+	return 1
 }
 
 var st = &memState{}
@@ -216,6 +225,11 @@ func loadState(ctx context.Context) error {
 		return fmt.Errorf("load chair_distances: %w", err)
 	}
 
+	models := []ChairModel{}
+	if err := db.SelectContext(ctx, &models, `SELECT * FROM chair_models`); err != nil {
+		return fmt.Errorf("load chair_models: %w", err)
+	}
+
 	discountByRide := make(map[string]int, len(coupons))
 	for _, c := range coupons {
 		discountByRide[c.UsedBy] = c.Discount
@@ -228,6 +242,10 @@ func loadState(ctx context.Context) error {
 		chairs:          make(map[string]*chairInfo, len(chairs)),
 		chairStats:      make(map[string]*chairStatsState),
 		userNames:       make(map[string]string, len(users)),
+		modelSpeed:      make(map[string]int, len(models)),
+	}
+	for _, m := range models {
+		s.modelSpeed[m.Name] = m.Speed
 	}
 	for i := range rides {
 		rs := newRideState(&rides[i], fareWithDiscount(&rides[i], discountByRide[rides[i].ID]))
@@ -280,6 +298,7 @@ func loadState(ctx context.Context) error {
 	st.chairs = s.chairs
 	st.chairStats = s.chairStats
 	st.userNames = s.userNames
+	st.modelSpeed = s.modelSpeed
 	st.mu.Unlock()
 	return nil
 }
