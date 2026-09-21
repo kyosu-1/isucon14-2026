@@ -141,3 +141,17 @@ CREATE TABLE coupons
   INDEX idx_used_by (used_by)
 )
   COMMENT 'クーポンテーブル';
+
+-- 椅子ごとの移動距離合計と最新座標。chair_locations を毎回ウィンドウ関数で集計しないための導出テーブル。
+-- POST /api/chair/coordinate で差分を積み上げ、初期データ分は 4-derived-data.sql で作る。
+DROP TABLE IF EXISTS chair_distances;
+CREATE TABLE chair_distances
+(
+  chair_id                  VARCHAR(26) NOT NULL COMMENT '椅子ID',
+  total_distance            INTEGER     NOT NULL DEFAULT 0 COMMENT '移動距離合計',
+  total_distance_updated_at DATETIME(6) NOT NULL COMMENT '最後に座標を記録した日時',
+  latitude                  INTEGER     NOT NULL COMMENT '最新の経度',
+  longitude                 INTEGER     NOT NULL COMMENT '最新の緯度',
+  PRIMARY KEY (chair_id)
+)
+  COMMENT = '椅子の移動距離合計と最新位置';
