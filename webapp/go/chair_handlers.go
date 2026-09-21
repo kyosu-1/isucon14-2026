@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/oklog/ulid/v2"
 )
@@ -106,32 +107,14 @@ func chairPostCoordinate(w http.ResponseWriter, r *http.Request) {
 
 	chair := ctx.Value("chair").(*Chair)
 
-	tx, err := db.Beginx()
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	defer tx.Rollback()
-
-	chairLocationID := ulid.Make().String()
-	if _, err := tx.ExecContext(
-		ctx,
-		`INSERT INTO chair_locations (id, chair_id, latitude, longitude) VALUES (?, ?, ?, ?)`,
-		chairLocationID, chair.ID, req.Latitude, req.Longitude,
-	); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
-	location := &ChairLocation{}
-	if err := tx.GetContext(ctx, location, `SELECT * FROM chair_locations WHERE id = ?`, chairLocationID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
+	// 椅子は座標更新の成功を確認するまで移動しないので、ここの応答時間がそのまま椅子の速さになる。
+	// DBへは owner/chairs 用の移動距離の積み上げ1文だけ（状態遷移があるときだけトランザクション）。
+	// 位置履歴(chair_locations)はどこからも読まないので書かない。
+	now := time.Now().UTC().Truncate(time.Microsecond)
 
 	// 移動距離合計を差分で積み上げる。代入は左から評価されるので、
 	// total_distance の式の latitude/longitude は更新前（=直前の座標）を指す。
-	if _, err := tx.ExecContext(
+	if _, err := db.ExecContext(
 		ctx,
 		`INSERT INTO chair_distances (chair_id, total_distance, total_distance_updated_at, latitude, longitude) VALUES (?, 0, ?, ?, ?) AS new
 		 ON DUPLICATE KEY UPDATE
@@ -139,58 +122,54 @@ func chairPostCoordinate(w http.ResponseWriter, r *http.Request) {
 		   total_distance_updated_at = new.total_distance_updated_at,
 		   latitude = new.latitude,
 		   longitude = new.longitude`,
-		chair.ID, location.CreatedAt, req.Latitude, req.Longitude,
+		chair.ID, now, req.Latitude, req.Longitude,
 	); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	st.setChairLocation(chair.ID, req.Latitude, req.Longitude)
 
-	ride := &Ride{}
-	var newStatus, newStatusID string
-	if err := tx.GetContext(ctx, ride, `SELECT * FROM rides WHERE chair_id = ? ORDER BY updated_at DESC LIMIT 1`, chair.ID); err != nil {
-		if !errors.Is(err, sql.ErrNoRows) {
-			writeError(w, http.StatusInternalServerError, err)
-			return
+	// 割り当て中のライドが乗車位置・目的地に着いたか（ライドと状態はメモリから）
+	var rideID, newStatus string
+	st.mu.Lock()
+	if ride := st.chairLatestRide[chair.ID]; ride != nil {
+		switch ride.latestStatus() {
+		case "ENROUTE":
+			if req.Latitude == ride.PickupLatitude && req.Longitude == ride.PickupLongitude {
+				rideID, newStatus = ride.ID, "PICKUP"
+			}
+		case "CARRYING":
+			if req.Latitude == ride.DestinationLatitude && req.Longitude == ride.DestinationLongitude {
+				rideID, newStatus = ride.ID, "ARRIVED"
+			}
 		}
-	} else {
-		status, err := getLatestRideStatus(ctx, tx, ride.ID)
+	}
+	st.mu.Unlock()
+
+	if newStatus != "" {
+		tx, err := db.Beginx()
 		if err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
-		if status != "COMPLETED" && status != "CANCELED" {
-			if req.Latitude == ride.PickupLatitude && req.Longitude == ride.PickupLongitude && status == "ENROUTE" {
-				newStatus = "PICKUP"
-				if newStatusID, err = insertRideStatus(ctx, tx, ride.ID, newStatus); err != nil {
-					writeError(w, http.StatusInternalServerError, err)
-					return
-				}
-			}
-
-			if req.Latitude == ride.DestinationLatitude && req.Longitude == ride.DestinationLongitude && status == "CARRYING" {
-				newStatus = "ARRIVED"
-				if newStatusID, err = insertRideStatus(ctx, tx, ride.ID, newStatus); err != nil {
-					writeError(w, http.StatusInternalServerError, err)
-					return
-				}
-			}
+		defer tx.Rollback()
+		newStatusID, err := insertRideStatus(ctx, tx, rideID, newStatus)
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, err)
+			return
 		}
-	}
-
-	if err := tx.Commit(); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	st.setChairLocation(chair.ID, req.Latitude, req.Longitude)
-	if newStatusID != "" {
-		if err := st.addStatus(ctx, ride.ID, newStatusID, newStatus); err != nil {
+		if err := tx.Commit(); err != nil {
+			writeError(w, http.StatusInternalServerError, err)
+			return
+		}
+		if err := st.addStatus(ctx, rideID, newStatusID, newStatus); err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
 	}
 
 	writeJSON(w, http.StatusOK, &chairPostCoordinateResponse{
-		RecordedAt: location.CreatedAt.UnixMilli(),
+		RecordedAt: now.UnixMilli(),
 	})
 }
 
