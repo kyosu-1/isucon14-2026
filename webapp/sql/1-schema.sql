@@ -91,6 +91,7 @@ CREATE TABLE rides
   destination_latitude  INTEGER     NOT NULL COMMENT '目的地(経度)',
   destination_longitude INTEGER     NOT NULL COMMENT '目的地(緯度)',
   evaluation            INTEGER     NULL     COMMENT '評価',
+  status                ENUM ('MATCHING', 'ENROUTE', 'PICKUP', 'CARRYING', 'ARRIVED', 'COMPLETED') NOT NULL DEFAULT 'MATCHING' COMMENT '最新の状態(ride_statusesの最新と同じ)',
   created_at            DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '要求日時',
   updated_at            DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '状態更新日時',
   PRIMARY KEY (id),

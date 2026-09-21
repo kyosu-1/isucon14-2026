@@ -18,3 +18,10 @@ UPDATE chair_distances d
                ROW_NUMBER() OVER (PARTITION BY chair_id ORDER BY created_at DESC) AS rn
         FROM chair_locations) l ON l.chair_id = d.chair_id AND l.rn = 1
 SET d.latitude = l.latitude, d.longitude = l.longitude;
+
+-- rides.status = ride_statuses の最新（updated_at は ON UPDATE で書き換わらないよう明示的に据え置く）
+UPDATE rides r
+  JOIN (SELECT ride_id, status,
+               ROW_NUMBER() OVER (PARTITION BY ride_id ORDER BY created_at DESC) AS rn
+        FROM ride_statuses) s ON s.ride_id = r.id AND s.rn = 1
+SET r.status = s.status, r.updated_at = r.updated_at;

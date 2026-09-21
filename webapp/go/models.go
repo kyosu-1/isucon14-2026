@@ -56,6 +56,7 @@ type Ride struct {
 	DestinationLatitude  int            `db:"destination_latitude"`
 	DestinationLongitude int            `db:"destination_longitude"`
 	Evaluation           *int           `db:"evaluation"`
+	Status               string         `db:"status"`
 	CreatedAt            time.Time      `db:"created_at"`
 	UpdatedAt            time.Time      `db:"updated_at"`
 }

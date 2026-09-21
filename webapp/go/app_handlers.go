@@ -283,12 +283,25 @@ type executableGet interface {
 	GetContext(ctx context.Context, dest interface{}, query string, args ...interface{}) error
 }
 
+// ライドの最新状態。ride_statuses を毎回 ORDER BY で引かず、rides.status（状態遷移と同じトランザクションで更新）を読む。
 func getLatestRideStatus(ctx context.Context, tx executableGet, rideID string) (string, error) {
 	status := ""
-	if err := tx.GetContext(ctx, &status, `SELECT status FROM ride_statuses WHERE ride_id = ? ORDER BY created_at DESC LIMIT 1`, rideID); err != nil {
+	if err := tx.GetContext(ctx, &status, `SELECT status FROM rides WHERE id = ?`, rideID); err != nil {
 		return "", err
 	}
 	return status, nil
+}
+
+// 状態遷移を記録する。履歴(ride_statuses)と最新状態(rides.status)を同じトランザクションで書く。
+// rides.updated_at は元の実装どおり「割り当て・評価のとき」だけ変わるよう、明示的に据え置く。
+func insertRideStatus(ctx context.Context, tx *sqlx.Tx, rideID string, status string) error {
+	if _, err := tx.ExecContext(ctx, `INSERT INTO ride_statuses (id, ride_id, status) VALUES (?, ?, ?)`, ulid.Make().String(), rideID, status); err != nil {
+		return err
+	}
+	if _, err := tx.ExecContext(ctx, `UPDATE rides SET status = ?, updated_at = updated_at WHERE id = ?`, status, rideID); err != nil {
+		return err
+	}
+	return nil
 }
 
 func appPostRides(w http.ResponseWriter, r *http.Request) {
@@ -562,11 +575,7 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = tx.ExecContext(
-		ctx,
-		`INSERT INTO ride_statuses (id, ride_id, status) VALUES (?, ?, ?)`,
-		ulid.Make().String(), rideID, "COMPLETED")
-	if err != nil {
+	if err := insertRideStatus(ctx, tx, rideID, "COMPLETED"); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
