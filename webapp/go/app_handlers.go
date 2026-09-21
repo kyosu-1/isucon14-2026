@@ -547,10 +547,9 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 決済はトランザクションの外で行う。
+	// 決済はトランザクションの外で、COMPLETED を記録した後に行う（下のコメント参照）。
 	// 以前はトランザクションを開いたまま決済サーバーを待っていたので、評価(avg 0.7s)のたびに
 	// DB接続を握り続け、プール(64)が埋まって他のエンドポイントの p99 が 1秒前後まで伸びていた。
-	// 決済には Idempotency-Key（ライドID）を付けるので、再試行・重複リクエストでも二重に請求されない。
 	ride := &Ride{}
 	if err := db.GetContext(ctx, ride, `SELECT * FROM rides WHERE id = ?`, rideID); err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
@@ -597,21 +596,6 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := requestPaymentGatewayPostPayment(ctx, paymentGatewayURL, paymentToken.Token, rideID, paymentGatewayRequest, func() ([]Ride, error) {
-		rides := []Ride{}
-		if err := db.SelectContext(ctx, &rides, `SELECT * FROM rides WHERE user_id = ? ORDER BY created_at ASC`, ride.UserID); err != nil {
-			return nil, err
-		}
-		return rides, nil
-	}); err != nil {
-		if errors.Is(err, erroredUpstream) {
-			writeError(w, http.StatusBadGateway, err)
-			return
-		}
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
 	tx, err := db.Beginx()
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, err)
@@ -648,6 +632,17 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 	}
 	if err := st.complete(ctx, rideID, completedStatusID, req.Evaluation, ride.UpdatedAt); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	// COMPLETED を記録して椅子を解放してから決済する（決済サーバーの応答 ~1秒のあいだ椅子を遊ばせない）。
+	// 利用者への応答は決済が終わってから返すので、「評価が完了したのに未払い」は応答前にしか存在しない。
+	// COMPLETED は取り消せないので、成功するまで再試行する（Idempotency-Key で二重請求にならない）。
+	// 利用者が切断しても払い終えるよう、リクエストとは別の context で行う。
+	payCtx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	if err := postPaymentUntilSuccess(payCtx, paymentGatewayURL, paymentToken.Token, rideID, paymentGatewayRequest); err != nil {
+		writeError(w, http.StatusBadGateway, err)
 		return
 	}
 

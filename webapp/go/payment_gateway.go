@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -96,4 +97,46 @@ func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL str
 	}
 
 	return nil
+}
+
+var paymentClient = &http.Client{Timeout: 10 * time.Second}
+
+// 決済を成功するまで再試行する。Idempotency-Key（ライドID）を付けるので、
+// 前の試行が実は成功していても二重には請求されない（マニュアル記載の仕様）。
+func postPaymentUntilSuccess(ctx context.Context, paymentGatewayURL, token, idempotencyKey string, param *paymentGatewayPostPaymentRequest) error {
+	b, err := json.Marshal(param)
+	if err != nil {
+		return err
+	}
+	backoff := 20 * time.Millisecond
+	for {
+		err := func() error {
+			req, err := http.NewRequestWithContext(ctx, http.MethodPost, paymentGatewayURL+"/payments", bytes.NewBuffer(b))
+			if err != nil {
+				return err
+			}
+			req.Header.Set("Content-Type", "application/json")
+			req.Header.Set("Authorization", "Bearer "+token)
+			req.Header.Set("Idempotency-Key", idempotencyKey)
+			res, err := paymentClient.Do(req)
+			if err != nil {
+				return err
+			}
+			defer res.Body.Close()
+			io.Copy(io.Discard, res.Body)
+			if res.StatusCode != http.StatusNoContent {
+				return fmt.Errorf("[POST /payments] unexpected status code (%d)", res.StatusCode)
+			}
+			return nil
+		}()
+		if err == nil {
+			return nil
+		}
+		select {
+		case <-ctx.Done():
+			return fmt.Errorf("payment did not succeed: %w (last: %v)", ctx.Err(), err)
+		case <-time.After(backoff):
+		}
+		backoff = min(backoff*2, 500*time.Millisecond)
+	}
 }
