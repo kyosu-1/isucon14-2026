@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 103439,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 80.7,
+    "pickup": 34.9,
+    "ride": 59.2
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 309
+  },
+  "left": 184,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 274,
+      "active": 164
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 182,
+      "active": 103
+    }
+  ],
+  "owners": [
+    {
+      "name": "座心工房",
+      "sales": 1935400,
+      "chairs": 70
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 2100300,
+      "chairs": 74
+    },
+    {
+      "name": "椅子工藝舎",
+      "sales": 1850500,
+      "chairs": 67
+    },
+    {
+      "name": "いすの道",
+      "sales": 1559300,
+      "chairs": 60
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 1634100,
+      "chairs": 61
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 9079600,
+  "total_chairs": 332
+}

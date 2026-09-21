@@ -1,0 +1,8 @@
+timestamp : 20260922-014334
+commit    : a450dcb  matching: 待ちライド・空き椅子・速度の判定をメモリ上の状態で行う
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : matching をメモリで判定
+dirty     : 0 files uncommitted (webapp/ etc/)
