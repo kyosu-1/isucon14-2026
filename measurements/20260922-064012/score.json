@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 1190386,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 86.6,
+    "pickup": 2.9,
+    "ride": 44.8
+  },
+  "registered": {
+    "reputation": 161,
+    "invitation": 3595
+  },
+  "left": 185,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2351,
+      "active": 2251
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1528,
+      "active": 1438
+    }
+  ],
+  "owners": [
+    {
+      "name": "Skyline Taxis",
+      "sales": 23865200,
+      "chairs": 607
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 25908500,
+      "chairs": 621
+    },
+    {
+      "name": "座心工房",
+      "sales": 22063500,
+      "chairs": 310
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 17606000,
+      "chairs": 376
+    },
+    {
+      "name": "SitWell Designs",
+      "sales": 24323500,
+      "chairs": 342
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 113766700,
+  "total_chairs": 2256
+}
