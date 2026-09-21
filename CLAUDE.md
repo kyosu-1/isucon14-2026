@@ -146,6 +146,8 @@ git add measurements scores && git commit -m "bench: ..."
 **必ず先に確認する:**
 
 - `make down`（環境の破棄）、`isuenv nuke`、環境の作り直し
+- **ベンチ機（isucon14-4）のインスタンスタイプの変更**。スコアがベンチ機の性能に左右されるため、
+  途中で変えると前後の点数が比べられなくなる（02:50 に c5.xlarge → c5.2xlarge に変えた。以後は変えない）
 - GitHub など外部への push・公開
 - レギュレーションの解釈が割れる変更
 
