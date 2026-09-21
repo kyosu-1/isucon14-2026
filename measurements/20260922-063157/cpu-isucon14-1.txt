@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+nginx                        105.8
+pidstat                        0.8
+landscape-sysin                0.6
+rcu_sched                      0.2
+kworker/1:1-events             0.1
+kworker/0:1-events             0.1
+ksoftirqd/1                    0.1
+ksoftirqd/0                    0.1
+vmstat                         0.0
+systemd-logind                 0.0
+systemd-journal                0.0
+systemd                        0.0
+sshd                           0.0
+migration/0                    0.0
+kworker/u8:5-events_power_efficient       0.0
