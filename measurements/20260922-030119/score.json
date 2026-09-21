@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 750992,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 89.3,
+    "pickup": 0.7,
+    "ride": 29.2
+  },
+  "registered": {
+    "reputation": 136,
+    "invitation": 4371
+  },
+  "left": 20,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2707,
+      "active": 2697
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1930,
+      "active": 1914
+    }
+  ],
+  "owners": [
+    {
+      "name": "Timeless Seats",
+      "sales": 15202800,
+      "chairs": 374
+    },
+    {
+      "name": "晴れ道タクシー",
+      "sales": 16290400,
+      "chairs": 400
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 11900100,
+      "chairs": 298
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 13796900,
+      "chairs": 343
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 16009800,
+      "chairs": 375
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 73200000,
+  "total_chairs": 1790
+}
