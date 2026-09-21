@@ -57,7 +57,7 @@ deploy_one() {
   rsync -a "$src/" "$dir/"
   grep -rlE '__ISU[123]_IP__' "$dir" 2>/dev/null | while read -r f; do
     sed -i.bak -e "s/__ISU1_IP__/$ISU1_IP/g" -e "s/__ISU2_IP__/$ISU2_IP/g" -e "s/__ISU3_IP__/$ISU3_IP/g" "$f" && rm -f "$f.bak"
-  done
+  done || true   # 置換対象が無いノードでは grep が 1 を返す
 
   # SSHユーザー(ubuntu)は /home/isucon 配下に書けないので rsync 側を sudo -u isucon で動かす
   local RS_ISUCON='sudo -u isucon rsync'
@@ -78,7 +78,7 @@ deploy_one() {
     changed_env="$(rsync -lpcz -i --rsync-path="$RS_ISUCON" "$dir/home/env.sh" "$HOST:/home/isucon/env.sh" | grep -v '^\.' || true)"
   fi
   local want="$MANAGED"
-  [ -f "$dir/services" ] && want="$(grep -v '^#' "$dir/services" | xargs)"
+  [ -f "$dir/services" ] && want="$(grep -v '^#' "$dir/services" | xargs || true)"  # 全行コメントだと grep が 1 を返す
 
   {
     [ -n "$changed_nginx$changed_mysql$changed_systemd$changed_env" ] && \
