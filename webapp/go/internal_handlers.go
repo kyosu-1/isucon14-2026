@@ -109,7 +109,7 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	// 乗車時間の項: 長いライドほど速い椅子に当てる（運搬時間の合計が減り、椅子が早く空く）。
 	// 乗車距離をそのまま足すと長いライドが後回しになる（どの依頼から配るかが変わる: 前回 -6%）ので、
 	// この回の空き椅子の速さの調和平均 vRef で運んだときの時間を引き、椅子全体で平均すると 0 になる形にする。
-	const rideTimeWeight = 2.0
+	const rideTimeWeight = 1.0
 	vRef := 0.0
 	if len(chairs) > 0 {
 		inv := 0.0
