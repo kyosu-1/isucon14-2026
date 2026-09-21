@@ -1,0 +1,79 @@
+{
+  "pass": true,
+  "score": 1209389,
+  "error_codes": {
+    "30": 12
+  },
+  "dissatisfied": {
+    "matching": 86.6,
+    "pickup": 2.9,
+    "ride": 44.2
+  },
+  "registered": {
+    "reputation": 151,
+    "invitation": 3714
+  },
+  "left": 165,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2484,
+      "active": 2386
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1448,
+      "active": 1368
+    }
+  ],
+  "owners": [
+    {
+      "name": "SwiftCab",
+      "sales": 23327800,
+      "chairs": 506
+    },
+    {
+      "name": "CityRide",
+      "sales": 23760400,
+      "chairs": 375
+    },
+    {
+      "name": "椅子のふるさと",
+      "sales": 20225700,
+      "chairs": 414
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 22653600,
+      "chairs": 320
+    },
+    {
+      "name": "晴れ道タクシー",
+      "sales": 25605700,
+      "chairs": 465
+    }
+  ],
+  "warn_count": 12,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNJNMHNFKTNVQDJNZTNQNの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNHRZNCAHHMVAEXNKACNYの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNHGNHNDRWNANMNPMNWNWNの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNGSNCNJGNAKNRXTFZJHAFの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 115573200,
+  "total_chairs": 2080
+}

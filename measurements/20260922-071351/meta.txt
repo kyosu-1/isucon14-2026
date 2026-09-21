@@ -1,0 +1,8 @@
+timestamp : 20260922-071351
+commit    : f5cf276  Revert "matching: 割り当ての DB 書き込みも FIFO の writer に回し、椅子にはすぐ通知する"
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 再起動試験後
+dirty     : 0 files uncommitted (webapp/ etc/)
