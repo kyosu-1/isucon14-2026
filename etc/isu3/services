@@ -1,2 +1,3 @@
 # このノードで enable するサービス（deploy.sh が読む。書かれていない管理対象は disable）
-# 空 = 何も動かさない（予備）
+# アプリ + マッチャー（ライドの状態をメモリに持つので1プロセスだけ）
+isuride-go isuride-matcher

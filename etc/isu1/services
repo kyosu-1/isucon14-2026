@@ -1,2 +1,3 @@
 # このノードで enable するサービス（deploy.sh が読む。書かれていない管理対象は disable）
-nginx isuride-go isuride-matcher
+# nginx 専用（アプリは isucon14-3）
+nginx

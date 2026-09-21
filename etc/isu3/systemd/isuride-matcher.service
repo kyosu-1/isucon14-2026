@@ -13,7 +13,8 @@ User=isucon
 Group=isucon
 EnvironmentFile=/home/isucon/env.sh
 
-ExecStart=/bin/sh -c "while true; do curl -s https://isuride.xiv.isucon.net/api/internal/matching; sleep $ISUCON_MATCHING_INTERVAL; done"
+# アプリは同じノードで動いている（nginx は isucon14-1）ので、nginx を通さず直接叩く
+ExecStart=/bin/sh -c "while true; do curl -s http://127.0.0.1:8080/api/internal/matching; sleep $ISUCON_MATCHING_INTERVAL; done"
 ExecStop=/bin/kill -s QUIT $MAINPID
 
 Restart=on-failure
