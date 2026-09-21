@@ -332,6 +332,16 @@ func appPostRides(w http.ResponseWriter, r *http.Request) {
 	user := ctx.Value("user").(*User)
 	rideID := ulid.Make().String()
 
+	// 進行中のライドがあるか（利用者のライドは同時に1つだけなので、最新のライドを見れば足りる）。
+	// 以前は利用者の全ライドについて最新状態を1件ずつ引いていた（N+1）。
+	st.mu.Lock()
+	if cur := st.userLatestRide[user.ID]; cur != nil && cur.latestStatus() != "COMPLETED" {
+		st.mu.Unlock()
+		writeError(w, http.StatusConflict, errors.New("ride already exists"))
+		return
+	}
+	st.mu.Unlock()
+
 	tx, err := db.Beginx()
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, err)
@@ -339,34 +349,13 @@ func appPostRides(w http.ResponseWriter, r *http.Request) {
 	}
 	defer tx.Rollback()
 
-	rides := []Ride{}
-	if err := tx.SelectContext(ctx, &rides, `SELECT * FROM rides WHERE user_id = ?`, user.ID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
-	continuingRideCount := 0
-	for _, ride := range rides {
-		status, err := getLatestRideStatus(ctx, tx, ride.ID)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		if status != "COMPLETED" {
-			continuingRideCount++
-		}
-	}
-
-	if continuingRideCount > 0 {
-		writeError(w, http.StatusConflict, errors.New("ride already exists"))
-		return
-	}
-
+	// created_at / updated_at は Go 側で決める（メモリと揃え、INSERT 後の読み直しをなくす）
+	now := time.Now().UTC().Truncate(time.Microsecond)
 	if _, err := tx.ExecContext(
 		ctx,
-		`INSERT INTO rides (id, user_id, pickup_latitude, pickup_longitude, destination_latitude, destination_longitude)
-				  VALUES (?, ?, ?, ?, ?, ?)`,
-		rideID, user.ID, req.PickupCoordinate.Latitude, req.PickupCoordinate.Longitude, req.DestinationCoordinate.Latitude, req.DestinationCoordinate.Longitude,
+		`INSERT INTO rides (id, user_id, pickup_latitude, pickup_longitude, destination_latitude, destination_longitude, created_at, updated_at)
+				  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+		rideID, user.ID, req.PickupCoordinate.Latitude, req.PickupCoordinate.Longitude, req.DestinationCoordinate.Latitude, req.DestinationCoordinate.Longitude, now, now,
 	); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
@@ -442,17 +431,21 @@ func appPostRides(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	ride := Ride{}
-	if err := tx.GetContext(ctx, &ride, "SELECT * FROM rides WHERE id = ?", rideID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
+	// 運賃 = このライドに今適用したクーポンの割引（なければ0）。元の calculateDiscountedFare(ride) と同じ値。
+	// どの分岐でもクーポンが見つからなければ coupon はゼロ値のまま。
+	appliedDiscount := coupon.Discount
+	ride := Ride{
+		ID:                   rideID,
+		UserID:               user.ID,
+		PickupLatitude:       req.PickupCoordinate.Latitude,
+		PickupLongitude:      req.PickupCoordinate.Longitude,
+		DestinationLatitude:  req.DestinationCoordinate.Latitude,
+		DestinationLongitude: req.DestinationCoordinate.Longitude,
+		Status:               "MATCHING",
+		CreatedAt:            now,
+		UpdatedAt:            now,
 	}
-
-	fare, err := calculateDiscountedFare(ctx, tx, user.ID, &ride, req.PickupCoordinate.Latitude, req.PickupCoordinate.Longitude, req.DestinationCoordinate.Latitude, req.DestinationCoordinate.Longitude)
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
+	fare := fareWithDiscount(&ride, appliedDiscount)
 
 	if err := tx.Commit(); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
