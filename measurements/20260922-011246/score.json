@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 26548,
+  "error_codes": {
+    "17": 4
+  },
+  "dissatisfied": {
+    "matching": 55.8,
+    "pickup": 39.6,
+    "ride": 88.6
+  },
+  "registered": {
+    "reputation": 125,
+    "invitation": 40
+  },
+  "left": 106,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 94,
+      "active": 39
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 85,
+      "active": 31
+    }
+  ],
+  "owners": [
+    {
+      "name": "LuxeLine Taxi",
+      "sales": 458700,
+      "chairs": 27
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 425000,
+      "chairs": 26
+    },
+    {
+      "name": "PreLoved Chairs",
+      "sales": 475000,
+      "chairs": 27
+    },
+    {
+      "name": "Sit Second Life",
+      "sales": 427900,
+      "chairs": 26
+    },
+    {
+      "name": "椅子再生工房",
+      "sales": 546000,
+      "chairs": 31
+    }
+  ],
+  "warn_count": 4,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 4,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 2332600,
+  "total_chairs": 137
+}
