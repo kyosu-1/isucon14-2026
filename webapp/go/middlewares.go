@@ -16,8 +16,15 @@ func appAuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 		accessToken := c.Value
+		if user, ok := authCache.user(accessToken); ok {
+			next.ServeHTTP(w, r.WithContext(context.WithValue(ctx, "user", user)))
+			return
+		}
 		user := &User{}
 		err = db.GetContext(ctx, user, "SELECT * FROM users WHERE access_token = ?", accessToken)
+		if err == nil {
+			authCache.putUser(user)
+		}
 		if err != nil {
 			if errors.Is(err, sql.ErrNoRows) {
 				writeError(w, http.StatusUnauthorized, errors.New("invalid access token"))
@@ -41,6 +48,10 @@ func ownerAuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 		accessToken := c.Value
+		if owner, ok := authCache.owner(accessToken); ok {
+			next.ServeHTTP(w, r.WithContext(context.WithValue(ctx, "owner", owner)))
+			return
+		}
 		owner := &Owner{}
 		if err := db.GetContext(ctx, owner, "SELECT * FROM owners WHERE access_token = ?", accessToken); err != nil {
 			if errors.Is(err, sql.ErrNoRows) {
@@ -51,6 +62,7 @@ func ownerAuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 
+		authCache.putOwner(owner)
 		ctx = context.WithValue(ctx, "owner", owner)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
@@ -65,8 +77,15 @@ func chairAuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 		accessToken := c.Value
+		if chair, ok := authCache.chair(accessToken); ok {
+			next.ServeHTTP(w, r.WithContext(context.WithValue(ctx, "chair", chair)))
+			return
+		}
 		chair := &Chair{}
 		err = db.GetContext(ctx, chair, "SELECT * FROM chairs WHERE access_token = ?", accessToken)
+		if err == nil {
+			authCache.putChair(chair)
+		}
 		if err != nil {
 			if errors.Is(err, sql.ErrNoRows) {
 				writeError(w, http.StatusUnauthorized, errors.New("invalid access token"))

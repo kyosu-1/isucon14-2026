@@ -84,7 +84,92 @@ type memState struct {
 
 var st = &memState{}
 
+// アクセストークン -> 利用者/椅子/オーナー。トークンは発行後に変わらないので、
+// 認証のたびにDBを引かない。起動時と initialize で作り直し、登録APIで追加する。
+// （Chair.IsActive などトークン以外の可変な列は認証結果として使わないこと）
+type authCacheT struct {
+	mu     sync.RWMutex
+	users  map[string]*User
+	chairs map[string]*Chair
+	owners map[string]*Owner
+}
+
+var authCache = &authCacheT{}
+
+func (a *authCacheT) user(token string) (*User, bool) {
+	a.mu.RLock()
+	defer a.mu.RUnlock()
+	u, ok := a.users[token]
+	return u, ok
+}
+
+func (a *authCacheT) chair(token string) (*Chair, bool) {
+	a.mu.RLock()
+	defer a.mu.RUnlock()
+	c, ok := a.chairs[token]
+	return c, ok
+}
+
+func (a *authCacheT) owner(token string) (*Owner, bool) {
+	a.mu.RLock()
+	defer a.mu.RUnlock()
+	o, ok := a.owners[token]
+	return o, ok
+}
+
+func (a *authCacheT) putUser(u *User) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.users[u.AccessToken] = u
+}
+
+func (a *authCacheT) putChair(c *Chair) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.chairs[c.AccessToken] = c
+}
+
+func (a *authCacheT) putOwner(o *Owner) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.owners[o.AccessToken] = o
+}
+
+func loadAuthCache(ctx context.Context) error {
+	users := []User{}
+	if err := db.SelectContext(ctx, &users, `SELECT * FROM users`); err != nil {
+		return fmt.Errorf("load users: %w", err)
+	}
+	chairs := []Chair{}
+	if err := db.SelectContext(ctx, &chairs, `SELECT * FROM chairs`); err != nil {
+		return fmt.Errorf("load chairs: %w", err)
+	}
+	owners := []Owner{}
+	if err := db.SelectContext(ctx, &owners, `SELECT * FROM owners`); err != nil {
+		return fmt.Errorf("load owners: %w", err)
+	}
+	um := make(map[string]*User, len(users))
+	for i := range users {
+		um[users[i].AccessToken] = &users[i]
+	}
+	cm := make(map[string]*Chair, len(chairs))
+	for i := range chairs {
+		cm[chairs[i].AccessToken] = &chairs[i]
+	}
+	om := make(map[string]*Owner, len(owners))
+	for i := range owners {
+		om[owners[i].AccessToken] = &owners[i]
+	}
+	authCache.mu.Lock()
+	authCache.users, authCache.chairs, authCache.owners = um, cm, om
+	authCache.mu.Unlock()
+	return nil
+}
+
 func loadState(ctx context.Context) error {
+	if err := loadAuthCache(ctx); err != nil {
+		return err
+	}
 	rides := []Ride{}
 	if err := db.SelectContext(ctx, &rides, `SELECT * FROM rides ORDER BY created_at`); err != nil {
 		return fmt.Errorf("load rides: %w", err)
