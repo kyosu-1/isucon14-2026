@@ -1,0 +1,8 @@
+timestamp : 20260922-035121
+commit    : b6b69ad  bench: 1111960 再起動試験2回目 (pass, WARN 79) / app: 起動時は DB につながるまで待つ
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 再起動試験後
+dirty     : 0 files uncommitted (webapp/ etc/)

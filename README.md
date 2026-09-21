@@ -1,0 +1,90 @@
+# isucon14 2026
+
+[ISUCON14](https://github.com/isucon/isucon14)（ISURIDE）を、レギュレーションを守った上でどこまでスコアを伸ばせるか検証するリポジトリ。
+環境は [isuenv](https://github.com/kyosu-1/isuenv) で AWS 上に作り、計測 → 改善のループは Claude Code が回した。
+
+## 到達点
+
+| | スコア | 倍率 |
+| --- | ---: | ---: |
+| ベースライン（Go / 無改善） | 1,097 | 1x |
+| **最高記録**（再起動試験後） | **1,159,771** | **1057x** |
+| 最終構成のブレ（計測OFF・8回） | 1,111,960 〜 1,159,771 | |
+
+- すべて `pass=true`。クリティカルエラーなし。WARN は nearby の「既にライド中」が 1回あたり 15〜79件（上限200）
+- **再起動試験に3回合格**（3台を同時に `systemctl reboot` → 全サービス自動起動 → ベンチ）
+- 競技サーバーは c5.large × 3台（レギュレーションどおり）。ベンチ機は別インスタンス（c5.2xlarge）
+- 計測 約80回、コミット 約200件。改善の根拠はすべて `measurements/` とコミットメッセージにある
+
+### 改善の推移（抜粋。全件は [scores/log.md](scores/log.md)）
+
+| 時刻 | スコア | 変更 | 効いた理由 |
+| --- | ---: | --- | --- |
+| 00:51 | 1,032 | ベースライン（計測ON） | |
+| 00:54 | 3,424 | インデックス追加 | ride_statuses 等の全件走査 |
+| 01:01 | 11,801 | マッチング: 待ちライド全件を最短時間の椅子へ | ランダム1件/0.5秒だった |
+| 01:08 | 16,743 | MySQL を2号機に分離 | 1号機 CPU 飽和 |
+| 01:12 | 26,548 | interpolateParams | PREPARE/CLOSE 90万回 |
+| 01:28 | 43,608 | 通知をメモリから返す | 通知ポーリングの N+1 |
+| 01:31 | 77,891 | nearby-chairs をメモリから | DB時間の33% |
+| 01:40 | 103,129 | 認証キャッシュ | トークン検索 20万回/分 |
+| 01:51 | 167,236 | nginx upstream keepalive 等 | nginx 90%・タイムアウト |
+| 01:57 | 244,124 | アプリを3号機へ（1号機は nginx 専用） | nginx と app の CPU 取り合い |
+| 02:13 | 320,624 | マッチング: 全組を迎車時間順に貪欲 | 椅子不足で古いライド順が非効率 |
+| 02:17 | 431,087 | 通知を SSE に | ポーリング 50万回/分・反応待ち |
+| 02:35 | 495,562 | 決済を Idempotency-Key 付きで即再送 | 決済は成功率3割、100ms待ち+照合 |
+| 02:42 | 595,402 | ライド履歴をメモリから | N+1 |
+| 02:54 | 624,935 | 静的ファイルに `expires` | リクエストの8割が静的ファイルの再検証 |
+| 03:01 | 750,992 | 状態遷移の DB 書き込みを FIFO でまとめて非同期に | 同期トランザクション待ち |
+| 03:07 | 925,871 | マッチング間隔 0.5s → 0.1s | 解放された椅子の待ち |
+| 03:18 | 987,383 | owner/sales をメモリで・評価で DB を待たない | 評価 0.5s の大半が DB 書き込み待ち |
+| 03:31 | 1,101,372 | マッチング候補を椅子ごとに絞る | pprof で matching が CPU 34% |
+| 03:39 | **1,159,771** | 最終構成（計測OFF）で再起動試験後 | |
+
+**効かなかったこと・壊したこと**も同じくらい価値がある → [docs/journal.md](docs/journal.md)（revert した試行も全部残してある）。
+主なもの:
+
+- nearby に椅子を出すのを遅らせる（1s: -20%、300ms: -67%）→ **nearby に空き椅子が見えないと利用者が配車を依頼しない**
+- 評価の応答前に COMPLETED にする → WARN 268 で FAIL（ベンチは評価の応答でライド完了とみなす）
+- 長いライドを優先 / 乗車時間の重み → -5〜7%
+- マッチング間隔 0.05s → 0.1s と差なし・WARN 増
+
+## 構成
+
+| ノード | 役割 |
+| --- | --- |
+| `isucon14-1` (c5.large) | nginx のみ（TLS 終端・HTTP/2・静的ファイル）。ベンチの入口 |
+| `isucon14-2` (c5.large) | MySQL |
+| `isucon14-3` (c5.large) | Go アプリ（状態をメモリに持つので1プロセス）+ マッチャー（0.1秒ごと） |
+| `isucon14-4` (c5.2xlarge) | ベンチマーカー専用（競技サーバーではない） |
+
+アプリの設計（`webapp/go/state.go`, `writer.go`）:
+
+- ライドの状態・椅子の位置/距離/統計・利用者の履歴・売上をメモリに持ち、読み取りはすべてメモリから返す
+- 書き込みは DB が正。状態遷移は FIFO の writer がまとめて書く（順序は保つ）。起動時と initialize で DB から作り直す
+- 通知は SSE。状態が変わった利用者・椅子の接続だけを起こす
+- マッチングは待ちライドと空き椅子の全組を「迎車時間 − 待ち時間補正」の小さい順に貪欲に割り当てる
+
+## 再現する
+
+```sh
+aws login --profile personal
+AWS_PROFILE=personal isuenv up isucon14 --nodes 3 --bench-instance-type c5.2xlarge --ttl 8h
+make setup          # hosts生成 → ベンチ機のサービス停止 → 計測ツール導入 → deploy → 計測ON
+make bench          # 最終構成と同じにするなら make measure-off してから
+make restart-test   # 3台再起動 → ベンチ
+make down           # 終わったら
+```
+
+計測してから改善するときは `etc/isu1/nginx/nginx.conf` の `access_log` を ltsv に戻し、`make measure-on` する。
+
+## 記録の在り処
+
+| 知りたいこと | 見る場所 |
+| --- | --- |
+| 何をやったか・なぜか・効かなかったこと | [docs/journal.md](docs/journal.md) |
+| スコアの推移（全ベンチ） | [scores/log.md](scores/log.md) |
+| 計測の生データ（ベンチ出力・alp・スロークエリ・CPU） | `measurements/<timestamp>/` |
+| 運用ルール | [CLAUDE.md](CLAUDE.md) |
+| 計測改善ループの判断基準と ISURIDE の実測知見 | [.claude/skills/tuning-isucon14/SKILL.md](.claude/skills/tuning-isucon14/SKILL.md) |
+| マニュアル | [docs/reference/](docs/reference/) |
