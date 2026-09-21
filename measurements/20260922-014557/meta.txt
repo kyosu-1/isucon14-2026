@@ -1,0 +1,8 @@
+timestamp : 20260922-014557
+commit    : b551c1a  matching: 割り当て結果を UPDATE 1文(CASE)にまとめる
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : matching: UPDATE 1文
+dirty     : 0 files uncommitted (webapp/ etc/)

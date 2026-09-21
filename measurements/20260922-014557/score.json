@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 97693,
+  "error_codes": {
+    "30": 1
+  },
+  "dissatisfied": {
+    "matching": 22.5,
+    "pickup": 43.2,
+    "ride": 74.2
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 281
+  },
+  "left": 140,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 237,
+      "active": 166
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 187,
+      "active": 117
+    }
+  ],
+  "owners": [
+    {
+      "name": "おもてなしタクシー",
+      "sales": 1641100,
+      "chairs": 60
+    },
+    {
+      "name": "レトロ椅子館",
+      "sales": 2139400,
+      "chairs": 73
+    },
+    {
+      "name": "ZenDrive",
+      "sales": 1796500,
+      "chairs": 65
+    },
+    {
+      "name": "座心工房",
+      "sales": 1252300,
+      "chairs": 52
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 1293100,
+      "chairs": 54
+    }
+  ],
+  "warn_count": 1,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNDSXZVQGMSBTDNWTGZAXNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 8122400,
+  "total_chairs": 304
+}
