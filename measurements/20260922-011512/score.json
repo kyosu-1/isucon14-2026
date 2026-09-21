@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 28987,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 47.9,
+    "pickup": 34.9,
+    "ride": 89.4
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 42
+  },
+  "left": 94,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 101,
+      "active": 50
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 82,
+      "active": 38
+    }
+  ],
+  "owners": [
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 516100,
+      "chairs": 28
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 785400,
+      "chairs": 39
+    },
+    {
+      "name": "Orbit Taxi",
+      "sales": 417200,
+      "chairs": 26
+    },
+    {
+      "name": "Chair Charm",
+      "sales": 289000,
+      "chairs": 20
+    },
+    {
+      "name": "和やか交通",
+      "sales": 571400,
+      "chairs": 32
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 2579100,
+  "total_chairs": 145
+}

@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+isuride                       78.6
+nginx                         25.9
+systemd-journal                8.2
+rsyslogd                       4.7
+curl                           1.9
+landscape-sysin                1.1
+pidstat                        0.6
+rcu_sched                      0.3
+mysql                          0.1
+ksoftirqd/1                    0.1
+ksoftirqd/0                    0.1
+vmstat                         0.0
+systemd                        0.0
+sshd                           0.0
+snapd                          0.0

@@ -1,0 +1,4 @@
+COMMAND                   AVG_CPU%
+pidstat                        1.0
+kworker/u8:3-events_power_efficient       0.1
+amazon-ssm-agen                0.1
