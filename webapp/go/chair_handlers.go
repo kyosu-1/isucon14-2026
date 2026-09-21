@@ -87,6 +87,7 @@ func chairPostActivity(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	st.setChairActive(chair.ID, req.IsActive)
 
 	w.WriteHeader(http.StatusNoContent)
 }
@@ -180,6 +181,7 @@ func chairPostCoordinate(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	st.setChairLocation(chair.ID, req.Latitude, req.Longitude)
 	if newStatusID != "" {
 		if err := st.addStatus(ctx, ride.ID, newStatusID, newStatus); err != nil {
 			writeError(w, http.StatusInternalServerError, err)

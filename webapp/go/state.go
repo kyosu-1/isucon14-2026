@@ -49,6 +49,11 @@ type chairInfo struct {
 	OwnerID string
 	Name    string
 	Model   string
+
+	IsActive    bool
+	HasLocation bool // 一度でも座標を送ってきたか
+	Latitude    int
+	Longitude   int
 }
 
 type chairStatsState struct {
@@ -105,6 +110,15 @@ func loadState(ctx context.Context) error {
 	if err := db.SelectContext(ctx, &users, `SELECT id, firstname, lastname FROM users`); err != nil {
 		return fmt.Errorf("load users: %w", err)
 	}
+	type locRow struct {
+		ChairID   string `db:"chair_id"`
+		Latitude  int    `db:"latitude"`
+		Longitude int    `db:"longitude"`
+	}
+	locs := []locRow{}
+	if err := db.SelectContext(ctx, &locs, `SELECT chair_id, latitude, longitude FROM chair_distances`); err != nil {
+		return fmt.Errorf("load chair_distances: %w", err)
+	}
 
 	discountByRide := make(map[string]int, len(coupons))
 	for _, c := range coupons {
@@ -152,7 +166,12 @@ func loadState(ctx context.Context) error {
 		}
 	}
 	for _, c := range chairs {
-		s.chairs[c.ID] = &chairInfo{ID: c.ID, OwnerID: c.OwnerID, Name: c.Name, Model: c.Model}
+		s.chairs[c.ID] = &chairInfo{ID: c.ID, OwnerID: c.OwnerID, Name: c.Name, Model: c.Model, IsActive: c.IsActive}
+	}
+	for _, l := range locs {
+		if c := s.chairs[l.ChairID]; c != nil {
+			c.HasLocation, c.Latitude, c.Longitude = true, l.Latitude, l.Longitude
+		}
 	}
 	for _, u := range users {
 		s.userNames[u.ID] = fmt.Sprintf("%s %s", u.Firstname, u.Lastname)
@@ -286,6 +305,22 @@ func (s *memState) addChair(c *chairInfo) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.chairs[c.ID] = c
+}
+
+func (s *memState) setChairActive(chairID string, active bool) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if c := s.chairs[chairID]; c != nil {
+		c.IsActive = active
+	}
+}
+
+func (s *memState) setChairLocation(chairID string, lat, lon int) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if c := s.chairs[chairID]; c != nil {
+		c.HasLocation, c.Latitude, c.Longitude = true, lat, lon
+	}
 }
 
 func (s *memState) addUser(id, firstname, lastname string) {
