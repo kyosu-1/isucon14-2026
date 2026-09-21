@@ -51,6 +51,8 @@ func ownerPostOwners(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	st.addOwner(ownerID, req.Name)
+
 	http.SetCookie(w, &http.Cookie{
 		Path:  "/",
 		Name:  "owner_session",

@@ -35,6 +35,7 @@ type rideState struct {
 	DestinationLatitude  int
 	DestinationLongitude int
 	Fare                 int // クーポン適用後の運賃（作成時に確定する）
+	Evaluation           int // 完了したライドの評価
 	CreatedAt            time.Time
 	UpdatedAt            time.Time
 	Statuses             []*statusEntry
@@ -89,8 +90,10 @@ type chairStatsState struct {
 type memState struct {
 	mu               sync.Mutex
 	rides            map[string]*rideState
-	userLatestRide   map[string]*rideState // user_id -> 最新(created_at)のライド
-	chairLatestRide  map[string]*rideState // chair_id -> 最後に割り当てられたライド
+	userLatestRide   map[string]*rideState   // user_id -> 最新(created_at)のライド
+	userRides        map[string][]*rideState // user_id -> ライド（作成順）
+	ownerNames       map[string]string       // owner_id -> オーナー名
+	chairLatestRide  map[string]*rideState   // chair_id -> 最後に割り当てられたライド
 	chairs           map[string]*chairInfo
 	chairStats       map[string]*chairStatsState
 	userNames        map[string]string        // user_id -> "firstname lastname"
@@ -268,6 +271,8 @@ func loadState(ctx context.Context) error {
 	s := &memState{
 		rides:           make(map[string]*rideState, len(rides)),
 		userLatestRide:  make(map[string]*rideState),
+		userRides:       make(map[string][]*rideState),
+		ownerNames:      make(map[string]string),
 		chairLatestRide: make(map[string]*rideState),
 		chairs:          make(map[string]*chairInfo, len(chairs)),
 		chairStats:      make(map[string]*chairStatsState),
@@ -282,6 +287,7 @@ func loadState(ctx context.Context) error {
 		s.rides[rs.ID] = rs
 		// created_at 昇順に回しているので、後勝ちで最新になる
 		s.userLatestRide[rs.UserID] = rs
+		s.userRides[rs.UserID] = append(s.userRides[rs.UserID], rs)
 	}
 	for _, row := range statuses {
 		if rs, ok := s.rides[row.RideID]; ok {
@@ -321,10 +327,19 @@ func loadState(ctx context.Context) error {
 	for _, u := range users {
 		s.userNames[u.ID] = fmt.Sprintf("%s %s", u.Firstname, u.Lastname)
 	}
+	owners := []Owner{}
+	if err := db.SelectContext(ctx, &owners, `SELECT * FROM owners`); err != nil {
+		return fmt.Errorf("load owners: %w", err)
+	}
+	for _, o := range owners {
+		s.ownerNames[o.ID] = o.Name
+	}
 
 	st.mu.Lock()
 	st.rides = s.rides
 	st.userLatestRide = s.userLatestRide
+	st.userRides = s.userRides
+	st.ownerNames = s.ownerNames
 	st.chairLatestRide = s.chairLatestRide
 	st.chairs = s.chairs
 	st.chairStats = s.chairStats
@@ -350,7 +365,12 @@ func fareWithDiscount(r *Ride, discount int) int {
 }
 
 func newRideState(r *Ride, fare int) *rideState {
+	eval := 0
+	if r.Evaluation != nil {
+		eval = *r.Evaluation
+	}
 	return &rideState{
+		Evaluation:           eval,
 		ID:                   r.ID,
 		UserID:               r.UserID,
 		ChairID:              r.ChairID.String,
@@ -409,6 +429,7 @@ func (s *memState) rideLocked(ctx context.Context, rideID string) (*rideState, e
 		rs.Statuses = append(rs.Statuses, &statusEntry{ID: row.ID, Status: row.Status, AppSent: row.AppSentAt != nil, ChairSent: row.ChairSentAt != nil})
 	}
 	s.rides[rideID] = rs
+	s.userRides[rs.UserID] = append(s.userRides[rs.UserID], rs)
 	if cur := s.userLatestRide[rs.UserID]; cur == nil || !rs.CreatedAt.Before(cur.CreatedAt) {
 		s.userLatestRide[rs.UserID] = rs
 	}
@@ -428,6 +449,7 @@ func (s *memState) addRide(r *Ride, fare int, matchingStatusID string) {
 	rs.Statuses = []*statusEntry{{ID: matchingStatusID, Status: "MATCHING"}}
 	s.rides[rs.ID] = rs
 	s.userLatestRide[rs.UserID] = rs
+	s.userRides[rs.UserID] = append(s.userRides[rs.UserID], rs)
 	wake(s.userWake, rs.UserID)
 }
 
@@ -499,6 +521,7 @@ func (s *memState) complete(ctx context.Context, rideID, statusID string, evalua
 		}
 	}
 	rs.UpdatedAt = updatedAt
+	rs.Evaluation = evaluation
 	cs := s.chairStats[rs.ChairID]
 	if cs == nil {
 		cs = &chairStatsState{}
@@ -530,6 +553,12 @@ func (s *memState) releaseInvitation(code string) {
 	if s.inviteUsed[code] > 0 {
 		s.inviteUsed[code]--
 	}
+}
+
+func (s *memState) addOwner(id, name string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.ownerNames[id] = name
 }
 
 func (s *memState) addChair(c *chairInfo) {

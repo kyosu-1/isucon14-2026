@@ -204,76 +204,36 @@ func appGetRides(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	user := ctx.Value("user").(*User)
 
-	tx, err := db.Beginx()
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	defer tx.Rollback()
-
-	rides := []Ride{}
-	if err := tx.SelectContext(
-		ctx,
-		&rides,
-		`SELECT * FROM rides WHERE user_id = ? ORDER BY created_at DESC`,
-		user.ID,
-	); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
+	// 完了したライドの履歴（新しい順）をメモリから返す。
+	// 以前はライドごとに状態・クーポン・椅子・オーナーを引いていた（N+1）。
 	items := []getAppRidesResponseItem{}
+	st.mu.Lock()
+	rides := append([]*rideState(nil), st.userRides[user.ID]...)
+	sort.SliceStable(rides, func(i, j int) bool { return rides[i].CreatedAt.After(rides[j].CreatedAt) })
 	for _, ride := range rides {
-		status, err := getLatestRideStatus(ctx, tx, ride.ID)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		if status != "COMPLETED" {
+		if ride.latestStatus() != "COMPLETED" {
 			continue
 		}
-
-		fare, err := calculateDiscountedFare(ctx, tx, user.ID, &ride, ride.PickupLatitude, ride.PickupLongitude, ride.DestinationLatitude, ride.DestinationLongitude)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-
 		item := getAppRidesResponseItem{
 			ID:                    ride.ID,
 			PickupCoordinate:      Coordinate{Latitude: ride.PickupLatitude, Longitude: ride.PickupLongitude},
 			DestinationCoordinate: Coordinate{Latitude: ride.DestinationLatitude, Longitude: ride.DestinationLongitude},
-			Fare:                  fare,
-			Evaluation:            *ride.Evaluation,
+			Fare:                  ride.Fare,
+			Evaluation:            ride.Evaluation,
 			RequestedAt:           ride.CreatedAt.UnixMilli(),
 			CompletedAt:           ride.UpdatedAt.UnixMilli(),
 		}
-
-		item.Chair = getAppRidesResponseItemChair{}
-
-		chair := &Chair{}
-		if err := tx.GetContext(ctx, chair, `SELECT * FROM chairs WHERE id = ?`, ride.ChairID); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
+		if c := st.chairs[ride.ChairID]; c != nil {
+			item.Chair = getAppRidesResponseItemChair{
+				ID:    c.ID,
+				Owner: st.ownerNames[c.OwnerID],
+				Name:  c.Name,
+				Model: c.Model,
+			}
 		}
-		item.Chair.ID = chair.ID
-		item.Chair.Name = chair.Name
-		item.Chair.Model = chair.Model
-
-		owner := &Owner{}
-		if err := tx.GetContext(ctx, owner, `SELECT * FROM owners WHERE id = ?`, chair.OwnerID); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		item.Chair.Owner = owner.Name
-
 		items = append(items, item)
 	}
-
-	if err := tx.Commit(); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
+	st.mu.Unlock()
 
 	writeJSON(w, http.StatusOK, &getAppRidesResponse{
 		Rides: items,
