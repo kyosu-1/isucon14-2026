@@ -194,3 +194,15 @@ WARN 3件/回は上限200件に対して十分小さいので、50ms に戻す�
 - 負荷終了の瞬間に処理中のリクエストはベンチに切断され、EOF の WARN として数えられる。
   一斉に投げられるリクエスト（マッチング直後の ENROUTE）を小さく・速くする。
 - ベンチのクライアントは HTTP/2 に対応している（nginx で http2 を有効にしたら全リクエストが HTTP/2.0）。
+
+### 03:37 最終構成と再起動試験
+
+```sh
+# nginx の access_log を off にしてコミット → make deploy
+make measure-off          # slow log OFF（SET PERSIST なので再起動後も OFF）
+make bench                # 1137655
+make restart-test         # 3台を同時に reboot → 全サービス自動起動 → ベンチ 1159771 (pass, WARN 15)
+```
+
+再起動後の役割: isu1 nginx / isu2 mysql / isu3 isuride-go + isuride-matcher。
+アプリは起動時に DB から状態を読み込み（DB がまだなら panic → systemd が 5 秒後に再起動）、ベンチの initialize で作り直す。
