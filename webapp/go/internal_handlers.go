@@ -96,7 +96,7 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	// 椅子が足りない（待ちライド >> 空き椅子）ときに古いライドから順に選ぶと、古いライドが
 	// 別のライドのすぐ近くにいた椅子を遠くから取っていき、迎車の距離（=椅子の空走時間）が伸びる。
 	// 取り残し防止に、待ち時間が長いライドほどコストを下げる（1秒待つごとに agingPerSec ぶん）。
-	const agingPerSec = 16.0
+	const agingPerSec = 8.0
 	now := time.Now()
 	// 各椅子について、コストの小さいライドを len(chairs) 件だけ候補に残す。
 	// 貪欲法で椅子 c が割り当てられるまでに他の椅子に取られるライドは高々 len(chairs)-1 件なので、
