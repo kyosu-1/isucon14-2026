@@ -1,0 +1,10 @@
+COMMAND                   AVG_CPU%
+mysqld                         2.1
+pidstat                        0.9
+systemd-journal                0.1
+jbd2/nvme0n1p1-8               0.1
+systemd-logind                 0.0
+systemd                        0.0
+sshd                           0.0
+polkitd                        0.0
+kworker/1:0-events             0.0

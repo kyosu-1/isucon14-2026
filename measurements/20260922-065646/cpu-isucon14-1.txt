@@ -1,0 +1,12 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.9
+nginx                          0.3
+vmstat                         0.0
+udisksd                        0.0
+systemd-logind                 0.0
+systemd-journal                0.0
+systemd                        0.0
+rcu_sched                      0.0
+ModemManager                   0.0
+kworker/0:3-events             0.0
+dbus-daemon                    0.0
