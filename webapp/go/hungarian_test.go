@@ -1,12 +1,8 @@
 package main
 
 import (
-	"context"
 	"math"
 	"math/rand"
-	"net/http"
-	"net/http/httptest"
-	"sync/atomic"
 	"testing"
 )
 
@@ -105,37 +101,5 @@ func TestMinCostAssignBothOrientations(t *testing.T) {
 		if math.Abs(sum-want) > 1e-9 {
 			t.Fatalf("chairs=%d rides=%d got %v want %v", nChairs, nRides, sum, want)
 		}
-	}
-}
-
-// 決済の並列送信: 決済サーバーが一度も成功を返さなければエラー、どれかが成功すれば成功。
-// 試行せずに抜けた本が成功扱いにならないこと（ctx がすでに切れている場合）。
-func TestPaymentParallel(t *testing.T) {
-	var calls atomic.Int64
-	fail := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		calls.Add(1)
-		w.WriteHeader(http.StatusBadGateway)
-	}))
-	defer fail.Close()
-	ctx, cancel := context.WithCancel(context.Background())
-	cancel()
-	if err := requestPaymentGatewayPostPayment(ctx, fail.URL, "tok", "key", &paymentGatewayPostPaymentRequest{Amount: 1}, nil); err == nil {
-		t.Fatal("canceled context must not be treated as paid")
-	}
-
-	var n atomic.Int64
-	flaky := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Header.Get("Idempotency-Key") != "ride-1" {
-			t.Errorf("missing idempotency key")
-		}
-		if n.Add(1)%4 == 0 {
-			w.WriteHeader(http.StatusNoContent)
-			return
-		}
-		w.WriteHeader(http.StatusInternalServerError)
-	}))
-	defer flaky.Close()
-	if err := requestPaymentGatewayPostPayment(context.Background(), flaky.URL, "tok", "ride-1", &paymentGatewayPostPaymentRequest{Amount: 1}, nil); err != nil {
-		t.Fatalf("expected success, got %v", err)
 	}
 }

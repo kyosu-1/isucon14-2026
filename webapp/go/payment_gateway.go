@@ -10,7 +10,6 @@ import (
 	"log/slog"
 	"net/http"
 	"sync"
-	"sync/atomic"
 	"time"
 )
 
@@ -82,12 +81,6 @@ var paymentClient = &http.Client{
 	},
 }
 
-// 決済を同じ Idempotency-Key で paymentParallel 本同時に再試行し続け、最初に成功した時点で返す。
-// 決済サーバーは1回 ~35ms で、成功は約3割（残りは 500/502/504）。1本で順に再試行すると平均 3.3回 ≒ 130ms。
-// 3本並べると最初の成功までは平均 ~1.5回ぶん。同じキーの送信は何回でも1回の支払いとして扱われる（マニュアル）。
-// 成功が決まったら残りの本は新しい試行を始めない（送信中のものは切らずに流す: 切るとコネクションを張り直すため）。
-const paymentParallel = 3
-
 func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL string, token string, idempotencyKey string, param *paymentGatewayPostPaymentRequest, _ func() ([]Ride, error)) error {
 	b, err := json.Marshal(param)
 	if err != nil {
@@ -95,65 +88,40 @@ func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL str
 	}
 
 	started := time.Now()
-	var attempts atomic.Int64
-	defer func() { paymentStats.observe(time.Since(started), int(attempts.Load())-1) }()
-	deadline := started.Add(8 * time.Second)
-
-	// 成功したかどうかは done だけで判断する（試行せずに抜けた本が「エラーなし」で成功扱いにならないように）
-	var done atomic.Bool
-	result := make(chan error, paymentParallel)
-	for w := 0; w < paymentParallel; w++ {
-		go func() {
-			last := fmt.Errorf("payment not attempted: %w", erroredUpstream)
-			for !done.Load() {
-				if err := ctx.Err(); err != nil {
-					last = err
-					break
-				}
-				if time.Now().After(deadline) {
-					break
-				}
-				attempts.Add(1)
-				if err := postPaymentOnce(ctx, paymentGatewayURL, token, idempotencyKey, b); err != nil {
-					last = err
-					continue
-				}
-				done.Store(true)
+	retry := 0
+	defer func() { paymentStats.observe(time.Since(started), retry) }()
+	deadline := time.Now().Add(8 * time.Second)
+	for {
+		err := func() error {
+			req, err := http.NewRequestWithContext(ctx, http.MethodPost, paymentGatewayURL+"/payments", bytes.NewBuffer(b))
+			if err != nil {
+				return err
 			}
-			result <- last
+			req.Header.Set("Content-Type", "application/json")
+			req.Header.Set("Authorization", "Bearer "+token)
+			// 同じライドの支払いは何度送っても1回として扱われる（マニュアル: Idempotency-Key）
+			req.Header.Set("Idempotency-Key", idempotencyKey)
+
+			attemptStart := time.Now()
+			res, err := paymentClient.Do(req)
+			if err != nil {
+				paymentStats.attempt(-1, time.Since(attemptStart))
+				return err
+			}
+			defer res.Body.Close()
+			io.Copy(io.Discard, res.Body)
+			paymentStats.attempt(res.StatusCode, time.Since(attemptStart))
+			if res.StatusCode != http.StatusNoContent {
+				return fmt.Errorf("[POST /payments] unexpected status code (%d): %w", res.StatusCode, erroredUpstream)
+			}
+			return nil
 		}()
-	}
-	var lastErr error
-	for w := 0; w < paymentParallel; w++ {
-		lastErr = <-result
-		if done.Load() {
+		if err == nil {
 			return nil
 		}
+		if ctx.Err() != nil || time.Now().After(deadline) {
+			return err
+		}
+		retry++
 	}
-	return lastErr
-}
-
-func postPaymentOnce(ctx context.Context, paymentGatewayURL, token, idempotencyKey string, body []byte) error {
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, paymentGatewayURL+"/payments", bytes.NewReader(body))
-	if err != nil {
-		return err
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+token)
-	// 同じライドの支払いは何度送っても1回として扱われる（マニュアル: Idempotency-Key）
-	req.Header.Set("Idempotency-Key", idempotencyKey)
-
-	attemptStart := time.Now()
-	res, err := paymentClient.Do(req)
-	if err != nil {
-		paymentStats.attempt(-1, time.Since(attemptStart))
-		return err
-	}
-	defer res.Body.Close()
-	io.Copy(io.Discard, res.Body)
-	paymentStats.attempt(res.StatusCode, time.Since(attemptStart))
-	if res.StatusCode != http.StatusNoContent {
-		return fmt.Errorf("[POST /payments] unexpected status code (%d): %w", res.StatusCode, erroredUpstream)
-	}
-	return nil
 }
