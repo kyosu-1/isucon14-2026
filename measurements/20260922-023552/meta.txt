@@ -1,0 +1,8 @@
+timestamp : 20260922-023552
+commit    : 25b8996  payment: 失敗したら待たずに Idempotency-Key 付きで再送（件数照合・100ms 待ちをやめる）/ 接続を使い回す
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 決済: 即再送
+dirty     : 0 files uncommitted (webapp/ etc/)

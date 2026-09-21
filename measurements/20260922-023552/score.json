@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 495562,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 87.9,
+    "pickup": 1.1,
+    "ride": 25.3
+  },
+  "registered": {
+    "reputation": 130,
+    "invitation": 3358
+  },
+  "left": 65,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2282,
+      "active": 2235
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1487,
+      "active": 1446
+    }
+  ],
+  "owners": [
+    {
+      "name": "暮らしの椅子研究所",
+      "sales": 9237400,
+      "chairs": 217
+    },
+    {
+      "name": "Sit Second Life",
+      "sales": 9978800,
+      "chairs": 235
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 9468200,
+      "chairs": 222
+    },
+    {
+      "name": "椅子再生工房",
+      "sales": 8429100,
+      "chairs": 200
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 10882200,
+      "chairs": 253
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 47995700,
+  "total_chairs": 1127
+}
