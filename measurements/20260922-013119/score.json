@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "score": 77891,
+  "error_codes": {
+    "30": 2
+  },
+  "dissatisfied": {
+    "matching": 61.2,
+    "pickup": 33.3,
+    "ride": 71.7
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 215
+  },
+  "left": 159,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 202,
+      "active": 115
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 156,
+      "active": 82
+    }
+  ],
+  "owners": [
+    {
+      "name": "快旅タクシー",
+      "sales": 1203400,
+      "chairs": 51
+    },
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 1640800,
+      "chairs": 62
+    },
+    {
+      "name": "晴れ道タクシー",
+      "sales": 1809100,
+      "chairs": 66
+    },
+    {
+      "name": "Orbit Taxi",
+      "sales": 1235400,
+      "chairs": 52
+    },
+    {
+      "name": "椅子やいちば",
+      "sales": 992900,
+      "chairs": 46
+    }
+  ],
+  "warn_count": 2,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNCYKYMJNCYJBNDFAXGNVHNの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNCYSNYNRQQWTTJNKVZANNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 6881600,
+  "total_chairs": 277
+}

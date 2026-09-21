@@ -1,0 +1,5 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.3
+multipathd                     0.0
+migration/0                    0.0
+kworker/0:3-events             0.0
