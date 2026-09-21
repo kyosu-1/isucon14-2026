@@ -1,0 +1,125 @@
+time=06:42:52.430 level=INFO msg=負荷走行を開始します
+time=06:42:58.424 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=1
+time=06:42:58.430 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=1
+time=06:42:58.430 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=1
+time=06:42:58.430 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=1
+time=06:42:58.430 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=3
+time=06:43:00.224 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=2
+time=06:43:00.229 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=1
+time=06:43:00.231 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=2
+time=06:43:00.231 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=1
+time=06:43:00.253 level=INFO msg=これまでに地域内の評判によって9人、既存ユーザーの招待経由で49人が新規登録しました
+time=06:43:00.253 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、71.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.0%のライドは椅子の実移動時間に不満がありました
+time=06:43:02.026 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=2
+time=06:43:02.027 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=3
+time=06:43:02.031 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=3
+time=06:43:02.031 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=3
+time=06:43:02.031 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=3
+time=06:43:03.825 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=4
+time=06:43:03.828 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=3
+time=06:43:03.828 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=5
+time=06:43:03.829 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=3
+time=06:43:03.835 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=3
+time=06:43:05.626 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=6
+time=06:43:05.629 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=5
+time=06:43:05.629 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=7
+time=06:43:05.629 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=5
+time=06:43:05.635 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=5
+time=06:43:05.652 level=INFO msg=これまでに地域内の評判によって19人、既存ユーザーの招待経由で220人が新規登録しました
+time=06:43:05.652 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、42.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.8%のライドは椅子の実移動時間に不満がありました
+time=06:43:07.426 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=9
+time=06:43:07.432 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=8
+time=06:43:07.433 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=8
+time=06:43:07.433 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=9
+time=06:43:07.433 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=10
+time=06:43:09.230 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=11
+time=06:43:09.235 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=11
+time=06:43:09.235 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=11
+time=06:43:09.236 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=10
+time=06:43:09.236 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=10
+time=06:43:11.028 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=12
+time=06:43:11.032 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=10
+time=06:43:11.034 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=11
+time=06:43:11.034 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=13
+time=06:43:11.043 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=11
+time=06:43:11.052 level=INFO msg=これまでに地域内の評判によって31人、既存ユーザーの招待経由で846人が新規登録しました
+time=06:43:11.052 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、20.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.7%のライドは椅子の実移動時間に不満がありました
+time=06:43:12.854 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=12
+time=06:43:12.856 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=12
+time=06:43:12.856 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=15
+time=06:43:12.862 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=12
+time=06:43:12.870 level=WARN msg="取得したオーナーの売り上げ情報が想定しているものと異なります (CODE=24): salesが大きいデータがあります (id: 01M32YRDZ740SKYK3KKGJCTE98, got: 22200)"
+time=06:43:14.646 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=11
+time=06:43:14.646 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=24
+time=06:43:14.646 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=10
+time=06:43:14.647 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=14
+time=06:43:14.649 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=12
+time=06:43:16.566 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=13
+time=06:43:16.566 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=13
+time=06:43:16.567 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=14
+time=06:43:16.567 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=15
+time=06:43:16.573 level=INFO msg=これまでに地域内の評判によって49人、既存ユーザーの招待経由で1776人が新規登録しました
+time=06:43:16.573 level=INFO msg=これまでに低評価なライドによって2人が利用をやめました
+time=06:43:16.573 level=INFO msg=6.4%のライドは椅子がマッチされるまでの時間、12.5%のライドはマッチされた椅子が乗車地点までに掛かる時間、10.5%のライドは椅子の実移動時間に不満がありました
+time=06:43:16.591 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=15
+time=06:43:18.474 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=17
+time=06:43:18.487 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=14
+time=06:43:18.488 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=16
+time=06:43:18.489 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=20
+time=06:43:18.506 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=16
+time=06:43:20.304 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=16
+time=06:43:20.304 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=18
+time=06:43:20.305 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=16
+time=06:43:20.307 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=18
+time=06:43:20.309 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=21
+time=06:43:22.302 level=INFO msg=これまでに地域内の評判によって67人、既存ユーザーの招待経由で2513人が新規登録しました
+time=06:43:22.302 level=INFO msg=これまでに低評価なライドによって31人が利用をやめました
+time=06:43:22.303 level=INFO msg=45.8%のライドは椅子がマッチされるまでの時間、9.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、18.5%のライドは椅子の実移動時間に不満がありました
+time=06:43:22.304 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=19
+time=06:43:22.325 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=20
+time=06:43:22.330 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=21
+time=06:43:22.332 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=21
+time=06:43:22.352 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=22
+time=06:43:25.912 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=34
+time=06:43:25.912 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=38
+time=06:43:25.912 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=42
+time=06:43:25.913 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=47
+time=06:43:25.916 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=42
+time=06:43:27.702 level=INFO msg=これまでに地域内の評判によって85人、既存ユーザーの招待経由で2959人が新規登録しました
+time=06:43:27.702 level=INFO msg=これまでに低評価なライドによって56人が利用をやめました
+time=06:43:27.702 level=INFO msg=64.0%のライドは椅子がマッチされるまでの時間、7.1%のライドはマッチされた椅子が乗車地点までに掛かる時間、25.2%のライドは椅子の実移動時間に不満がありました
+time=06:43:29.856 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=48
+time=06:43:29.856 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=43
+time=06:43:31.721 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=72
+time=06:43:31.723 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=68
+time=06:43:31.723 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=82
+time=06:43:33.522 level=INFO msg=これまでに地域内の評判によって103人、既存ユーザーの招待経由で3212人が新規登録しました
+time=06:43:33.522 level=INFO msg=これまでに低評価なライドによって102人が利用をやめました
+time=06:43:33.522 level=INFO msg=74.2%のライドは椅子がマッチされるまでの時間、6.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、31.3%のライドは椅子の実移動時間に不満がありました
+time=06:43:37.208 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=86
+time=06:43:37.211 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ChairCycle 増加数=90
+time=06:43:39.283 level=INFO msg=これまでに地域内の評判によって121人、既存ユーザーの招待経由で3379人が新規登録しました
+time=06:43:39.283 level=INFO msg=これまでに低評価なライドによって141人が利用をやめました
+time=06:43:39.283 level=INFO msg=80.2%のライドは椅子がマッチされるまでの時間、5.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、36.2%のライドは椅子の実移動時間に不満がありました
+time=06:43:41.114 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenDrive 増加数=129
+time=06:43:43.035 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=153
+time=06:43:44.713 level=INFO msg=これまでに地域内の評判によって139人、既存ユーザーの招待経由で3457人が新規登録しました
+time=06:43:44.714 level=INFO msg=これまでに低評価なライドによって181人が利用をやめました
+time=06:43:44.714 level=INFO msg=83.7%のライドは椅子がマッチされるまでの時間、5.2%のライドはマッチされた椅子が乗車地点までに掛かる時間、40.2%のライドは椅子の実移動時間に不満がありました
+time=06:43:44.850 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Orbit Taxi" 増加数=190
+time=06:43:50.293 level=INFO msg=これまでに地域内の評判によって157人、既存ユーザーの招待経由で3499人が新規登録しました
+time=06:43:50.293 level=INFO msg=これまでに低評価なライドによって241人が利用をやめました
+time=06:43:50.293 level=INFO msg=86.3%のライドは椅子がマッチされるまでの時間、5.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、43.9%のライドは椅子の実移動時間に不満がありました
+time=06:43:54.363 level=WARN msg="取得した付近の椅子情報に不備があります (CODE=30): ID:01M32YS5WVZV1P0WNDBFK9N0FJの椅子は既にライド中です"
+time=06:43:54.531 level=WARN msg="取得した付近の椅子情報に不備があります (CODE=30): ID:01M32YS9X98H6JX2QP5FCDB1XVの椅子は既にライド中です"
+time=06:43:54.794 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="PreLoved Chairs" 増加数=220
+time=06:43:59.856 level=INFO msg=最終地域情報 名前=チェアタウン ユーザー登録数=2201 アクティブユーザー数=2070
+time=06:43:59.856 level=INFO msg=最終地域情報 名前=コシカケシティ ユーザー登録数=1527 アクティブユーザー数=1396
+time=06:43:59.856 level=INFO msg=最終オーナー情報 名前="Orbit Taxi" 売上=24348100 椅子数=481
+time=06:43:59.856 level=INFO msg=最終オーナー情報 名前=ZenDrive 売上=21863800 椅子数=378
+time=06:43:59.856 level=INFO msg=最終オーナー情報 名前="PreLoved Chairs" 売上=19779500 椅子数=511
+time=06:43:59.856 level=INFO msg=最終オーナー情報 名前="Timeless Seats" 売上=22450300 椅子数=413
+time=06:43:59.856 level=INFO msg=最終オーナー情報 名前=ChairCycle 売上=21957100 椅子数=315
+time=06:43:59.856 level=INFO msg=88.0%のライドは椅子がマッチされるまでの時間、4.9%のライドはマッチされた椅子が乗車地点までに掛かる時間、46.2%のライドは椅子の実移動時間に不満がありました
+time=06:43:59.858 level=INFO msg=結果 pass=true スコア=1166979 種別エラー数="map[24:1 30:2]"
+time=06:43:59.858 level=INFO msg=負荷走行が終了しました

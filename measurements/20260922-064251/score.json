@@ -1,0 +1,76 @@
+{
+  "pass": true,
+  "score": 1166979,
+  "error_codes": {
+    "24": 1,
+    "30": 2
+  },
+  "dissatisfied": {
+    "matching": 88.0,
+    "pickup": 4.9,
+    "ride": 46.2
+  },
+  "registered": {
+    "reputation": 157,
+    "invitation": 3499
+  },
+  "left": 241,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2201,
+      "active": 2070
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1527,
+      "active": 1396
+    }
+  ],
+  "owners": [
+    {
+      "name": "Orbit Taxi",
+      "sales": 24348100,
+      "chairs": 481
+    },
+    {
+      "name": "ZenDrive",
+      "sales": 21863800,
+      "chairs": 378
+    },
+    {
+      "name": "PreLoved Chairs",
+      "sales": 19779500,
+      "chairs": 511
+    },
+    {
+      "name": "Timeless Seats",
+      "sales": 22450300,
+      "chairs": 413
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 21957100,
+      "chairs": 315
+    }
+  ],
+  "warn_count": 3,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得したオーナーの売り上げ情報が想定しているものと異なります (CODE=N): salesが大きいデータがあります (id: <ID>, got: N)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYSNWVZVNPNWNDBFKNNNFJの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYSNXNHNJXNQPNFCDBNXVの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 110398800,
+  "total_chairs": 2098
+}
