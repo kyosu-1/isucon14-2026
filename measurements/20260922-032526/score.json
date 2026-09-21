@@ -1,0 +1,95 @@
+{
+  "pass": true,
+  "score": 990809,
+  "error_codes": {
+    "30": 18
+  },
+  "dissatisfied": {
+    "matching": 87.1,
+    "pickup": 2.0,
+    "ride": 42.1
+  },
+  "registered": {
+    "reputation": 161,
+    "invitation": 3402
+  },
+  "left": 126,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2222,
+      "active": 2156
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1475,
+      "active": 1389
+    }
+  ],
+  "owners": [
+    {
+      "name": "椅子再生工房",
+      "sales": 14679100,
+      "chairs": 322
+    },
+    {
+      "name": "椅子のめぐりや",
+      "sales": 20198600,
+      "chairs": 454
+    },
+    {
+      "name": "EcoChairs",
+      "sales": 18244300,
+      "chairs": 371
+    },
+    {
+      "name": "快旅タクシー",
+      "sales": 21734200,
+      "chairs": 326
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 19498100,
+      "chairs": 396
+    }
+  ],
+  "warn_count": 18,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKFTENYNZXSKNSSAWPNMの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKEJZRVRNHDNVVNJNTTNの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKGNBRRNDTHFJNCNZNの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKFFTNVANVZXXVGNAVNPの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKFKQNJWENRNSNHRDPDVBWの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKFKMHXPTNWNFSFNSKNの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKGNWENYBKCSNVEJKHNSEの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKFDFNKNXCANNRMEBNXNGMの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 94354300,
+  "total_chairs": 1869
+}
