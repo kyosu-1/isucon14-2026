@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 509473,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 86.9,
+    "pickup": 1.2,
+    "ride": 26.0
+  },
+  "registered": {
+    "reputation": 155,
+    "invitation": 3527
+  },
+  "left": 60,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2198,
+      "active": 2166
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1571,
+      "active": 1541
+    }
+  ],
+  "owners": [
+    {
+      "name": "Chair Charm",
+      "sales": 8885900,
+      "chairs": 191
+    },
+    {
+      "name": "GoEase",
+      "sales": 9132700,
+      "chairs": 216
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 10315900,
+      "chairs": 229
+    },
+    {
+      "name": "いすの道",
+      "sales": 9747200,
+      "chairs": 231
+    },
+    {
+      "name": "Orbit Taxi",
+      "sales": 10977700,
+      "chairs": 274
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 49059400,
+  "total_chairs": 1141
+}
