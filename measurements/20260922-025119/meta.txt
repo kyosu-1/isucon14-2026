@@ -1,0 +1,8 @@
+timestamp : 20260922-025119
+commit    : 6d6e7c7  env: ベンチ機を c5.2xlarge に / journal
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : ベンチ機 c5.2xlarge / nearby 猶予 50ms に戻した
+dirty     : 0 files uncommitted (webapp/ etc/)
