@@ -1,0 +1,487 @@
+
+# 22.5s user time, 60ms system time, 36.13M rss, 42.14M vsz
+# Current date: Mon Sep 21 17:48:01 2026
+# Hostname: ip-10-100-0-249
+# Files: /var/log/mysql/slow.log
+# Overall: 338.10k total, 199 unique, 5.37k QPS, 5.63x concurrency _______
+# Time range: 2026-09-21T17:46:31 to 2026-09-21T17:47:34
+# Attribute          total     min     max     avg     95%  stddev  median
+# ============     ======= ======= ======= ======= ======= ======= =======
+# Exec time           355s     1us   344ms     1ms     5ms     5ms   103us
+# Lock time          468ms       0    31ms     1us     1us    80us     1us
+# Rows sent        128.74k       0   4.39k    0.39    0.99    8.12       0
+# Rows examine     681.52k       0  21.09k    2.06    1.96   55.02       0
+# Query size        37.14M       6 1011.33k  115.20  246.02   2.77k   72.65
+
+# Profile
+# Rank Query ID                     Response time  Calls  R/Call V/M   Ite
+# ==== ============================ ============== ====== ====== ===== ===
+#    1 0xFFFCA4D67EA0A788813031B... 160.4393 45.2%  60866 0.0026  0.02 COMMIT
+#    2 0x2819375713452F901BBDF90...  60.7607 17.1%  49026 0.0012  0.02 INSERT ride_statuses
+#    3 0xD38FECD2C5D2A1A24E6D189...  17.5133  4.9%  39727 0.0004  0.01 UPDATE rides
+#    4 0x94B088E5B114B5396C72BEF...  14.7099  4.1%   8294 0.0018  0.01 SELECT rides ride_statuses
+#    5 0xA08458A1E57EC02CB62D9CE...  11.6449  3.3%   9299 0.0013  0.03 INSERT rides
+#    6 0xD0199B0C7FA2F54D1487CB4...  10.2289  2.9%   9299 0.0011  0.03 SELECT rides
+#    7 0x82D3FFE4E59CD847C397861...  10.1925  2.9%   6888 0.0015  0.03 SELECT coupons
+#    8 0xA3D02B478CD7D0055B2B6F9...   6.8119  1.9%   6606 0.0010  0.02 UPDATE coupons
+#    9 0xF9CA10B355C7364E85039E1...   6.4128  1.8%    301 0.0213  0.05 UPDATE ride_statuses
+#   10 0x410EA364B0AF1B51C5E7313...   5.4320  1.5%    302 0.0180  0.04 UPDATE ride_statuses
+#   11 0xBC9BC7CC59A560096CD6948...   5.3631  1.5%   6892 0.0008  0.02 SELECT coupons
+#   12 0x81419520B08C9688CC6AB9C...   5.1366  1.4%   2462 0.0021  0.02 INSERT payment_tokens
+#   13 0xBBBF4D43E95EB1416F8AC0D...   4.8399  1.4%  15324 0.0003  0.01 SELECT rides
+#   14 0x70DF894870AB4D41FA1A9F3...   4.3398  1.2%    300 0.0145  0.03 INSERT UPDATE chair_distances
+#   15 0xF4502A8E8509852C29395E3...   4.1680  1.2%   9303 0.0004  0.02 SELECT coupons
+# MISC 0xMISC                        26.8639  7.6% 113208 0.0002   0.0 <184 ITEMS>
+
+# Query 1: 997.80 QPS, 2.63x concurrency, ID 0xFFFCA4D67EA0A788813031B8BBC3B329 at byte 32137663
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count         18   60866
+# Exec time     45    160s    13us   143ms     3ms    12ms     7ms   273us
+# Lock time      0       0       0       0       0       0       0       0
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     0 356.64k       6       6       6       6       0       6
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ################################################################
+# 100us  ####################################
+#   1ms  ##############################################
+#  10ms  ###########
+# 100ms  #
+#    1s
+#  10s+
+COMMIT\G
+
+# Query 2: 803.70 QPS, 1.00x concurrency, ID 0x2819375713452F901BBDF90F1BFD79F7 at byte 65597457
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count         14   49026
+# Exec time     17     61s    50us   118ms     1ms     7ms     5ms    98us
+# Lock time     14    67ms       0     7ms     1us     1us    30us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size    15   5.91M     125     128  126.50  124.25       0  124.25
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ##############################################################
+# 100us  ################################################################
+#   1ms  #########
+#  10ms  #####
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+INSERT INTO ride_statuses (id, ride_id, status) VALUES ('01M32H8KC1RAV807XASWG6YY0Z', '01M32H8BVVB4NJNDS6JE6GY2DS', 'COMPLETED')\G
+
+# Query 3: 651.26 QPS, 0.29x concurrency, ID 0xD38FECD2C5D2A1A24E6D189CDBBEE551 at byte 65839749
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count         11   39727
+# Exec time      4     18s    68us    88ms   440us   725us     3ms   113us
+# Lock time     12    60ms       0     3ms     1us     1us    26us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   5  38.80k       1       1       1       1       0       1
+# Query size    10   3.80M      99     102  100.39   97.36       0   97.36
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #############
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+UPDATE rides SET status = 'ARRIVED', updated_at = updated_at WHERE id = '01M32H8C0B5WVCH7KAAVRDQAA3'\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select  status = 'ARRIVED', updated_at = updated_at from rides where  id = '01M32H8C0B5WVCH7KAAVRDQAA3'\G
+
+# Query 4: 148.11 QPS, 0.26x concurrency, ID 0x94B088E5B114B5396C72BEFFDA773105 at byte 65385575
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:29
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    8294
+# Exec time      4     15s   121us   116ms     2ms     7ms     4ms   690us
+# Lock time      5    25ms       0     5ms     3us     1us    74us     1us
+# Rows sent     36  46.44k       0      28    5.73   15.25    4.97    3.89
+# Rows examine  52 357.93k       0     202   44.19  112.70   34.87   33.28
+# Query size     5   2.04M     254     258  257.69  246.02       0  246.02
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  ######################################
+#  10ms  ##
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT rides.* FROM rides JOIN ride_statuses ON rides.id = ride_statuses.ride_id WHERE chair_id = '01M32H78HA6MNV5ACKR59R461N' AND ride_statuses.status = 'COMPLETED' AND updated_at BETWEEN '1970-01-01' AND '2026-09-21 17:47:17.04' + INTERVAL 999 MICROSECOND\G
+
+# Query 5: 152.44 QPS, 0.19x concurrency, ID 0xA08458A1E57EC02CB62D9CE952F257FD at byte 28647288
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.03
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    9299
+# Exec time      3     12s    68us   101ms     1ms     3ms     6ms   119us
+# Lock time      2    13ms       0   825us     1us     1us    10us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     6   2.55M     278     289  287.11  284.79    4.01  284.79
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ########
+# 100us  ################################################################
+#   1ms  ###
+#  10ms  ##
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+INSERT INTO rides (id, user_id, pickup_latitude, pickup_longitude, destination_latitude, destination_longitude, created_at, updated_at)
+				  VALUES ('01M32H82NRHAHF9M8HJBDBB8AE', '01M32H7QXPEQFT65CN70TZ5ZDY', 340, 303, 276, 296, '2026-09-21 17:47:00.20425', '2026-09-21 17:47:00.20425')\G
+
+# Query 6: 152.44 QPS, 0.17x concurrency, ID 0xD0199B0C7FA2F54D1487CB4362C06FCA at byte 51065303
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.03
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    9299
+# Exec time      2     10s    93us   107ms     1ms     2ms     6ms   167us
+# Lock time      2    13ms       0     3ms     1us     1us    28us     1us
+# Rows sent      7   9.08k       1       1       1       1       0       1
+# Rows examine   3  26.85k       1      14    2.96    6.98    1.81    2.90
+# Query size     1 644.75k      71      71      71      71       0      71
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ###
+#  10ms  #
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT COUNT(*) FROM rides WHERE user_id = '01M32H7ST3GS3MTKCXXMXPRWF7'\G
+
+# Query 7: 114.80 QPS, 0.17x concurrency, ID 0x82D3FFE4E59CD847C3978615A71DC2AF at byte 84347330
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.03
+# Time range: 2026-09-21T17:46:34 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    6888
+# Exec time      2     10s   121us    87ms     1ms     4ms     6ms   204us
+# Lock time      2    10ms       0     1ms     1us     1us    17us     1us
+# Rows sent      3   4.10k       0       1    0.61    0.99    0.48    0.99
+# Rows examine   1  11.22k       0       5    1.67    4.96    1.56    1.96
+# Query size     2 840.82k     125     125     125     125       0     125
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  #######
+#  10ms  ##
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'coupons'\G
+#    SHOW CREATE TABLE `coupons`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM coupons WHERE user_id = '01M32H7XTRVQ3TA43B01H3J0V9' AND used_by IS NULL ORDER BY created_at LIMIT 1 FOR UPDATE\G
+
+# Query 8: 108.30 QPS, 0.11x concurrency, ID 0xA3D02B478CD7D0055B2B6F9E2248D9CB at byte 39437473
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1    6606
+# Exec time      1      7s   104us    70ms     1ms     3ms     4ms   185us
+# Lock time      2    11ms       0   943us     1us     1us    19us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0   6.45k       1       1       1       1       0       1
+# Query size     2 945.93k     126     166  146.63  158.58   14.44  143.84
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  #######
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'coupons'\G
+#    SHOW CREATE TABLE `coupons`\G
+UPDATE coupons SET used_by = '01M32H883W8R65QX430CMMR7XE' WHERE user_id = '01M32H86B6A1W3197JJS9GHSF1' AND code = 'CP_NEW2024'\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select  used_by = '01M32H883W8R65QX430CMMR7XE' from coupons where  user_id = '01M32H86B6A1W3197JJS9GHSF1' AND code = 'CP_NEW2024'\G
+
+# Query 9: 4.93 QPS, 0.11x concurrency, ID 0xF9CA10B355C7364E85039E19109E0C3D at byte 89086058
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.05
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     301
+# Exec time      1      6s   173us   275ms    21ms    75ms    32ms     8ms
+# Lock time      0   425us     1us    12us     1us     1us       0     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   6  47.54k       2     948  161.74  346.17  118.20  151.03
+# Query size     3   1.37M     131  26.92k   4.65k   9.80k   3.35k   4.49k
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  #########################
+#   1ms  ##################################################
+#  10ms  ################################################################
+# 100ms  #####
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+UPDATE ride_statuses SET app_sent_at = CURRENT_TIMESTAMP(6) WHERE id IN ('01M32H8WPSDC7BWADAC1GHV30J','01M32H8WPY4BWM563CVWS5R5GX','01M32H8WNCDA817P74FM77AZ4D','01M32H8WN89Z8TEVFAHYCTND9E','01M32H8WPY4BWM563CW4BZ6X85','01M32H8WNF88YVK2NNG5XJY8XC','01M32H8WP85W5AQFV31AF6B427','01M32H8WQ0RZ3QRQPSXWHYVBHY','01M32H8WQ16F36PQ6B46VQ97V2','01M32H8WP24JT02BVPZ0SW5M5M','01M32H8WQ16F36PQ6B439CAHCW','01M32H8WP9CK7X6ZQSM9WNRAPF','01M32H8WQ0RZ3QRQPSY1GS8K14','01M32H8WNERSYS4T54Y8DQJ9ZV','01M32H8WQ2GMBDJMV0EANFVY53','01M32H8WP9CK7X6ZQSMAV3TYRS','01M32H8WJNZMPEXTW5TTYRHYAQ','01M32H8WKF9YQ9YWBRSX7WCMC3','01M32H8WKK80015D4C4RAB92XJ','01M32H8WPQ4K7Z29Y2HKDK4M82'/*... omitted 928 items ...*/)\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select  app_sent_at = CURRENT_TIMESTAMP(6) from ride_statuses where  id IN ('01M32H8WPSDC7BWADAC1GHV30J','01M32H8WPY4BWM563CVWS5R5GX','01M32H8WNCDA817P74FM77AZ4D','01M32H8WN89Z8TEVFAHYCTND9E','01M32H8WPY4BWM563CW4BZ6X85','01M32H8WNF88YVK2NNG5XJY8XC','01M32H8WP85W5AQFV31AF6B427','01M32H8WQ0RZ3QRQPSXWHYVBHY','01M32H8WQ16F36PQ6B46VQ97V2','01M32H8WP24JT02BVPZ0SW5M5M','01M32H8WQ16F36PQ6B439CAHCW','01M32H8WP9CK7X6ZQSM9WNRAPF','01M32H8WQ0RZ3QRQPSY1GS8K14','01M32H8WNERSYS4T54Y8DQJ9ZV','01M32H8WQ2GMBDJMV0EANFVY53','01M32H8WP9CK7X6ZQSMAV3TYRS','01M32H8WJNZMPEXTW5TTYRHYAQ','01M32H8WKF9YQ9YWBRSX7WCMC3','01M32H8WKK80015D4C4RAB92XJ','01M32H8WPQ4K7Z29Y2HKDK4M82'/*... omitted 928 items ...*/)\G
+
+# Query 10: 4.95 QPS, 0.09x concurrency, ID 0x410EA364B0AF1B51C5E7313067631983 at byte 65661927
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.04
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     302
+# Exec time      1      5s   151us   292ms    18ms    59ms    26ms     8ms
+# Lock time      0   555us       0   189us     1us     1us    10us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   6  47.24k       2     773  160.18  329.68  113.33  151.03
+# Query size     3   1.36M     133  21.96k   4.61k   9.33k   3.20k   4.27k
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ######################
+#   1ms  ###################################################
+#  10ms  ################################################################
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+UPDATE ride_statuses SET chair_sent_at = CURRENT_TIMESTAMP(6) WHERE id IN ('01M32H8JY72221HVPWZH767FWA','01M32H8JYE7NGHTH7DDQQ75E0A','01M32H8JYCQBTGH9V27HJBGYQN','01M32H8JYCQBTGH9V27ANZ1V10','01M32H8JY9DQ3WVCTB6T96194Z','01M32H8JYE7NGHTH7DDS6EKS53','01M32H8JYF67FEBJRK5RV9FC5F','01M32H8JYAMK07BMN5GFE3F9C0','01M32H8JYE7NGHTH7DDMHFKRNH','01M32H8JYCQBTGH9V27K6PXB2S','01M32H8JYCQBTGH9V27D520R6X','01M32H8JYCQBTGH9V27CV58QQZ','01M32H8JYE7NGHTH7DDVJVC61Z','01M32H8JYDPSBJ2J5Q1ERBH3A2','01M32H8JYCQBTGH9V27PC5YX17','01M32H8JYDPSBJ2J5Q1JXFYT7V','01M32H8JYCQBTGH9V277HJMSQE','01M32H8JYDPSBJ2J5Q1NEY5QD9','01M32H8JYE7NGHTH7DDTFAV7NJ','01M32H8JYDPSBJ2J5Q1EZ02PAA'/*... omitted 309 items ...*/)\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select  chair_sent_at = CURRENT_TIMESTAMP(6) from ride_statuses where  id IN ('01M32H8JY72221HVPWZH767FWA','01M32H8JYE7NGHTH7DDQQ75E0A','01M32H8JYCQBTGH9V27HJBGYQN','01M32H8JYCQBTGH9V27ANZ1V10','01M32H8JY9DQ3WVCTB6T96194Z','01M32H8JYE7NGHTH7DDS6EKS53','01M32H8JYF67FEBJRK5RV9FC5F','01M32H8JYAMK07BMN5GFE3F9C0','01M32H8JYE7NGHTH7DDMHFKRNH','01M32H8JYCQBTGH9V27K6PXB2S','01M32H8JYCQBTGH9V27D520R6X','01M32H8JYCQBTGH9V27CV58QQZ','01M32H8JYE7NGHTH7DDVJVC61Z','01M32H8JYDPSBJ2J5Q1ERBH3A2','01M32H8JYCQBTGH9V27PC5YX17','01M32H8JYDPSBJ2J5Q1JXFYT7V','01M32H8JYCQBTGH9V277HJMSQE','01M32H8JYDPSBJ2J5Q1NEY5QD9','01M32H8JYE7NGHTH7DDTFAV7NJ','01M32H8JYDPSBJ2J5Q1EZ02PAA'/*... omitted 309 items ...*/)\G
+
+# Query 11: 112.98 QPS, 0.09x concurrency, ID 0xBC9BC7CC59A560096CD6948E8D49B929 at byte 84348290
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    6892
+# Exec time      1      5s   108us    74ms   778us     2ms     4ms   185us
+# Lock time      2    10ms       0     2ms     1us     1us    20us     1us
+# Rows sent      3   4.10k       0       1    0.61    0.99    0.48    0.99
+# Rows examine   1  11.23k       0       5    1.67    4.96    1.56    1.96
+# Query size     2 767.27k     114     114     114     114       0     114
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  ###
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'coupons'\G
+#    SHOW CREATE TABLE `coupons`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM coupons WHERE user_id = '01M32H801S1JENTR5BMCZAM4GX' AND used_by IS NULL ORDER BY created_at LIMIT 1\G
+
+# Query 12: 41.03 QPS, 0.09x concurrency, ID 0x81419520B08C9688CC6AB9C44F11C9E6 at byte 32141145
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:33
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0    2462
+# Exec time      1      5s    62us   129ms     2ms    10ms     7ms   185us
+# Lock time      1     5ms       0   968us     2us     1us    23us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     1 444.79k     185     185     185     185       0     185
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #################
+# 100us  ################################################################
+#   1ms  #######################
+#  10ms  #####
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'payment_tokens'\G
+#    SHOW CREATE TABLE `payment_tokens`\G
+INSERT INTO payment_tokens (user_id, token) VALUES ('01M32H848KV72HPAY71D84VTE3', 'sIdjLCLewFWHBMlhZaLZoJFxFgmSoOvQeOyFktQwbKKFoIgRPUBfXkUNqNZbyAHBoARvjSaHMpIqnxMuNGdUxchTCrEpaBREfzsd')\G
+
+# Query 13: 255.40 QPS, 0.08x concurrency, ID 0xBBBF4D43E95EB1416F8AC0D982F221F6 at byte 65822982
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T17:46:34 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          4   15324
+# Exec time      1      5s    62us    74ms   315us   384us     2ms   103us
+# Lock time      5    25ms       0     2ms     1us     1us    21us     1us
+# Rows sent     11  14.96k       1       1       1       1       0       1
+# Rows examine   2  14.96k       1       1       1       1       0       1
+# Query size     2 882.93k      59      59      59      59       0      59
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ####################################
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM rides WHERE id = '01M32H8C3TZEG39KSA973H6CMY'\G
+
+# Query 14: 5 QPS, 0.07x concurrency, ID 0x70DF894870AB4D41FA1A9F3BB69FDEB5 at byte 68106931
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.03
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:33
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     300
+# Exec time      1      4s   246us   215ms    14ms    48ms    22ms     6ms
+# Lock time      0   780us     1us   302us     2us     1us    17us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size    11   4.44M     658  36.93k  15.16k  33.17k  10.50k  13.13k
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  #################################
+#   1ms  ##############################################################
+#  10ms  ################################################################
+# 100ms  ##
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'chair_distances'\G
+#    SHOW CREATE TABLE `chair_distances`\G
+INSERT INTO chair_distances (chair_id, total_distance, total_distance_updated_at, latitude, longitude) VALUES ('01M32H7WQJVQQ0Z199VG3XPZ9M', 344, '2026-09-21 17:47:18.388248', 305, 333),('01M32H8JP7VD41NN8HA1SB3BSQ', 13, '2026-09-21 17:47:18.322569', 303, 332),('01M32H85SPKBEAXX6C0XQAT6H8', 364, '2026-09-21 17:47:18.25579', -5, 12),('01M32H89FJ46334PP8G5XDTZCQ', 279, '2026-09-21 17:47:18.388165', -15, -45),('01M32H891BTNKQP60T43YP9E55', 225, '2026-09-21 17:47:18.259361', 298, 321),('01M32H89T6PTB7PG3Q2AKKVYC2', 223, '2026-09-21 17:47:18.268748', 290, 348),('01M32H83P9MRMP0X8YNM5HVBNM', 480, '2026-09-21 17:47:18.387401', 297, 269),('01M32H8KATZ8M5W78PYD3JAH2J', 15, '2026-09-21 17:47:18.389261', 278, 270),('01M32H8DEKXMXE3Q3ST8ZXMBCB', 178, '2026-09-21 17:47:18.390812', 253, 256),('01M32H7FTFRCW0AB022TRRK0C4', 1102, '2026-09-21 17:47:18.355431', 316, 302),('01M32H85J9V3072NC3R1RK3FHC', 197, '2026-09-21 17:47:18.384056', -16, -34),('01M32H80FJY1NPP7025XS5MEF3', 433, '2026-09-21 17:47:18.384836', -32, -10),('01M32H821FJR7PFN1N3KGRGN3F', 505, '2026-09-21 17:47:18.388883', 33, -7),('01M32H8AVDAJ49GHT9FH0H7FYR', 290, '2026-09-21 17:47:18.385902', 114, 187),('01M32H83T4H4V6X9WKRVDH9WEE', 375, '2026-09-21 17:47:18.350741', 321, 317),('01M32H8FE39WEE85JDA7632Q77', 50, '2026-09-21 17:47:18.35631', 17, 4),('01M32H8M3M7MKNNZDPYC70SJYG', 0, '2026-09-21 17:47:18.223213', 32, 31),('01M32H877XEC74WRPQ7GJBK4HY', 286, '2026-09-21 17:47:18.317312', -28, -2),('01M32H7C97B3DTPRVF77AJJK92', 933, '2026-09-21 17:47:18.390367', 299, 295),('01M32H7N3ZSRX8DVVJG3GME9P0', 750, '2026-09-21 17:47:18.390205', 29, -4),('01M32H8GK13V1ZHW98YE9QRQ6N', 92, '2026-09-21 17:47:18.390151', 8, 5),('01M32H7KBXN94TJBR1JAM6NEFB', 751, '2026-09-21 17:47:18.284009', 270, 331),('01M32H8ARTN6KY4M0AM5KRZR3W', 190, '2026-09-21 17:47:18.328043', 300, 310),('01M32H8CSH3HJ3BQAAENWKABJD', 147, '2026-09-21 17:47:18.388254', -20, 0),('01M32H7N4SDWH07WAZ74Q49PJM', 1146, '2026-09-21 17:47:18.355126', 315, 310),('01M32H78EVJTA6JKS19BPMSBNN', 1197, '2026-09-21 17:47:18.330741', -1, 23),('01M32H7FT3XF9JT58W3PXT8EJC', 1394, '2026-09-21 17:47:18.262397', 310, 296),('01M32H89AWJ72DVQJFZBN6PFSY', 139, '2026-09-21 17:47:18.333316', 43, -49),('01M32H7KCEV63GEZW9JHBFJH8S', 1461, '2026-09-21 17:47:18.251807', 328, 272),('01M32H8K82JV3VYJKQW9S79B3C', 10, '2026-09-21 17:47:18.325937', 305, 282),('01M32H87M38MK8K4VP2629SCD0', 220, '2026-09-21 17:47:18.386865', -35, -19),('01M32H7S3J404N1SMKBZFM2J07', 514, '2026-09-21 17:47:18.389962', 24, -24),('01M32H8M9FC8X1NH98B3ZMPD1M', 0, '2026-09-21 17:47:18.385466', 47, 6),('01M32H85WF11CVF12KXPJDVM1M', 380, '2026-09-21 17:47:18.355322', 295, 341),('01M32H7Q3VXXC3Z66JWZMRHZQD', 1099, '2026-09-21 17:47:18.326427', 23, -14),('01M32H8JWK3AVYD3984YVRYJN1', 6, '2026-09-21 17:47:18.327332', 272, 279),('01M32H83WQPP1E1H3RK93DEJ70', 427, '2026-09-21 17:47:18.25387', 6, -28),('01M32H7TWTZ3EQG828BHZCTQKG', 686, '2026-09-21 17:47:18.257981', -38, 2),('01M32H78G1R5AEB5JM5GRWJYZB', 1196, '2026-09-21 17:47:18.390773', -42, -33),('01M32H8H19PX3CX9X6MT6V2KBT', 69, '2026-09-21 17:47:18.248481', 7, -31),('01M32H7N8TTHP4YTR9446FP9Y8', 1010, '2026-09-21 17:47:18.390412', 307, 319),('01M32H7S0M4HCAGYRJSFF1TZFP', 600, '2026-09-21 17:47:18.388345', 275, 258),('01M32H877QGXWN12Z1AQHSFDEZ', 220, '2026-09-21 17:47:18.33894', -17, -22),('01M32H85MGHHXNFXKS5WXER7NE', 271, '2026-09-21 17:47:18.356091', 2, -4),('01M32H7Q24SQ7GFN2M1GV2C4B0', 994, '2026-09-21 17:47:18.33342', 22, -10),('01M32H85YZR0YW7M4X4QTJVNJ8', 210, '2026-09-21 17:47:18.353855', 271, 295),('01M32H80CKW074390QS87DA2HA', 333, '2026-09-21 17:47:18.248134', -18, 12),('01M32H85K5PG3CSDVEDNAHQSJB', 358, '2026-09-21 17:47:18.274038', 22, 23),('01M32H8AXEMYKB0BEHCSQ1377B', 284, '2026-09-21 17:47:18.388952', 11, -49),('01M32H8KYBH86WGEQ5S4VNBF87', 0, '2026-09-21 17:47:18.222131', -44, -3),('01M32H7WY74J6Z31QPCBP1RTJ4', 819, '2026-09-21 17:47:18.258509', 21, -9),('01M32H845ZGQAKJSE57EXFEM6H', 310, '2026-09-21 17:47:18.350698', 266, 340),('01M32H7TZREW729FWMQKTTR7W0', 824, '2026-09-21 17:47:18.392341', 0, -22),('01M32H823BSX3BFSWQKZT6TGFQ', 584, '2026-09-21 17:47:18.385142', 342, 322),('01M32H78GQKNRW2Z34NPVANGGZ', 1144, '2026-09-21 17:47:18.32242', 317, 295),('01M32H8F4SYK979J2JGTBAPGNN', 109, '2026-09-21 17:47:18.355447', -14, 6),('01M32H7RYVJMBKA3FVTZ5F46P1', 507, '2026-09-21 17:47:18.387633', 314, 265),('01M32H8JQR0JQ8M9S8WMVD9ECG', 12, '2026-09-21 17:47:18.392167', 261, 285),('01M32H7TVXTSJX06MS64WAS52E', 404, '2026-09-21 17:47:18.391306', 321, 274),('01M32H8BEVYJN0T8VQHMB2XK5E', 152, '2026-09-21 17:47:18.352129', 287, 315),('01M32H891Q2VYB0RNTD6XN6603', 233, '2026-09-21 17:47:18.385057', 4, -8),('01M32H7TXS6WM8V4305WT4TGP8', 575, '2026-09-21 17:47:18.255065', 308, 331),('01M32H8CN8GD6QSZ0TWS58AE8R', 155, '2026-09-21 17:47:18.389356', 261, 318),('01M32H7Q5ZTSP7C7J51QZ271S1', 758, '2026-09-21 17:47:18.387506', 257, 302),('01M32H7TZQE23RP0TRD7DK65EH', 958, '2026-09-21 17:47:18.30107', 323, 321),('01M32H8EN5MY3DRX036RXY6YTK', 81, '2026-09-21 17:47:18.387041', 276, 302),('01M32H7HJE1AC9Y8YTKWDYDSE1', 1273, '2026-09-21 17:47:18.271845', -36, -32),('01M32H8F296V1V2CHMK79ANWQX', 124, '2026-09-21 17:47:18.353097', 270, 339),('01M32H89PQDHEZKW94W4Y1N43C', 190, '2026-09-21 17:47:18.39142', 32, 21),('01M32H7Q5Y4H652TPPSP9X5KCB', 1433, '2026-09-21 17:47:18.391171', -2, -11),('01M32H7WJ43SJA6N2FJFAN55MJ', 544, '2026-09-21 17:47:18.34772', 1, -20),('01M32H83V2BHHM9VETFZ6KJ1ER', 293, '2026-09-21 17:47:18.391746', 340, 327),('01M32H7S6GZ2WZFQHQNYNFMPNA', 444, '2026-09-21 17:47:18.282223', -7, 45),('01M32H7YJM9S6HHYQ5J23TJ6XG', 565, '2026-09-21 17:47:18.3917', 287, 343),('01M32H8EYJD065BCEM8R87ZDVZ', 133, '2026-09-21 17:47:18.385861', 41, -22),('01M32H78EYV571BN5SH98979NG', 1147, '2026-09-21 17:47:18.386682', 13, 34),('01M32H8M5JWAAJ8TZ8ZYC9F3C5', 0, '2026-09-21 17:47:18.307721', 37, -50),('01M32H8GTS9P141SJ0Z7J8SGWP', 68, '2026-09-21 17:47:18.325019', -5, 33),('01M32H87E4P3FX8B3C1N3DCCGZ', 367, '2026-09-21 17:47:18.257292', 44, 2),('01M32H7WS9ZXPTFJDRPSHP8CYN', 557, '2026-09-21 17:47:18.388505', 298, 293),('01M32H7Q347J63P7SJJD3KXXF8', 1134, '2026-09-21 17:47:18.354284', 29, -11),('01M32H7N3HAXZQ7EZ40WZ79FFB', 1140, '2026-09-21 17:47:18.354509', -35, -30),('01M32H7S5CR7WR7VRT2H7THJSH', 500, '2026-09-21 17:47:18.382773', -20, 16),('01M32H8JSM3WM2MZQJ31P0MBBX', 13, '2026-09-21 17:47:18.252021', 304, 265),('01M32H87A7V4NG5F5NKBVVV8F1', 246, '2026-09-21 17:47:18.389444', -8, 7),('01M32H89BPZ4A9729XG2EQ0GXY', 164, '2026-09-21 17:47:18.257878', -36, -26),('01M32H7YNAJTZ1V8KPKF343FA0', 346, '2026-09-21 17:47:18.353417', 283, 324),('01M32H7Q1VE8WXA9C3BT9WKY7A', 670, '2026-09-21 17:47:18.25736', 339, 328),('01M32H8HA1P5G9AT7ABBMHTGAR', 46, '2026-09-21 17:47:18.388793', 296, 305),('01M32H7N65Y7ZEER8STJHA4NJ6', 1160, '2026-09-21 17:47:18.390344', -50, -12),('01M32H87EYYVPWEM4PZ6ZRJMCK', 349, '2026-09-21 17:47:18.326565', 14, -30),('01M32H7V11K1GTE563K6P7FNCP', 879, '2026-09-21 17:47:18.339726', 0, -25),('01M32H8CQ3SRT3GXMA4NERN1RT', 159, '2026-09-21 17:47:18.35583', -34, 46),('01M32H87JPYD6QMA01XD7P0BED', 195, '2026-09-21 17:47:18.317798', 302, 343),('01M32H78GT66MQFPX9E59BME5V', 1116, '2026-09-21 17:47:18.390423', 346, 299),('01M32H7KE8C95ZGZBDC3B5Y09E', 1242, '2026-09-21 17:47:18.387852', 49, -27),('01M32H7WM1VMBP1VEW472NFX5Y', 727, '2026-09-21 17:47:18.387806', 294, 318),('01M32H7YJK0PPFDQPQNZ1AGCFV', 347, '2026-09-21 17:47:18.387693', 34, -19),('01M32H7TSQ9D1NAGXR8Y0QEMCK', 448, '2026-09-21 17:47:18.322617', -27, 5),('01M32H7S00961Z8AJNHJXTQN8X', 957, '2026-09-21 17:47:18.352965', -21, -42),('01M32H85WF11CVF12KXQ5RDQPQ', 292, '2026-09-21 17:47:18.390935', -4, -9),('01M32H8BDHD4SVV8TBWDE4QJ9Y', 132, '2026-09-21 17:47:18.349298', 17, 21),('01M32H7YB3838D35QGJMSFEZW8', 505, '2026-09-21 17:47:18.392032', 24, -19),('01M32H87HR3KD0HAZE23H279HA', 400, '2026-09-21 17:47:18.384977', 188, 236),('01M32H7WYGRS3N9G1ED3XNS5C3', 1126, '2026-09-21 17:47:18.33196', -17, -20),('01M32H826CB70ETNBHEMSCXNFX', 512, '2026-09-21 17:47:18.318648', 328, 255),('01M32H7KC68RDWSXZQBTJ8SWPB', 681, '2026-09-21 17:47:18.259928', -34, 1),('01M32H8GTS9P141SJ0Z4NN35QD', 70, '2026-09-21 17:47:18.391197', 273, 283),('01M32H7C97B3DTPRVF75F0R5N5', 1062, '2026-09-21 17:47:18.390568', 1, -3),('01M32H8M0M8E6FX1KPY8CFJC4K', 0, '2026-09-21 17:47:18.22288', -48, -14),('01M32H7KAY0FV4WE1KQT991F5G', 1199, '2026-09-21 17:47:18.250696', 24, -32),('01M32H7PZDTH8WWNB1SRYY7H6Z', 873, '2026-09-21 17:47:18.255372', 20, -42),('01M32H8K3GRVKW89BYDTP9BP70', 15, '2026-09-21 17:47:18.390282', 250, 273),('01M32H7KBVJY3743B1E9AQHDXP', 1307, '2026-09-21 17:47:18.388455', 263, 254),('01M32H7N3YSGCWQ31M4Y826QZE', 833, '2026-09-21 17:47:18.352712', 329, 331),('01M32H8GQSJJ58P0FR2SGH9WM9', 58, '2026-09-21 17:47:18.382471', 313, 307),('01M32H891ZT4GGTQYS2D7E3ZAZ', 254, '2026-09-21 17:47:18.385815', 333, 273),('01M32H878G1GR6WX1K6TAA6DEJ', 245, '2026-09-21 17:47:18.385375', -37, -8),('01M32H7WV1J8WWVM1X4S2N00S6', 430, '2026-09-21 17:47:18.385253', -4, -25),('01M32H78GMPHENFT7FPAE0DJ1K', 1221, '2026-09-21 17:47:18.354623', 276, 284),('01M32H85S1XGDPGHSMZS7HR5NT', 533, '2026-09-21 17:47:18.353051', 275, 348),('01M32H7KBR05TP57RREJHCRZ85', 660, '2026-09-21 17:47:18.387906', 23, -38),('01M32H7TQPA9XAV5BDEEGXDM2V', 1093, '2026-09-21 17:47:18.390499', 265, 321),('01M32H7KD5ZFCNRN341PDC2W1N', 1225, '2026-09-21 17:47:18.3319', -5, -34),('01M32H7N7JZKHJFR7GS4WW9YZ5', 757, '2026-09-21 17:47:18.323008', 31, 0),('01M32H803JTHFZ2B8WH134EFHX', 415, '2026-09-21 17:47:18.389717', 7, 16),('01M32H84952RYBHFY0N1R6EMD9', 334, '2026-09-21 17:47:18.261099', 334, 334),('01M32H8BEQYZ5E86FWCBA5BD8S', 163, '2026-09-21 17:47:18.389147', 34, 42),('01M32H7WGSX6G6Q2MCWG9YNQG1', 324, '2026-09-21 17:47:18.252125', 18, -31),('01M32H8CP7GZ4VZZDZNAQSP2RE', 142, '2026-09-21 17:47:18.387461', 33, -38),('01M32H7N80A441YY7RQ999RZB8', 811, '2026-09-21 17:47:18.321346', 314, 302),('01M32H7YDNE62DDDZ1BKB9K9GF', 629, '2026-09-21 17:47:18.329565', 26, 3),('01M32H7YGPFRK7SSG3Z8CM7YRA', 1058, '2026-09-21 17:47:18.390658', 2, 3),('01M32H8B990HRK9XERJANYMCET', 227, '2026-09-21 17:47:18.267372', 310, 292),('01M32H8KVGAYH9C5306WDFMQ59', 0, '2026-09-21 17:47:18.225136', -38, -43),('01M32H81XC8DF7P7AZG94216EW', 320, '2026-09-21 17:47:18.327671', 282, 275),('01M32H8B1BWAHJNNDDBE5A80CM', 142, '2026-09-21 17:47:18.257866', 30, -23),('01M32H8GNVR9DDGFRWBHV2YVJK', 62, '2026-09-21 17:47:18.258655', 0, 34),('01M32H7YG05BYJ32W7X9BXB0GC', 1257, '2026-09-21 17:47:18.340755', 326, 268),('01M32H83S5ZDCMP0S2P5RFJ5P3', 1087, '2026-09-21 17:47:18.25923', 29, 40),('01M32H825CXDBN2DHFHGXXPK29', 369, '2026-09-21 17:47:18.391371', -21, -2),('01M32H7S7YXHTW8D1EAW0F32V8', 551, '2026-09-21 17:47:18.355492', 7, -2),('01M32H8K7MQSPNWBMZWQ2Z1NFB', 6, '2026-09-21 17:47:18.35639', -37, -6),('01M32H7YN91YDZHDEBS5EN7AMS', 373, '2026-09-21 17:47:18.389007', 6, -30),('01M32H85P2ENVAGC13DAYXJWEM', 284, '2026-09-21 17:47:18.322128', 303, 324),('01M32H7E1QEW5RA507NCC76BB8', 1408, '2026-09-21 17:47:18.386306', 333, 282),('01M32H7S1S8FTP8QZ7P6H6J9DR', 464, '2026-09-21 17:47:18.356213', 21, -14),('01M32H7TRA202VD2NQHWE962RP', 685, '2026-09-21 17:47:18.292214', -14, -17),('01M32H89PTFRRGZ0RP2H0BTE7T', 279, '2026-09-21 17:47:18.259416', 298, 267),('01M32H8D5RQE8HS5V97SVMJM1Q', 109, '2026-09-21 17:47:18.383278', -34, 40),('01M32H8JK6YZ26Y1DPTK7D8F7W', 6, '2026-09-21 17:47:18.249236', 345, 276),('01M32H7S0VV0MP8XY4YNFTQYPP', 686, '2026-09-21 17:47:18.325301', 25, -18),('01M32H7HK9BGVA84KHWXEPY1NS', 1597, '2026-09-21 17:47:18.388398', 280, 261),('01M32H8GMEG267YD8N1Z8F0278', 28, '2026-09-21 17:47:18.331613', -17, 28),('01M32H7WPSY7638TAQ3WXEJV5Y', 584, '2026-09-21 17:47:18.331472', -33, -18),('01M32H83KX5FQHFJ65APFE9JAW', 383, '2026-09-21 17:47:18.389906', -21, 2),('01M32H7YW2Z3MD8DZFH88T94AV', 674, '2026-09-21 17:47:18.354333', -23, 48),('01M32H821EWWN283XRJA2FYMDK', 273, '2026-09-21 17:47:18.35537', 34, 25),('01M32H7V1H0E8CKT75AXP7DKQE', 424, '2026-09-21 17:47:18.384765', 14, -20),('01M32H8GH88SZ0JYRMCF41A6QV', 87, '2026-09-21 17:47:18.390334', 289, 258),('01M32H8CYG422KY6M0MBASH9ZR', 158, '2026-09-21 17:47:18.392178', 260, 287),('01M32H7FT5SYGZMQ2YRR3NC3WT', 1428, '2026-09-21 17:47:18.3268', 293, 262),('01M32H7N6NXRSK3ACZFCDQZMF9', 795, '2026-09-21 17:47:18.38949', 21, -13),('01M32H7YG1V3HP4N5WKNXPQE8G', 871, '2026-09-21 17:47:18.393005', -5, 36),('01M32H7V39GGD125ACX21ZPCQH', 491, '2026-09-21 17:47:18.390693', 258, 300),('01M32H85Z26CJ94PNFXCEK4AQW', 233, '2026-09-21 17:47:18.391558', 257, 277),('01M32H85W37WWS030NJH1PR4PN', 389, '2026-09-21 17:47:18.38891', 30, 0),('01M32H7HJE1AC9Y8YTKWPC2ZPX', 766, '2026-09-21 17:47:18.356416', 43, -22),('01M32H87R5Z22JBEQ8TCBXET59', 418, '2026-09-21 17:47:18.384106', 23, 26),('01M32H83ZVRWM7QASX04MT8X1M', 329, '2026-09-21 17:47:18.251071', 327, 274),('01M32H8H2PR0TX17G7T381WRN8', 74, '2026-09-21 17:47:18.252945', 297, 310),('01M32H7WPKENYE474AQC94JYKP', 729, '2026-09-21 17:47:18.256773', -8, 48),('01M32H7WWSC9695XBXHBXB13PY', 536, '2026-09-21 17:47:18.259885', 309, 300),('01M32H8JAC7KKG47KGA6D6ATX6', 32, '2026-09-21 17:47:18.328399', 28, -50),('01M32H7S2JCX2F4D7WQK8PRB17', 722, '2026-09-21 17:47:18.326326', -6, 46),('01M32H7KB3ZDNN9H6HNBVC6HH9', 1328, '2026-09-21 17:47:18.305081', -13, 36),('01M32H7N5H7HE3WRKGY19HX8FP', 671, '2026-09-21 17:47:18.347074', 321, 344),('01M32H87V47WESBWJJ16A442E8', 382, '2026-09-21 17:47:18.384076', 301, 291),('01M32H8MBDH744FQ2ZANBXZPSK', 0, '2026-09-21 17:47:18.361882', 27, 45),('01M32H7Q131WQDQJAPF0JQ72ZA', 1011, '2026-09-21 17:47:18.38752', 9, 42),('01M32H85NX26YF6HTPYSTNZ348', 416, '2026-09-21 17:47:18.354211', 38, -12),('01M32H808ZERFZJ9WEB68M8E5Y', 413, '2026-09-21 17:47:18.250036', 6, 45),('01M32H8D4TZGS6ASTVQTPK9J75', 193, '2026-09-21 17:47:18.349085', -41, 13),('01M32H8JEXS0Q3HYH9B6DQ3JEQ', 32, '2026-09-21 17:47:18.383868', -10, 30),('01M32H83P22W1NWBDCC0Q48RS3', 387, '2026-09-21 17:47:18.256345', 36, -41),('01M32H845ZGQAKJSE57NTA47EJ', 247, '2026-09-21 17:47:18.325498', -15, 49),('01M32H85GS8Q5T8BKWS4MJ2M7W', 194, '2026-09-21 17:47:18.390791', 23, -20),('01M32H7V1VC2Y0HNY42PE9Z842', 495, '2026-09-21 17:47:18.389135', 321, 317),('01M32H8M4Z3TRVSF5048JJGH03', 0, '2026-09-21 17:47:18.221896', 1, 36),('01M32H7TQ011FDMB2XZAZPHW3H', 652, '2026-09-21 17:47:18.390097', -5, 4),('01M32H7KCQ601JYY34RWVZYM6X', 847, '2026-09-21 17:47:18.391236', -5, -17),('01M32H8EKRGT4KSX6D2VWW2E4M', 100, '2026-09-21 17:47:18.300937', 254, 314),('01M32H7KCF3CJRVQ1CSW7PJ2DT', 934, '2026-09-21 17:47:18.346877', -22, 32),('01M32H8EDZYQ04HKB52JEVFA9P', 86, '2026-09-21 17:47:18.312884', 8, 17),('01M32H8KEJBNGCDRMP56H2A1M7', 5, '2026-09-21 17:47:18.354254', 280, 298),('01M32H80CRHNSW1EK5QCM0GNJD', 423, '2026-09-21 17:47:18.388303', 333, 318),('01M32H8BBGJK75VNMQ7ZGBX5RC', 134, '2026-09-21 17:47:18.356326', 313, 299),('01M32H7WNB2KA4Y0RHPN9B37WN', 681, '2026-09-21 17:47:18.383808', -5, -11),('01M32H8GS6YYERDWKHCF1HCGZZ', 56, '2026-09-21 17:47:18.389424', 291, 319),('01M32H8M04NADF71N673CX0W34', 0, '2026-09-21 17:47:18.225945', -23, 22),('01M32H78H7XRTHV1EP9SC2KDFC', 1023, '2026-09-21 17:47:18.263295', -7, -27),('01M32H87F74J3H2W6XJN7M12K5', 338, '2026-09-21 17:47:18.30055', 319, 297),('01M32H7TVSZEWF6M00NKNQ9AES', 616, '2026-09-21 17:47:18.383233', 334, 292),('01M32H87KFFC6JD3440WP7EJDX', 217, '2026-09-21 17:47:18.259375', 320, 304),('01M32H87D2N90EARF3BPQDXRK7', 393, '2026-09-21 17:47:18.266633', -39, -27),('01M32H83T4H4V6X9WKRRE3YVT1', 416, '2026-09-21 17:47:18.38464', -31, 17),('01M32H7KBNNDZZ4D0S5HZ4RP14', 786, '2026-09-21 17:47:18.32608', -36, 13),('01M32H85JQ57ENY1QKMAHNWGM6', 271, '2026-09-21 17:47:18.321525', 291, 308),('01M32H8ERR8ZF6MFS60HEDDXPR', 141, '2026-09-21 17:47:18.269762', -17, -11),('01M32H7KB8BDNENJH1MQG12S8K', 959, '2026-09-21 17:47:18.392069', 276, 309),('01M32H7KD89RF8M0DTPG5PG84X', 720, '2026-09-21 17:47:18.248176', 314, 298),('01M32H7FTR7Y734EJHRA9YB3Q4', 898, '2026-09-21 17:47:18.311159', 317, 269),('01M32H87TSQDJ0EERVKJ79EWPB', 143, '2026-09-21 17:47:18.350724', 310, 295),('01M32H829GZPXA6280HKNH4PE8', 363, '2026-09-21 17:47:18.355854', 275, 316),('01M32H7TVSZEWF6M00NP3QG8C7', 515, '2026-09-21 17:47:18.384853', -1, -11),('01M32H87STZFCPARSWWMTFVC4Q', 345, '2026-09-21 17:47:18.389814', -14, -49),('01M32H78G4VQ83T1FSFQ965140', 1250, '2026-09-21 17:47:18.389182', 3, 34),('01M32H8H3XQWTG06KV5JZ6HBCX', 195, '2026-09-21 17:47:18.386461', 179, 218),('01M32H8H3GFK1VY02M3KYC7S1F', 252, '2026-09-21 17:47:18.387708', 126, 79),('01M32H7TXWSEQ51R9CA71CPRBN', 759, '2026-09-21 17:47:18.391824', 323, 287),('01M32H7N3MGJQG13S96BXCP8GS', 718, '2026-09-21 17:47:18.354141', -11, -43),('01M32H7TX7020YSTNPGW19PZAQ', 598, '2026-09-21 17:47:18.388637', -9, 29),('01M32H7YD57Z9FYPSC6JT9K97B', 775, '2026-09-21 17:47:18.322551', -37, 47),('01M32H7Q2QR7NVDX170HVKPMAV', 1031, '2026-09-21 17:47:18.393053', 283, 315),('01M32H7Q5BCJPMG2KCGECJKE36', 567, '2026-09-21 17:47:18.391153', 29, -13),('01M32H8HCFNNMSZZFKRQX956AT', 71, '2026-09-21 17:47:18.391857', -34, -15),('01M32H840DH61EX3DSR299VPAC', 376, '2026-09-21 17:47:18.385755', 266, 282),('01M32H842EWBNX4V4AV47Q83XB', 268, '2026-09-21 17:47:18.384265', 16, -23),('01M32H7E1QEW5RA507NACNJ7JC', 1102, '2026-09-21 17:47:18.256045', 41, -43),('01M32H8JJ153B682G2A47JC8T4', 48, '2026-09-21 17:47:18.389964', 35, -1),('01M32H803N76CQ1HRXZ0CJ7FTS', 531, '2026-09-21 17:47:18.388423', 292, 303),('01M32H80C6CAM73EK6G8WNMSYW', 433, '2026-09-21 17:47:18.391773', 19, 25),('01M32H8D5NFBMDMQHA4Y6YNAQE', 205, '2026-09-21 17:47:18.324897', -38, 47),('01M32H8HBQMAPFBP9R9XJVF2H6', 58, '2026-09-21 17:47:18.325814', -34, -17),('01M32H7N5EDDW9JH6QHQRX3H7G', 682, '2026-09-21 17:47:18.389056', -3, -39),('01M32H8849F2QC1HX6E7V0ERXH', 188, '2026-09-21 17:47:18.389315', 30, 5),('01M32H8CM2MZ8QFD7XKBSWFGMN', 118, '2026-09-21 17:47:18.292844', 2, 40),('01M32H7HKPR7NYJHAJY6EFXM2X', 929, '2026-09-21 17:47:18.392203', 257, 342),('01M32H85RW3Z67CCDK86SFNZXC', 322, '2026-09-21 17:47:18.35198', -33, 23),('01M32H88Z5RABG4FNPQ1DAJC7R', 170, '2026-09-21 17:47:18.384678', 319, 276),('01M32H8JN0EJF0FQ1DP4H3VKJQ', 6, '2026-09-21 17:47:18.248228', -19, 32),('01M32H8EF5WWYKGNPQK081SBVR', 171, '2026-09-21 17:47:18.390566', 263, 342),('01M32H7Q11N0C7GKQRA6AJ729S', 741, '2026-09-21 17:47:18.391587', -13, -30),('01M32H8H8RGDJY40DR1X779MR0', 54, '2026-09-21 17:47:18.387666', 20, -3),('01M32H8AW21DECWW5XN3423N7F', 273, '2026-09-21 17:47:18.263062', 347, 309),('01M32H7WWF8D0816RTHRK7TTW3', 637, '2026-09-21 17:47:18.331175', -36, -31),('01M32H8GW28C7211QC9J4YJGM7', 41, '2026-09-21 17:47:18.274546', 29, -32),('01M32H89AQPJSYYVMW9Q1JC35S', 348, '2026-09-21 17:47:18.390959', 306, 295),('01M32H8BHE5K9R3E6KXDT8KWB0', 141, '2026-09-21 17:47:18.356589', 315, 283),('01M32H7E1RECZK5RX6FXDMK0R6', 1120, '2026-09-21 17:47:18.327232', -22, 22),('01M32H78FJ75XNZ62KZ7ZZXYW4', 1286, '2026-09-21 17:47:18.318122', 289, 265),('01M32H820V99EQ5ZWHGC346NP5', 606, '2026-09-21 17:47:18.38926', 5, -29),('01M32H8B8FEC0XVM11FJVZ0FA3', 207, '2026-09-21 17:47:18.388683', 12, 14),('01M32H78F1017KR35BMG5V4AM9', 1076, '2026-09-21 17:47:18.386906', -23, 12),('01M32H7HJBTF9TJN4KTZ02VWQV', 1353, '2026-09-21 17:47:18.389588', 308, 269),('01M32H8AYD93Q9KV4ZCYC3RWPB', 107, '2026-09-21 17:47:18.389092', 40, -11),('01M32H7HJCY8KKSQ68EN9MGHFX', 1056, '2026-09-21 17:47:18.251183', 47, -36),('01M32H7TVSZEWF6M00NHKPSQHD', 484, '2026-09-21 17:47:18.385393', -30, -37),('01M32H8EEFN6HK6DQ73FJ6T8FR', 132, '2026-09-21 17:47:18.281012', 16, 14),('01M32H8JT0XVASQX0A36T01VBR', 15, '2026-09-21 17:47:18.356476', -17, 28),('01M32H7PZHWDXM80RFGYKWWF63', 533, '2026-09-21 17:47:18.356053', 31, 32),('01M32H8D5NFBMDMQHA4XNC9NXZ', 211, '2026-09-21 17:47:18.251558', 292, 306),('01M32H7FTEA862CFQ317GNH8SJ', 1527, '2026-09-21 17:47:18.253103', -31, -18),('01M32H8JYM61YEX5W7GC8ER1J7', 18, '2026-09-21 17:47:18.324164', 20, -27),('01M32H7FTXX0C2Z8S3PHSYNQRD', 812, '2026-09-21 17:47:18.387125', -44, -45),('01M32H8K2V69QQMJS61C2HHHZN', 6, '2026-09-21 17:47:18.354088', 42, 22),('01M32H78G9CAKNN6FD5Y6E1JKN', 1080, '2026-09-21 17:47:18.388458', -1, -35),('01M32H7HJE1AC9Y8YTKWMDHJ3X', 866, '2026-09-21 17:47:18.356404', 332, 326),('01M32H7TSRNM39EMEZFYS46SGC', 814, '2026-09-21 17:47:18.292975', 300, 292),('01M32H8GM03K43WTJSE3G2NQ23', 144, '2026-09-21 17:47:18.383444', 272, 261),('01M32H82684CNH0EARF4WE7BMQ', 339, '2026-09-21 17:47:18.321472', -44, 32),('01M32H78FMJSP7PZQ2DRKH9MG0', 1137, '2026-09-21 17:47:18.349567', 310, 290),('01M32H8JKQKRN874FF38EEW7SF', 8, '2026-09-21 17:47:18.389666', 4, -21),('01M32H8F0FK2ZB7WAAB8Q9EBNJ', 82, '2026-09-21 17:47:18.389871', 9, 34),('01M32H7Q3K2HFR4J64V1RFN370', 850, '2026-09-21 17:47:18.324946', 311, 307),('01M32H7WKG3H13WGAXZGR1613J', 694, '2026-09-21 17:47:18.390181', -12, -41),('01M32H8CR7ZVY7V4BJ0TJGWBGJ', 130, '2026-09-21 17:47:18.250393', 343, 306),('01M32H7YAGR4R7FJVBG63JQQJ0', 370, '2026-09-21 17:47:18.385229', 285, 326),('01M32H8B7SB8P50C73NR2APNBR', 254, '2026-09-21 17:47:18.260085', 38, 45),('01M32H83Z1HA4V4VPC0V11Z9X4', 274, '2026-09-21 17:47:18.355265', -8, -28),('01M32H7FT1TF2A85VJQ137VN1M', 1291, '2026-09-21 17:47:18.355758', -23, -12),('01M32H80DEWVCTVR8K632K7FVA', 405, '2026-09-21 17:47:18.383872', 277, 265),('01M32H8CVN4KE7H350514HFJX7', 96, '2026-09-21 17:47:18.331174', 321, 276),('01M32H821ASHFS53Y0RG9MN0Q7', 316, '2026-09-21 17:47:18.390294', 336, 304),('01M32H8GWSNQ7VAC0JHWBYATGR', 72, '2026-09-21 17:47:18.383177', 301, 268),('01M32H8D1Z2JAZ553EGCSH5DN7', 140, '2026-09-21 17:47:18.38877', 31, 17),('01M32H7S5REFRB8T18P203XB4C', 826, '2026-09-21 17:47:18.273752', 288, 293),('01M32H85Q6B7KVXWBV1KADSVDT', 351, '2026-09-21 17:47:18.253036', -13, -36),('01M32H8H4VT2M2DS4C9RHF7WCS', 93, '2026-09-21 17:47:18.266198', -9, -49),('01M32H7Q0JTJ9DBDX8SHYKKF6Z', 1014, '2026-09-21 17:47:18.327053', 337, 283),('01M32H8K01Z5051DJP89QB18QJ', 5, '2026-09-21 17:47:18.38707', 312, 314),('01M32H8GGXZ8S65S5ND39R1C38', 61, '2026-09-21 17:47:18.329758', 49, -6),('01M32H8B0E14KX6BZPM6E3S63D', 151, '2026-09-21 17:47:18.386093', 5, 12),('01M32H8JQWRS4DY08VHZKKZHSJ', 19, '2026-09-21 17:47:18.339235', 31, 12),('01M32H87JPYD6QMA01XCE6YVXG', 121, '2026-09-21 17:47:18.261422', -42, -11),('01M32H85E5ZZXP77E0NBS3D4FH', 497, '2026-09-21 17:47:18.301825', 38, 30),('01M32H7V16YJHAXDEDX5E7K00Y', 841, '2026-09-21 17:47:18.312138', 322, 342),('01M32H7N4Q6E2CGNM7X244KVJY', 884, '2026-09-21 17:47:18.388101', -38, 9),('01M32H7S5EQE84Y0W7JV1Z4C28', 747, '2026-09-21 17:47:18.258143', -45, 26),('01M32H880NZVV6Y46WWMSFVFNQ', 159, '2026-09-21 17:47:18.258333', -22, -4),('01M32H8GQSJJ58P0FR2T0ZZ0D4', 110, '2026-09-21 17:47:18.32738', -22, 5),('01M32H8F4Y1VJWG7JMJE7K5CMN', 59, '2026-09-21 17:47:18.349065', 270, 309),('01M32H809XR6RF8DE1G9NMVAEF', 377, '2026-09-21 17:47:18.321942', 270, 335),('01M32H7S9BZB8P7JE2B782D4QX', 559, '2026-09-21 17:47:18.392279', 7, 15),('01M32H8EYKEZ2SNE462NK0HVXW', 73, '2026-09-21 17:47:18.285489', -24, 5),('01M32H8CRE4R9GDEXJ8CXZ0FNT', 183, '2026-09-21 17:47:18.35454', 16, 6),('01M32H8214MGP94HRXXBR5NYQJ', 420, '2026-09-21 17:47:18.356199', 263, 339),('01M32H7KCV6V00W9BFMZHSEXDR', 1309, '2026-09-21 17:47:18.38623', 325, 286),('01M32H8M37R9RX9E318XC7W3M6', 0, '2026-09-21 17:47:18.222277', 37, -48),('01M32H7RYYF3CAR8WYE5AQ55E5', 614, '2026-09-21 17:47:18.305166', 296, 319),('01M32H8CY93F7G40BTQXCPM850', 135, '2026-09-21 17:47:18.3848', 336, 289),('01M32H7WV72FFQPBZ5HEN2XKRR', 487, '2026-09-21 17:47:18.382838', 297, 308),('01M32H891C0JE32FF6REZNVZ3P', 384, '2026-09-21 17:47:18.388057', -23, -8),('01M32H7KDGWSGA5EMPNW38QR9M', 1252, '2026-09-21 17:47:18.392222', 329, 319),('01M32H8CNR9F90TCS3030187GJ', 247, '2026-09-21 17:47:18.387755', 279, 298),('01M32H85CE73GHG4EY4SD9Q9VA', 828, '2026-09-21 17:47:18.355057', 276, 330),('01M32H8AR959SJJEADEHKZTAX2', 183, '2026-09-21 17:47:18.38425', -41, -37),('01M32H7YA8GB2QA3NRVQV93T90', 676, '2026-09-21 17:47:18.252902', -37, 6),('01M32H8AYJ7P4K5W9DEBY1MD42', 272, '2026-09-21 17:47:18.356293', -11, 33),('01M32H8GS8MH5DWYN39247CEBR', 66, '2026-09-21 17:47:18.322526', 34, -37),('01M32H83WPMR5X1ZGDTJSF7HBP', 413, '2026-09-21 17:47:18.384358', 279, 296),('01M32H8F1MD9WA6KWT4MN885X7', 93, '2026-09-21 17:47:18.319462', 342, 255),('01M32H7YKC6MKF2CJAC5QJS0EA', 720, '2026-09-21 17:47:18.326981', 293, 286),('01M32H8B1SP8CGAF4X8XCNQBPA', 261, '2026-09-21 17:47:18.35646', 338, 293),('01M32H78F4RYXPB6PWGCC8EP4G', 1205, '2026-09-21 17:47:18.386023', -17, -18),('01M32H8GKFX8MZHV793KP6JHR9', 66, '2026-09-21 17:47:18.26291', -42, -8),('01M32H88YW9KHAZ29Q9ZEMGPEM', 225, '2026-09-21 17:47:18.356234', 2, -15),('01M32H81XXA39QS99B9HRHCSD3', 329, '2026-09-21 17:47:18.384456', -49, -9),('01M32H7WPQ2WVK3GYQKK273BGD', 711, '2026-09-21 17:47:18.256454', 335, 312),('01M32H7E1NH06CR3B0GBBT9ZWZ', 1341, '2026-09-21 17:47:18.25881', 340, 262),('01M32H83PSMV2PW5CW6FPGGHH3', 305, '2026-09-21 17:47:18.354121', -8, 38),('01M32H78HFSNNY3M0VWSDR5PXW', 1164, '2026-09-21 17:47:18.354568', 20, -5),('01M32H7C9C647MZQT5XP9J8RF9', 1360, '2026-09-21 17:47:18.38856', 265, 303),('01M32H8B4T77KZWKY5AHWYSVMW', 146, '2026-09-21 17:47:18.386558', 27, 27),('01M32H7Q5CPT42T0EMS7P84NCZ', 918, '2026-09-21 17:47:18.354173', -4, 25),('01M32H8EEEPAG4HT3BYTMZEHD5', 156, '2026-09-21 17:47:18.256984', 296, 340),('01M32H7PZMFMRP1PCC4DSM6CMW', 592, '2026-09-21 17:47:18.293605', 26, 13),('01M32H7YS3Q855SSK6P70EHZR9', 407, '2026-09-21 17:47:18.254412', 300, 279),('01M32H7Q22JWKBF5JA3GJ940SY', 952, '2026-09-21 17:47:18.260747', 282, 326),('01M32H89FA1FTEBQHAEX2QSV4Q', 282, '2026-09-21 17:47:18.289377', -29, -14),('01M32H7KB7ZGRP3ZCQYHXHGFSY', 1218, '2026-09-21 17:47:18.328004', -34, 8),('01M32H7WJRNET7AV55EG8YEW69', 638, '2026-09-21 17:47:18.388722', 269, 311),('01M32H85NTHN1P72SHEWFV9KYG', 206, '2026-09-21 17:47:18.388805', 8, 3),('01M32H8GHVBFTBGETN2SXK0NY1', 135, '2026-09-21 17:47:18.391818', 249, 206),('01M32H80FDBC8VN0ZSA4X87MZP', 699, '2026-09-21 17:47:18.356572', -49, -26),('01M32H8GMG4EZ76P7SFN6XTS17', 32, '2026-09-21 17:47:18.390447', 289, 280),('01M32H8JTPGCXSSM2AAJAKNXDA', 7, '2026-09-21 17:47:18.250634', 312, 278),('01M32H7PZK7S4AGQ08ZC53D8QY', 590, '2026-09-21 17:47:18.356438', 252, 311),('01M32H7Q5FQ2G6G4EWT68T5BZ1', 750, '2026-09-21 17:47:18.38985', 21, 7),('01M32H8JY8JRHHA6VK02WG434G', 13, '2026-09-21 17:47:18.38931', 286, 300),('01M32H7WRN6VZ7ENG3B60M7GB4', 498, '2026-09-21 17:47:18.386776', 5, -11),('01M32H8D8KJJT9DZHGPJHV09FB', 126, '2026-09-21 17:47:18.392243', 280, 310),('01M32H841PCNWJVHMG3A11T6CR', 376, '2026-09-21 17:47:18.389835', -44, -46),('01M32H8CXCNQGQXDPDQRA6H0P0', 84, '2026-09-21 17:47:18.392011', -25, -20),('01M32H8AVAT13XW4KHF5CQZ56D', 195, '2026-09-21 17:47:18.276794', 17, 28),('01M32H7HJKWAZMZN91KB77TGB7', 1431, '2026-09-21 17:47:18.389633', 261, 296),('01M32H8KTBB0BZVXFV7755M5JH', 8, '2026-09-21 17:47:18.391629', -28, 18),('01M32H87MWPBSBMFK8A06KNJ4Z', 211, '2026-09-21 17:47:18.384584', -20, 35),('01M32H7WH0NN4P83T3FG7EGTRT', 486, '2026-09-21 17:47:18.323086', 15, 15),('01M32H7TVXTSJX06MS619TF73Z', 621, '2026-09-21 17:47:18.329461', -28, 16),('01M32H7WH3MM63YAXBGPNT9CST', 553, '2026-09-21 17:47:18.389765', 290, 303),('01M32H7WWVDXKSYT5ZYJE9H32W', 723, '2026-09-21 17:47:18.296845', 311, 346),('01M32H7N739WJ55NF0MY67BCGY', 708, '2026-09-21 17:47:18.321399', 341, 338),('01M32H80FKBC0RDSE6378N3FPF', 641, '2026-09-21 17:47:18.261724', 283, 292),('01M32H7E1S2AH3ZE7FSVATN25B', 1597, '2026-09-21 17:47:18.270027', 278, 268),('01M32H7Q5ZTSP7C7J51R8VNWGC', 1149, '2026-09-21 17:47:18.270805', 327, 312),('01M32H8F2YTA636J9ZM9F7TBTM', 138, '2026-09-21 17:47:18.393024', 18, 25),('01M32H88YGV899M0P9ASGCBS0T', 324, '2026-09-21 17:47:18.247462', 290, 325),('01M32H8D31XSDD319P9V413VE8', 126, '2026-09-21 17:47:18.330087', 17, 6),('01M32H8B2P5D5ACPSDKCGTPE3S', 120, '2026-09-21 17:47:18.383755', 266, 266),('01M32H8JMTF7J3C77KATNFAJXY', 5, '2026-09-21 17:47:18.331582', 263, 335),('01M32H8JYM61YEX5W7G9G8SWZF', 6, '2026-09-21 17:47:18.257218', 37, -14),('01M32H8EM5DNX34GMTS3YXB9K4', 107, '2026-09-21 17:47:18.331434', -29, -2),('01M32H87C03J5JPBC655KTFNW1', 390, '2026-09-21 17:47:18.38684', -17, 24),('01M32H7Q3K2HFR4J64V519H611', 1072, '2026-09-21 17:47:18.390911', 2, 23),('01M32H8J8XSAG8XW4C3R6VFRV4', 53, '2026-09-21 17:47:18.25313', -22, -36),('01M32H83PNDXCZ9E5V8R8FXGNR', 319, '2026-09-21 17:47:18.383321', 320, 278),('01M32H8EXM7P5VRQWT88HWNX6Q', 80, '2026-09-21 17:47:18.388603', 10, 24),('01M32H7S3J404N1SMKC0T8QT2K', 695, '2026-09-21 17:47:18.260044', -2, -24),('01M32H8KSPC2CBMQAYR2ZXDPRH', 8, '2026-09-21 17:47:18.333937', -9, 27),('01M32H7S6WQZW26JMW6VDH0KA8', 647, '2026-09-21 17:47:18.390259', 333, 257),('01M32H7YB1CYCZWRJNTWMD5F0P', 409, '2026-09-21 17:47:18.392328', 14, -13),('01M32H8F1NS6S2JPJ6W3BE3KMY', 69, '2026-09-21 17:47:18.323335', -8, 11),('01M32H8F8HVEXP98JDH5W0HK0X', 74, '2026-09-21 17:47:18.384007', 21, 0),('01M32H8CMJ9A59GDN43R8X5XBG', 165, '2026-09-21 17:47:18.39071', -41, -41),('01M32H81XXA39QS99B9F93DT7Z', 404, '2026-09-21 17:47:18.289091', -48, 25),('01M32H7WS1F9Z5KXETS510DQY9', 420, '2026-09-21 17:47:18.355793', 277, 320),('01M32H8K6XCNK7E6TDXBNMXZRM', 9, '2026-09-21 17:47:18.383695', 258, 265),('01M32H8JDA5RDMBQYBVG4N466Q', 82, '2026-09-21 17:47:18.389378', -33, -13),('01M32H89E9DNDG27WMR08XX7QH', 261, '2026-09-21 17:47:18.259962', -37, 36),('01M32H8B48WBJSYC35Q48HR6EC', 161, '2026-09-21 17:47:18.391093', -6, -33),('01M32H7HJWBJAW6JDBCS1J58QC', 897, '2026-09-21 17:47:18.390608', 0, -2),('01M32H7N5WE1CWZEFXEY03VNGK', 1210, '2026-09-21 17:47:18.351708', 311, 314),('01M32H7S27D8TFAPYYSBJN02WX', 804, '2026-09-21 17:47:18.254198', 270, 264),('01M32H8F4SYK979J2JGW13F5KD', 105, '2026-09-21 17:47:18.389528', 286, 296),('01M32H85WGXDKJBHFZ91PZCRSA', 246, '2026-09-21 17:47:18.389424', 280, 296),('01M32H89SNXZ7WJ78PYZ5GJQG7', 208, '2026-09-21 17:47:18.390115', 310, 289),('01M32H8JAA2N2ESXET7CKPBFGZ', 77, '2026-09-21 17:47:18.384284', 325, 347),('01M32H8JBJFGETDZV65HAXQ2M1', 48, '2026-09-21 17:47:18.3846', 305, 315),('01M32H80K7DPCDY8F0E974A9RC', 312, '2026-09-21 17:47:18.38851', 30, -13),('01M32H85EDZYCKV81BEVVE7HMM', 422, '2026-09-21 17:47:18.259152', 292, 279),('01M32H89Q0XKYZ2GTR0S0KV2Y0', 312, '2026-09-21 17:47:18.35634', -10, -20),('01M32H87P92PSZ4G6JJ49S0KP2', 221, '2026-09-21 17:47:18.386732', 283, 268),('01M32H87BZNK024XPSVJ59BVBV', 217, '2026-09-21 17:47:18.383314', 328, 267),('01M32H861G1W4J594TW6H69VH9', 391, '2026-09-21 17:47:18.327725', 262, 278),('01M32H8KAM95Y317NMSTC5QCAG', 6, '2026-09-21 17:47:18.387937', 261, 284),('01M32H7S5B49QW3N2W02TQTDPB', 590, '2026-09-21 17:47:18.391915', 320, 297),('01M32H89M3WF7424SCPMPP8166', 284, '2026-09-21 17:47:18.283857', 22, 30),('01M32H83WSMGFVQ9DPVZ54MXB8', 322, '2026-09-21 17:47:18.354424', -35, -18),('01M32H805SBWDPV3BZSXFCGFPZ', 572, '2026-09-21 17:47:18.259528', 19, -5),('01M32H89A02H8HTTAB0SV655Y5', 201, '2026-09-21 17:47:18.331718', 18, 12),('01M32H8D8AF97YT1HTCGT5Q9WY', 211, '2026-09-21 17:47:18.388837', -11, -43),('01M32H8EZ4TVGHJ1Z1C9SSVVAY', 104, '2026-09-21 17:47:18.391879', 322, 254),('01M32H8ATQMEVKSQRTPDBXSXYQ', 239, '2026-09-21 17:47:18.38799', 27, 0),('01M32H8M1YWA060D3VCYA504H5', 0, '2026-09-21 17:47:18.226745', -30, 39),('01M32H89M15KD01TQJ08VEABC6', 266, '2026-09-21 17:47:18.387319', 334, 303),('01M32H8EDKC39P161RXX5NZWVK', 118, '2026-09-21 17:47:18.355074', -20, 42),('01M32H7WK2F4YY3BX1QABTH68G', 616, '2026-09-21 17:47:18.387597', -45, -11),('01M32H7YBQP802Y3T2R4GJSMEN', 381, '2026-09-21 17:47:18.258076', 293, 288),('01M32H878B1SE5TM4HDKZMJ1AV', 265, '2026-09-21 17:47:18.262227', 275, 308),('01M32H805PXDH1E413J5YMRMZ0', 329, '2026-09-21 17:47:18.391673', 19, 23),('01M32H7N3HAXZQ7EZ40WDFT0QX', 693, '2026-09-21 17:47:18.384899', 267, 286),('01M32H7HJX2R3T560FZKQVYJZ5', 1248, '2026-09-21 17:47:18.326204', 265, 285),('01M32H8GXJP77Z12PQY6KTV1T0', 36, '2026-09-21 17:47:18.250936', 17, 21),('01M32H8AVAT13XW4KHF2TBMDMV', 405, '2026-09-21 17:47:18.355881', 247, 148),('01M32H8HD3WKJ4Z1TW4CHDEXDC', 22, '2026-09-21 17:47:18.391651', 305, 303),('01M32H8BBGJK75VNMQ857KTA5N', 101, '2026-09-21 17:47:18.38726', 13, 48),('01M32H829XRAG1N9YZE4MG876K', 281, '2026-09-21 17:47:18.322924', -5, -22),('01M32H8H8VR5K6BD42TM5J63D6', 111, '2026-09-21 17:47:18.38698', -29, 46),('01M32H8EW5VKHKST4RKAQ7EB42', 74, '2026-09-21 17:47:18.286968', -17, -49),('01M32H7WRKE5XE4E442PCY1Q4J', 354, '2026-09-21 17:47:18.324683', 27, 30),('01M32H899QK50QFD0T8XR102DG', 332, '2026-09-21 17:47:18.389656', 147, 171),('01M32H8EW24T361DAMK45ZX63S', 37, '2026-09-21 17:47:18.33095', 319, 302),('01M32H7YMZMGYEENY49J2YFKE3', 578, '2026-09-21 17:47:18.331548', -5, 30),('01M32H7TSQ9D1NAGXR90ZNSZ7D', 821, '2026-09-21 17:47:18.392295', 35, 8),('01M32H8CM1BC93NEGVNW4YPQTF', 236, '2026-09-21 17:47:18.39104', 165, 146),('01M32H7YFEFJJN48YC332JYTZ0', 454, '2026-09-21 17:47:18.266784', -19, 49),('01M32H7RZNYX7M148BTE8Y6N11', 514, '2026-09-21 17:47:18.327532', -17, -9),('01M32H8AY8GVVMG0T6KH1ZDCEG', 221, '2026-09-21 17:47:18.32639', 317, 331),('01M32H8GYFM76NHZG7MN4HMA2N', 49, '2026-09-21 17:47:18.256253', 310, 288),('01M32H7Q1XGNWKTGKSJN1QEQ9X', 595, '2026-09-21 17:47:18.38557', -32, 35),('01M32H81XC8DF7P7AZG7N3QBWW', 451, '2026-09-21 17:47:18.317575', 3, 2),('01M32H7KCPDV7MXS7Q01KH5Z83', 918, '2026-09-21 17:47:18.387593', -15, 22),('01M32H83W23FJ3PMWJ3AF1KVPK', 271, '2026-09-21 17:47:18.3171', 4, -27),('01M32H8BHF4RKA4BN7THNPZN20', 270, '2026-09-21 17:47:18.389796', 20, -6),('01M32H7WHRPZ09K7GCABDFBJE5', 464, '2026-09-21 17:47:18.247538', 347, 336),('01M32H7V0F0CW1YHEN1SYGC0PS', 830, '2026-09-21 17:47:18.258888', -11, -48),('01M32H8DA7P0M5FSBDKBQV148X', 146, '2026-09-21 17:47:18.355734', 285, 269),('01M32H8GRYZQE28PT6MRY70JM6', 63, '2026-09-21 17:47:18.356249', -6, 28),('01M32H85NYD9A406CF2QS1SPDX', 345, '2026-09-21 17:47:18.385174', 318, 323),('01M32H8D9K1C8PX6TDY31WDTFQ', 179, '2026-09-21 17:47:18.38527', -34, -39),('01M32H85WP47DXFTZ462Z30Z56', 436, '2026-09-21 17:47:18.386173', 250, 195),('01M32H823W4SS7K71Z2Y0CHHWK', 359, '2026-09-21 17:47:18.32184', 275, 315),('01M32H8B640GCKDP8D588KG4ZH', 218, '2026-09-21 17:47:18.388064', 296, 296),('01M32H8JTMSKH9072SY20W4Q1S', 6, '2026-09-21 17:47:18.317062', 35, -1),('01M32H8BBDF9XVXMCNMDJZ46CY', 184, '2026-09-21 17:47:18.38414', 32, 20),('01M32H8CPBDSQYQ6DZD97HJS9Y', 86, '2026-09-21 17:47:18.385309', 11, 46),('01M32H8JGPTVQRPBQ8J3RBFMQ9', 99, '2026-09-21 17:47:18.355183', -16, -23),('01M32H89MSDBNW8D9DEZ0WEPQJ', 217, '2026-09-21 17:47:18.388011', 316, 307),('01M32H7E1P38ZHSBQDKDD1M1A7', 1012, '2026-09-21 17:47:18.392123', -23, -41),('01M32H806HED8YE49XFSBQ8VHT', 411, '2026-09-21 17:47:18.356139', 23, -25),('01M32H83JYW4FSCTAK5RE3QD9Y', 380, '2026-09-21 17:47:18.383068', -46, 27),('01M32H8092N3VZAK83DXK8B79P', 341, '2026-09-21 17:47:18.256504', 275, 285),('01M32H7Q8BAABM54VBDCF0NSTV', 1232, '2026-09-21 17:47:18.388116', 349, 264),('01M32H8DDV7CEY84R25ZW48MXG', 176, '2026-09-21 17:47:18.388317', 326, 287),('01M32H78G66A2A092MXP2RW3CN', 1085, '2026-09-21 17:47:18.391655', 20, 12),('01M32H7Q6H2Q1DTDGVRCRJFV9V', 919, '2026-09-21 17:47:18.316943', 43, 26),('01M32H83SJCP3WDMBCT9BM43AD', 451, '2026-09-21 17:47:18.388353', -25, 16) AS new ON DUPLICATE KEY UPDATE total_distance = new.total_distance, total_distance_updated_at = new.total_distance_updated_at, latitude = new.latitude, longitude = new.longitude\G
+
+# Query 15: 152.51 QPS, 0.07x concurrency, ID 0xF4502A8E8509852C29395E3F5E9C9A2B at byte 15416842
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2026-09-21T17:46:33 to 2026-09-21T17:47:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    9303
+# Exec time      1      4s    71us    44ms   448us   366us     3ms   113us
+# Lock time      2    13ms       0   714us     1us     1us    10us     1us
+# Rows sent      1   2.35k       0       1    0.26    0.99    0.43       0
+# Rows examine   0   2.35k       0       1    0.26    0.99    0.43       0
+# Query size     2 999.35k     110     110     110     110       0     110
+# String:
+# Hosts        10.100.0.94
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ###########
+# 100us  ################################################################
+#   1ms  #
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'coupons'\G
+#    SHOW CREATE TABLE `coupons`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM coupons WHERE user_id = '01M32H7ST6FECGFW0DZGX3RZ8T' AND code = 'CP_NEW2024' AND used_by IS NULL\G

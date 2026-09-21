@@ -1,0 +1,13 @@
+COMMAND                   AVG_CPU%
+isuride                       64.4
+pidstat                        0.4
+rcu_sched                      0.1
+mysql                          0.1
+systemd-journal                0.0
+sh                             0.0
+kworker/1:0-events             0.0
+kworker/0:3-events             0.0
+ksoftirqd/1                    0.0
+ksoftirqd/0                    0.0
+irqbalance                     0.0
+gzip                           0.0

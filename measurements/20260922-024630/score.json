@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 466938,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 76.4,
+    "pickup": 1.9,
+    "ride": 39.5
+  },
+  "registered": {
+    "reputation": 147,
+    "invitation": 2194
+  },
+  "left": 49,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 1465,
+      "active": 1432
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1072,
+      "active": 1040
+    }
+  ],
+  "owners": [
+    {
+      "name": "SitWell Designs",
+      "sales": 8868500,
+      "chairs": 208
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 8143400,
+      "chairs": 192
+    },
+    {
+      "name": "座心工房",
+      "sales": 9787400,
+      "chairs": 230
+    },
+    {
+      "name": "Chair Charm",
+      "sales": 9127800,
+      "chairs": 201
+    },
+    {
+      "name": "椅子のめぐりや",
+      "sales": 8536600,
+      "chairs": 200
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 44463700,
+  "total_chairs": 1031
+}
