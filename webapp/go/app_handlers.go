@@ -174,6 +174,7 @@ func appPostPaymentMethods(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	st.setPaymentToken(user.ID, req.Token)
 
 	w.WriteHeader(http.StatusNoContent)
 }
@@ -522,7 +523,9 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	rs.Completing = true
-	fare, userID := rs.Fare, rs.UserID
+	fare := rs.Fare
+	token, hasToken := st.paymentTokens[rs.UserID]
+	paymentGatewayURL := st.paymentURL
 	st.mu.Unlock()
 	completed := false
 	defer func() {
@@ -533,23 +536,14 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
-	paymentToken := &PaymentToken{}
-	if err := db.GetContext(ctx, paymentToken, `SELECT * FROM payment_tokens WHERE user_id = ?`, userID); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			writeError(w, http.StatusBadRequest, errors.New("payment token not registered"))
-			return
-		}
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	var paymentGatewayURL string
-	if err := db.GetContext(ctx, &paymentGatewayURL, "SELECT value FROM settings WHERE name = 'payment_gateway_url'"); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
+	// 決済トークン・決済サーバーのURLはメモリから（登録時・initialize 時に反映済み）
+	if !hasToken {
+		writeError(w, http.StatusBadRequest, errors.New("payment token not registered"))
 		return
 	}
 
 	// 決済（成功してから COMPLETED にする。ベンチは評価の応答を受け取った時点でライド完了とみなす）
-	if err := requestPaymentGatewayPostPayment(ctx, paymentGatewayURL, paymentToken.Token, rideID, &paymentGatewayPostPaymentRequest{Amount: fare}, nil); err != nil {
+	if err := requestPaymentGatewayPostPayment(ctx, paymentGatewayURL, token, rideID, &paymentGatewayPostPaymentRequest{Amount: fare}, nil); err != nil {
 		if errors.Is(err, erroredUpstream) {
 			writeError(w, http.StatusBadGateway, err)
 			return

@@ -108,6 +108,8 @@ type memState struct {
 	userNames       map[string]string        // user_id -> "firstname lastname"
 	modelSpeed      map[string]int           // chair_models: モデル名 -> speed（マスタデータ）
 	dirtyChairs     map[string]struct{}      // 移動距離をまだDBに書き出していない椅子
+	paymentTokens   map[string]string        // user_id -> 決済トークン
+	paymentURL      string                   // 決済サーバーのURL（initialize で設定される）
 	inviteUsed      map[string]int           // "INV_<招待コード>" -> 使われた回数（上限3）
 	userWake        map[string]chan struct{} // SSE: 利用者の通知ストリームを起こす
 	chairWake       map[string]chan struct{} // SSE: 椅子の通知ストリームを起こす
@@ -257,6 +259,14 @@ func loadState(ctx context.Context) error {
 		return fmt.Errorf("load chair_distances: %w", err)
 	}
 
+	tokens := []PaymentToken{}
+	if err := db.SelectContext(ctx, &tokens, `SELECT * FROM payment_tokens`); err != nil {
+		return fmt.Errorf("load payment_tokens: %w", err)
+	}
+	paymentURL := ""
+	if err := db.GetContext(ctx, &paymentURL, "SELECT value FROM settings WHERE name = 'payment_gateway_url'"); err != nil {
+		return fmt.Errorf("load settings: %w", err)
+	}
 	models := []ChairModel{}
 	if err := db.SelectContext(ctx, &models, `SELECT * FROM chair_models`); err != nil {
 		return fmt.Errorf("load chair_models: %w", err)
@@ -354,6 +364,11 @@ func loadState(ctx context.Context) error {
 	st.userNames = s.userNames
 	st.modelSpeed = s.modelSpeed
 	st.dirtyChairs = make(map[string]struct{})
+	st.paymentTokens = make(map[string]string, len(tokens))
+	for _, t := range tokens {
+		st.paymentTokens[t.UserID] = t.Token
+	}
+	st.paymentURL = paymentURL
 	st.inviteUsed = make(map[string]int, len(invites))
 	for _, iv := range invites {
 		st.inviteUsed[iv.Code] = iv.Count
@@ -567,6 +582,12 @@ func (s *memState) releaseInvitation(code string) {
 	if s.inviteUsed[code] > 0 {
 		s.inviteUsed[code]--
 	}
+}
+
+func (s *memState) setPaymentToken(userID, token string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.paymentTokens[userID] = token
 }
 
 func (s *memState) addOwner(id, name string) {
