@@ -862,7 +862,7 @@ func appGetNearbyChairs(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		// 割り当て済みのライドから解放されていなければ除外
-		if ride := st.chairLatestRide[chair.ID]; ride != nil && !ride.releasedChair() {
+		if ride := st.chairLatestRide[chair.ID]; ride != nil && !ride.releasedChairFor(nearbyReleaseGrace) {
 			continue
 		}
 		if calculateDistance(coordinate.Latitude, coordinate.Longitude, chair.Latitude, chair.Longitude) <= distance {
