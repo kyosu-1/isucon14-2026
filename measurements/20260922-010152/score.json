@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 11801,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 52.1,
+    "pickup": 41.6,
+    "ride": 96.8
+  },
+  "registered": {
+    "reputation": 107,
+    "invitation": 9
+  },
+  "left": 92,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 73,
+      "active": 21
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 56,
+      "active": 16
+    }
+  ],
+  "owners": [
+    {
+      "name": "椅子のめぐりや",
+      "sales": 234300,
+      "chairs": 17
+    },
+    {
+      "name": "PulseRide",
+      "sales": 311100,
+      "chairs": 20
+    },
+    {
+      "name": "ZenSeat",
+      "sales": 209300,
+      "chairs": 16
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 131100,
+      "chairs": 11
+    },
+    {
+      "name": "迅行タクシー",
+      "sales": 209300,
+      "chairs": 16
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 1095100,
+  "total_chairs": 80
+}

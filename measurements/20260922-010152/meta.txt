@@ -1,0 +1,8 @@
+timestamp : 20260922-010152
+commit    : 26748f5  matching: 待ちライド全件を、到着+運搬時間が最短の空き椅子に割り当てる
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-1
+bench     : isucon14-4 (10.100.0.90)
+note      : matching: 最短時間の椅子を全件割当
+dirty     : 0 files uncommitted (webapp/ etc/)

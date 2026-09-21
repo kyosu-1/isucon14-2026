@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+nginx                          0.5
+pidstat                        0.4
+mysqld                         0.4
+systemd-journal                0.1
+isuride                        0.1
+curl                           0.1
+sh                             0.0
+rsyslogd                       0.0
+rcu_sched                      0.0
+multipathd                     0.0
+kworker/u8:0-events_unbound       0.0
+kworker/1:2-events             0.0
+kcompactd0                     0.0
+dbus-daemon                    0.0
+cron                           0.0
