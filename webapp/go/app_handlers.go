@@ -825,7 +825,8 @@ func appGetNearbyChairs(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		// 割り当て済みのライドから解放されていなければ除外
-		if ride := st.chairLatestRide[chair.ID]; ride != nil && !ride.releasedChair() {
+		// nearby は COMPLETED 通知から releaseGrace 経ってから（ベンチ側が解放を認識するまでの余裕）
+		if ride := st.chairLatestRide[chair.ID]; ride != nil && !ride.releasedChairFor(releaseGrace) {
 			continue
 		}
 		if calculateDistance(coordinate.Latitude, coordinate.Longitude, chair.Latitude, chair.Longitude) <= distance {

@@ -51,12 +51,18 @@ type rideState struct {
 // さらに通知してから releaseGrace 経つまでは解放しない（応答が椅子に届いて処理されるまでの余裕）。
 // DB上で COMPLETED になっても、椅子が完了通知を受け取るまでは「ライド中」として扱う
 // （マッチングの空き判定と同じ基準。nearby-chairs でこれより早く出すと「既にライド中」の WARN になった）。
+// マッチング用: COMPLETED を椅子に通知していれば次を割り当ててよい（SSE で COMPLETED → 次の MATCHING の順に届く）
 func (r *rideState) releasedChair() bool {
+	return r.releasedChairFor(0)
+}
+
+// COMPLETED を椅子に通知してから grace 以上経っているか
+func (r *rideState) releasedChairFor(grace time.Duration) bool {
 	if len(r.Statuses) == 0 {
 		return false
 	}
 	last := r.Statuses[len(r.Statuses)-1]
-	return last.Status == "COMPLETED" && last.ChairSent && time.Since(last.ChairSentAt) >= releaseGrace
+	return last.Status == "COMPLETED" && last.ChairSent && time.Since(last.ChairSentAt) >= grace
 }
 
 const releaseGrace = 50 * time.Millisecond
