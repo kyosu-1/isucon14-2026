@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+mysqld                       100.9
+landscape-sysin                0.8
+pidstat                        0.4
+jbd2/nvme0n1p1-8               0.2
+systemd                        0.0
+rcu_sched                      0.0
+polkitd                        0.0
+multipathd                     0.0
+kworker/u8:4-ext4-rsv-conversion       0.0
+kworker/u8:4-events_power_efficient       0.0
+kworker/u8:3-ext4-rsv-conversion       0.0
+kworker/u8:1-writeback         0.0
+kworker/u8:1-events_power_efficient       0.0
+kworker/1:1-events             0.0
+kworker/0:1-events             0.0

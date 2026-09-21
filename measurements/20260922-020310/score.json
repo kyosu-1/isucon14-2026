@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 254211,
+  "error_codes": {
+    "30": 3
+  },
+  "dissatisfied": {
+    "matching": 90.8,
+    "pickup": 34.3,
+    "ride": 29.4
+  },
+  "registered": {
+    "reputation": 125,
+    "invitation": 1390
+  },
+  "left": 254,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 1015,
+      "active": 848
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 524,
+      "active": 435
+    }
+  ],
+  "owners": [
+    {
+      "name": "和やか交通",
+      "sales": 5251500,
+      "chairs": 132
+    },
+    {
+      "name": "暮らしの椅子研究所",
+      "sales": 3798200,
+      "chairs": 112
+    },
+    {
+      "name": "いすの道",
+      "sales": 4248000,
+      "chairs": 123
+    },
+    {
+      "name": "椅子工藝舎",
+      "sales": 3719500,
+      "chairs": 112
+    },
+    {
+      "name": "Artisan Seats",
+      "sales": 4970900,
+      "chairs": 143
+    }
+  ],
+  "warn_count": 3,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNERYWNPKHYTNWWPHBVTWNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 21988100,
+  "total_chairs": 622
+}

@@ -1,0 +1,8 @@
+timestamp : 20260922-020310
+commit    : 30432e7  matching: 割り当てを「メモリ(ロック内で時刻決定) → DB」の順に、椅子の状態更新はメモリで担当を確認
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : matching メモリ先行 / retrieved_at
+dirty     : 0 files uncommitted (webapp/ etc/)
