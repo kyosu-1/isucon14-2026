@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 320624,
+  "error_codes": {
+    "30": 1
+  },
+  "dissatisfied": {
+    "matching": 90.4,
+    "pickup": 1.4,
+    "ride": 40.8
+  },
+  "registered": {
+    "reputation": 144,
+    "invitation": 1670
+  },
+  "left": 141,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 997,
+      "active": 926
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 842,
+      "active": 772
+    }
+  ],
+  "owners": [
+    {
+      "name": "椅子のふるさと",
+      "sales": 6101900,
+      "chairs": 159
+    },
+    {
+      "name": "PreLoved Chairs",
+      "sales": 6747700,
+      "chairs": 155
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 3658500,
+      "chairs": 108
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 6554600,
+      "chairs": 151
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 7453500,
+      "chairs": 190
+    }
+  ],
+  "warn_count": 1,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNFCNTNKANKNPVNRNSVNBの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 30516200,
+  "total_chairs": 763
+}
