@@ -1,0 +1,2 @@
+# このノードで enable するサービス（deploy.sh が読む。書かれていない管理対象は disable）
+mysql

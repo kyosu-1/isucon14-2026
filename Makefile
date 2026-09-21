@@ -10,7 +10,7 @@ SHELL := /bin/bash
 #   BENCH     : ベンチマーカー専用ノード（競技サーバーではない）
 ENTRY     ?= isucon14-1
 APP_HOSTS ?= isucon14-1 isucon14-2 isucon14-3
-DB_HOST   ?= isucon14-1
+DB_HOST   ?= isucon14-2
 
 -include hosts.generated.mk
 BENCH ?= isucon14-4

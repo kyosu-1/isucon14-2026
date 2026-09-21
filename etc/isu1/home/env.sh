@@ -1,4 +1,5 @@
-ISUCON_DB_HOST="127.0.0.1"
+# DB は isucon14-2 に分離（deploy.sh が private IP に置換する）
+ISUCON_DB_HOST="__ISU2_IP__"
 ISUCON_DB_PORT="3306"
 ISUCON_DB_USER="isucon"
 ISUCON_DB_PASSWORD="isucon"
