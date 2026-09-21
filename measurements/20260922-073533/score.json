@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 1187909,
+  "error_codes": {
+    "30": 1
+  },
+  "dissatisfied": {
+    "matching": 87.0,
+    "pickup": 2.8,
+    "ride": 45.4
+  },
+  "registered": {
+    "reputation": 161,
+    "invitation": 3548
+  },
+  "left": 210,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2307,
+      "active": 2185
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1536,
+      "active": 1435
+    }
+  ],
+  "owners": [
+    {
+      "name": "GoEase",
+      "sales": 23691500,
+      "chairs": 472
+    },
+    {
+      "name": "ZenSeat",
+      "sales": 24361800,
+      "chairs": 512
+    },
+    {
+      "name": "レトロ椅子館",
+      "sales": 21759500,
+      "chairs": 484
+    },
+    {
+      "name": "ComfortWorks",
+      "sales": 20349200,
+      "chairs": 382
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 23130100,
+      "chairs": 462
+    }
+  ],
+  "warn_count": 1,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNSMNGPNGEKNHNDQNARHNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 113292100,
+  "total_chairs": 2312
+}

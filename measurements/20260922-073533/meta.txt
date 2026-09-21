@@ -1,0 +1,8 @@
+timestamp : 20260922-073533
+commit    : 60f6763  Revert "payment: 同じ Idempotency-Key で3本同時に再試行し、最初の成功で返す"
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 決済並列を戻した確認
+dirty     : 0 files uncommitted (webapp/ etc/)
