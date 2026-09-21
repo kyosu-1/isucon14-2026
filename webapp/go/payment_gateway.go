@@ -19,11 +19,24 @@ var paymentStats = &paymentStatsT{}
 
 type paymentStatsT struct {
 	sync.Mutex
-	lastLog time.Time
-	n       int
-	sum     time.Duration
-	max     time.Duration
-	retries int
+	lastLog  time.Time
+	n        int
+	sum      time.Duration
+	max      time.Duration
+	retries  int
+	codes    map[int]int
+	codeTime map[int]time.Duration
+}
+
+// 1回の POST /payments の結果（code=-1 は通信エラー）
+func (p *paymentStatsT) attempt(code int, d time.Duration) {
+	p.Lock()
+	defer p.Unlock()
+	if p.codes == nil {
+		p.codes, p.codeTime = map[int]int{}, map[int]time.Duration{}
+	}
+	p.codes[code]++
+	p.codeTime[code] += d
 }
 
 func (p *paymentStatsT) observe(d time.Duration, retries int) {
@@ -34,9 +47,14 @@ func (p *paymentStatsT) observe(d time.Duration, retries int) {
 	p.max = max(p.max, d)
 	p.retries += retries
 	if time.Since(p.lastLog) >= 5*time.Second {
-		slog.Info("payment", "n", p.n, "avg_ms", p.sum.Milliseconds()/int64(p.n), "max_ms", p.max.Milliseconds(), "retries", p.retries)
+		attempts := ""
+		for c, n := range p.codes {
+			attempts += fmt.Sprintf(" %d:%dx%dms", c, n, p.codeTime[c].Milliseconds()/int64(n))
+		}
+		slog.Info("payment", "n", p.n, "avg_ms", p.sum.Milliseconds()/int64(p.n), "max_ms", p.max.Milliseconds(), "retries", p.retries, "attempts", attempts)
 		p.lastLog = time.Now()
 		p.n, p.sum, p.max, p.retries = 0, 0, 0, 0
+		p.codes, p.codeTime = map[int]int{}, map[int]time.Duration{}
 	}
 }
 
@@ -71,11 +89,14 @@ func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL str
 			// 同じライドの支払いは何度送っても1回として扱われる（マニュアル: Idempotency-Key）
 			req.Header.Set("Idempotency-Key", idempotencyKey)
 
+			attemptStart := time.Now()
 			res, err := http.DefaultClient.Do(req)
 			if err != nil {
+				paymentStats.attempt(-1, time.Since(attemptStart))
 				return err
 			}
 			defer res.Body.Close()
+			paymentStats.attempt(res.StatusCode, time.Since(attemptStart))
 
 			if res.StatusCode != http.StatusNoContent {
 				// エラーが返ってきても成功している場合があるので、社内決済マイクロサービスに問い合わせ

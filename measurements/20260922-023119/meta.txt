@@ -1,0 +1,8 @@
+timestamp : 20260922-023119
+commit    : 1ea01e3  計測: 決済呼び出しの所要時間・再試行回数を5秒ごとにログ
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 再ベースライン + 決済の計測
+dirty     : 0 files uncommitted (webapp/ etc/)

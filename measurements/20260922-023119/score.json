@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 416087,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 90.5,
+    "pickup": 1.0,
+    "ride": 16.6
+  },
+  "registered": {
+    "reputation": 116,
+    "invitation": 3529
+  },
+  "left": 39,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2311,
+      "active": 2280
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1764,
+      "active": 1736
+    }
+  ],
+  "owners": [
+    {
+      "name": "Vintage Vibe Seats",
+      "sales": 8069900,
+      "chairs": 195
+    },
+    {
+      "name": "GoEase",
+      "sales": 7498000,
+      "chairs": 179
+    },
+    {
+      "name": "LuxeLine Taxi",
+      "sales": 9412800,
+      "chairs": 223
+    },
+    {
+      "name": "ComfortWorks",
+      "sales": 7508000,
+      "chairs": 172
+    },
+    {
+      "name": "快旅タクシー",
+      "sales": 7350200,
+      "chairs": 176
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 39838900,
+  "total_chairs": 945
+}
