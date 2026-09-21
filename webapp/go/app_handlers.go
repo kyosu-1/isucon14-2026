@@ -121,6 +121,7 @@ func appPostUsers(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	st.addUser(userID, req.FirstName, req.LastName)
 
 	http.SetCookie(w, &http.Cookie{
 		Path:  "/",
@@ -294,14 +295,15 @@ func getLatestRideStatus(ctx context.Context, tx executableGet, rideID string) (
 
 // 状態遷移を記録する。履歴(ride_statuses)と最新状態(rides.status)を同じトランザクションで書く。
 // rides.updated_at は元の実装どおり「割り当て・評価のとき」だけ変わるよう、明示的に据え置く。
-func insertRideStatus(ctx context.Context, tx *sqlx.Tx, rideID string, status string) error {
-	if _, err := tx.ExecContext(ctx, `INSERT INTO ride_statuses (id, ride_id, status) VALUES (?, ?, ?)`, ulid.Make().String(), rideID, status); err != nil {
-		return err
+func insertRideStatus(ctx context.Context, tx *sqlx.Tx, rideID string, status string) (string, error) {
+	id := ulid.Make().String()
+	if _, err := tx.ExecContext(ctx, `INSERT INTO ride_statuses (id, ride_id, status) VALUES (?, ?, ?)`, id, rideID, status); err != nil {
+		return "", err
 	}
 	if _, err := tx.ExecContext(ctx, `UPDATE rides SET status = ?, updated_at = updated_at WHERE id = ?`, status, rideID); err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	return id, nil
 }
 
 func appPostRides(w http.ResponseWriter, r *http.Request) {
@@ -359,10 +361,11 @@ func appPostRides(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	matchingStatusID := ulid.Make().String()
 	if _, err := tx.ExecContext(
 		ctx,
 		`INSERT INTO ride_statuses (id, ride_id, status) VALUES (?, ?, ?)`,
-		ulid.Make().String(), rideID, "MATCHING",
+		matchingStatusID, rideID, "MATCHING",
 	); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
@@ -444,6 +447,7 @@ func appPostRides(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	st.addRide(&ride, fare, matchingStatusID)
 
 	writeJSON(w, http.StatusAccepted, &appPostRidesResponse{
 		RideID: rideID,
@@ -575,7 +579,8 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := insertRideStatus(ctx, tx, rideID, "COMPLETED"); err != nil {
+	completedStatusID, err := insertRideStatus(ctx, tx, rideID, "COMPLETED")
+	if err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
@@ -633,6 +638,10 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	if err := st.complete(ctx, rideID, completedStatusID, req.Evaluation, ride.UpdatedAt); err != nil {
+		writeError(w, http.StatusInternalServerError, err)
+		return
+	}
 
 	writeJSON(w, http.StatusOK, &appPostRideEvaluationResponse{
 		CompletedAt: ride.UpdatedAt.UnixMilli(),
@@ -671,48 +680,28 @@ func appGetNotification(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	user := ctx.Value("user").(*User)
 
-	tx, err := db.Beginx()
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
+	// ユーザーの最新ライドについて、まだ送っていない最古の状態（なければ最新の状態）を返す。
+	// 読み取りはすべてメモリから。送った状態だけ DB の app_sent_at にも記録する（再起動後の復元用）。
+	st.mu.Lock()
+	ride := st.userLatestRide[user.ID]
+	if ride == nil {
+		st.mu.Unlock()
+		writeJSON(w, http.StatusOK, &appGetNotificationResponse{
+			RetryAfterMs: notificationRetryAfterMs,
+		})
 		return
 	}
-	defer tx.Rollback()
-
-	ride := &Ride{}
-	if err := tx.GetContext(ctx, ride, `SELECT * FROM rides WHERE user_id = ? ORDER BY created_at DESC LIMIT 1`, user.ID); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			writeJSON(w, http.StatusOK, &appGetNotificationResponse{
-				RetryAfterMs: notificationRetryAfterMs,
-			})
-			return
+	var sending *statusEntry
+	for _, e := range ride.Statuses {
+		if !e.AppSent {
+			sending = e
+			break
 		}
-		writeError(w, http.StatusInternalServerError, err)
-		return
 	}
-
-	yetSentRideStatus := RideStatus{}
-	status := ""
-	if err := tx.GetContext(ctx, &yetSentRideStatus, `SELECT * FROM ride_statuses WHERE ride_id = ? AND app_sent_at IS NULL ORDER BY created_at ASC LIMIT 1`, ride.ID); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			status, err = getLatestRideStatus(ctx, tx, ride.ID)
-			if err != nil {
-				writeError(w, http.StatusInternalServerError, err)
-				return
-			}
-		} else {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-	} else {
-		status = yetSentRideStatus.Status
+	status := ride.latestStatus()
+	if sending != nil {
+		status = sending.Status
 	}
-
-	fare, err := calculateDiscountedFare(ctx, tx, user.ID, ride, ride.PickupLatitude, ride.PickupLongitude, ride.DestinationLatitude, ride.DestinationLongitude)
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
 	response := &appGetNotificationResponse{
 		Data: &appGetNotificationResponseData{
 			RideID: ride.ID,
@@ -724,46 +713,40 @@ func appGetNotification(w http.ResponseWriter, r *http.Request) {
 				Latitude:  ride.DestinationLatitude,
 				Longitude: ride.DestinationLongitude,
 			},
-			Fare:      fare,
+			Fare:      ride.Fare,
 			Status:    status,
 			CreatedAt: ride.CreatedAt.UnixMilli(),
 			UpdateAt:  ride.UpdatedAt.UnixMilli(),
 		},
 		RetryAfterMs: notificationRetryAfterMs,
 	}
-
-	if ride.ChairID.Valid {
-		chair := &Chair{}
-		if err := tx.GetContext(ctx, chair, `SELECT * FROM chairs WHERE id = ?`, ride.ChairID); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-
-		stats, err := getChairStats(ctx, tx, chair.ID)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-
-		response.Data.Chair = &appGetNotificationResponseChair{
-			ID:    chair.ID,
-			Name:  chair.Name,
-			Model: chair.Model,
-			Stats: stats,
+	if ride.ChairID != "" {
+		if c := st.chairs[ride.ChairID]; c != nil {
+			stats := appGetNotificationResponseChairStats{}
+			if cs := st.chairStats[c.ID]; cs != nil && cs.Count > 0 {
+				stats.TotalRidesCount = cs.Count
+				stats.TotalEvaluationAvg = float64(cs.SumEvaluation) / float64(cs.Count)
+			}
+			response.Data.Chair = &appGetNotificationResponseChair{
+				ID:    c.ID,
+				Name:  c.Name,
+				Model: c.Model,
+				Stats: stats,
+			}
 		}
 	}
+	var sendingID string
+	if sending != nil {
+		sending.AppSent = true
+		sendingID = sending.ID
+	}
+	st.mu.Unlock()
 
-	if yetSentRideStatus.ID != "" {
-		_, err := tx.ExecContext(ctx, `UPDATE ride_statuses SET app_sent_at = CURRENT_TIMESTAMP(6) WHERE id = ?`, yetSentRideStatus.ID)
-		if err != nil {
+	if sendingID != "" {
+		if _, err := db.ExecContext(ctx, `UPDATE ride_statuses SET app_sent_at = CURRENT_TIMESTAMP(6) WHERE id = ?`, sendingID); err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
-	}
-
-	if err := tx.Commit(); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
 	}
 
 	writeJSON(w, http.StatusOK, response)

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"net/http"
 	"sort"
+	"time"
 )
 
 type matchingRide struct {
@@ -87,13 +88,19 @@ WHERE c.is_active = TRUE
 			break
 		}
 
-		res, err := db.ExecContext(ctx, "UPDATE rides SET chair_id = ? WHERE id = ? AND chair_id IS NULL", chairs[best].ID, ride.ID)
+		// updated_at はメモリにも同じ値を持ちたいので、DBの ON UPDATE に任せず明示する
+		now := time.Now().UTC().Truncate(time.Microsecond)
+		res, err := db.ExecContext(ctx, "UPDATE rides SET chair_id = ?, updated_at = ? WHERE id = ? AND chair_id IS NULL", chairs[best].ID, now, ride.ID)
 		if err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
 		if n, _ := res.RowsAffected(); n == 1 {
 			used[best] = true
+			if err := st.assignChair(ctx, ride.ID, chairs[best].ID, now); err != nil {
+				writeError(w, http.StatusInternalServerError, err)
+				return
+			}
 		}
 	}
 

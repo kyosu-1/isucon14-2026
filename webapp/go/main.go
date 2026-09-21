@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	crand "crypto/rand"
 	"encoding/json"
 	"fmt"
@@ -74,6 +75,10 @@ func setup() http.Handler {
 	db.SetMaxOpenConns(64)
 	db.SetMaxIdleConns(64)
 
+	if err := loadState(context.Background()); err != nil {
+		panic(err)
+	}
+
 	mux := chi.NewRouter()
 	mux.Use(middleware.Logger)
 	mux.Use(middleware.Recoverer)
@@ -143,6 +148,11 @@ func postInitialize(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if _, err := db.ExecContext(ctx, "UPDATE settings SET value = ? WHERE name = 'payment_gateway_url'", req.PaymentServer); err != nil {
+		writeError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	if err := loadState(ctx); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
