@@ -141,6 +141,8 @@ type authCacheT struct {
 	users  map[string]*User
 	chairs map[string]*Chair
 	owners map[string]*Owner
+	// chair_register_token -> owner_id（椅子の登録で DB を引かない）
+	registerTokens map[string]string
 }
 
 var authCache = &authCacheT{}
@@ -184,6 +186,19 @@ func (a *authCacheT) putOwner(o *Owner) {
 	a.owners[o.AccessToken] = o
 }
 
+func (a *authCacheT) ownerIDByRegisterToken(token string) (string, bool) {
+	a.mu.RLock()
+	defer a.mu.RUnlock()
+	id, ok := a.registerTokens[token]
+	return id, ok
+}
+
+func (a *authCacheT) putRegisterToken(token, ownerID string) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.registerTokens[token] = ownerID
+}
+
 func loadAuthCache(ctx context.Context) error {
 	users := []User{}
 	if err := db.SelectContext(ctx, &users, `SELECT * FROM users`); err != nil {
@@ -206,11 +221,13 @@ func loadAuthCache(ctx context.Context) error {
 		cm[chairs[i].AccessToken] = &chairs[i]
 	}
 	om := make(map[string]*Owner, len(owners))
+	rm := make(map[string]string, len(owners))
 	for i := range owners {
 		om[owners[i].AccessToken] = &owners[i]
+		rm[owners[i].ChairRegisterToken] = owners[i].ID
 	}
 	authCache.mu.Lock()
-	authCache.users, authCache.chairs, authCache.owners = um, cm, om
+	authCache.users, authCache.chairs, authCache.owners, authCache.registerTokens = um, cm, om, rm
 	authCache.mu.Unlock()
 	return nil
 }

@@ -33,30 +33,30 @@ func chairPostChairs(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	owner := &Owner{}
-	if err := db.GetContext(ctx, owner, "SELECT * FROM owners WHERE chair_register_token = ?", req.ChairRegisterToken); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			writeError(w, http.StatusUnauthorized, errors.New("invalid chair_register_token"))
+	// 売上で追加された椅子は1台ずつ「登録 → 稼働開始」の順に呼ばれ、その応答時間がそのまま椅子の増える速さになる。
+	// 負荷の後半は DB を同期で待つと 1台 100〜250ms かかっていたので、メモリに入れて応答し、DB へは FIFO で後から書く
+	ownerID, ok := authCache.ownerIDByRegisterToken(req.ChairRegisterToken)
+	if !ok {
+		owner := &Owner{}
+		if err := db.GetContext(ctx, owner, "SELECT * FROM owners WHERE chair_register_token = ?", req.ChairRegisterToken); err != nil {
+			if errors.Is(err, sql.ErrNoRows) {
+				writeError(w, http.StatusUnauthorized, errors.New("invalid chair_register_token"))
+				return
+			}
+			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
-		writeError(w, http.StatusInternalServerError, err)
-		return
+		ownerID = owner.ID
 	}
 
 	chairID := ulid.Make().String()
 	accessToken := secureRandomStr(32)
 
 	now := time.Now().UTC().Truncate(time.Microsecond)
-	_, err := db.ExecContext(
-		ctx,
-		"INSERT INTO chairs (id, owner_id, name, model, is_active, access_token, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-		chairID, owner.ID, req.Name, req.Model, false, accessToken, now, now,
-	)
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	st.addChair(&chairInfo{ID: chairID, OwnerID: owner.ID, Name: req.Name, Model: req.Model, CreatedAt: now})
+	chair := &Chair{ID: chairID, OwnerID: ownerID, Name: req.Name, Model: req.Model, IsActive: false, AccessToken: accessToken, CreatedAt: now, UpdatedAt: now}
+	authCache.putChair(chair)
+	enqueueChairWrite(chairWrite{insert: chair})
+	st.addChair(&chairInfo{ID: chairID, OwnerID: ownerID, Name: req.Name, Model: req.Model, CreatedAt: now})
 
 	http.SetCookie(w, &http.Cookie{
 		Path:  "/",
@@ -66,7 +66,7 @@ func chairPostChairs(w http.ResponseWriter, r *http.Request) {
 
 	writeJSON(w, http.StatusCreated, &chairPostChairsResponse{
 		ID:      chairID,
-		OwnerID: owner.ID,
+		OwnerID: ownerID,
 	})
 }
 
@@ -84,12 +84,8 @@ func chairPostActivity(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err := db.ExecContext(ctx, "UPDATE chairs SET is_active = ? WHERE id = ?", req.IsActive, chair.ID)
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
 	st.setChairActive(chair.ID, req.IsActive)
+	enqueueChairWrite(chairWrite{activeID: chair.ID, active: req.IsActive})
 
 	w.WriteHeader(http.StatusNoContent)
 }

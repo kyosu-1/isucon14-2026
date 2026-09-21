@@ -52,6 +52,7 @@ func ownerPostOwners(w http.ResponseWriter, r *http.Request) {
 	}
 
 	st.addOwner(ownerID, req.Name)
+	authCache.putRegisterToken(chairRegisterToken, ownerID)
 
 	http.SetCookie(w, &http.Cookie{
 		Path:  "/",
