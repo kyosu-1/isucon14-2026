@@ -1,0 +1,4 @@
+      1 2026/09/21 16:58:00 ERROR error response wrote !BADKEY="Error 1213 (40001): Deadlock found when trying to get lock; try restarting transaction"
+      1 2026/09/21 16:57:59 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Wiza1083' for key 'users.username'"
+      1 2026/09/21 16:57:30 ERROR error response wrote !BADKEY="app_session cookie is required"
+      1 2026/09/21 16:57:29 ERROR error response wrote !BADKEY="app_session cookie is required"

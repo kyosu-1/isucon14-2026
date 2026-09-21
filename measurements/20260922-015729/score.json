@@ -1,0 +1,76 @@
+{
+  "pass": true,
+  "score": 244124,
+  "error_codes": {
+    "17": 10,
+    "19": 1
+  },
+  "dissatisfied": {
+    "matching": 88.5,
+    "pickup": 37.0,
+    "ride": 19.5
+  },
+  "registered": {
+    "reputation": 121,
+    "invitation": 1417
+  },
+  "left": 176,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 924,
+      "active": 829
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 710,
+      "active": 629
+    }
+  ],
+  "owners": [
+    {
+      "name": "座和インダストリー",
+      "sales": 3541500,
+      "chairs": 79
+    },
+    {
+      "name": "レトロ椅子館",
+      "sales": 5320600,
+      "chairs": 106
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 4720000,
+      "chairs": 102
+    },
+    {
+      "name": "迅行タクシー",
+      "sales": 4129600,
+      "chairs": 98
+    },
+    {
+      "name": "椅子のめぐりや",
+      "sales": 2937400,
+      "chairs": 84
+    }
+  ],
+  "warn_count": 11,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 8,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): ユーザー登録に失敗しました (CODE=N): GET /clientのリクエストが失敗しました: Get \\\"https://isuride.xiv.isucon.net/client\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    },
+    {
+      "count": 2,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"椅子登録に失敗しました (CODE=N): POST /api/chair/chairsのリクエストが失敗しました: Post \\\"https://isuride.xiv.isucon.net/api/chair/chairs\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 20649100,
+  "total_chairs": 469
+}
