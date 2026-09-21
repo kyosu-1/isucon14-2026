@@ -78,7 +78,7 @@ func minCostAssign(nChairs int, candRides []int, costOf func(ci, ri int) float64
 }
 
 // ハンガリアン法を使う計算量の上限（行² × 列）。超える回は貪欲法
-const hungarianBudget = 20_000_000
+const hungarianBudget = 5_000_000
 
 // 最小コストの割り当て（Kuhn-Munkres、O(n²m)）。a は n×m（n <= m）のコスト行列。
 // 返り値 assign[i] は行 i に割り当てた列。
