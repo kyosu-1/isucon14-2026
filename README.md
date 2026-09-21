@@ -101,3 +101,8 @@ make down           # 終わったら
 | 運用ルール | [CLAUDE.md](CLAUDE.md) |
 | 計測改善ループの判断基準と ISURIDE の実測知見 | [.claude/skills/tuning-isucon14/SKILL.md](.claude/skills/tuning-isucon14/SKILL.md) |
 | マニュアル | [docs/reference/](docs/reference/) |
+
+## ライセンス
+
+`webapp/`（アプリ・SQL・静的ファイル）、`etc/` の元の設定、`docs/reference/` のマニュアルは
+[isucon/isucon14](https://github.com/isucon/isucon14) のもので、MIT License です（[LICENSE-isucon14](LICENSE-isucon14)）。
