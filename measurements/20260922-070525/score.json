@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 1158392,
+  "error_codes": {
+    "30": 5
+  },
+  "dissatisfied": {
+    "matching": 86.8,
+    "pickup": 2.8,
+    "ride": 44.3
+  },
+  "registered": {
+    "reputation": 159,
+    "invitation": 3488
+  },
+  "left": 157,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2314,
+      "active": 2222
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1443,
+      "active": 1366
+    }
+  ],
+  "owners": [
+    {
+      "name": "おもてなしタクシー",
+      "sales": 22281000,
+      "chairs": 468
+    },
+    {
+      "name": "街のりタクシー",
+      "sales": 22399400,
+      "chairs": 476
+    },
+    {
+      "name": "再座堂",
+      "sales": 22131400,
+      "chairs": 465
+    },
+    {
+      "name": "ZenSeat",
+      "sales": 19800800,
+      "chairs": 421
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 24156200,
+      "chairs": 611
+    }
+  ],
+  "warn_count": 5,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNCJSCRDCYNGYGTNZJAMの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 110768800,
+  "total_chairs": 2441
+}
