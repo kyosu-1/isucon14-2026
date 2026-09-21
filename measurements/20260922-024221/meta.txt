@@ -1,0 +1,8 @@
+timestamp : 20260922-024221
+commit    : d9cbedb  GET /api/app/rides: 履歴をメモリから返す（利用者ごとのライド一覧・評価・オーナー名をメモリに）
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 履歴をメモリから
+dirty     : 0 files uncommitted (webapp/ etc/)
