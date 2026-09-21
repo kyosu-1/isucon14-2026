@@ -1,0 +1,12 @@
+COMMAND                   AVG_CPU%
+isuride                        0.8
+systemd-journal                0.6
+rsyslogd                       0.3
+pidstat                        0.3
+mysql                          0.2
+sh                             0.1
+rcu_sched                      0.0
+multipathd                     0.0
+kworker/u8:1-events_power_efficient       0.0
+kworker/0:2-events             0.0
+ksoftirqd/0                    0.0

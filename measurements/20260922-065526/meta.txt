@@ -1,0 +1,8 @@
+timestamp : 20260922-065526
+commit    : 2c15c96  matching: ハンガリアン法でその回の割り当て全体のコストの合計を最小にする（重い回は貪欲法）
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : ハンガリアン法 1
+dirty     : 0 files uncommitted (webapp/ etc/)

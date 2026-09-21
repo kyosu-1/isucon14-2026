@@ -1,0 +1,63 @@
+{
+  "pass": false,
+  "score": 0,
+  "error_codes": {
+    "32": 9
+  },
+  "dissatisfied": null,
+  "registered": {
+    "reputation": 0,
+    "invitation": 0
+  },
+  "left": 0,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 5,
+      "active": 5
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 5,
+      "active": 5
+    }
+  ],
+  "owners": [
+    {
+      "name": "Sit Second Life",
+      "sales": 0,
+      "chairs": 4
+    },
+    {
+      "name": "おもてなしタクシー",
+      "sales": 0,
+      "chairs": 4
+    },
+    {
+      "name": "SitWell Designs",
+      "sales": 0,
+      "chairs": 4
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 0,
+      "chairs": 4
+    },
+    {
+      "name": "ComfortWorks",
+      "sales": 0,
+      "chairs": 4
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 1,
+  "warnings": [],
+  "errors": [
+    {
+      "count": 1,
+      "msg": "クリティカルエラーが発生しました error=\"ライドが長時間マッチングされませんでした (CODE=N)\""
+    }
+  ],
+  "total_sales": 0,
+  "total_chairs": 20
+}

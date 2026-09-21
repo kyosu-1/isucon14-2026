@@ -1,0 +1,7 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.3
+nginx                          0.2
+udisksd                        0.0
+systemd                        0.0
+kworker/1:0-events             0.0
+dbus-daemon                    0.0
