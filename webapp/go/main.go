@@ -80,6 +80,7 @@ func setup() http.Handler {
 		panic(err)
 	}
 	startFlusher()
+	startRideWriter()
 
 	mux := chi.NewRouter()
 	// middleware.Logger は全リクエストを stdout → journald → rsyslog に流し、
@@ -144,9 +145,10 @@ func postInitialize(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, err)
 		return
 	}
-	// 初期化中に前回ベンチの移動距離を書き戻されないよう、書き出しを止める
+	// 初期化中に前回ベンチの移動距離・状態遷移を書き戻されないよう、書き出しを止めてキューを捨てる
 	flushMu.Lock()
 	defer flushMu.Unlock()
+	discardRideWrites()
 
 	if out, err := exec.Command("../sql/init.sh").CombinedOutput(); err != nil {
 		writeError(w, http.StatusInternalServerError, fmt.Errorf("failed to initialize: %s: %w", string(out), err))

@@ -133,25 +133,13 @@ func chairPostCoordinate(w http.ResponseWriter, r *http.Request) {
 	st.mu.Unlock()
 
 	if newStatus != "" {
-		tx, err := db.Beginx()
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		defer tx.Rollback()
-		newStatusID, err := insertRideStatus(ctx, tx, rideID, newStatus)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		if err := tx.Commit(); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
+		// メモリに反映して応答する。DB へは writer.go が FIFO でまとめて書く
+		newStatusID := ulid.Make().String()
 		if err := st.addStatus(ctx, rideID, newStatusID, newStatus); err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
+		enqueueRideWrite(&rideWrite{statusID: newStatusID, rideID: rideID, status: newStatus, at: now})
 	}
 
 	writeJSON(w, http.StatusOK, &chairPostCoordinateResponse{
@@ -318,28 +306,13 @@ func chairPostRideStatus(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tx, err := db.Beginx()
-	if err != nil {
+	// メモリに反映して応答する。DB へは writer.go が FIFO でまとめて書く
+	newStatusID := ulid.Make().String()
+	if err := st.addStatus(ctx, rideID, newStatusID, req.Status); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-	defer tx.Rollback()
-	newStatusID, err := insertRideStatus(ctx, tx, rideID, req.Status)
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
-	if err := tx.Commit(); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	if newStatusID != "" {
-		if err := st.addStatus(ctx, rideID, newStatusID, req.Status); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-	}
+	enqueueRideWrite(&rideWrite{statusID: newStatusID, rideID: rideID, status: req.Status, at: time.Now().UTC().Truncate(time.Microsecond)})
 
 	w.WriteHeader(http.StatusNoContent)
 }

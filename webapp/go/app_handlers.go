@@ -504,8 +504,11 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 	// 以前はトランザクションを開いたまま決済サーバーを待っていたので、評価(avg 0.7s)のたびに
 	// DB接続を握り続け、プール(64)が埋まって他のエンドポイントの p99 が 1秒前後まで伸びていた。
 	// 決済には Idempotency-Key（ライドID）を付けるので、再試行・重複リクエストでも二重に請求されない。
-	ride := &Ride{}
-	if err := db.GetContext(ctx, ride, `SELECT * FROM rides WHERE id = ?`, rideID); err != nil {
+	// 状態はメモリで確認し、同じライドの評価が並行して来ても1回だけ通す（Completing）
+	st.mu.Lock()
+	rs, err := st.rideLocked(ctx, rideID)
+	if err != nil {
+		st.mu.Unlock()
 		if errors.Is(err, sql.ErrNoRows) {
 			writeError(w, http.StatusNotFound, errors.New("ride not found"))
 			return
@@ -513,13 +516,25 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-	if ride.Status != "ARRIVED" {
+	if rs.latestStatus() != "ARRIVED" || rs.Completing {
+		st.mu.Unlock()
 		writeError(w, http.StatusBadRequest, errors.New("not arrived yet"))
 		return
 	}
+	rs.Completing = true
+	fare, userID := rs.Fare, rs.UserID
+	st.mu.Unlock()
+	completed := false
+	defer func() {
+		if !completed {
+			st.mu.Lock()
+			rs.Completing = false
+			st.mu.Unlock()
+		}
+	}()
 
 	paymentToken := &PaymentToken{}
-	if err := db.GetContext(ctx, paymentToken, `SELECT * FROM payment_tokens WHERE user_id = ?`, ride.UserID); err != nil {
+	if err := db.GetContext(ctx, paymentToken, `SELECT * FROM payment_tokens WHERE user_id = ?`, userID); err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			writeError(w, http.StatusBadRequest, errors.New("payment token not registered"))
 			return
@@ -527,36 +542,14 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-
-	// 運賃はライド作成時に確定している（クーポン適用後）
-	st.mu.Lock()
-	rs, err := st.rideLocked(ctx, rideID)
-	fare := 0
-	if err == nil {
-		fare = rs.Fare
-	}
-	st.mu.Unlock()
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	paymentGatewayRequest := &paymentGatewayPostPaymentRequest{
-		Amount: fare,
-	}
-
 	var paymentGatewayURL string
 	if err := db.GetContext(ctx, &paymentGatewayURL, "SELECT value FROM settings WHERE name = 'payment_gateway_url'"); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	if err := requestPaymentGatewayPostPayment(ctx, paymentGatewayURL, paymentToken.Token, rideID, paymentGatewayRequest, func() ([]Ride, error) {
-		rides := []Ride{}
-		if err := db.SelectContext(ctx, &rides, `SELECT * FROM rides WHERE user_id = ? ORDER BY created_at ASC`, ride.UserID); err != nil {
-			return nil, err
-		}
-		return rides, nil
-	}); err != nil {
+	// 決済（成功してから COMPLETED にする。ベンチは評価の応答を受け取った時点でライド完了とみなす）
+	if err := requestPaymentGatewayPostPayment(ctx, paymentGatewayURL, paymentToken.Token, rideID, &paymentGatewayPostPaymentRequest{Amount: fare}, nil); err != nil {
 		if errors.Is(err, erroredUpstream) {
 			writeError(w, http.StatusBadGateway, err)
 			return
@@ -565,47 +558,24 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tx, err := db.Beginx()
-	if err != nil {
+	// 評価と COMPLETED を DB に書く。FIFO の writer に入れて完了を待つ（それより前の遷移も書かれている）。
+	// 完了日時(updated_at)は評価した時刻
+	now := time.Now().UTC().Truncate(time.Microsecond)
+	completedStatusID := ulid.Make().String()
+	done := make(chan error, 1)
+	enqueueRideWrite(&rideWrite{statusID: completedStatusID, rideID: rideID, status: "COMPLETED", at: now, evaluation: req.Evaluation, done: done})
+	if err := <-done; err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-	defer tx.Rollback()
-
-	// 同じライドへの評価が並行して来た場合に COMPLETED を二重に入れない
-	status := ""
-	if err := tx.GetContext(ctx, &status, `SELECT status FROM rides WHERE id = ? FOR UPDATE`, rideID); err != nil {
+	if err := st.complete(ctx, rideID, completedStatusID, req.Evaluation, now); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-	if status != "ARRIVED" {
-		writeError(w, http.StatusBadRequest, errors.New("not arrived yet"))
-		return
-	}
-	if _, err := tx.ExecContext(ctx, `UPDATE rides SET evaluation = ? WHERE id = ?`, req.Evaluation, rideID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	completedStatusID, err := insertRideStatus(ctx, tx, rideID, "COMPLETED")
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	if err := tx.GetContext(ctx, ride, `SELECT * FROM rides WHERE id = ?`, rideID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	if err := tx.Commit(); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	if err := st.complete(ctx, rideID, completedStatusID, req.Evaluation, ride.UpdatedAt); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
+	completed = true
 
 	writeJSON(w, http.StatusOK, &appPostRideEvaluationResponse{
-		CompletedAt: ride.UpdatedAt.UnixMilli(),
+		CompletedAt: now.UnixMilli(),
 	})
 }
 

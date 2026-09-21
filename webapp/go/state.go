@@ -43,6 +43,8 @@ type rideState struct {
 	// この間は椅子に通知しない（椅子が先に進むと、DB の chair_id が空のまま状態遷移・評価が起き、
 	// 遅れて来たマッチングの UPDATE が updated_at（完了日時）を上書きした）。
 	AssignPending bool
+	// 評価の処理中（決済〜DB書き込み）。同じライドへの評価の二重処理を防ぐ
+	Completing bool
 }
 
 // 椅子がこのライドから解放されたか = 最新が COMPLETED で、それを椅子に通知済み。
