@@ -1,0 +1,12 @@
+COMMAND                   AVG_CPU%
+isuride                        0.8
+pidstat                        0.7
+systemd-journal                0.6
+rsyslogd                       0.3
+mysql                          0.2
+sh                             0.1
+rcu_sched                      0.1
+snapd                          0.0
+gzip                           0.0
+chronyd                        0.0
+amazon-ssm-agen                0.0

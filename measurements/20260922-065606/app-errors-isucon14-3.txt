@@ -1,0 +1,4 @@
+    337  panic: runtime error: index out of range [19] with length 10
+     31  panic: runtime error: index out of range [18] with length 10
+      1 2026/09/21 21:56:07 ERROR error response wrote !BADKEY="app_session cookie is required"
+      1  panic: runtime error: index out of range [19] with length 9
