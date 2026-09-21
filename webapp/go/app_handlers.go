@@ -736,19 +736,11 @@ func appGetNotification(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	var sendingID string
 	if sending != nil {
 		sending.AppSent = true
-		sendingID = sending.ID
+		st.pendingAppSent = append(st.pendingAppSent, sending.ID)
 	}
 	st.mu.Unlock()
-
-	if sendingID != "" {
-		if _, err := db.ExecContext(ctx, `UPDATE ride_statuses SET app_sent_at = CURRENT_TIMESTAMP(6) WHERE id = ?`, sendingID); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-	}
 
 	writeJSON(w, http.StatusOK, response)
 }

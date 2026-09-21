@@ -19,10 +19,11 @@ import (
 // - 起動時と POST /api/initialize で DB から作り直す。
 
 type statusEntry struct {
-	ID        string
-	Status    string
-	AppSent   bool
-	ChairSent bool
+	ID          string
+	Status      string
+	AppSent     bool
+	ChairSent   bool
+	ChairSentAt time.Time // メモリ上で送信済みにした時刻（DBから復元したものはゼロ値）
 }
 
 type rideState struct {
@@ -40,6 +41,7 @@ type rideState struct {
 }
 
 // 椅子がこのライドから解放されたか = 最新が COMPLETED で、それを椅子に通知済み。
+// さらに通知してから releaseGrace 経つまでは解放しない（応答が椅子に届いて処理されるまでの余裕）。
 // DB上で COMPLETED になっても、椅子が完了通知を受け取るまでは「ライド中」として扱う
 // （マッチングの空き判定と同じ基準。nearby-chairs でこれより早く出すと「既にライド中」の WARN になった）。
 func (r *rideState) releasedChair() bool {
@@ -47,8 +49,10 @@ func (r *rideState) releasedChair() bool {
 		return false
 	}
 	last := r.Statuses[len(r.Statuses)-1]
-	return last.Status == "COMPLETED" && last.ChairSent
+	return last.Status == "COMPLETED" && last.ChairSent && time.Since(last.ChairSentAt) >= releaseGrace
 }
+
+const releaseGrace = 50 * time.Millisecond
 
 func (r *rideState) latestStatus() string {
 	if len(r.Statuses) == 0 {
@@ -79,15 +83,17 @@ type chairStatsState struct {
 }
 
 type memState struct {
-	mu              sync.Mutex
-	rides           map[string]*rideState
-	userLatestRide  map[string]*rideState // user_id -> 最新(created_at)のライド
-	chairLatestRide map[string]*rideState // chair_id -> 最後に割り当てられたライド
-	chairs          map[string]*chairInfo
-	chairStats      map[string]*chairStatsState
-	userNames       map[string]string   // user_id -> "firstname lastname"
-	modelSpeed      map[string]int      // chair_models: モデル名 -> speed（マスタデータ）
-	dirtyChairs     map[string]struct{} // 移動距離をまだDBに書き出していない椅子
+	mu               sync.Mutex
+	rides            map[string]*rideState
+	userLatestRide   map[string]*rideState // user_id -> 最新(created_at)のライド
+	chairLatestRide  map[string]*rideState // chair_id -> 最後に割り当てられたライド
+	chairs           map[string]*chairInfo
+	chairStats       map[string]*chairStatsState
+	userNames        map[string]string   // user_id -> "firstname lastname"
+	modelSpeed       map[string]int      // chair_models: モデル名 -> speed（マスタデータ）
+	dirtyChairs      map[string]struct{} // 移動距離をまだDBに書き出していない椅子
+	pendingAppSent   []string            // app_sent_at をまだDBに書いていない ride_statuses.id
+	pendingChairSent []string            // chair_sent_at をまだDBに書いていない ride_statuses.id
 }
 
 // ロック保持中に呼ぶ
@@ -310,6 +316,7 @@ func loadState(ctx context.Context) error {
 	st.userNames = s.userNames
 	st.modelSpeed = s.modelSpeed
 	st.dirtyChairs = make(map[string]struct{})
+	st.pendingAppSent, st.pendingChairSent = nil, nil
 	st.mu.Unlock()
 	return nil
 }
@@ -480,7 +487,7 @@ func (s *memState) setChairLocation(chairID string, lat, lon int, now time.Time)
 // initialize がテーブルを作り直した後に、前回のベンチの距離を書き戻さないため。
 var flushMu sync.Mutex
 
-func startChairDistanceFlusher() {
+func startFlusher() {
 	go func() {
 		t := time.NewTicker(200 * time.Millisecond)
 		defer t.Stop()
@@ -488,8 +495,44 @@ func startChairDistanceFlusher() {
 			if err := flushChairDistances(context.Background()); err != nil {
 				slog.Error("flush chair_distances", "err", err)
 			}
+			if err := flushSentAt(context.Background()); err != nil {
+				slog.Error("flush sent_at", "err", err)
+			}
 		}
 	}()
+}
+
+// 通知の送信済みフラグ（app_sent_at / chair_sent_at）をまとめて書く（再起動後の復元用）。
+// 通知の応答をDBの書き込みで待たせない。待たせると「メモリでは送信済み・椅子はまだ受け取っていない」
+// 時間が伸び、その間に nearby-chairs が椅子を空きとして返して「既にライド中」の WARN になった。
+func flushSentAt(ctx context.Context) error {
+	flushMu.Lock()
+	defer flushMu.Unlock()
+
+	st.mu.Lock()
+	app, chair := st.pendingAppSent, st.pendingChairSent
+	st.pendingAppSent, st.pendingChairSent = nil, nil
+	st.mu.Unlock()
+
+	for _, x := range []struct {
+		col string
+		ids []string
+	}{{"app_sent_at", app}, {"chair_sent_at", chair}} {
+		for ids := x.ids; len(ids) > 0; {
+			n := min(len(ids), 1000)
+			chunk := ids[:n]
+			ids = ids[n:]
+			args := make([]any, len(chunk))
+			for i, id := range chunk {
+				args[i] = id
+			}
+			q := "UPDATE ride_statuses SET " + x.col + " = CURRENT_TIMESTAMP(6) WHERE id IN (?" + strings.Repeat(",?", len(chunk)-1) + ")"
+			if _, err := db.ExecContext(ctx, q, args...); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 // メモリ上の移動距離・最新座標を chair_distances にまとめて書く（再起動後の復元用）。

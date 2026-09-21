@@ -78,7 +78,7 @@ func setup() http.Handler {
 	if err := loadState(context.Background()); err != nil {
 		panic(err)
 	}
-	startChairDistanceFlusher()
+	startFlusher()
 
 	mux := chi.NewRouter()
 	// middleware.Logger は全リクエストを stdout → journald → rsyslog に流し、

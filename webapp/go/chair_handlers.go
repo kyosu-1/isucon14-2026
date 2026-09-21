@@ -219,10 +219,10 @@ func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 		},
 		Status: status,
 	}
-	var sendingID string
 	if sending != nil {
 		sending.ChairSent = true
-		sendingID = sending.ID
+		sending.ChairSentAt = time.Now()
+		st.pendingChairSent = append(st.pendingChairSent, sending.ID)
 	}
 	st.mu.Unlock()
 
@@ -233,14 +233,6 @@ func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		data.User.Name = fmt.Sprintf("%s %s", user.Firstname, user.Lastname)
-	}
-
-	if sendingID != "" {
-		// マッチングの「空き椅子」判定が chair_sent_at を見るので、DBにも記録する
-		if _, err := db.ExecContext(ctx, `UPDATE ride_statuses SET chair_sent_at = CURRENT_TIMESTAMP(6) WHERE id = ?`, sendingID); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
 	}
 
 	writeJSON(w, http.StatusOK, &chairGetNotificationResponse{
