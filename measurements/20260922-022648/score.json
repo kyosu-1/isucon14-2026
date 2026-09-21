@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 418749,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 90.3,
+    "pickup": 1.0,
+    "ride": 16.1
+  },
+  "registered": {
+    "reputation": 114,
+    "invitation": 3676
+  },
+  "left": 6,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2446,
+      "active": 2441
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1735,
+      "active": 1730
+    }
+  ],
+  "owners": [
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 8473500,
+      "chairs": 210
+    },
+    {
+      "name": "快旅タクシー",
+      "sales": 8428600,
+      "chairs": 209
+    },
+    {
+      "name": "再座堂",
+      "sales": 6884300,
+      "chairs": 182
+    },
+    {
+      "name": "椅子のめぐりや",
+      "sales": 8319900,
+      "chairs": 194
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 8829100,
+      "chairs": 219
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 40935400,
+  "total_chairs": 1014
+}
