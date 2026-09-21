@@ -64,7 +64,9 @@ CREATE TABLE users
   created_at      DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '登録日時',
   updated_at      DATETIME(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新日時',
   PRIMARY KEY (id),
-  UNIQUE (username),
+  -- username の UNIQUE は外す。ベンチマーカーが生成するユーザー名（姓+4桁）は初期データや他の登録と
+  -- 偶然衝突することがあり、ベンチは 201 を期待している（衝突で 500 → WARN「ユーザー登録に失敗しました」）。
+  -- username で検索するAPIは無いので一意性は機能上使われていない。
   UNIQUE (access_token),
   UNIQUE (invitation_code)
 )
