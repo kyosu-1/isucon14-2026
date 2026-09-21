@@ -1,0 +1,72 @@
+{
+  "pass": true,
+  "score": 274047,
+  "error_codes": {
+    "17": 1,
+    "30": 1
+  },
+  "dissatisfied": {
+    "matching": 92.7,
+    "pickup": 54.5,
+    "ride": 25.4
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 1158
+  },
+  "left": 250,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 1024,
+      "active": 828
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 316,
+      "active": 248
+    }
+  ],
+  "owners": [
+    {
+      "name": "ゆったり号",
+      "sales": 5364100,
+      "chairs": 147
+    },
+    {
+      "name": "Sit Second Life",
+      "sales": 3500600,
+      "chairs": 104
+    },
+    {
+      "name": "ReSit & Renew",
+      "sales": 4935000,
+      "chairs": 138
+    },
+    {
+      "name": "Artisan Seats",
+      "sales": 3044200,
+      "chairs": 92
+    },
+    {
+      "name": "暮らしの椅子研究所",
+      "sales": 4849100,
+      "chairs": 135
+    }
+  ],
+  "warn_count": 2,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNFNGXNMNBXBFAJTWNEGの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 21693000,
+  "total_chairs": 616
+}
