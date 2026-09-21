@@ -19,6 +19,9 @@ import (
 
 var db *sqlx.DB
 
+// 通知ポーリングの間隔。状態変化から3秒以内に届けばよいが、短いほどDBへの問い合わせが増える。
+const notificationRetryAfterMs = 100
+
 func main() {
 	mux := setup()
 	slog.Info("Listening on :8080")
