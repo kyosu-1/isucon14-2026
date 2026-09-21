@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+nginx                         74.4
+isuride                       62.7
+curl                           0.9
+pidstat                        0.5
+ksoftirqd/1                    0.2
+ksoftirqd/0                    0.2
+rcu_sched                      0.1
+mysql                          0.1
+kworker/1:0-events             0.1
+kworker/0:1-events             0.1
+systemd-journal                0.0
+snapd                          0.0
+sh                             0.0
+migration/0                    0.0
+kworker/u8:4-events_power_efficient       0.0

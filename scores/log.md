@@ -31,3 +31,4 @@
 | 09-22 01:47 | 97693 | -5.6% | ok | 1 | 22/43/74 | 8122400 | matching: 割り当て結果を UPDATE 1文(CASE)にまとめる | `b551c1a` | 20260922-014557 | matching: UPDATE 1文 |
 | 09-22 01:50 | 121498 | +24.4% | ok | 30 | 66/41/61 | 10542800 | coordinate: DB操作を移動距離の upsert 1文に（状態遷移時だけトランザクション） | `e508b44` | 20260922-014906 | coordinate 軽量化 |
 | 09-22 01:52 | 167236 | +37.6% | ok | 0 | 67/39/57 | 14304900 | nginx: upstream keepalive / keepalive_requests / TLSセッションキャッシュ / worker_connections | `6f141ef` | 20260922-015114 | nginx keepalive |
+| 09-22 01:56 | 196333 | +17.4% | ok | 2 | 92/37/40 | 17083100 | coordinate: 移動距離をメモリで積み上げ、DBへは200msごとにまとめて書く / owner/chairs はメモリから | `f9a6d00` | 20260922-015449 | coordinate メモリ化 |

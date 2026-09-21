@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 196333,
+  "error_codes": {
+    "30": 2
+  },
+  "dissatisfied": {
+    "matching": 92.5,
+    "pickup": 36.8,
+    "ride": 39.6
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 770
+  },
+  "left": 254,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 550,
+      "active": 388
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 364,
+      "active": 270
+    }
+  ],
+  "owners": [
+    {
+      "name": "ChairCycle",
+      "sales": 4227300,
+      "chairs": 116
+    },
+    {
+      "name": "LuxeLine Taxi",
+      "sales": 3442000,
+      "chairs": 100
+    },
+    {
+      "name": "Orbit Taxi",
+      "sales": 3073400,
+      "chairs": 97
+    },
+    {
+      "name": "暮らしの椅子研究所",
+      "sales": 2934000,
+      "chairs": 93
+    },
+    {
+      "name": "晴れ道タクシー",
+      "sales": 3406400,
+      "chairs": 105
+    }
+  ],
+  "warn_count": 2,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNENBNVFACNBNVVNWNDDWNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 17083100,
+  "total_chairs": 511
+}

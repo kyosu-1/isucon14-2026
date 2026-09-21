@@ -1,0 +1,8 @@
+timestamp : 20260922-015449
+commit    : f9a6d00  coordinate: 移動距離をメモリで積み上げ、DBへは200msごとにまとめて書く / owner/chairs はメモリから
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : coordinate メモリ化
+dirty     : 0 files uncommitted (webapp/ etc/)
