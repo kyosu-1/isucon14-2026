@@ -1,0 +1,13 @@
+COMMAND                   AVG_CPU%
+mysqld                        83.1
+pidstat                        0.4
+jbd2/nvme0n1p1-8               0.3
+snapd                          0.0
+polkitd                        0.0
+multipathd                     0.0
+kworker/u8:3-flush-259:0       0.0
+kworker/u8:2-events_unbound       0.0
+kworker/u8:1-events_unbound       0.0
+kworker/1:2-events             0.0
+kworker/0:2-events             0.0
+amazon-ssm-agen                0.0
