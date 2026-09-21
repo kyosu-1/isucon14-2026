@@ -1,0 +1,5 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.3
+snapd                          0.0
+rsyslogd                       0.0
+kworker/0:3-events             0.0

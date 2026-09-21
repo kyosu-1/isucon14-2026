@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 43608,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 76.6,
+    "pickup": 35.4,
+    "ride": 74.1
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 96
+  },
+  "left": 127,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 129,
+      "active": 63
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 107,
+      "active": 46
+    }
+  ],
+  "owners": [
+    {
+      "name": "座り心地再生所",
+      "sales": 736900,
+      "chairs": 38
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 963400,
+      "chairs": 45
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 708000,
+      "chairs": 37
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 622000,
+      "chairs": 34
+    },
+    {
+      "name": "SitWell Designs",
+      "sales": 756100,
+      "chairs": 38
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 3786400,
+  "total_chairs": 192
+}
