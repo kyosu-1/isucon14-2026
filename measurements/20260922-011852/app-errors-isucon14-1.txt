@@ -1,0 +1,2 @@
+      1 2026/09/21 16:18:55 ERROR error response wrote !BADKEY="failed to initialize: ++ dirname ../sql/init.sh\n+ cd ../sql\n+ '[' '' == local-dev ']'\n+ test -f /home/isucon/env.sh\n+ . /home/isucon/env.sh\
+      1 2026/09/21 16:18:53 ERROR error response wrote !BADKEY="app_session cookie is required"

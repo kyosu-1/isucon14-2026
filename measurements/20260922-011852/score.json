@@ -1,0 +1,21 @@
+{
+  "pass": null,
+  "score": 0,
+  "error_codes": {},
+  "dissatisfied": null,
+  "registered": null,
+  "left": 0,
+  "regions": [],
+  "owners": [],
+  "warn_count": 0,
+  "error_count": 1,
+  "warnings": [],
+  "errors": [
+    {
+      "count": 1,
+      "msg": "initializeに失敗しました error=\"POST /api/initialize へのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    }
+  ],
+  "total_sales": 0,
+  "total_chairs": 0
+}

@@ -1,0 +1,2 @@
+COMMAND                   AVG_CPU%
+pidstat                        1.0
