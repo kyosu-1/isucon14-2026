@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 103129,
+  "error_codes": {
+    "26": 2
+  },
+  "dissatisfied": {
+    "matching": 83.1,
+    "pickup": 31.7,
+    "ride": 57.0
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 317
+  },
+  "left": 198,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 264,
+      "active": 163
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 204,
+      "active": 106
+    }
+  ],
+  "owners": [
+    {
+      "name": "座心工房",
+      "sales": 1642700,
+      "chairs": 62
+    },
+    {
+      "name": "椅子工藝舎",
+      "sales": 1741200,
+      "chairs": 64
+    },
+    {
+      "name": "座和インダストリー",
+      "sales": 2167700,
+      "chairs": 74
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 1394800,
+      "chairs": 54
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 2138300,
+      "chairs": 73
+    }
+  ],
+  "warn_count": 2,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 2,
+      "msg": "\"取得したオーナーの椅子一覧の情報が想定しているものと異なります (CODE=N): total_distanceの反映が遅いデータがあります (id: <ID>)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 9084700,
+  "total_chairs": 327
+}

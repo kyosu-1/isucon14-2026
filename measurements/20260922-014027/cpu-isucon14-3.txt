@@ -1,0 +1,6 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.3
+snapd                          0.0
+rsyslogd                       0.0
+kworker/u8:2-events_power_efficient       0.0
+kworker/u8:1-events_power_efficient       0.0
