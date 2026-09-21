@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 287776,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 94.9,
+    "pickup": 33.9,
+    "ride": 29.6
+  },
+  "registered": {
+    "reputation": 125,
+    "invitation": 1515
+  },
+  "left": 271,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 1022,
+      "active": 874
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 670,
+      "active": 547
+    }
+  ],
+  "owners": [
+    {
+      "name": "レトロ椅子館",
+      "sales": 4598900,
+      "chairs": 125
+    },
+    {
+      "name": "座心工房",
+      "sales": 5052400,
+      "chairs": 137
+    },
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 5610000,
+      "chairs": 149
+    },
+    {
+      "name": "椅子やいちば",
+      "sales": 4831500,
+      "chairs": 131
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 5009300,
+      "chairs": 136
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 25102100,
+  "total_chairs": 678
+}
