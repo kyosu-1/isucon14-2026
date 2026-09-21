@@ -68,3 +68,50 @@ done
 ```
 
 3台の設定は完全に同一だった。マニュアル（当日・アプリケーション）は gist から `docs/reference/` に保存。
+
+### 00:47 計測基盤
+
+`make deploy`（ローカルでクロスビルド→全台rsync→差分のあるサービスだけ再起動）と
+`make bench`（ログ初期化→ベンチ→alp/pt-query-digest/pidstat/vmstat→`scores/log.md`）を用意。
+ベンチ結果は `tools/bench/parse.py` で `score.json`（スコア・不満率・新規登録・売上・WARN内訳）にする。
+
+ハマった点:
+
+- `种別エラー数` はエラー種別が複数あると `"map[1:3 3:2]"` とクォートされ、正規表現が外れてスコア0と誤記録した → parse.py 修正・再集計。
+- `pidstat` の平均で `Average:` 行を二重計上し、分母も誤っていて 200% を超える値が出た → 修正。マシン全体の飽和は vmstat の busy で見る。
+- deploy.sh で `set -e` + `grep` の不一致(=1) により3号機だけ途中終了していた。
+
+### 00:52〜01:12 DBまわり（1032 → 28987）
+
+| 変更 | スコア | 根拠 |
+| --- | ---: | --- |
+| インデックス追加 | 3424 | ride_statuses / chair_locations / rides の全件走査 |
+| owner/chairs の距離を差分集計（chair_distances） | 3691 | ウィンドウ関数が DB時間の59.6% |
+| binlog off + flush_log_at_trx_commit=2 | 4362 | COMMIT が50.8% |
+| マッチング: 待ち全件を最短時間の椅子へ | 11801 | ランダム1件/0.5秒だった |
+| MySQL を isucon14-2 に分離 | 16743 | 1号機 180%/200% |
+| コネクションプール64 | 18686 | Too many connections |
+| interpolateParams | 26548 | PREPARE/CLOSE 90万回 |
+| coupons(code) インデックス | 28987 | 招待コード登録のデッドロック（全件Xロック） |
+
+### 01:17〜01:52 メモリ化（28987 → 167236）
+
+| 変更 | スコア | 根拠 |
+| --- | ---: | --- |
+| rides.status 列（最新状態） | 27411 | 最新状態の取得が14万回・24%（ブレの範囲） |
+| retry_after_ms 30→100 | 31337 | 通知ポーリング6万回/分 |
+| 通知をメモリから返す（state.go） | 43608 | getChairStats の N+1 など |
+| nearby-chairs をメモリから | 77891 | nearby 由来クエリが DB の33% |
+| 認証キャッシュ | 103129 | トークン検索20万回/分 |
+| マッチング判定をメモリで | 103439 | matching max 3.7s |
+| マッチングの UPDATE を1文に | 97693 | 1回2.5秒（5秒に2回しか回っていなかった） |
+| coordinate を upsert 1文に | 121498 | 椅子は座標更新の成功まで動かない |
+| nginx keepalive 等 | 167236 | nginx 90%、タイムアウトの WARN 30件 |
+
+ハマった点:
+
+- `rides` に列を足したら初期データの `INSERT INTO rides VALUES (...)`（列名なし）が列数不一致で initialize 失敗 → 列はデータ投入後に `ALTER TABLE` で足す。
+- 同じく `owner/sales` の JOIN で `status` が曖昧になって FAIL。
+- nearby-chairs は「DBで COMPLETED」ではなく「椅子が COMPLETED の通知を受け取った」後でないと、「既にライド中」の WARN になる。
+- slow log (long_query_time=0) 自体が約1割の重し（同一コードで 72399 → 82922）。比較は ON 同士で行う。
+- マッチング統計（5秒ごとのログ）で「椅子は余っているのにマッチングが遅い」ことが分かった。計測を足すと判断が変わる。

@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 167236,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 67.4,
+    "pickup": 38.6,
+    "ride": 57.1
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 608
+  },
+  "left": 251,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 446,
+      "active": 300
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 307,
+      "active": 200
+    }
+  ],
+  "owners": [
+    {
+      "name": "木座デザイン",
+      "sales": 3047100,
+      "chairs": 95
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 2787500,
+      "chairs": 90
+    },
+    {
+      "name": "街のりタクシー",
+      "sales": 2577200,
+      "chairs": 85
+    },
+    {
+      "name": "瞬道タクシー",
+      "sales": 2362200,
+      "chairs": 80
+    },
+    {
+      "name": "椅子のふるさと",
+      "sales": 3530900,
+      "chairs": 109
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 14304900,
+  "total_chairs": 459
+}
