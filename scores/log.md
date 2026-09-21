@@ -19,3 +19,4 @@
 | 09-22 01:17 | 28987 | +9.2% | ok | 0 | 48/35/89 | 2579100 | schema: coupons(code) にインデックス（招待コード登録のデッドロック対策） | `341df78` | 20260922-011512 | coupons(code) index |
 | 09-22 01:18 | 0 | -100.0% | None | 0 | -/-/- | 0 | rides.status に最新状態を持ち、最新状態の取得を主キー1回にする | `f61c3ee` | 20260922-011852 | rides.status |
 | 09-22 01:19 | 0 | - | None | 0 | -/-/- | 0 | fix: rides.status 列は初期データ投入後に ALTER TABLE で追加する | `b36682a` | 20260922-011924 | rides.status |
+| 09-22 01:21 | 27411 | - | ok | 0 | 50/43/87 | 2303700 | fix: owner/sales の JOIN で status 列が曖昧になっていたのを ride_statuses.status に | `a898dbc` | 20260922-011946 | rides.status |

@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 27411,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 50.4,
+    "pickup": 43.0,
+    "ride": 87.3
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 52
+  },
+  "left": 111,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 96,
+      "active": 38
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 96,
+      "active": 41
+    }
+  ],
+  "owners": [
+    {
+      "name": "瞬道タクシー",
+      "sales": 429000,
+      "chairs": 25
+    },
+    {
+      "name": "椅子やいちば",
+      "sales": 527300,
+      "chairs": 30
+    },
+    {
+      "name": "ReSit",
+      "sales": 535300,
+      "chairs": 30
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 338900,
+      "chairs": 22
+    },
+    {
+      "name": "椅子再生工房",
+      "sales": 473200,
+      "chairs": 28
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 2303700,
+  "total_chairs": 135
+}

@@ -1,0 +1,8 @@
+timestamp : 20260922-011946
+commit    : a898dbc  fix: owner/sales の JOIN で status 列が曖昧になっていたのを ride_statuses.status に
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : rides.status
+dirty     : 0 files uncommitted (webapp/ etc/)
