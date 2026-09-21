@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 1158577,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 84.8,
+    "pickup": 2.0,
+    "ride": 43.8
+  },
+  "registered": {
+    "reputation": 158,
+    "invitation": 3643
+  },
+  "left": 140,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2393,
+      "active": 2305
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1516,
+      "active": 1460
+    }
+  ],
+  "owners": [
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 22610300,
+      "chairs": 318
+    },
+    {
+      "name": "椅子再生工房",
+      "sales": 25403800,
+      "chairs": 364
+    },
+    {
+      "name": "ReSit & Renew",
+      "sales": 21674800,
+      "chairs": 305
+    },
+    {
+      "name": "再座堂",
+      "sales": 16336900,
+      "chairs": 387
+    },
+    {
+      "name": "Artisan Seats",
+      "sales": 24644200,
+      "chairs": 579
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 110670000,
+  "total_chairs": 1953
+}

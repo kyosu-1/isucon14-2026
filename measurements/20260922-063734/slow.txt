@@ -1,0 +1,1 @@
+slow log is empty — make measure-on を実行してからベンチしてください
