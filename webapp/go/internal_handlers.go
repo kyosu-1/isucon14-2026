@@ -42,6 +42,9 @@ var matchingStats struct {
 	assigned  int
 	hungarian int
 	maxDur    time.Duration
+	maxLock   time.Duration // 状態のロックを取るまで
+	maxCalc   time.Duration // 割り当ての計算
+	maxDB     time.Duration // メモリ反映 + DB の UPDATE
 }
 
 // 椅子 0..nChairs-1 と候補ライド candRides の間で、コストの合計が最小になる割り当てを返す（[椅子, ライド] の組）。
@@ -78,7 +81,7 @@ func minCostAssign(nChairs int, candRides []int, costOf func(ci, ri int) float64
 }
 
 // ハンガリアン法を使う計算量の上限（行² × 列）。超える回は貪欲法
-const hungarianBudget = 5_000_000
+const hungarianBudget = 20_000_000
 
 // 最小コストの割り当て（Kuhn-Munkres、O(n²m)）。a は n×m（n <= m）のコスト行列。
 // 返り値 assign[i] は行 i に割り当てた列。
@@ -161,6 +164,7 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	started := time.Now()
 	usedHungarian := false
+	var tLock, tCalc, tDB time.Duration
 
 	type freeChair struct {
 		ID          string
@@ -171,6 +175,7 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	}
 
 	st.mu.Lock()
+	tLock = time.Since(started)
 	waiting := make([]*rideState, 0, len(st.waitingRides))
 	for _, rs := range st.waitingRides {
 		if rs.ChairID == "" && rs.latestStatus() == "MATCHING" {
@@ -296,6 +301,8 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	tCalc = time.Since(started) - tLock
+	dbStart := time.Now()
 	// 割り当ては「メモリ → DB」の順に反映する。
 	// DBを先にすると、UPDATE の数msの間に nearby-chairs がその椅子を空きとして返し、
 	// retrieved_at がマッチ時刻(updated_at)より後になって「既にライド中」の WARN になった。
@@ -329,6 +336,7 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	tDB = time.Since(dbStart)
 	// 計測: 待ちライド数・空き椅子数・割り当て数を5秒ごとに1行だけ出す
 	matchingStats.Lock()
 	matchingStats.calls++
@@ -339,6 +347,9 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		matchingStats.hungarian++
 	}
 	matchingStats.maxDur = max(matchingStats.maxDur, time.Since(started))
+	matchingStats.maxLock = max(matchingStats.maxLock, tLock)
+	matchingStats.maxCalc = max(matchingStats.maxCalc, tCalc)
+	matchingStats.maxDB = max(matchingStats.maxDB, tDB)
 	if time.Since(matchingStats.lastLog) >= 5*time.Second {
 		if matchingStats.calls > 0 {
 			slog.Info("matching",
@@ -347,11 +358,15 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 				"avg_free_chairs", float64(matchingStats.free)/float64(matchingStats.calls),
 				"assigned", matchingStats.assigned,
 				"hungarian", matchingStats.hungarian,
-				"max_ms", matchingStats.maxDur.Milliseconds())
+				"max_ms", matchingStats.maxDur.Milliseconds(),
+				"max_lock_ms", matchingStats.maxLock.Milliseconds(),
+				"max_calc_ms", matchingStats.maxCalc.Milliseconds(),
+				"max_db_ms", matchingStats.maxDB.Milliseconds())
 		}
 		matchingStats.lastLog = time.Now()
 		matchingStats.calls, matchingStats.waiting, matchingStats.free, matchingStats.assigned = 0, 0, 0, 0
 		matchingStats.hungarian, matchingStats.maxDur = 0, 0
+		matchingStats.maxLock, matchingStats.maxCalc, matchingStats.maxDB = 0, 0, 0
 	}
 	matchingStats.Unlock()
 
