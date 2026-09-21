@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+nginx                          0.6
+pidstat                        0.4
+mysqld                         0.3
+systemd-journal                0.1
+isuride                        0.1
+curl                           0.1
+vmstat                         0.0
+sh                             0.0
+rsyslogd                       0.0
+rcu_sched                      0.0
+kworker/u8:0-kvfree_rcu_reclaim       0.0
+kworker/1:2-events             0.0
+kworker/0:2-events             0.0
+ksoftirqd/1                    0.0
+irqbalance                     0.0

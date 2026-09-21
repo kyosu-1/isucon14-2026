@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+unattended-upgr               78.4
+http                           4.0
+systemd                        1.4
+mandb                          1.4
+pidstat                        0.5
+mysqld                         0.5
+nginx                          0.4
+dbus-daemon                    0.3
+dracut-install                 0.2
+apt-check                      0.2
+udisksd                        0.1
+systemd-udevd                  0.1
+systemd-resolve                0.1
+systemd-network                0.1
+systemd-logind                 0.1

@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 3691,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 78.9,
+    "pickup": 89.5,
+    "ride": 96.1
+  },
+  "registered": {
+    "reputation": 46,
+    "invitation": 0
+  },
+  "left": 28,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 34,
+      "active": 12
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 23,
+      "active": 17
+    }
+  ],
+  "owners": [
+    {
+      "name": "ゆったり号",
+      "sales": 34000,
+      "chairs": 6
+    },
+    {
+      "name": "Artisan Seats",
+      "sales": 21700,
+      "chairs": 5
+    },
+    {
+      "name": "PulseRide",
+      "sales": 56100,
+      "chairs": 7
+    },
+    {
+      "name": "いすの道",
+      "sales": 45300,
+      "chairs": 6
+    },
+    {
+      "name": "GoEase",
+      "sales": 24100,
+      "chairs": 5
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 181200,
+  "total_chairs": 29
+}
