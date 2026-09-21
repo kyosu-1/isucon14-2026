@@ -1,0 +1,8 @@
+timestamp : 20260922-030316
+commit    : 46df988  matching: コストに乗車後の移動時間 (乗車位置→目的地 / speed) を重み 0.5 で足す
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : matching: 乗車時間の重み0.5
+dirty     : 0 files uncommitted (webapp/ etc/)

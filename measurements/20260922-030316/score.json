@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 708815,
+  "error_codes": {
+    "3": 197
+  },
+  "dissatisfied": {
+    "matching": 84.8,
+    "pickup": 1.0,
+    "ride": 26.0
+  },
+  "registered": {
+    "reputation": 157,
+    "invitation": 4982
+  },
+  "left": 58,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 3138,
+      "active": 3107
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 2142,
+      "active": 2113
+    }
+  ],
+  "owners": [
+    {
+      "name": "EcoChairs",
+      "sales": 14808900,
+      "chairs": 387
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 14162000,
+      "chairs": 346
+    },
+    {
+      "name": "ZenSeat",
+      "sales": 13436300,
+      "chairs": 354
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 11872000,
+      "chairs": 294
+    },
+    {
+      "name": "CityRide",
+      "sales": 13646300,
+      "chairs": 359
+    }
+  ],
+  "warn_count": 197,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 197,
+      "msg": "\"椅子がライドを受理できませんでした (CODE=N): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \\\"https://isuride.xiv.isucon.net/api/chair/rides/<ID>/status\\\": EOF\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 67925500,
+  "total_chairs": 1740
+}

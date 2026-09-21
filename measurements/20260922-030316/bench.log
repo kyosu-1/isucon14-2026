@@ -1,0 +1,348 @@
+time=03:03:17.566 level=INFO msg=負荷走行を開始します
+time=03:03:23.747 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=2
+time=03:03:23.748 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=1
+time=03:03:23.748 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=1
+time=03:03:25.543 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=2
+time=03:03:25.546 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=2
+time=03:03:25.546 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=2
+time=03:03:25.547 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=3
+time=03:03:25.547 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=2
+time=03:03:25.568 level=INFO msg=これまでに地域内の評判によって8人、既存ユーザーの招待経由で49人が新規登録しました
+time=03:03:25.568 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、49.1%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.9%のライドは椅子の実移動時間に不満がありました
+time=03:03:27.346 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=3
+time=03:03:27.346 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=2
+time=03:03:27.349 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=3
+time=03:03:27.351 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=2
+time=03:03:27.351 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=3
+time=03:03:29.154 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=3
+time=03:03:29.157 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=4
+time=03:03:29.157 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=4
+time=03:03:29.157 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=5
+time=03:03:29.157 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=3
+time=03:03:30.958 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=4
+time=03:03:30.961 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=5
+time=03:03:30.964 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=5
+time=03:03:30.964 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=5
+time=03:03:30.964 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=5
+time=03:03:30.968 level=INFO msg=これまでに地域内の評判によって25人、既存ユーザーの招待経由で254人が新規登録しました
+time=03:03:30.968 level=INFO msg=8.3%のライドは椅子がマッチされるまでの時間、20.5%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.9%のライドは椅子の実移動時間に不満がありました
+time=03:03:32.774 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=6
+time=03:03:32.782 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=7
+time=03:03:32.788 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=7
+time=03:03:32.788 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=6
+time=03:03:32.788 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=8
+time=03:03:34.585 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=6
+time=03:03:34.591 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=8
+time=03:03:34.592 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=8
+time=03:03:34.595 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=8
+time=03:03:34.595 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=8
+time=03:03:36.368 level=INFO msg=これまでに地域内の評判によって34人、既存ユーザーの招待経由で752人が新規登録しました
+time=03:03:36.368 level=INFO msg=24.1%のライドは椅子がマッチされるまでの時間、8.5%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.9%のライドは椅子の実移動時間に不満がありました
+time=03:03:36.400 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=8
+time=03:03:36.410 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=9
+time=03:03:36.414 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=8
+time=03:03:36.421 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=8
+time=03:03:36.424 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=9
+time=03:03:38.253 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=9
+time=03:03:38.254 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=8
+time=03:03:38.255 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=8
+time=03:03:38.255 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=10
+time=03:03:38.266 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=03:03:40.111 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=11
+time=03:03:40.138 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=10
+time=03:03:40.165 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=11
+time=03:03:40.174 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=10
+time=03:03:40.214 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=03:03:41.768 level=INFO msg=これまでに地域内の評判によって46人、既存ユーザーの招待経由で1531人が新規登録しました
+time=03:03:41.768 level=INFO msg=37.3%のライドは椅子がマッチされるまでの時間、4.5%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.8%のライドは椅子の実移動時間に不満がありました
+time=03:03:41.891 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=10
+time=03:03:41.969 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=10
+time=03:03:41.987 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=8
+time=03:03:42.261 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=03:03:42.271 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=11
+time=03:03:44.068 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=9
+time=03:03:44.069 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=10
+time=03:03:44.070 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=11
+time=03:03:44.072 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=11
+time=03:03:44.116 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=10
+time=03:03:45.818 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=9
+time=03:03:45.839 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=11
+time=03:03:45.848 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=10
+time=03:03:45.860 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=11
+time=03:03:45.861 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=11
+time=03:03:47.258 level=INFO msg=これまでに地域内の評判によって58人、既存ユーザーの招待経由で2435人が新規登録しました
+time=03:03:47.258 level=INFO msg=47.7%のライドは椅子がマッチされるまでの時間、3.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、2.2%のライドは椅子の実移動時間に不満がありました
+time=03:03:47.523 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=7
+time=03:03:47.596 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=8
+time=03:03:47.604 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=9
+time=03:03:47.605 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=8
+time=03:03:47.612 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=8
+time=03:03:49.463 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=11
+time=03:03:49.493 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=13
+time=03:03:49.498 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=12
+time=03:03:49.514 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=15
+time=03:03:49.514 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=15
+time=03:03:51.594 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=13
+time=03:03:51.594 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=14
+time=03:03:51.597 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=14
+time=03:03:51.597 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=13
+time=03:03:52.658 level=INFO msg=これまでに地域内の評判によって70人、既存ユーザーの招待経由で3055人が新規登録しました
+time=03:03:52.658 level=INFO msg=これまでに低評価なライドによって3人が利用をやめました
+time=03:03:52.658 level=INFO msg=60.1%のライドは椅子がマッチされるまでの時間、2.2%のライドはマッチされた椅子が乗車地点までに掛かる時間、5.4%のライドは椅子の実移動時間に不満がありました
+time=03:03:53.430 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=29
+time=03:03:55.357 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=25
+time=03:03:55.381 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=29
+time=03:03:55.383 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=29
+time=03:03:55.383 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=29
+time=03:03:57.058 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=29
+time=03:03:58.118 level=INFO msg=これまでに地域内の評判によって85人、既存ユーザーの招待経由で3701人が新規登録しました
+time=03:03:58.118 level=INFO msg=これまでに低評価なライドによって7人が利用をやめました
+time=03:03:58.118 level=INFO msg=69.0%のライドは椅子がマッチされるまでの時間、1.7%のライドはマッチされた椅子が乗車地点までに掛かる時間、11.8%のライドは椅子の実移動時間に不満がありました
+time=03:03:58.868 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=25
+time=03:03:58.912 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=28
+time=03:03:58.913 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=32
+time=03:03:58.949 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=29
+time=03:04:00.892 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=33
+time=03:04:02.447 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=22
+time=03:04:02.480 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=26
+time=03:04:02.480 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=26
+time=03:04:02.559 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=25
+time=03:04:03.518 level=INFO msg=これまでに地域内の評判によって103人、既存ユーザーの招待経由で4234人が新規登録しました
+time=03:04:03.518 level=INFO msg=これまでに低評価なライドによって11人が利用をやめました
+time=03:04:03.518 level=INFO msg=74.8%のライドは椅子がマッチされるまでの時間、1.5%のライドはマッチされた椅子が乗車地点までに掛かる時間、15.1%のライドは椅子の実移動時間に不満がありました
+time=03:04:03.828 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=29
+time=03:04:05.819 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=25
+time=03:04:05.836 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=30
+time=03:04:05.861 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=33
+time=03:04:05.873 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=33
+time=03:04:07.450 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=29
+time=03:04:08.963 level=INFO msg=これまでに地域内の評判によって121人、既存ユーザーの招待経由で4560人が新規登録しました
+time=03:04:08.963 level=INFO msg=これまでに低評価なライドによって12人が利用をやめました
+time=03:04:08.963 level=INFO msg=78.9%のライドは椅子がマッチされるまでの時間、1.3%のライドはマッチされた椅子が乗車地点までに掛かる時間、18.7%のライドは椅子の実移動時間に不満がありました
+time=03:04:09.207 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=24
+time=03:04:11.635 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79AKGT5J818B4Y2TRWSB/status\": EOF"
+time=03:04:11.709 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=33
+time=03:04:11.762 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=41
+time=03:04:11.763 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=37
+time=03:04:11.776 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=41
+time=03:04:13.711 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=31
+time=03:04:13.734 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76T1T9155BRDF6DFH2E8/status\": EOF"
+time=03:04:13.734 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77D0HQMNKCBR9C08M0R2/status\": EOF"
+time=03:04:13.734 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J799B9NKVW9SVS1ZFS0JC/status\": EOF"
+time=03:04:13.734 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J798AGASDHAKAJMXPT1Y8/status\": EOF"
+time=03:04:13.734 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7EAKRER3TSFVX1RW1ZRW/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J759QB2PHAXQBS1G7DGC8/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J778B3ARS3G9R17W20DKG/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J74M96NYQJJRAN961XBJC/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J74K3PXNJTAAV0BABR22G/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78YW1BDDDDF0CNM6MMZ2/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76GNM0JMNXGSGT21JB7D/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76WWYGBKN6F2YT04MFEA/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76PYYFZ2Z38K8RJ9BJF9/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J75R7N975FB8H58CA7BWC/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J756646X709696FD68FKR/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79HTBQG3733HFZJXVJ16/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79QRWDSKA4BJCWXHCFQ4/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J74TKPD7SH6QEKXJV8H0T/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CR6Q9MZVVT80DYKF4FN/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A69N1GEC9APY7B220MB/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J75WT9HVWWF9NQ73VC4T8/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J746WR6SDH3AQHREW7QF1/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J771VGV52B87RRG9KQN6Y/status\": EOF"
+time=03:04:13.735 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J778V6E0071QGTW6EJNWG/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76XXQD7WNTCWJ5XE4KKQ/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A9PDDDGA6W1M4H6J3FV/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J74BKVF2JDK9179SS8XP6/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DH4W8CSD9EV5J26DP5V/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J75Y0RXBJC0NPFCCMQG1G/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77EWNZT1Q8X85N6K5MRD/status\": EOF"
+time=03:04:13.736 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76VW97SNK0P1P5H1ZFPN/status\": EOF"
+time=03:04:14.348 level=INFO msg=これまでに地域内の評判によって139人、既存ユーザーの招待経由で4849人が新規登録しました
+time=03:04:14.348 level=INFO msg=これまでに低評価なライドによって18人が利用をやめました
+time=03:04:14.348 level=INFO msg=82.2%のライドは椅子がマッチされるまでの時間、1.1%のライドはマッチされた椅子が乗車地点までに掛かる時間、22.4%のライドは椅子の実移動時間に不満がありました
+time=03:04:15.634 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=37
+time=03:04:15.634 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=36
+time=03:04:15.645 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=41
+time=03:04:17.328 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=風座プロダクツ 増加数=31
+time=03:04:17.335 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=座り心地再生所 増加数=54
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7BFJ1YQ5FHK96XA4T079/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A89PKRPQHV1XGA94FA2/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78WM8MWNT894YWW81DS2/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DDMH7G538ZETFD09DZ0/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DFDS0TCD0ZXDY8W0Q25/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79HV0ERVG3QGJSHNRJ0X/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78Z26SF8B96M3FRDY72J/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CQ5N7CZTY6GMZ3MVZ22/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E3NHWP4MW194Q5T9SX9/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AHTFB7M9VYMXRJEJGD8/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E3K17D9KJ1307ZB30AM/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E3710RXDE4Y443H6BRF/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CKGWP2YNSFMCX6WZH57/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7JW9X81BER4PB14JNZ6R/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E48FTVWX4RTRJG20GM4/status\": EOF"
+time=03:04:18.772 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J779R167YYV20X8ERY0FT/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AYZNCD4YHT6TTHW7998/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79ACWSKZB6VWFC8F25RJ/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7BF5EQYPM589KHE3CT11/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78PAK6XT7CPNVR0BE42S/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GEV9ENFFNGD8PHMGAZE/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7D7AQ74DTVQNZ7VM1JSQ/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7HAG6KJRS2MNMMH975AD/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7EBGT1W06191KE45C58N/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7HBREFQTKCFW6K3TJMS1/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DBPFQTTZ5RJKESTKDZ6/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7C45MVE9DCJ36VPJPPCD/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GK1Y0W8Q7MXCYRYGBTN/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78XT143PQNEK7QE9F4WN/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78XT143PQNEK7PXHXZ3K/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7HDVMSZ00QBGM8H3G4BV/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7B1NS032RFEZ6A4RH2X1/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7775CXRJ9JFNH704P74E/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7854XZTAMC5KXAMG9ETJ/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GN8QPXRBWTEXY036M9R/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E3NHWP4MW194D13Q95D/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E3JN78JTS7M73QKEJVD/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DFDS0TCD0ZXDX862AKW/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AD8EHFAP6N0B55YFQJH/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E45MTRGGMQZP3ZEJTGT/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H54K2XGJQ1TWWG9C5S1/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H6C8KWN205VT0576XXA/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CMK203K0AKGVYZ1PGNF/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7EF5M96YT83GDW7NJ151/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GG56601VJ7S84QES34N/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GS6PXNR3KSDKYRPFGC5/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7EF5M96YT83GDRV2003E/status\": EOF"
+time=03:04:18.773 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GKRJTZ333SW0Q9WGT3T/status\": EOF"
+time=03:04:18.774 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78BATB1V1YGE6NR5MPET/status\": EOF"
+time=03:04:18.774 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7D34M0KXCWHD5PEDQNK9/status\": EOF"
+time=03:04:18.774 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78W29N421JKN8K924FVV/status\": EOF"
+time=03:04:18.774 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H2CXYBX25CYDM7QV325/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77SFR8QK8FB1JX5MEMVP/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77Q5K8NY3ZHXGSZ2NHRN/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7D6VZB8FJMWNZ15N9QA4/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A69N1GEC9APY80AKAGJ/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DB3ZMGHEJST8KF9E6TC/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78H3NZH1MAZ8KQKDF3XE/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J785GPANYKQ2ESB5VMJWX/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7HSYFBZEVEDEA1XKNEWB/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77Q1TZFTSE2CNDTH9GVM/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7FQW769XAM003H1K0MVD/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79D6QTHWWKKQ5KP173FX/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79D72ZJ9P3PTFWF4127G/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H6NV6WJV9CEX3E56X47/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7EN163X3ACBH2KYC26DA/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DCYCQS8F0MJHRX0TEKW/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78TA6DZFWJYVVWNJ106E/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E8PQJ9D6NMGC38T5E6Q/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J780590KDS48T2J77JWFQ/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GSSZ65E1Q5HKBPBE9AH/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AZRBTD31YGYW41EGFQ4/status\": EOF"
+time=03:04:18.775 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J798AGASDHAKAJHXQXQD3/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77Q0TNHND52JRNEKJCAM/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7C0CA428CPDA8S71P2B7/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CJWGFDNXF59Z8FAHM1X/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CRVG3G15332QE0PM0HM/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GW4KGW92231AHFSRCAN/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7D9F9WBEN6RWZAF73TMC/status\": EOF"
+time=03:04:18.776 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7D2E9XHBVN5BJ8JNANBS/status\": EOF"
+time=03:04:18.780 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79RFF8M31MBQZ0RQMAP8/status\": EOF"
+time=03:04:18.780 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78CCV038RGF2YDGDR27Z/status\": EOF"
+time=03:04:18.780 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77Q8G7B2AMSEPMPHPMYH/status\": EOF"
+time=03:04:18.780 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CKR7AK984N24KHWT4F2/status\": EOF"
+time=03:04:18.780 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E2S5EPBGZ34RZY9231J/status\": EOF"
+time=03:04:18.780 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79AECNMMCJ8AMVN9S6NH/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DFDS0TCD0ZXDZ0EB3KX/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E4VC9TNAG7XJMTSYJPX/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J798GEM0TMAK4ZDGCCFYX/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76R5FSDAM5D6MW6XE2KR/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78KWZE315B8S3JMTH4ZR/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DAWDNY4P7CRXP4ENPC6/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DEQ9P0ZCM9Q8QJHPQHS/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DCAMKBEJ77G5Q4JWV5B/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CNBTTNSZDFEJNWBER65/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7969YQ9AHDJT7F3VSMP9/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7BET4HGSD44BPXCD1C08/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7C09BKF6NCTPJVWH8JM2/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E57M0Z3V36EWWV41V96/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78X8DCM9XWF73H907KZG/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AZ1VVR6M86NMVENVFH8/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J797NZHETV7CC9DNNVX70/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7BFJ1YQ5FHK96TTQRMVM/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78RAG2AXDE1B3RQ532ZG/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76JGGFKC4380EG3QCMJF/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77TBD8D9X9WNZY0E3CCN/status\": EOF"
+time=03:04:18.781 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J76TMGTW3QE6RZ03W8D5N/status\": EOF"
+time=03:04:18.782 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AF09CZAWQ9ZWT06JT32/status\": EOF"
+time=03:04:18.782 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7770GBH2QJQVP9K8VRR1/status\": EOF"
+time=03:04:18.782 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79H354X0GVGPDT55EXJH/status\": EOF"
+time=03:04:18.782 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7D67510C26H71YZQ8Y13/status\": EOF"
+time=03:04:18.782 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77SEAF4GEHKWP5BP0H76/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78Y7M343TFSXFVKR3JH6/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77TP4YA25TNAV9TEW1SM/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J781CTB76V653N6FPJJP6/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AKWPY9CT3YQQA20CN12/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GF8QV9HKZECTE11YZ6K/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H5V8SGCVDASQR4N05KB/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J798QHWGP7DDPFQNDP2NG/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AGPFNAQDC6RQFQBV7WX/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77Q9JM4J03BGBY7A11N0/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79CDBWTSYK57BK1CX90B/status\": EOF"
+time=03:04:18.785 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AZ01P3GY4MF3TM3JY23/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7961X8948G5JW4GG7F1Y/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78CTGEXX2NME5R6BHC0F/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A9QKQY743S968B71NMV/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E4RZX1RABCTYTY6FJ5D/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7B1NS032RFEZ66DFTF69/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J79H2P3AFVC0SVWMRT1TW/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7BF5EQYPM589M0YNH0VK/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E4VC9TNAG7XJM89TVQQ/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7C449KWSZ037QFTK2N4X/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GEDPHG0FZ9HEP7WEXY6/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J77TT6Y8MB77TZKAWEMPS/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78NX7C6KVHWNV42S4MQY/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78QDDQK3K8ZN28H1VZNP/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AN0A1ZNV6X3JT7GZBRH/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AX7WHP23GX4RF6XDWVE/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78C3K9P79SJT40DS1442/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78TK4TRS26QKF0K088PV/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CE4MXWFW5EST9EQ43B6/status\": EOF"
+time=03:04:18.786 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78X7BC0SCRD37T3C02T7/status\": EOF"
+time=03:04:18.787 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7EBEZXNBGV50Z9N10GRD/status\": EOF"
+time=03:04:18.787 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H5EANWC9T2H90XB7JBD/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E38WHAJSY85PBJC0WA0/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H6XTAVZT3SNGC2PPKXM/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7BEPT01VK8D1432W1FCG/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CMZK69MVBMTGJZPHGW9/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E5ZK4N20W9BCXK93TCH/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A6AEJGNJ8VVSCS7P97Z/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7DDDJB77QDWD95YGQDA0/status\": EOF"
+time=03:04:18.794 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GE7WTBT6RT541BNG8SX/status\": EOF"
+time=03:04:18.795 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GN8QPXRBWTEYC45E7PJ/status\": EOF"
+time=03:04:18.795 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AV0B92HY3CNEYV4CJMB/status\": EOF"
+time=03:04:18.795 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78WN5PJY3YYEFN842EWP/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7ENK6EA6YYK30HRHV09P/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7C8Y64CGBYGA3FFT9PP3/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7GVX8PFZ7DD13EAZXJX1/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7H6C8KWN205VT7JVMHG7/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7CH0FR3YE3VP4KTANACG/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7AXV92REVA1JMC4YVADQ/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7MBQS23VV3C2D083XA49/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J78RC78K8TCVYS1BWJJ7P/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7E3PRT9BEKA27YD7MV5S/status\": EOF"
+time=03:04:18.796 level=WARN msg="椅子がライドを受理できませんでした (CODE=3): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \"https://isuride.xiv.isucon.net/api/chair/rides/01M32J7A8PA73Q520HARAA0V9S/status\": EOF"
+time=03:04:19.748 level=INFO msg=これまでに地域内の評判によって157人、既存ユーザーの招待経由で4982人が新規登録しました
+time=03:04:19.748 level=INFO msg=これまでに低評価なライドによって58人が利用をやめました
+time=03:04:19.748 level=INFO msg=84.3%のライドは椅子がマッチされるまでの時間、1.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、25.7%のライドは椅子の実移動時間に不満がありました
+time=03:04:20.385 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=ZenSeat 増加数=40
+time=03:04:20.389 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=CityRide 増加数=41
+time=03:04:20.401 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=EcoChairs 増加数=44
+time=03:04:25.169 level=INFO msg=最終地域情報 名前=チェアタウン ユーザー登録数=3138 アクティブユーザー数=3107
+time=03:04:25.169 level=INFO msg=最終地域情報 名前=コシカケシティ ユーザー登録数=2142 アクティブユーザー数=2113
+time=03:04:25.169 level=INFO msg=最終オーナー情報 名前=EcoChairs 売上=14808900 椅子数=387
+time=03:04:25.169 level=INFO msg=最終オーナー情報 名前=座り心地再生所 売上=14162000 椅子数=346
+time=03:04:25.169 level=INFO msg=最終オーナー情報 名前=ZenSeat 売上=13436300 椅子数=354
+time=03:04:25.169 level=INFO msg=最終オーナー情報 名前=風座プロダクツ 売上=11872000 椅子数=294
+time=03:04:25.169 level=INFO msg=最終オーナー情報 名前=CityRide 売上=13646300 椅子数=359
+time=03:04:25.169 level=INFO msg=84.8%のライドは椅子がマッチされるまでの時間、1.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、26.0%のライドは椅子の実移動時間に不満がありました
+time=03:04:25.170 level=INFO msg=結果 pass=true スコア=708815 種別エラー数=map[3:197]
+time=03:04:25.170 level=INFO msg=負荷走行が終了しました
