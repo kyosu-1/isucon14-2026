@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 82922,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 61.2,
+    "pickup": 35.4,
+    "ride": 66.2
+  },
+  "registered": {
+    "reputation": 125,
+    "invitation": 245
+  },
+  "left": 162,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 251,
+      "active": 159
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 137,
+      "active": 64
+    }
+  ],
+  "owners": [
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 2045800,
+      "chairs": 72
+    },
+    {
+      "name": "ゆったり号",
+      "sales": 1736900,
+      "chairs": 64
+    },
+    {
+      "name": "Chair Charm",
+      "sales": 1364800,
+      "chairs": 54
+    },
+    {
+      "name": "座和インダストリー",
+      "sales": 1006500,
+      "chairs": 46
+    },
+    {
+      "name": "EcoChairs",
+      "sales": 971000,
+      "chairs": 44
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 7125000,
+  "total_chairs": 280
+}
