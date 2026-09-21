@@ -1,0 +1,156 @@
+time=02:17:18.215 level=INFO msg=負荷走行を開始します
+time=02:17:24.153 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=1
+time=02:17:24.153 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=1
+time=02:17:24.153 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=2
+time=02:17:25.953 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=1
+time=02:17:25.953 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=1
+time=02:17:25.953 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=1
+time=02:17:25.953 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=2
+time=02:17:25.955 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=2
+time=02:17:25.976 level=INFO msg=これまでに地域内の評判によって11人、既存ユーザーの招待経由で42人が新規登録しました
+time=02:17:25.976 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、57.1%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.0%のライドは椅子の実移動時間に不満がありました
+time=02:17:27.753 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=1
+time=02:17:27.753 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=2
+time=02:17:27.756 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=3
+time=02:17:27.756 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=1
+time=02:17:27.757 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=2
+time=02:17:29.559 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=3
+time=02:17:29.559 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=3
+time=02:17:29.560 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=3
+time=02:17:29.560 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=2
+time=02:17:29.563 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=4
+time=02:17:31.357 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=4
+time=02:17:31.363 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=3
+time=02:17:31.363 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=2
+time=02:17:31.365 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=4
+time=02:17:31.365 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=3
+time=02:17:31.376 level=INFO msg=これまでに地域内の評判によって19人、既存ユーザーの招待経由で146人が新規登録しました
+time=02:17:31.376 level=INFO msg=13.0%のライドは椅子がマッチされるまでの時間、20.8%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.6%のライドは椅子の実移動時間に不満がありました
+time=02:17:33.163 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=4
+time=02:17:33.166 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=4
+time=02:17:33.167 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=3
+time=02:17:33.169 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=5
+time=02:17:33.171 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=5
+time=02:17:34.967 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=5
+time=02:17:34.968 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=4
+time=02:17:34.971 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=5
+time=02:17:34.976 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=6
+time=02:17:34.978 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=7
+time=02:17:36.776 level=INFO msg=これまでに地域内の評判によって31人、既存ユーザーの招待経由で394人が新規登録しました
+time=02:17:36.776 level=INFO msg=27.0%のライドは椅子がマッチされるまでの時間、8.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.6%のライドは椅子の実移動時間に不満がありました
+time=02:17:36.788 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=5
+time=02:17:36.794 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=6
+time=02:17:36.797 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=7
+time=02:17:36.798 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=6
+time=02:17:36.799 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=6
+time=02:17:38.611 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=6
+time=02:17:38.619 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=6
+time=02:17:38.620 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=6
+time=02:17:38.624 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=7
+time=02:17:38.625 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=7
+time=02:17:39.495 level=WARN msg="ユーザー登録に失敗しました (CODE=17): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:201, actual:500)"
+time=02:17:40.631 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=7
+time=02:17:40.631 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=6
+time=02:17:40.635 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=6
+time=02:17:40.669 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=7
+time=02:17:40.697 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=8
+time=02:17:41.706 level=WARN msg="ユーザー登録に失敗しました (CODE=17): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:201, actual:500)"
+time=02:17:42.206 level=INFO msg=これまでに地域内の評判によって43人、既存ユーザーの招待経由で854人が新規登録しました
+time=02:17:42.207 level=INFO msg=40.3%のライドは椅子がマッチされるまでの時間、4.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.4%のライドは椅子の実移動時間に不満がありました
+time=02:17:42.209 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJ9CXN64QJ46SCAKX7RYZ, chair_id: 01M32FHWA35TD29YEG9133HHH9, got: 14, want: 15)"
+time=02:17:42.342 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=7
+time=02:17:42.347 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=8
+time=02:17:42.351 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=6
+time=02:17:42.368 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=7
+time=02:17:42.368 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=7
+time=02:17:44.113 level=WARN msg="ユーザー登録に失敗しました (CODE=17): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:201, actual:500)"
+time=02:17:44.437 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=6
+time=02:17:44.442 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=7
+time=02:17:44.451 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=6
+time=02:17:44.545 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=8
+time=02:17:44.568 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=8
+time=02:17:45.726 level=WARN msg="ユーザー登録に失敗しました (CODE=17): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:201, actual:500)"
+time=02:17:46.501 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=6
+time=02:17:46.506 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=7
+time=02:17:46.519 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=7
+time=02:17:46.536 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=8
+time=02:17:46.562 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=7
+time=02:17:47.606 level=INFO msg=これまでに地域内の評判によって55人、既存ユーザーの招待経由で1436人が新規登録しました
+time=02:17:47.607 level=INFO msg=58.7%のライドは椅子がマッチされるまでの時間、2.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.6%のライドは椅子の実移動時間に不満がありました
+time=02:17:47.704 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=7
+time=02:17:47.715 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=9
+time=02:17:47.729 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=8
+time=02:17:47.743 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=9
+time=02:17:47.744 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=8
+time=02:17:50.164 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=6
+time=02:17:50.269 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=6
+time=02:17:50.410 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=9
+time=02:17:50.449 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=7
+time=02:17:50.455 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=10
+time=02:17:51.390 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=8
+time=02:17:51.397 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=6
+time=02:17:52.701 level=WARN msg="ユーザー登録に失敗しました (CODE=17): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:201, actual:500)"
+time=02:17:53.006 level=INFO msg=これまでに地域内の評判によって67人、既存ユーザーの招待経由で2016人が新規登録しました
+time=02:17:53.006 level=INFO msg=71.0%のライドは椅子がマッチされるまでの時間、1.8%のライドはマッチされた椅子が乗車地点までに掛かる時間、1.5%のライドは椅子の実移動時間に不満がありました
+time=02:17:54.080 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=8
+time=02:17:54.114 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=8
+time=02:17:54.192 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=14
+time=02:17:54.295 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=17
+time=02:17:54.460 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=15
+time=02:17:56.861 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=15
+time=02:17:56.901 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=14
+time=02:17:56.913 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=15
+time=02:17:56.944 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=17
+time=02:17:57.099 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=17
+time=02:17:58.310 level=WARN msg="ユーザー登録に失敗しました (CODE=17): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:201, actual:500)"
+time=02:17:58.406 level=INFO msg=これまでに地域内の評判によって79人、既存ユーザーの招待経由で2475人が新規登録しました
+time=02:17:58.406 level=INFO msg=これまでに低評価なライドによって1人が利用をやめました
+time=02:17:58.406 level=INFO msg=77.9%のライドは椅子がマッチされるまでの時間、1.4%のライドはマッチされた椅子が乗車地点までに掛かる時間、4.9%のライドは椅子の実移動時間に不満がありました
+time=02:18:00.043 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=6
+time=02:18:00.269 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJNCVH40MSQ5K4KBHCN04, chair_id: 01M32FJG8N8JEK88KD5ZMSBSW6, got: 5, want: 6)"
+time=02:18:00.753 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=8
+time=02:18:01.700 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=16
+time=02:18:01.973 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=19
+time=02:18:02.137 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=14
+time=02:18:02.869 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=18
+time=02:18:03.866 level=INFO msg=これまでに地域内の評判によって91人、既存ユーザーの招待経由で2744人が新規登録しました
+time=02:18:03.867 level=INFO msg=これまでに低評価なライドによって1人が利用をやめました
+time=02:18:03.867 level=INFO msg=82.4%のライドは椅子がマッチされるまでの時間、1.1%のライドはマッチされた椅子が乗車地点までに掛かる時間、9.1%のライドは椅子の実移動時間に不満がありました
+time=02:18:04.771 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJPBS570HXM9Y18NFFJR3, chair_id: 01M32FJWB5J72080DAJBHNHRN7, got: 2, want: 3)"
+time=02:18:05.217 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=21
+time=02:18:07.654 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=21
+time=02:18:07.972 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=28
+time=02:18:08.047 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=26
+time=02:18:09.243 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=24
+time=02:18:09.266 level=INFO msg=これまでに地域内の評判によって103人、既存ユーザーの招待経由で3116人が新規登録しました
+time=02:18:09.266 level=INFO msg=これまでに低評価なライドによって11人が利用をやめました
+time=02:18:09.266 level=INFO msg=85.5%のライドは椅子がマッチされるまでの時間、1.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、13.1%のライドは椅子の実移動時間に不満がありました
+time=02:18:10.244 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJWS43RAY5Q7VCVC24S0F, chair_id: 01M32FJTZAXZ0YYDC4G1C437XP, got: 4, want: 5)"
+time=02:18:10.244 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJTQ40E9YDCQQCRDW11NZ, chair_id: 01M32FJKSHYK3369Q6ZP7ZDCDQ, got: 7, want: 8)"
+time=02:18:10.244 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJVE28TZAMZG1SQKP4EDA, chair_id: 01M32FJ53KE2XRJ36J0WE4HQ74, got: 16, want: 17)"
+time=02:18:10.245 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJT2Q73VMQBNP500VMKBV, chair_id: 01M32FK1PFYK388P1RHGHVABXZ, got: 1, want: 2)"
+time=02:18:10.245 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJXVXZYRCTRA03KSCX0MH, chair_id: 01M32FJ6VZJF2H6H4JJ882K6CH, got: 14, want: 15)"
+time=02:18:10.246 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJTJ090ABVB6B627HACPR, chair_id: 01M32FJ6WMWKNMM63BSZRE3WXF, got: 17, want: 18)"
+time=02:18:10.246 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJSYPN0AVVYNETGJ5DB5Z, chair_id: 01M32FJTQY36KK9NTPA0BHH8QJ, got: 3, want: 4)"
+time=02:18:10.247 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FJTA6M0CWCMAPYNCM4RTD, chair_id: 01M32FJV88ASRXWE5T96927GMA, got: 3, want: 4)"
+time=02:18:11.435 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Urban Wheels" 増加数=30
+time=02:18:14.666 level=INFO msg=これまでに地域内の評判によって117人、既存ユーザーの招待経由で3450人が新規登録しました
+time=02:18:14.666 level=INFO msg=これまでに低評価なライドによって20人が利用をやめました
+time=02:18:14.666 level=INFO msg=87.5%のライドは椅子がマッチされるまでの時間、0.9%のライドはマッチされた椅子が乗車地点までに掛かる時間、15.3%のライドは椅子の実移動時間に不満がありました
+time=02:18:14.917 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="SitWell Designs" 増加数=28
+time=02:18:15.260 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="ReSit & Renew" 増加数=40
+time=02:18:15.261 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前=暮らしの椅子研究所 増加数=36
+time=02:18:17.850 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FK31PZXYZPFX5PBQDJAE5, chair_id: 01M32FJSZ20WAKQHSGWGDPE8RK, got: 4, want: 5)"
+time=02:18:18.091 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FK1WD0HD185F3N9HHFD2R, chair_id: 01M32FKBB8P7HD1KTYKZH9JNC1, got: 0, want: 1)"
+time=02:18:19.585 level=INFO msg=一定の売上が立ったためオーナーの椅子が増加します 名前="Timeless Seats" 増加数=59
+time=02:18:20.135 level=WARN msg="ユーザーが受け取った通知の内容が想定と異なります (CODE=33): 椅子の総乗車回数が一致しません。(ride_id: 01M32FK388A0CRXYE9DKBDTA6V, chair_id: 01M32FJJ5CP3RA6TGF2G9PJT5R, got: 6, want: 7)"
+time=02:18:25.577 level=INFO msg=最終地域情報 名前=チェアタウン ユーザー登録数=2305 アクティブユーザー数=2291
+time=02:18:25.577 level=INFO msg=最終地域情報 名前=コシカケシティ ユーザー登録数=1656 アクティブユーザー数=1648
+time=02:18:25.577 level=INFO msg=最終オーナー情報 名前="ReSit & Renew" 売上=8871900 椅子数=200
+time=02:18:25.577 level=INFO msg=最終オーナー情報 名前="Timeless Seats" 売上=9514500 椅子数=232
+time=02:18:25.577 level=INFO msg=最終オーナー情報 名前=暮らしの椅子研究所 売上=7464500 椅子数=172
+time=02:18:25.577 level=INFO msg=最終オーナー情報 名前="SitWell Designs" 売上=7971600 椅子数=181
+time=02:18:25.577 level=INFO msg=最終オーナー情報 名前="Urban Wheels" 売上=7700700 椅子数=162
+time=02:18:25.577 level=INFO msg=89.8%のライドは椅子がマッチされるまでの時間、0.8%のライドはマッチされた椅子が乗車地点までに掛かる時間、18.7%のライドは椅子の実移動時間に不満がありました
+time=02:18:25.577 level=INFO msg=結果 pass=true スコア=431087 種別エラー数="map[17:6 33:14]"
+time=02:18:25.577 level=INFO msg=負荷走行が終了しました

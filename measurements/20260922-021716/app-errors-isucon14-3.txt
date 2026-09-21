@@ -1,0 +1,7 @@
+      1 2026/09/21 17:17:58 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Howe3298' for key 'users.username'"
+      1 2026/09/21 17:17:52 ERROR error response wrote !BADKEY="Error 1213 (40001): Deadlock found when trying to get lock; try restarting transaction"
+      1 2026/09/21 17:17:45 ERROR error response wrote !BADKEY="Error 1213 (40001): Deadlock found when trying to get lock; try restarting transaction"
+      1 2026/09/21 17:17:44 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Walker9245' for key 'users.username'"
+      1 2026/09/21 17:17:41 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Gutkowski5704' for key 'users.username'"
+      1 2026/09/21 17:17:39 ERROR error response wrote !BADKEY="Error 1062 (23000): Duplicate entry 'Shields7895' for key 'users.username'"
+      1 2026/09/21 17:17:17 ERROR error response wrote !BADKEY="app_session cookie is required"

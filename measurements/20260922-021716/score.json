@@ -1,0 +1,72 @@
+{
+  "pass": true,
+  "score": 431087,
+  "error_codes": {
+    "17": 6,
+    "33": 14
+  },
+  "dissatisfied": {
+    "matching": 89.8,
+    "pickup": 0.8,
+    "ride": 18.7
+  },
+  "registered": {
+    "reputation": 117,
+    "invitation": 3450
+  },
+  "left": 20,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2305,
+      "active": 2291
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1656,
+      "active": 1648
+    }
+  ],
+  "owners": [
+    {
+      "name": "ReSit & Renew",
+      "sales": 8871900,
+      "chairs": 200
+    },
+    {
+      "name": "Timeless Seats",
+      "sales": 9514500,
+      "chairs": 232
+    },
+    {
+      "name": "暮らしの椅子研究所",
+      "sales": 7464500,
+      "chairs": 172
+    },
+    {
+      "name": "SitWell Designs",
+      "sales": 7971600,
+      "chairs": 181
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 7700700,
+      "chairs": 162
+    }
+  ],
+  "warn_count": 20,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 14,
+      "msg": "\"ユーザーが受け取った通知の内容が想定と異なります (CODE=N): 椅子の総乗車回数が一致しません。(ride_id: <ID>, chair_id: <ID>, got: N, want: N)\""
+    },
+    {
+      "count": 6,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): POST /api/app/usersへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:N, actual:N)\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 41523200,
+  "total_chairs": 947
+}
