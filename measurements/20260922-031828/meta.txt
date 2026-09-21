@@ -1,0 +1,8 @@
+timestamp : 20260922-031828
+commit    : 60db325  owner/sales をメモリで計算し、評価は COMPLETED の DB 書き込みを待たずに応答する
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : sales メモリ / COMPLETED を待たない
+dirty     : 0 files uncommitted (webapp/ etc/)
