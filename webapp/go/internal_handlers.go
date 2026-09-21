@@ -79,8 +79,6 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	// 別のライドのすぐ近くにいた椅子を遠くから取っていき、迎車の距離（=椅子の空走時間）が伸びる。
 	// 取り残し防止に、待ち時間が長いライドほどコストを下げる（1秒待つごとに agingPerSec ぶん）。
 	const agingPerSec = 2.0
-	// 乗車後の移動時間（乗車位置→目的地 / speed）の重み。長いライドに速い椅子を当てる（不満率 ride 対策）
-	const rideTimeWeight = 0.5
 	now := time.Now()
 	type pair struct {
 		ride, chair int
@@ -95,8 +93,7 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 			if c.HasLocation {
 				pickupDistance = calculateDistance(c.Latitude, c.Longitude, ride.PickupLat, ride.PickupLon)
 			}
-			rideDistance := calculateDistance(ride.PickupLat, ride.PickupLon, ride.DestLat, ride.DestLon)
-			cost := float64(pickupDistance)/float64(c.Speed) + rideTimeWeight*float64(rideDistance)/float64(c.Speed) - agingPerSec*age
+			cost := float64(pickupDistance)/float64(c.Speed) - agingPerSec*age
 			pairs = append(pairs, pair{ri, ci, cost})
 		}
 	}
