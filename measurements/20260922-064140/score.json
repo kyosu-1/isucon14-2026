@@ -1,0 +1,83 @@
+{
+  "pass": true,
+  "score": 1182649,
+  "error_codes": {
+    "30": 16
+  },
+  "dissatisfied": {
+    "matching": 87.7,
+    "pickup": 4.8,
+    "ride": 47.1
+  },
+  "registered": {
+    "reputation": 159,
+    "invitation": 3486
+  },
+  "left": 262,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2138,
+      "active": 1986
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1580,
+      "active": 1439
+    }
+  ],
+  "owners": [
+    {
+      "name": "SitWell Designs",
+      "sales": 26539400,
+      "chairs": 471
+    },
+    {
+      "name": "ZenDrive",
+      "sales": 20555300,
+      "chairs": 409
+    },
+    {
+      "name": "座和インダストリー",
+      "sales": 19970600,
+      "chairs": 360
+    },
+    {
+      "name": "おもてなしタクシー",
+      "sales": 22923300,
+      "chairs": 367
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 22265600,
+      "chairs": 357
+    }
+  ],
+  "warn_count": 16,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 7,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYPMNSZRVNYTNPMKNSDNCの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYPGENNNYNRMYNDRFJNMJの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYQNSCNMTSNVJGESSTNKNの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYPTCJBZNBNCFTXHNXFNの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYPVEYNHNKNXBNKNBCの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 112254200,
+  "total_chairs": 1964
+}

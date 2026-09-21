@@ -1,0 +1,8 @@
+timestamp : 20260922-064140
+commit    : 1455a54  matching: 待ち時間補正 8.0 → 16.0
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : aging 16.0 + 速度選択1.0 1
+dirty     : 0 files uncommitted (webapp/ etc/)
