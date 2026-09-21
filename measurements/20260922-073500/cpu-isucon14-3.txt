@@ -1,0 +1,6 @@
+COMMAND                   AVG_CPU%
+isuride                        1.6
+mysql                          0.6
+pidstat                        0.3
+rcu_sched                      0.1
+kworker/0:2-events             0.1

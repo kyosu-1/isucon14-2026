@@ -1,0 +1,62 @@
+{
+  "pass": false,
+  "score": 548,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 0.0,
+    "pickup": 60.0,
+    "ride": 0.0
+  },
+  "registered": null,
+  "left": 0,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 9,
+      "active": 9
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 6,
+      "active": 6
+    }
+  ],
+  "owners": [
+    {
+      "name": "椅子のふるさと",
+      "sales": 11100,
+      "chairs": 4
+    },
+    {
+      "name": "晴れ道タクシー",
+      "sales": 2600,
+      "chairs": 4
+    },
+    {
+      "name": "Chair Charm",
+      "sales": 0,
+      "chairs": 4
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 0,
+      "chairs": 4
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 6800,
+      "chairs": 4
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 1,
+  "warnings": [],
+  "errors": [
+    {
+      "count": 1,
+      "msg": "クリティカルエラーが発生しました error=\"決済サーバーに誤った支払いがリクエストされました (CODE=N): 既に支払い済みです。token: FYpiuhiTabEyDhOSeXAmiHFHKWYSEzndlRpGQLQmxwcCSDHZJowxGInmubPjmnWNDGLveMjIpjqfzEeYwwnKYcWChgTGwhTpajNI, amount: N, request id: <ID>\""
+    }
+  ],
+  "total_sales": 20500,
+  "total_chairs": 20
+}

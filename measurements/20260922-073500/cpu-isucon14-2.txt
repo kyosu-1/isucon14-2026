@@ -1,0 +1,4 @@
+COMMAND                   AVG_CPU%
+mysqld                         9.6
+pidstat                        0.3
+jbd2/nvme0n1p1-8               0.2

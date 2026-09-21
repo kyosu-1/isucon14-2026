@@ -1,0 +1,12 @@
+time=07:35:01.993 level=INFO msg=負荷走行を開始します
+time=07:35:06.169 level=ERROR msg=クリティカルエラーが発生しました error="決済サーバーに誤った支払いがリクエストされました (CODE=35): 既に支払い済みです。token: FYpiuhiTabEyDhOSeXAmiHFHKWYSEzndlRpGQLQmxwcCSDHZJowxGInmubPjmnWNDGLveMjIpjqfzEeYwwnKYcWChgTGwhTpajNI, amount: 4800, request id: 01M331QHZAKX4E6XSG0K877HF4"
+time=07:35:11.172 level=INFO msg=最終地域情報 名前=チェアタウン ユーザー登録数=9 アクティブユーザー数=9
+time=07:35:11.172 level=INFO msg=最終地域情報 名前=コシカケシティ ユーザー登録数=6 アクティブユーザー数=6
+time=07:35:11.172 level=INFO msg=最終オーナー情報 名前=椅子のふるさと 売上=11100 椅子数=4
+time=07:35:11.172 level=INFO msg=最終オーナー情報 名前=晴れ道タクシー 売上=2600 椅子数=4
+time=07:35:11.172 level=INFO msg=最終オーナー情報 名前="Chair Charm" 売上=0 椅子数=4
+time=07:35:11.172 level=INFO msg=最終オーナー情報 名前=SwiftCab 売上=0 椅子数=4
+time=07:35:11.172 level=INFO msg=最終オーナー情報 名前=ひまわり交通 売上=6800 椅子数=4
+time=07:35:11.172 level=INFO msg=0.0%のライドは椅子がマッチされるまでの時間、60.0%のライドはマッチされた椅子が乗車地点までに掛かる時間、0.0%のライドは椅子の実移動時間に不満がありました
+time=07:35:11.172 level=INFO msg=結果 pass=false スコア=548 種別エラー数=map[]
+time=07:35:11.172 level=INFO msg=負荷走行が終了しました

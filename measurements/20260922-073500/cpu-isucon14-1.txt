@@ -1,0 +1,5 @@
+COMMAND                   AVG_CPU%
+nginx                          1.7
+pidstat                        0.3
+systemd-journal                0.1
+systemd                        0.1
