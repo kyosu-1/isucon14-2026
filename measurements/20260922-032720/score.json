@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 985413,
+  "error_codes": {
+    "30": 1
+  },
+  "dissatisfied": {
+    "matching": 86.5,
+    "pickup": 1.2,
+    "ride": 34.3
+  },
+  "registered": {
+    "reputation": 162,
+    "invitation": 4697
+  },
+  "left": 54,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2978,
+      "active": 2935
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 2104,
+      "active": 2059
+    }
+  ],
+  "owners": [
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 19190100,
+      "chairs": 410
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 21044100,
+      "chairs": 450
+    },
+    {
+      "name": "和やか交通",
+      "sales": 18364900,
+      "chairs": 389
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 16747400,
+      "chairs": 405
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 19532700,
+      "chairs": 412
+    }
+  ],
+  "warn_count": 1,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKJYFNTCNRQSRMYRPNXJの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 94879200,
+  "total_chairs": 2066
+}
