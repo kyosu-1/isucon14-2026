@@ -1,0 +1,95 @@
+{
+  "pass": true,
+  "score": 1101372,
+  "error_codes": {
+    "30": 36
+  },
+  "dissatisfied": {
+    "matching": 87.0,
+    "pickup": 1.7,
+    "ride": 40.6
+  },
+  "registered": {
+    "reputation": 162,
+    "invitation": 4017
+  },
+  "left": 131,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2457,
+      "active": 2386
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1899,
+      "active": 1806
+    }
+  ],
+  "owners": [
+    {
+      "name": "Skyline Taxis",
+      "sales": 20430100,
+      "chairs": 526
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 22727800,
+      "chairs": 405
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 20028500,
+      "chairs": 396
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 19707000,
+      "chairs": 510
+    },
+    {
+      "name": "座心工房",
+      "sales": 22228800,
+      "chairs": 440
+    }
+  ],
+  "warn_count": 36,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 12,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKTVXSCAPYGNFPANZVJXNVの椅子は既にライド中です\""
+    },
+    {
+      "count": 7,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKVNVHVNNNGBQZWVBJNEの椅子は既にライド中です\""
+    },
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKVNAFDFHDMNTJKBNDZHの椅子は既にライド中です\""
+    },
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKTXMBJNXQNTYDQNJNの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKVCNCYBANWSDPHRNQZPTNの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKVNVNJZKEYHGBACNWHNFRの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKVNPVKJNMHBNTNJNSXWの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKTHNBPNMWANBPNTNFKEの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 105122200,
+  "total_chairs": 2277
+}
