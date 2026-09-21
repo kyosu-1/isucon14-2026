@@ -1,0 +1,8 @@
+timestamp : 20260922-063624
+commit    : 1c212c7  matching: 待ち時間補正 2.0 → 4.0（速度で椅子を選ぶ項の重み 1.0 と組み合わせ）
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : aging 4.0 + 速度選択1.0 1
+dirty     : 0 files uncommitted (webapp/ etc/)
