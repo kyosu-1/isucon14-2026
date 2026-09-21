@@ -3,11 +3,29 @@ package main
 import (
 	"log/slog"
 	"net/http"
-	"sort"
+	"slices"
 	"strings"
 	"sync"
 	"time"
 )
+
+type pair struct {
+	ride, chair int
+	cost        float64
+}
+
+func comparePair(a, b pair) int {
+	if a.cost != b.cost {
+		if a.cost < b.cost {
+			return -1
+		}
+		return 1
+	}
+	if a.ride != b.ride {
+		return a.ride - b.ride
+	}
+	return a.chair - b.chair
+}
 
 type matchingPlan struct {
 	RideID  string
@@ -40,8 +58,8 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	}
 
 	st.mu.Lock()
-	waiting := make([]*rideState, 0)
-	for _, rs := range st.rides {
+	waiting := make([]*rideState, 0, len(st.waitingRides))
+	for _, rs := range st.waitingRides {
 		if rs.ChairID == "" && rs.latestStatus() == "MATCHING" {
 			waiting = append(waiting, rs)
 		}
@@ -70,9 +88,9 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	}
 	st.mu.Unlock()
 
-	sort.Slice(rides, func(i, j int) bool { return rides[i].CreatedAt.Before(rides[j].CreatedAt) })
+	slices.SortFunc(rides, func(a, b rideView) int { return a.CreatedAt.Compare(b.CreatedAt) })
 	// 同点のときに結果が毎回ぶれないよう、IDで並べておく
-	sort.Slice(chairs, func(i, j int) bool { return chairs[i].ID < chairs[j].ID })
+	slices.SortFunc(chairs, func(a, b freeChair) int { return strings.Compare(a.ID, b.ID) })
 
 	// すべての（ライド, 空き椅子）の組を「乗車位置に着くまでの時間」が短い順に貪欲に割り当てる。
 	// 椅子が足りない（待ちライド >> 空き椅子）ときに古いライドから順に選ぶと、古いライドが
@@ -80,32 +98,36 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 	// 取り残し防止に、待ち時間が長いライドほどコストを下げる（1秒待つごとに agingPerSec ぶん）。
 	const agingPerSec = 2.0
 	now := time.Now()
-	type pair struct {
-		ride, chair int
-		cost        float64
-	}
-	pairs := make([]pair, 0, len(rides)*len(chairs))
+	// 各椅子について、コストの小さいライドを len(chairs) 件だけ候補に残す。
+	// 貪欲法で椅子 c が割り当てられるまでに他の椅子に取られるライドは高々 len(chairs)-1 件なので、
+	// 全組を並べたときと結果は変わらない（待ちライドが数千・空き椅子が数十のとき、全組ソートが
+	// アプリの CPU の 34% を使っていた）。
+	ages := make([]float64, len(rides))
 	for ri, ride := range rides {
-		age := now.Sub(ride.CreatedAt).Seconds()
-		for ci, c := range chairs {
+		ages[ri] = now.Sub(ride.CreatedAt).Seconds()
+	}
+	k := len(chairs)
+	pairs := make([]pair, 0, len(chairs)*min(k, len(rides)))
+	cand := make([]pair, 0, len(rides))
+	for ci, c := range chairs {
+		cand = cand[:0]
+		for ri, ride := range rides {
 			// 位置が一度も送られていない椅子は、どこにいるか分からないので最後の手段にする
 			pickupDistance := 1 << 20
 			if c.HasLocation {
 				pickupDistance = calculateDistance(c.Latitude, c.Longitude, ride.PickupLat, ride.PickupLon)
 			}
-			cost := float64(pickupDistance)/float64(c.Speed) - agingPerSec*age
-			pairs = append(pairs, pair{ri, ci, cost})
+			cost := float64(pickupDistance)/float64(c.Speed) - agingPerSec*ages[ri]
+			cand = append(cand, pair{ri, ci, cost})
 		}
+		if len(cand) > k {
+			// 上位 k 件だけ欲しいので部分的に並べる（k は小さい）
+			slices.SortFunc(cand, comparePair)
+			cand = cand[:k]
+		}
+		pairs = append(pairs, cand...)
 	}
-	sort.Slice(pairs, func(i, j int) bool {
-		if pairs[i].cost != pairs[j].cost {
-			return pairs[i].cost < pairs[j].cost
-		}
-		if pairs[i].ride != pairs[j].ride {
-			return pairs[i].ride < pairs[j].ride
-		}
-		return pairs[i].chair < pairs[j].chair
-	})
+	slices.SortFunc(pairs, comparePair)
 	plans := make([]matchingPlan, 0)
 	usedRide := make([]bool, len(rides))
 	usedChair := make([]bool, len(chairs))

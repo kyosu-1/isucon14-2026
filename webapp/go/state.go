@@ -100,6 +100,7 @@ type memState struct {
 	mu              sync.Mutex
 	rides           map[string]*rideState
 	userLatestRide  map[string]*rideState   // user_id -> 最新(created_at)のライド
+	waitingRides    map[string]*rideState   // マッチング待ち（椅子未割り当て・MATCHING）のライド
 	userRides       map[string][]*rideState // user_id -> ライド（作成順）
 	ownerNames      map[string]string       // owner_id -> オーナー名
 	chairLatestRide map[string]*rideState   // chair_id -> 最後に割り当てられたライド
@@ -289,6 +290,7 @@ func loadState(ctx context.Context) error {
 		rides:           make(map[string]*rideState, len(rides)),
 		userLatestRide:  make(map[string]*rideState),
 		userRides:       make(map[string][]*rideState),
+		waitingRides:    make(map[string]*rideState),
 		ownerNames:      make(map[string]string),
 		chairLatestRide: make(map[string]*rideState),
 		chairs:          make(map[string]*chairInfo, len(chairs)),
@@ -309,6 +311,11 @@ func loadState(ctx context.Context) error {
 	for _, row := range statuses {
 		if rs, ok := s.rides[row.RideID]; ok {
 			rs.Statuses = append(rs.Statuses, &statusEntry{ID: row.ID, Status: row.Status, AppSent: row.AppSent, ChairSent: row.ChairSent})
+		}
+	}
+	for _, rs := range s.rides {
+		if rs.ChairID == "" && rs.latestStatus() == "MATCHING" {
+			s.waitingRides[rs.ID] = rs
 		}
 	}
 	// 椅子の「最新のライド」は元の実装では rides.updated_at DESC。同じ基準で選ぶ。
@@ -357,6 +364,7 @@ func loadState(ctx context.Context) error {
 	st.rides = s.rides
 	st.userLatestRide = s.userLatestRide
 	st.userRides = s.userRides
+	st.waitingRides = s.waitingRides
 	st.ownerNames = s.ownerNames
 	st.chairLatestRide = s.chairLatestRide
 	st.chairs = s.chairs
@@ -458,6 +466,9 @@ func (s *memState) rideLocked(ctx context.Context, rideID string) (*rideState, e
 	}
 	s.rides[rideID] = rs
 	s.userRides[rs.UserID] = append(s.userRides[rs.UserID], rs)
+	if rs.ChairID == "" && rs.latestStatus() == "MATCHING" {
+		s.waitingRides[rs.ID] = rs
+	}
 	if cur := s.userLatestRide[rs.UserID]; cur == nil || !rs.CreatedAt.Before(cur.CreatedAt) {
 		s.userLatestRide[rs.UserID] = rs
 	}
@@ -478,6 +489,7 @@ func (s *memState) addRide(r *Ride, fare int, matchingStatusID string) {
 	s.rides[rs.ID] = rs
 	s.userLatestRide[rs.UserID] = rs
 	s.userRides[rs.UserID] = append(s.userRides[rs.UserID], rs)
+	s.waitingRides[rs.ID] = rs
 	wake(s.userWake, rs.UserID)
 }
 
@@ -497,6 +509,7 @@ func (s *memState) assignChairs(ctx context.Context, plans []matchingPlan) (time
 		rs.UpdatedAt = now
 		rs.AssignPending = true
 		s.chairLatestRide[p.ChairID] = rs
+		delete(s.waitingRides, rs.ID)
 	}
 	return now, nil
 }
