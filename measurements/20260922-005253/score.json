@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 3424,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 52.5,
+    "pickup": 95.0,
+    "ride": 100.0
+  },
+  "registered": {
+    "reputation": 38,
+    "invitation": 0
+  },
+  "left": 22,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 20,
+      "active": 14
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 30,
+      "active": 12
+    }
+  ],
+  "owners": [
+    {
+      "name": "ゆったり号",
+      "sales": 24700,
+      "chairs": 5
+    },
+    {
+      "name": "椅子と暮らし舎",
+      "sales": 34200,
+      "chairs": 5
+    },
+    {
+      "name": "ComfortWorks",
+      "sales": 25700,
+      "chairs": 5
+    },
+    {
+      "name": "いすの道",
+      "sales": 84500,
+      "chairs": 8
+    },
+    {
+      "name": "PulseRide",
+      "sales": 62200,
+      "chairs": 8
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 231300,
+  "total_chairs": 31
+}

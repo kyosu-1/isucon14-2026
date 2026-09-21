@@ -11,6 +11,10 @@
 #
 # usage: ./tools/setup/measure.sh {on|off} [db_host]
 set -euo pipefail
+# isuenv の ssh 設定は known_hosts を持たないので、毎回出る "Permanently added" 警告を黙らせる
+ssh() { command ssh -o LogLevel=ERROR "$@"; }
+scp() { command scp -o LogLevel=ERROR "$@"; }
+export RSYNC_RSH="ssh -o LogLevel=ERROR"
 
 MODE="${1:-}"
 HOST="${2:-isucon14-1}"

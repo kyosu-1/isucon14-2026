@@ -1,0 +1,15 @@
+COMMAND                   AVG_CPU%
+nginx                          0.5
+pidstat                        0.4
+mysqld                         0.3
+systemd-journal                0.1
+isuride                        0.1
+curl                           0.1
+systemd                        0.0
+sh                             0.0
+rsyslogd                       0.0
+rcu_sched                      0.0
+kworker/1:2-events             0.0
+kworker/0:2-events             0.0
+ksoftirqd/0                    0.0
+amazon-ssm-agen                0.0

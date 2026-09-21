@@ -10,6 +10,10 @@
 #
 # usage: ./tools/analyze/cpu-by-process.sh <pidstat-raw.txt>
 set -euo pipefail
+# isuenv の ssh 設定は known_hosts を持たないので、毎回出る "Permanently added" 警告を黙らせる
+ssh() { command ssh -o LogLevel=ERROR "$@"; }
+scp() { command scp -o LogLevel=ERROR "$@"; }
+export RSYNC_RSH="ssh -o LogLevel=ERROR"
 
 awk '
   # LC_ALL=C の pidstat -u: Time UID PID %usr %system %guest %wait %CPU CPU Command

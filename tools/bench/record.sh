@@ -3,6 +3,10 @@
 #
 # usage: ./tools/bench/record.sh <measurement_dir> [note]
 set -euo pipefail
+# isuenv の ssh 設定は known_hosts を持たないので、毎回出る "Permanently added" 警告を黙らせる
+ssh() { command ssh -o LogLevel=ERROR "$@"; }
+scp() { command scp -o LogLevel=ERROR "$@"; }
+export RSYNC_RSH="ssh -o LogLevel=ERROR"
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"

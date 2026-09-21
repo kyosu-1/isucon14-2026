@@ -7,6 +7,10 @@
 #
 # usage: ./tools/setup/bench-node.sh [bench_host]
 set -euo pipefail
+# isuenv の ssh 設定は known_hosts を持たないので、毎回出る "Permanently added" 警告を黙らせる
+ssh() { command ssh -o LogLevel=ERROR "$@"; }
+scp() { command scp -o LogLevel=ERROR "$@"; }
+export RSYNC_RSH="ssh -o LogLevel=ERROR"
 
 HOST="${1:-isucon14-4}"
 echo "==> $HOST : 競技用サービスを停止"
