@@ -1,0 +1,14 @@
+# --- ビルド成果物（ローカルでクロスコンパイルして配る。gitには入れない） ---
+webapp/go/isuride
+build/
+*.test
+
+# --- 環境依存（isuenv が毎回振り直す） ---
+hosts.generated.mk
+.env.local
+
+# --- 計測の巨大な生ログ（要約は measurements/ にコミットする） ---
+measurements/**/raw/
+
+# --- OS ---
+.DS_Store
