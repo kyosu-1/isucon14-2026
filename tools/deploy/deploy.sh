@@ -78,7 +78,8 @@ deploy_one() {
   if [ -d "$dir/sysctl.d" ]; then
     local changed_sysctl
     changed_sysctl="$(rsync -rlpcz -i --rsync-path='sudo rsync' "$dir/sysctl.d/" "$HOST:/etc/sysctl.d/" | grep -v '^\.' || true)"
-    [ -n "$changed_sysctl" ] && ssh "$HOST" 'sudo chown root:root /etc/sysctl.d/*; sudo sysctl -q --system'
+    # sysctl --system は既定のファイルの一部キーで非0を返すことがあるので、止めずに続ける
+    [ -n "$changed_sysctl" ] && { ssh "$HOST" 'sudo chown root:root /etc/sysctl.d/*; sudo sysctl -q --system' || true; }
   fi
   if [ -f "$dir/home/env.sh" ]; then
     changed_env="$(rsync -lpcz -i --rsync-path="$RS_ISUCON" "$dir/home/env.sh" "$HOST:/home/isucon/env.sh" | grep -v '^\.' || true)"
@@ -103,7 +104,8 @@ deploy_one() {
       done
 
       if [ -n '${changed_mysql}' ] && systemctl is-enabled --quiet mysql; then sudo systemctl restart mysql; fi
-      if [ -n '${changed_nginx}' ] && systemctl is-enabled --quiet nginx; then sudo nginx -t -q && sudo systemctl reload nginx; fi
+      # listen のオプション(backlog / reuseport)は reload では反映されないので restart する
+      if [ -n '${changed_nginx}' ] && systemctl is-enabled --quiet nginx; then sudo nginx -t -q && sudo systemctl restart nginx; fi
       for s in isuride-go isuride-matcher; do
         systemctl is-enabled --quiet \$s 2>/dev/null && sudo systemctl restart \$s
       done
