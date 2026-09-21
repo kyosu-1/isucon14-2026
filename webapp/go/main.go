@@ -8,6 +8,7 @@ import (
 	"log/slog"
 	"net"
 	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"os/exec"
 	"strconv"
@@ -24,6 +25,10 @@ var db *sqlx.DB
 const notificationRetryAfterMs = 100
 
 func main() {
+	// プロファイル取得用（127.0.0.1 のみ。tools/analyze/pprof.sh で取る）
+	go func() {
+		_ = http.ListenAndServe("127.0.0.1:6060", nil)
+	}()
 	mux := setup()
 	slog.Info("Listening on :8080")
 	http.ListenAndServe(":8080", mux)
