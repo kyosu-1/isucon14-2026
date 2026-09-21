@@ -37,6 +37,17 @@ type rideState struct {
 	Statuses             []*statusEntry
 }
 
+// 椅子がこのライドから解放されたか = 最新が COMPLETED で、それを椅子に通知済み。
+// DB上で COMPLETED になっても、椅子が完了通知を受け取るまでは「ライド中」として扱う
+// （マッチングの空き判定と同じ基準。nearby-chairs でこれより早く出すと「既にライド中」の WARN になった）。
+func (r *rideState) releasedChair() bool {
+	if len(r.Statuses) == 0 {
+		return false
+	}
+	last := r.Statuses[len(r.Statuses)-1]
+	return last.Status == "COMPLETED" && last.ChairSent
+}
+
 func (r *rideState) latestStatus() string {
 	if len(r.Statuses) == 0 {
 		return ""

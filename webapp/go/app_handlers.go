@@ -864,8 +864,8 @@ func appGetNearbyChairs(w http.ResponseWriter, r *http.Request) {
 		if !chair.IsActive || !chair.HasLocation {
 			continue
 		}
-		// 割り当て済みのライドが完了していなければ除外（元の実装: いずれかのライドが COMPLETED でなければ skip）
-		if ride := st.chairLatestRide[chair.ID]; ride != nil && ride.latestStatus() != "COMPLETED" {
+		// 割り当て済みのライドから解放されていなければ除外
+		if ride := st.chairLatestRide[chair.ID]; ride != nil && !ride.releasedChair() {
 			continue
 		}
 		if calculateDistance(coordinate.Latitude, coordinate.Longitude, chair.Latitude, chair.Longitude) <= distance {
