@@ -1,0 +1,75 @@
+{
+  "pass": true,
+  "score": 1177878,
+  "error_codes": {
+    "30": 11
+  },
+  "dissatisfied": {
+    "matching": 78.8,
+    "pickup": 1.9,
+    "ride": 45.8
+  },
+  "registered": {
+    "reputation": 160,
+    "invitation": 3978
+  },
+  "left": 173,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2471,
+      "active": 2386
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1767,
+      "active": 1666
+    }
+  ],
+  "owners": [
+    {
+      "name": "Sit Second Life",
+      "sales": 22582900,
+      "chairs": 352
+    },
+    {
+      "name": "ZenDrive",
+      "sales": 24076900,
+      "chairs": 436
+    },
+    {
+      "name": "迅行タクシー",
+      "sales": 23333900,
+      "chairs": 362
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 20048200,
+      "chairs": 375
+    },
+    {
+      "name": "快旅タクシー",
+      "sales": 22507000,
+      "chairs": 348
+    }
+  ],
+  "warn_count": 11,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYNWBNTNZBNRNHNGRNYの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYNZNBYBEWNVFKQNTNの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYNBANPNANVNENKCの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 112548900,
+  "total_chairs": 1873
+}

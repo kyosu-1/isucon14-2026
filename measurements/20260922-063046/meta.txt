@@ -1,0 +1,8 @@
+timestamp : 20260922-063046
+commit    : bab1541  matching: 長いライドに速い椅子を当てる（依頼の優先順位は変えない形）
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 速度で椅子を選ぶ(中立) 1
+dirty     : 0 files uncommitted (webapp/ etc/)
