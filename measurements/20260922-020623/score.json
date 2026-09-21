@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 264471,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 95.8,
+    "pickup": 34.2,
+    "ride": 26.9
+  },
+  "registered": {
+    "reputation": 126,
+    "invitation": 1443
+  },
+  "left": 228,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 942,
+      "active": 797
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 657,
+      "active": 569
+    }
+  ],
+  "owners": [
+    {
+      "name": "椅子やいちば",
+      "sales": 4388700,
+      "chairs": 125
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 4373400,
+      "chairs": 125
+    },
+    {
+      "name": "Orbit Taxi",
+      "sales": 5330800,
+      "chairs": 148
+    },
+    {
+      "name": "街のりタクシー",
+      "sales": 5206800,
+      "chairs": 146
+    },
+    {
+      "name": "ゆったり号",
+      "sales": 3219500,
+      "chairs": 96
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 22519200,
+  "total_chairs": 640
+}
