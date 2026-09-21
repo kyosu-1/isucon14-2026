@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 457804,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 79.8,
+    "pickup": 1.9,
+    "ride": 38.3
+  },
+  "registered": {
+    "reputation": 149,
+    "invitation": 2191
+  },
+  "left": 52,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 1399,
+      "active": 1367
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1075,
+      "active": 1035
+    }
+  ],
+  "owners": [
+    {
+      "name": "ReSit",
+      "sales": 9835100,
+      "chairs": 227
+    },
+    {
+      "name": "SwiftCab",
+      "sales": 6425700,
+      "chairs": 132
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 7908800,
+      "chairs": 160
+    },
+    {
+      "name": "PreLoved Chairs",
+      "sales": 11201300,
+      "chairs": 257
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 8257900,
+      "chairs": 167
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 43628800,
+  "total_chairs": 943
+}
