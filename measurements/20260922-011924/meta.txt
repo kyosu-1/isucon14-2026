@@ -1,0 +1,8 @@
+timestamp : 20260922-011924
+commit    : b36682a  fix: rides.status 列は初期データ投入後に ALTER TABLE で追加する
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : rides.status
+dirty     : 0 files uncommitted (webapp/ etc/)

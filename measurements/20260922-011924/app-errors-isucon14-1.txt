@@ -1,0 +1,2 @@
+      1 2026/09/21 16:19:28 ERROR error response wrote !BADKEY="Error 1052 (23000): Column 'status' in where clause is ambiguous"
+      1 2026/09/21 16:19:25 ERROR error response wrote !BADKEY="app_session cookie is required"

@@ -1,0 +1,3 @@
+time=01:19:25.923 level=INFO msg=負荷走行を開始します
+time=01:19:28.185 level=ERROR msg=初期データのチェックに失敗しました error="GET /api/owner/salesへのリクエストに対して、期待されたHTTPステータスコードが確認できませんでした (expected:200, actual:500)"
+time=01:19:28.185 level=INFO msg=負荷走行が終了しました

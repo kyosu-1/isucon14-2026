@@ -1,0 +1,13 @@
+COMMAND                   AVG_CPU%
+mysql                          3.5
+nginx                          3.2
+pidstat                        1.0
+systemd-logind                 0.5
+systemd-journal                0.5
+systemd                        0.5
+polkitd                        0.5
+ksoftirqd/0                    0.5
+isuride                        0.5
+curl                           0.5
+amazon-ssm-agen                0.5
+gzip                           0.2
