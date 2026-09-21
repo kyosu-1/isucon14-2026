@@ -43,6 +43,7 @@ func appPostUsers(w http.ResponseWriter, r *http.Request) {
 	userID := ulid.Make().String()
 	accessToken := secureRandomStr(32)
 	invitationCode := secureRandomStr(15)
+	registered := false
 
 	tx, err := db.Beginx()
 	if err != nil {
@@ -74,17 +75,22 @@ func appPostUsers(w http.ResponseWriter, r *http.Request) {
 
 	// 招待コードを使った登録
 	if req.InvitationCode != nil && *req.InvitationCode != "" {
-		// 招待する側の招待数をチェック
-		var coupons []Coupon
-		err = tx.SelectContext(ctx, &coupons, "SELECT * FROM coupons WHERE code = ? FOR UPDATE", "INV_"+*req.InvitationCode)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		if len(coupons) >= 3 {
+		// 招待する側の招待数をチェックして1枠予約する。
+		// 以前は SELECT ... FOR UPDATE で直列化していたが、同時登録でデッドロック・ロック待ちになり、
+		// タイムアウト後の再送が Duplicate entry (username) で失敗していた。アプリは1プロセスなのでメモリで排他する。
+		invCode := "INV_" + *req.InvitationCode
+		slot, ok := st.reserveInvitation(invCode)
+		if !ok {
 			writeError(w, http.StatusBadRequest, errors.New("この招待コードは使用できません。"))
 			return
 		}
+		committed := false
+		defer func() {
+			if !committed {
+				st.releaseInvitation(invCode)
+			}
+		}()
+		defer func() { committed = registered }()
 
 		// ユーザーチェック
 		var inviter User
@@ -108,11 +114,12 @@ func appPostUsers(w http.ResponseWriter, r *http.Request) {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
-		// 招待した人にもRewardを付与
+		// 招待した人にもRewardを付与。コードは「RWD_<招待コード>_<ミリ秒>」だったが、同じ招待コードの登録が
+		// 同じミリ秒に重なると主キー(user_id, code)が衝突するので、予約した枠番号を末尾に足して一意にする
 		_, err = tx.ExecContext(
 			ctx,
-			"INSERT INTO coupons (user_id, code, discount) VALUES (?, CONCAT(?, '_', FLOOR(UNIX_TIMESTAMP(NOW(3))*1000)), ?)",
-			inviter.ID, "RWD_"+*req.InvitationCode, 1000,
+			"INSERT INTO coupons (user_id, code, discount) VALUES (?, CONCAT(?, '_', FLOOR(UNIX_TIMESTAMP(NOW(3))*1000), '_', ?), ?)",
+			inviter.ID, "RWD_"+*req.InvitationCode, slot, 1000,
 		)
 		if err != nil {
 			writeError(w, http.StatusInternalServerError, err)
@@ -124,6 +131,7 @@ func appPostUsers(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
+	registered = true
 	st.addUser(userID, req.FirstName, req.LastName)
 
 	http.SetCookie(w, &http.Cookie{

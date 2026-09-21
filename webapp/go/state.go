@@ -92,6 +92,7 @@ type memState struct {
 	userNames        map[string]string        // user_id -> "firstname lastname"
 	modelSpeed       map[string]int           // chair_models: モデル名 -> speed（マスタデータ）
 	dirtyChairs      map[string]struct{}      // 移動距離をまだDBに書き出していない椅子
+	inviteUsed       map[string]int           // "INV_<招待コード>" -> 使われた回数（上限3）
 	userWake         map[string]chan struct{} // SSE: 利用者の通知ストリームを起こす
 	chairWake        map[string]chan struct{} // SSE: 椅子の通知ストリームを起こす
 	pendingAppSent   []string                 // app_sent_at をまだDBに書いていない ride_statuses.id
@@ -246,6 +247,14 @@ func loadState(ctx context.Context) error {
 	if err := db.SelectContext(ctx, &models, `SELECT * FROM chair_models`); err != nil {
 		return fmt.Errorf("load chair_models: %w", err)
 	}
+	type inviteRow struct {
+		Code  string `db:"code"`
+		Count int    `db:"cnt"`
+	}
+	invites := []inviteRow{}
+	if err := db.SelectContext(ctx, &invites, `SELECT code, COUNT(*) AS cnt FROM coupons WHERE code LIKE 'INV\_%' GROUP BY code`); err != nil {
+		return fmt.Errorf("load invitations: %w", err)
+	}
 
 	discountByRide := make(map[string]int, len(coupons))
 	for _, c := range coupons {
@@ -319,6 +328,10 @@ func loadState(ctx context.Context) error {
 	st.modelSpeed = s.modelSpeed
 	st.dirtyChairs = make(map[string]struct{})
 	st.pendingAppSent, st.pendingChairSent = nil, nil
+	st.inviteUsed = make(map[string]int, len(invites))
+	for _, iv := range invites {
+		st.inviteUsed[iv.Code] = iv.Count
+	}
 	if st.userWake == nil {
 		st.userWake = make(map[string]chan struct{})
 		st.chairWake = make(map[string]chan struct{})
@@ -481,6 +494,26 @@ func (s *memState) complete(ctx context.Context, rideID, statusID string, evalua
 	wake(s.userWake, rs.UserID)
 	wake(s.chairWake, rs.ChairID)
 	return nil
+}
+
+// 招待コードの枠を1つ予約する（上限3回）。返り値は何番目の枠か。
+func (s *memState) reserveInvitation(code string) (int, bool) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.inviteUsed[code] >= 3 {
+		return 0, false
+	}
+	s.inviteUsed[code]++
+	return s.inviteUsed[code], true
+}
+
+// 登録が失敗したときに予約した枠を返す
+func (s *memState) releaseInvitation(code string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.inviteUsed[code] > 0 {
+		s.inviteUsed[code]--
+	}
 }
 
 func (s *memState) addChair(c *chairInfo) {
