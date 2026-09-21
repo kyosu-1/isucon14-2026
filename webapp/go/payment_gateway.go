@@ -6,11 +6,39 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log/slog"
 	"net/http"
+	"sync"
 	"time"
 )
 
 var erroredUpstream = errors.New("errored upstream")
+
+// 計測: 決済呼び出しの所要時間と再試行回数を5秒ごとに1行ログに出す
+var paymentStats = &paymentStatsT{}
+
+type paymentStatsT struct {
+	sync.Mutex
+	lastLog time.Time
+	n       int
+	sum     time.Duration
+	max     time.Duration
+	retries int
+}
+
+func (p *paymentStatsT) observe(d time.Duration, retries int) {
+	p.Lock()
+	defer p.Unlock()
+	p.n++
+	p.sum += d
+	p.max = max(p.max, d)
+	p.retries += retries
+	if time.Since(p.lastLog) >= 5*time.Second {
+		slog.Info("payment", "n", p.n, "avg_ms", p.sum.Milliseconds()/int64(p.n), "max_ms", p.max.Milliseconds(), "retries", p.retries)
+		p.lastLog = time.Now()
+		p.n, p.sum, p.max, p.retries = 0, 0, 0, 0
+	}
+}
 
 type paymentGatewayPostPaymentRequest struct {
 	Amount int `json:"amount"`
@@ -29,7 +57,9 @@ func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL str
 
 	// 失敗したらとりあえずリトライ
 	// FIXME: 社内決済マイクロサービスのインフラに異常が発生していて、同時にたくさんリクエストすると変なことになる可能性あり
+	started := time.Now()
 	retry := 0
+	defer func() { paymentStats.observe(time.Since(started), retry) }()
 	for {
 		err := func() error {
 			req, err := http.NewRequestWithContext(ctx, http.MethodPost, paymentGatewayURL+"/payments", bytes.NewBuffer(b))
