@@ -50,24 +50,14 @@ type rideState struct {
 // DB上で COMPLETED になっても、椅子が完了通知を受け取るまでは「ライド中」として扱う
 // （マッチングの空き判定と同じ基準。nearby-chairs でこれより早く出すと「既にライド中」の WARN になった）。
 func (r *rideState) releasedChair() bool {
-	return r.releasedChairFor(releaseGrace)
-}
-
-// COMPLETED を椅子に通知してから grace 以上経っているか
-func (r *rideState) releasedChairFor(grace time.Duration) bool {
 	if len(r.Statuses) == 0 {
 		return false
 	}
 	last := r.Statuses[len(r.Statuses)-1]
-	return last.Status == "COMPLETED" && last.ChairSent && time.Since(last.ChairSentAt) >= grace
+	return last.Status == "COMPLETED" && last.ChairSent && time.Since(last.ChairSentAt) >= releaseGrace
 }
 
 const releaseGrace = 50 * time.Millisecond
-
-// nearby-chairs に出すまでの猶予。ベンチ側は COMPLETED を受け取ってから「空き」と認識するまでに
-// 最大 ~300ms 遅れる（measurements/20260922-024221 で、解放 90〜270ms 後の nearby が「既にライド中」）。
-// 椅子は不足していてすぐ次に割り当てられるので、nearby から1秒隠しても損は小さい。
-const nearbyReleaseGrace = 1 * time.Second
 
 func (r *rideState) latestStatus() string {
 	if len(r.Statuses) == 0 {
