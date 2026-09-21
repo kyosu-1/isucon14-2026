@@ -558,16 +558,11 @@ func appPostRideEvaluatation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 評価と COMPLETED を DB に書く。FIFO の writer に入れて完了を待つ（それより前の遷移も書かれている）。
-	// 完了日時(updated_at)は評価した時刻
+	// 評価と COMPLETED をメモリに反映して応答する（椅子もここで解放される）。DB へは FIFO の writer が書く。
+	// owner/sales はメモリから計算するので、DB の書き込みを待つ必要はない。完了日時(updated_at)は評価した時刻
 	now := time.Now().UTC().Truncate(time.Microsecond)
 	completedStatusID := ulid.Make().String()
-	done := make(chan error, 1)
-	enqueueRideWrite(&rideWrite{statusID: completedStatusID, rideID: rideID, status: "COMPLETED", at: now, evaluation: req.Evaluation, done: done})
-	if err := <-done; err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
+	enqueueRideWrite(&rideWrite{statusID: completedStatusID, rideID: rideID, status: "COMPLETED", at: now, evaluation: req.Evaluation})
 	if err := st.complete(ctx, rideID, completedStatusID, req.Evaluation, now); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return

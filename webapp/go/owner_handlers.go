@@ -83,7 +83,6 @@ type ownerGetSalesResponse struct {
 }
 
 func ownerGetSales(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
 	since := time.Unix(0, 0)
 	until := time.Date(9999, 12, 31, 23, 59, 59, 0, time.UTC)
 	if r.URL.Query().Get("since") != "" {
@@ -105,42 +104,39 @@ func ownerGetSales(w http.ResponseWriter, r *http.Request) {
 
 	owner := r.Context().Value("owner").(*Owner)
 
-	tx, err := db.Beginx()
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	defer tx.Rollback()
-
-	chairs := []Chair{}
-	if err := tx.SelectContext(ctx, &chairs, "SELECT * FROM chairs WHERE owner_id = ?", owner.ID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
+	// 売上はメモリ（椅子ごとの完了ライドの一覧）から計算する。元の SQL と同じく
+	// 完了日時が since 以上・until + 999µs 以下のライドの割引前運賃を足す。並びは椅子ID順。
 	res := ownerGetSalesResponse{
 		TotalSales: 0,
 	}
-
+	untilIncl := until.Add(999 * time.Microsecond)
 	modelSalesByModel := map[string]int{}
-	for _, chair := range chairs {
-		rides := []Ride{}
-		if err := tx.SelectContext(ctx, &rides, "SELECT rides.* FROM rides JOIN ride_statuses ON rides.id = ride_statuses.ride_id WHERE chair_id = ? AND ride_statuses.status = 'COMPLETED' AND updated_at BETWEEN ? AND ? + INTERVAL 999 MICROSECOND", chair.ID, since, until); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
+	st.mu.Lock()
+	chairs := make([]*chairInfo, 0)
+	for _, c := range st.chairs {
+		if c.OwnerID == owner.ID {
+			chairs = append(chairs, c)
 		}
-
-		sales := sumSales(rides)
+	}
+	sort.Slice(chairs, func(i, j int) bool { return chairs[i].ID < chairs[j].ID })
+	for _, chair := range chairs {
+		sales := 0
+		if cs := st.chairStats[chair.ID]; cs != nil {
+			for _, e := range cs.Sales {
+				if !e.At.Before(since) && !e.At.After(untilIncl) {
+					sales += e.Sale
+				}
+			}
+		}
 		res.TotalSales += sales
-
 		res.Chairs = append(res.Chairs, chairSales{
 			ID:    chair.ID,
 			Name:  chair.Name,
 			Sales: sales,
 		})
-
 		modelSalesByModel[chair.Model] += sales
 	}
+	st.mu.Unlock()
 
 	models := []modelSales{}
 	for model, sales := range modelSalesByModel {

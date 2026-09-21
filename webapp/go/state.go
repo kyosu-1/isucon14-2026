@@ -87,6 +87,13 @@ type chairInfo struct {
 type chairStatsState struct {
 	Count         int
 	SumEvaluation int
+	// 完了したライドの売上（割引前の運賃）と完了日時。owner/sales をメモリで計算する
+	Sales []saleEntry
+}
+
+type saleEntry struct {
+	At   time.Time
+	Sale int
 }
 
 type memState struct {
@@ -313,6 +320,7 @@ func loadState(ctx context.Context) error {
 			}
 			cs.Count++
 			cs.SumEvaluation += *r.Evaluation
+			cs.Sales = append(cs.Sales, saleEntry{At: r.UpdatedAt, Sale: calculateSale(*r)})
 		}
 	}
 	for _, c := range chairs {
@@ -534,6 +542,7 @@ func (s *memState) complete(ctx context.Context, rideID, statusID string, evalua
 	}
 	cs.Count++
 	cs.SumEvaluation += evaluation
+	cs.Sales = append(cs.Sales, saleEntry{At: updatedAt, Sale: calculateFare(rs.PickupLatitude, rs.PickupLongitude, rs.DestinationLatitude, rs.DestinationLongitude)})
 	rs.Statuses = append(rs.Statuses, &statusEntry{ID: statusID, Status: "COMPLETED"})
 	wake(s.userWake, rs.UserID)
 	wake(s.chairWake, rs.ChairID)
