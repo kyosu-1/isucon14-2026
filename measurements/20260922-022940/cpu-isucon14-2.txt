@@ -1,0 +1,10 @@
+COMMAND                   AVG_CPU%
+mysqld                        86.1
+pidstat                        0.4
+jbd2/nvme0n1p1-8               0.2
+kworker/u8:3-events_power_efficient       0.0
+kworker/u8:1-flush-259:0       0.0
+kworker/u8:1-events_unbound       0.0
+kworker/1:3-events             0.0
+kworker/0:0-events             0.0
+dbus-daemon                    0.0

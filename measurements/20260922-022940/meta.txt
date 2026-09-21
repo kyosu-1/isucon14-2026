@@ -1,0 +1,8 @@
+timestamp : 20260922-022940
+commit    : 2dd476f  evaluation: COMPLETED を記録して椅子を解放してから決済する（決済は成功するまで再試行）
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : COMPLETED→決済の順
+dirty     : 0 files uncommitted (webapp/ etc/)
