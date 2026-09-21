@@ -72,8 +72,9 @@ func setup() http.Handler {
 	db = _db
 	// DBを別ホストに出したら、ポーリングの同時実行ぶんだけ接続が開かれて
 	// max_connections(151) を超え 1040 Too many connections が出た。上限を決めて使い回す。
-	db.SetMaxOpenConns(64)
-	db.SetMaxIdleConns(64)
+	// マッチングの UPDATE がプール待ちで1秒以上遅れることがあったので広げる（max_connections=151 未満）
+	db.SetMaxOpenConns(128)
+	db.SetMaxIdleConns(128)
 
 	if err := loadState(context.Background()); err != nil {
 		panic(err)

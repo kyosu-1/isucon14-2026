@@ -141,7 +141,10 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		for _, p := range plans {
 			args = append(args, p.RideID)
 		}
-		if _, err := db.ExecContext(ctx, query, args...); err != nil {
+		_, err = db.ExecContext(ctx, query, args...)
+		// 失敗しても椅子を止めたままにはしない（ログに残して通知は進める）
+		st.finishAssign(plans)
+		if err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}

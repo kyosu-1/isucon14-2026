@@ -228,7 +228,7 @@ func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 // ロック保持中に呼ぶ。椅子の最新ライドについて、まだ送っていない最古の状態があれば送信済みにして返す。
 func (s *memState) nextChairNotificationLocked(chairID string, initial bool) (*chairGetNotificationResponseData, string, bool) {
 	ride := s.chairLatestRide[chairID]
-	if ride == nil {
+	if ride == nil || ride.AssignPending {
 		return nil, "", false
 	}
 	var sending *statusEntry
