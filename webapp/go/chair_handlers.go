@@ -183,12 +183,16 @@ func chairGetNotification(w http.ResponseWriter, r *http.Request) {
 	flusher.Flush()
 
 	st.mu.Lock()
-	wakeCh := wakeChan(st.chairWake, chair.ID)
+	wakeCh := subscribe(st.chairWake, chair.ID)
 	st.mu.Unlock()
 
 	initial := true
 	for {
 		st.mu.Lock()
+		if !isCurrent(st.chairWake, chair.ID, wakeCh) {
+			st.mu.Unlock()
+			return // 新しい接続に置き換わった
+		}
 		data, userID, needName := st.nextChairNotificationLocked(chair.ID, initial)
 		st.mu.Unlock()
 		if data != nil {

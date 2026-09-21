@@ -626,12 +626,16 @@ func appGetNotification(w http.ResponseWriter, r *http.Request) {
 	flusher.Flush()
 
 	st.mu.Lock()
-	wakeCh := wakeChan(st.userWake, user.ID)
+	wakeCh := subscribe(st.userWake, user.ID)
 	st.mu.Unlock()
 
 	initial := true
 	for {
 		st.mu.Lock()
+		if !isCurrent(st.userWake, user.ID, wakeCh) {
+			st.mu.Unlock()
+			return // 新しい接続に置き換わった
+		}
 		data := st.nextAppNotificationLocked(user.ID, initial)
 		st.mu.Unlock()
 		if data != nil {

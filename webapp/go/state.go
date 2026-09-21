@@ -383,14 +383,20 @@ func newRideState(r *Ride, fare int) *rideState {
 	}
 }
 
-// ロック保持中に呼ぶ。SSE のストリームが待つチャネル（容量1。取りこぼしても次の判定で拾える）
-func wakeChan(m map[string]chan struct{}, key string) chan struct{} {
-	ch, ok := m[key]
-	if !ok {
-		ch = make(chan struct{}, 1)
-		m[key] = ch
-	}
+// ロック保持中に呼ぶ。SSE のストリーム1本ぶんのチャネルを作って登録する（容量1。取りこぼしても次の判定で拾える）。
+// 同じ利用者・椅子が張り直したら、新しい接続のチャネルで置き換える。古い接続のハンドラは
+// isCurrent が false になった時点で何も送らずに終わる。以前は1本のチャネルを共有していたので、
+// 張り直しの瞬間に古い（切れかけの）接続が起こされて状態を「送信済み」にし、新しい接続に届かなかった
+// （同じ椅子で nearby の「既にライド中」が数秒続いた）。
+func subscribe(m map[string]chan struct{}, key string) chan struct{} {
+	ch := make(chan struct{}, 1)
+	m[key] = ch
 	return ch
+}
+
+// ロック保持中に呼ぶ
+func isCurrent(m map[string]chan struct{}, key string, ch chan struct{}) bool {
+	return m[key] == ch
 }
 
 // ロック保持中に呼ぶ
