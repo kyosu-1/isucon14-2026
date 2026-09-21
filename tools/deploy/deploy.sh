@@ -11,6 +11,7 @@
 #   etc/isuN/mysql/          -> /etc/mysql/                   (変更があったときだけ mysql を再起動)
 #   etc/isuN/systemd/        -> /etc/systemd/system/
 #   etc/isuN/home/env.sh     -> /home/isucon/env.sh
+#   etc/isuN/sysctl.d/       -> /etc/sysctl.d/                (変更があったら sysctl --system)
 #   etc/isuN/services        そのノードで enable するサービスの一覧（それ以外の管理対象は disable）
 #
 # etc/ 配下の __ISU1_IP__ / __ISU2_IP__ / __ISU3_IP__ は hosts.generated.mk の private IP に置換して配る
@@ -73,6 +74,11 @@ deploy_one() {
   fi
   if [ -d "$dir/systemd" ]; then
     changed_systemd="$(rsync -rlpcz -i --rsync-path='sudo rsync' "$dir/systemd/" "$HOST:/etc/systemd/system/" | grep -v '^\.' || true)"
+  fi
+  if [ -d "$dir/sysctl.d" ]; then
+    local changed_sysctl
+    changed_sysctl="$(rsync -rlpcz -i --rsync-path='sudo rsync' "$dir/sysctl.d/" "$HOST:/etc/sysctl.d/" | grep -v '^\.' || true)"
+    [ -n "$changed_sysctl" ] && ssh "$HOST" 'sudo chown root:root /etc/sysctl.d/*; sudo sysctl -q --system'
   fi
   if [ -f "$dir/home/env.sh" ]; then
     changed_env="$(rsync -lpcz -i --rsync-path="$RS_ISUCON" "$dir/home/env.sh" "$HOST:/home/isucon/env.sh" | grep -v '^\.' || true)"
