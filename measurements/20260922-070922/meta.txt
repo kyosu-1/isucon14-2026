@@ -1,0 +1,8 @@
+timestamp : 20260922-070922
+commit    : 55a3663  matching: 割り当ての DB 書き込みも FIFO の writer に回し、椅子にはすぐ通知する
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 割り当てを FIFO へ 1
+dirty     : 0 files uncommitted (webapp/ etc/)

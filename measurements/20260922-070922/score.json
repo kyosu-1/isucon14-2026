@@ -1,0 +1,123 @@
+{
+  "pass": true,
+  "score": 1185235,
+  "error_codes": {
+    "30": 44
+  },
+  "dissatisfied": {
+    "matching": 81.2,
+    "pickup": 3.3,
+    "ride": 49.2
+  },
+  "registered": {
+    "reputation": 162,
+    "invitation": 3426
+  },
+  "left": 215,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2350,
+      "active": 2230
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1503,
+      "active": 1390
+    }
+  ],
+  "owners": [
+    {
+      "name": "Timeless Seats",
+      "sales": 21655900,
+      "chairs": 432
+    },
+    {
+      "name": "EcoChairs",
+      "sales": 22792900,
+      "chairs": 335
+    },
+    {
+      "name": "いすの道",
+      "sales": 20859000,
+      "chairs": 317
+    },
+    {
+      "name": "ZenSeat",
+      "sales": 23175200,
+      "chairs": 373
+    },
+    {
+      "name": "ComfortWorks",
+      "sales": 24101000,
+      "chairs": 388
+    }
+  ],
+  "warn_count": 44,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 6,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNNSZSBNGDKEFDNJNCBNの椅子は既にライド中です\""
+    },
+    {
+      "count": 5,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNSGGNXNMVKHNHNJZMNの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNENHYHNPBNEDHNMNVNXNの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNJNQPPHDKJCAGNNDKNWNの椅子は既にライド中です\""
+    },
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNZCNECPENHCKWNCNの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNMNDWWQWTNRBZDNENWTNの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNFAYNJYNYNWHFNKの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNCNECWDNZETQPYNMENJWの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNHJBCFJSZBVNAGGRNWの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNGGYNMNMNQWWNENの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNANQPSJNYNNHNZWKNSQDの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNXNBNBNZAPPNQNSNKの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNMNGNJVNYGDNACMの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNZXXFNVGYNVGRNTANEBの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNHJMNMRTNXWJNDKTCRTの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 112584000,
+  "total_chairs": 1845
+}
