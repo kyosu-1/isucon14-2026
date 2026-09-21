@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 31337,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 64.0,
+    "pickup": 37.7,
+    "ride": 83.5
+  },
+  "registered": {
+    "reputation": 124,
+    "invitation": 55
+  },
+  "left": 109,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 102,
+      "active": 43
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 91,
+      "active": 40
+    }
+  ],
+  "owners": [
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 525900,
+      "chairs": 30
+    },
+    {
+      "name": "ReSit & Renew",
+      "sales": 527600,
+      "chairs": 30
+    },
+    {
+      "name": "Sit Second Life",
+      "sales": 545600,
+      "chairs": 31
+    },
+    {
+      "name": "和やか交通",
+      "sales": 478600,
+      "chairs": 28
+    },
+    {
+      "name": "迅行タクシー",
+      "sales": 551600,
+      "chairs": 31
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 2629300,
+  "total_chairs": 150
+}

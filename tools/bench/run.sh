@@ -122,7 +122,7 @@ PY
 for h in "${APP_HOSTS_ARR[@]}" "$BENCH"; do
   # vmstat: 負荷中（idle<90% の秒）の平均使用率。マシン全体が飽和しているかはこちらで見る
   busy="$(awk '$15 ~ /^[0-9]+$/ && $15 < 90 {n++; b += 100 - $15} END {if (n) printf "%.0f%% (%ds)", b/n, n; else print "-"}' "$OUT/vmstat-$h.txt" 2>/dev/null)"
-  printf '  %-11s busy=%-10s ' "$h" "$busy"; sed -n '2,5p' "$OUT/cpu-$h.txt" 2>/dev/null | awk '{printf "%s=%s%% ", $1, $2}'; echo
+  printf '  %-11s busy=%-10s ' "$h" "$busy"; { sed -n '2,5p' "$OUT/cpu-$h.txt" 2>/dev/null || true; } | awk '{printf "%s=%s%% ", $1, $2}'; echo
 done
 echo "--- alp (上位) ---"; head -14 "$OUT/alp.txt" || true
 [ "$BENCH_RC" = 0 ] || echo "!! bench exit code = $BENCH_RC" >&2

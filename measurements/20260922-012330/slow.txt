@@ -1,0 +1,483 @@
+
+# 53.5s user time, 100ms system time, 34.65M rss, 40.73M vsz
+# Current date: Mon Sep 21 16:25:33 2026
+# Hostname: ip-10-100-0-249
+# Files: /var/log/mysql/slow.log
+# Overall: 798.66k total, 129 unique, 6.55k QPS, 2.74x concurrency _______
+# Time range: 2026-09-21T16:23:31 to 2026-09-21T16:25:33
+# Attribute          total     min     max     avg     95%  stddev  median
+# ============     ======= ======= ======= ======= ======= ======= =======
+# Exec time           334s     1us   431ms   418us     1ms     2ms   119us
+# Lock time             2s       0    20ms     1us     1us    83us     1us
+# Rows sent          1.24M       0     650    1.63    5.75   16.82    0.99
+# Rows examine       1.75M       0  21.09k    2.29    5.75   42.73    0.99
+# Query size        68.99M       6 1011.33k   90.58  136.99   1.76k   72.65
+
+# Profile
+# Rank Query ID                     Response time Calls  R/Call V/M   Item
+# ==== ============================ ============= ====== ====== ===== ====
+#    1 0xFFFCA4D67EA0A788813031B... 68.9828 20.6%  72894 0.0009  0.00 COMMIT
+#    2 0xD8DAD8AC6EDE2238F17AC39... 31.8844  9.5%  53072 0.0006  0.01 SELECT rides
+#    3 0x93710354008080236138363... 29.2111  8.7%  49206 0.0006  0.01 SELECT rides
+#    4 0x17DC3F250DEF598DCA2961F... 27.2894  8.2% 148269 0.0002  0.00 SELECT rides
+#    5 0x9C1BE9A08595D62A2089634... 25.9515  7.8%  50495 0.0005  0.01 SELECT ride_statuses
+#    6 0x780A355BC10F6DC5B57B4BB... 17.4825  5.2%  25885 0.0007  0.01 SELECT ride_statuses
+#    7 0xD6AD8A431BE7CA447BE67E7... 15.5202  4.6%  21455 0.0007  0.00 SELECT chair_locations
+#    8 0x5CAA8168B7B8D221E74FB97... 14.5417  4.3%  20569 0.0007  0.01 SELECT ride_statuses
+#    9 0x49D4717E21912CD8B13961B... 13.4184  4.0%  54184 0.0002  0.00 SELECT chairs
+#   10 0xEA001BE95AEC4D5ADE8560E... 10.3808  3.1%  14259 0.0007  0.01 SELECT rides
+#   11 0x95326561617E86850763450...  8.9489  2.7%  23017 0.0004  0.01 INSERT UPDATE chair_distances
+#   12 0xE13EB9FE8E585FDE0A4C67F...  8.4742  2.5%  20569 0.0004  0.01 SELECT rides
+#   13 0xD2D38076E399D482E909481...  7.3046  2.2%  23017 0.0003  0.01 INSERT chair_locations
+#   14 0xA3B0C1486434871B20F519E...  5.3832  1.6%  22917 0.0002  0.00 SELECT coupons
+#   15 0xDF3E6335E6C2FD1DB8C12FD...  4.9152  1.5%  23017 0.0002  0.01 SELECT chair_locations
+# MISC 0xMISC                       44.6366 13.4% 175833 0.0003   0.0 <114 ITEMS>
+
+# Query 1: 1.12k QPS, 1.06x concurrency, ID 0xFFFCA4D67EA0A788813031B8BBC3B329 at byte 56438412
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          9   72894
+# Exec time     20     69s    12us    38ms   946us     5ms     2ms    38us
+# Lock time      0       0       0       0       0       0       0       0
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     0 427.11k       6       6       6       6       0       6
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ################################################################
+# 100us  ###############
+#   1ms  #########################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+COMMIT\G
+
+# Query 2: 816.49 QPS, 0.49x concurrency, ID 0xD8DAD8AC6EDE2238F17AC39B0009258F at byte 156913682
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          6   53072
+# Exec time      9     32s    87us    72ms   600us     1ms     3ms   159us
+# Lock time      5    91ms       0     8ms     1us     1us    53us     1us
+# Rows sent      3  47.61k       0       1    0.92    0.99    0.27    0.99
+# Rows examine   2  47.61k       0       1    0.92    0.99    0.27    0.99
+# Query size     7   4.96M      98      98      98      98       0      98
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM rides WHERE chair_id = '01M32CFZCGQAKF2ZDPZFKQYVC0' ORDER BY updated_at DESC LIMIT 1\G
+
+# Query 3: 781.05 QPS, 0.46x concurrency, ID 0x93710354008080236138363517B6F8FC at byte 156895775
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:37
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          6   49206
+# Exec time      8     29s    81us    72ms   593us     2ms     2ms   167us
+# Lock time      5    84ms       0     8ms     1us     1us    56us     1us
+# Rows sent     11 144.18k       0      12    3.00    6.98    2.17    2.90
+# Rows examine  16 288.36k       0      24    6.00   13.83    4.35    5.75
+# Query size     6   4.22M      90      90      90      90       0      90
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ####
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM rides WHERE chair_id = '01M32CFVVBQFCH15Q9V3BFBJFR' ORDER BY created_at DESC\G
+
+# Query 4: 2.28k QPS, 0.42x concurrency, ID 0x17DC3F250DEF598DCA2961F1BE02A695 at byte 205486835
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count         18  148269
+# Exec time      8     27s    46us    62ms   184us   125us   928us    84us
+# Lock time     13   207ms       0     6ms     1us     1us    32us     1us
+# Rows sent     11 144.79k       1       1       1       1       0       1
+# Rows examine   8 144.79k       1       1       1       1       0       1
+# Query size    13   9.05M      64      64      64      64       0      64
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ################################################################
+# 100us  #############
+#   1ms  #
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT status FROM rides WHERE id = '01M32CGX3SKQJ962G2D097K9EM'\G
+
+# Query 5: 776.85 QPS, 0.40x concurrency, ID 0x9C1BE9A08595D62A208963461F89E6D8 at byte 150198857
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          6   50495
+# Exec time      7     26s    88us    75ms   513us     2ms     2ms   159us
+# Lock time      4    75ms       0     8ms     1us     1us    51us     1us
+# Rows sent     19 252.26k       1       6    5.12    5.75    1.49    5.75
+# Rows examine  14 252.26k       1       6    5.12    5.75    1.49    5.75
+# Query size     6   4.43M      92      92      92      92       0      92
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ####
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM ride_statuses WHERE ride_id = '01M32CGFDNG1D1TWYRWD54VKFS' ORDER BY created_at\G
+
+# Query 6: 398.23 QPS, 0.27x concurrency, ID 0x780A355BC10F6DC5B57B4BBCC1A9703E at byte 138549652
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          3   25885
+# Exec time      5     17s   106us    77ms   675us     2ms     3ms   176us
+# Lock time      2    44ms       0     9ms     1us     1us    62us     1us
+# Rows sent      0   2.84k       0       1    0.11    0.99    0.31       0
+# Rows examine   5  99.12k       1       6    3.92    5.75    1.76    3.89
+# Query size     4   3.21M     130     130     130     130       0     130
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  ####
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM ride_statuses WHERE ride_id = '01M32CGDE10F7EAFQ7K16E9MWF' AND chair_sent_at IS NULL ORDER BY created_at ASC LIMIT 1\G
+
+# Query 7: 340.56 QPS, 0.25x concurrency, ID 0xD6AD8A431BE7CA447BE67E7F25C2D64A at byte 149699390
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:37
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   21455
+# Exec time      4     16s    83us    62ms   723us     3ms     2ms   260us
+# Lock time      1    27ms       0     3ms     1us     1us    26us     1us
+# Rows sent      1  20.77k       0       1    0.99    0.99    0.09    0.99
+# Rows examine   1  20.77k       0       1    0.99    0.99    0.09    0.99
+# Query size     3   2.21M     108     108     108     108       0     108
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ######
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'chair_locations'\G
+#    SHOW CREATE TABLE `chair_locations`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM chair_locations WHERE chair_id = '01M32CGBX4ANPWE0MJVDY1ZWG8' ORDER BY created_at DESC LIMIT 1\G
+
+# Query 8: 316.45 QPS, 0.22x concurrency, ID 0x5CAA8168B7B8D221E74FB978834E34B2 at byte 145967552
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   20569
+# Exec time      4     15s   101us    63ms   706us     2ms     3ms   167us
+# Lock time      2    38ms       0     9ms     1us     1us    63us     1us
+# Rows sent      0   2.81k       0       1    0.14    0.99    0.34       0
+# Rows examine   2  46.87k       1       6    2.33    4.96    1.38    1.96
+# Query size     3   2.51M     128     128     128     128       0     128
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  ###
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'ride_statuses'\G
+#    SHOW CREATE TABLE `ride_statuses`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM ride_statuses WHERE ride_id = '01M32CGF2QK534C5NHZ3AEMEC6' AND app_sent_at IS NULL ORDER BY created_at ASC LIMIT 1\G
+
+# Query 9: 833.60 QPS, 0.21x concurrency, ID 0x49D4717E21912CD8B13961B8248A27CF at byte 208244753
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          6   54184
+# Exec time      4     13s    87us    43ms   247us   424us   725us   144us
+# Lock time      6   101ms       0     4ms     1us     1us    31us     1us
+# Rows sent      4  52.91k       1       1       1       1       0       1
+# Rows examine   2  52.91k       1       1       1       1       0       1
+# Query size     8   5.58M     108     108     108     108       0     108
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'chairs'\G
+#    SHOW CREATE TABLE `chairs`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM chairs WHERE access_token = 'b39cba75e26251e26f7b25355e683492a4ef66657113cc2bc494ec9e2342165e'\G
+
+# Query 10: 219.37 QPS, 0.16x concurrency, ID 0xEA001BE95AEC4D5ADE8560ED11FDEDFF at byte 156912558
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1   14259
+# Exec time      3     10s    90us    60ms   728us     2ms     3ms   176us
+# Lock time      1    17ms       0     2ms     1us     1us    19us     1us
+# Rows sent      3  49.32k       1      13    3.54    7.70    2.20    2.90
+# Rows examine   2  49.32k       1      13    3.54    7.70    2.20    2.90
+# Query size     1   1.22M      90      90      90      90       0      90
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ####
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM rides WHERE chair_id = '01M32CFXQ8KJSMTN04DFCG5060' ORDER BY updated_at DESC\G
+
+# Query 11: 383.62 QPS, 0.15x concurrency, ID 0x95326561617E86850763450C1EB7A3D0 at byte 175425627
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   23017
+# Exec time      2      9s    87us    50ms   388us   925us     2ms   144us
+# Lock time      2    31ms       0     3ms     1us     1us    29us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size    15  10.78M     486     492  491.12  487.09    0.88  487.09
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'chair_distances'\G
+#    SHOW CREATE TABLE `chair_distances`\G
+INSERT INTO chair_distances (chair_id, total_distance, total_distance_updated_at, latitude, longitude) VALUES ('01M32CGPH9GFH5TMAHBQXW919M', 0, '2026-09-21 16:24:23.944692', 12, -2) AS new
+		 ON DUPLICATE KEY UPDATE
+		   total_distance = chair_distances.total_distance + ABS(chair_distances.latitude - new.latitude) + ABS(chair_distances.longitude - new.longitude),
+		   total_distance_updated_at = new.total_distance_updated_at,
+		   latitude = new.latitude,
+		   longitude = new.longitude\G
+
+# Query 12: 316.45 QPS, 0.13x concurrency, ID 0xE13EB9FE8E585FDE0A4C67FEB1D9D015 at byte 94204983
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   20569
+# Exec time      2      8s    93us    56ms   411us   725us     2ms   152us
+# Lock time      1    25ms       0     2ms     1us     1us    17us     1us
+# Rows sent      1  20.09k       1       1       1       1       0       1
+# Rows examine   1  20.09k       1       1       1       1       0       1
+# Query size     2   1.90M      97      97      97      97       0      97
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'rides'\G
+#    SHOW CREATE TABLE `rides`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM rides WHERE user_id = '01M32CFHSG7392TT2MMCV7DYHK' ORDER BY created_at DESC LIMIT 1\G
+
+# Query 13: 383.62 QPS, 0.12x concurrency, ID 0xD2D38076E399D482E9094817365408E9 at byte 149659029
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   23017
+# Exec time      2      7s    54us    49ms   317us   332us     2ms   108us
+# Lock time      3    50ms       0    12ms     2us     1us    81us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     4   3.08M     137     141  140.24  136.99       0  136.99
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #####################
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'chair_locations'\G
+#    SHOW CREATE TABLE `chair_locations`\G
+INSERT INTO chair_locations (id, chair_id, latitude, longitude) VALUES ('01M32CGK9FN2VK3E7EH89249QH', '01M32CGA6X1EVZQY4C5YV4S5SS', -20, 12)\G
+
+# Query 14: 352.57 QPS, 0.08x concurrency, ID 0xA3B0C1486434871B20F519E77C3FD9E6 at byte 174735883
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:39
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   22917
+# Exec time      1      5s    72us    37ms   234us   403us   655us   131us
+# Lock time      2    40ms       0     7ms     1us     1us    49us     1us
+# Rows sent      1  14.24k       0       1    0.64    0.99    0.48    0.99
+# Rows examine   0  14.24k       0       1    0.64    0.99    0.48    0.99
+# Query size     2   1.44M      66      66      66      66       0      66
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'coupons'\G
+#    SHOW CREATE TABLE `coupons`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM coupons WHERE used_by = '01M32CG8PNSNHSW6N46XQ2VSKZ'\G
+
+# Query 15: 383.62 QPS, 0.08x concurrency, ID 0xDF3E6335E6C2FD1DB8C12FD4E3FB9DA3 at byte 74461218
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2026-09-21T16:23:34 to 2026-09-21T16:24:34
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2   23017
+# Exec time      1      5s    60us    41ms   213us   138us     1ms    98us
+# Lock time      1    28ms       0     1ms     1us     1us    15us     1us
+# Rows sent      1  22.48k       1       1       1       1       0       1
+# Rows examine   1  22.48k       1       1       1       1       0       1
+# Query size     2   1.51M      69      69      69      69       0      69
+# String:
+# Hosts        10.100.0.235
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ##############################################################
+# 100us  ################################################################
+#   1ms  ##
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS LIKE 'chair_locations'\G
+#    SHOW CREATE TABLE `chair_locations`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM chair_locations WHERE id = '01M32CFYM8K0KNET2K3ZGQZ2P0'\G

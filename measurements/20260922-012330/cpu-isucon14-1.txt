@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+isuride                       79.6
+nginx                         26.3
+systemd-journal                8.3
+rsyslogd                       4.7
+curl                           2.0
+pidstat                        0.5
+rcu_sched                      0.3
+mysql                          0.1
+ksoftirqd/1                    0.1
+ksoftirqd/0                    0.1
+sh                             0.0
+kworker/u8:4-kvfree_rcu_reclaim       0.0
+kworker/u8:3+flush-259:0       0.0
+kworker/u8:3-kvfree_rcu_reclaim       0.0
+kworker/u8:3-flush-259:0       0.0
