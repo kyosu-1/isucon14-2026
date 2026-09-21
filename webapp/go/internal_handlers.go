@@ -101,12 +101,19 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		plans = append(plans, matchingPlan{RideID: ride.ID, ChairID: chairs[best].ID})
 	}
 
-	// 割り当ては UPDATE 1文にまとめる。1件ずつ往復すると 150件で約2.5秒かかり、
-	// その間ライドが待たされていた（matching の呼び出しが5秒に2回まで落ちていた）。
+	// 割り当ては「メモリ → DB」の順に反映する。
+	// DBを先にすると、UPDATE の数msの間に nearby-chairs がその椅子を空きとして返し、
+	// retrieved_at がマッチ時刻(updated_at)より後になって「既にライド中」の WARN になった。
+	// DB へは UPDATE 1文にまとめる（1件ずつだと 150件で約2.5秒かかっていた）。
 	// マッチングは matcher から直列に呼ばれるので、chair_id IS NULL の競合は起きない。
 	assigned := 0
 	if len(plans) > 0 {
-		now := time.Now().UTC().Truncate(time.Microsecond)
+		now, err := st.assignChairs(ctx, plans)
+		if err != nil {
+			writeError(w, http.StatusInternalServerError, err)
+			return
+		}
+		assigned = len(plans)
 		query := "UPDATE rides SET updated_at = ?, chair_id = CASE id"
 		args := make([]any, 0, len(plans)*3+1)
 		args = append(args, now)
@@ -121,13 +128,6 @@ func internalGetMatching(w http.ResponseWriter, r *http.Request) {
 		if _, err := db.ExecContext(ctx, query, args...); err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
-		}
-		for _, p := range plans {
-			if err := st.assignChair(ctx, p.RideID, p.ChairID, now); err != nil {
-				writeError(w, http.StatusInternalServerError, err)
-				return
-			}
-			assigned++
 		}
 	}
 

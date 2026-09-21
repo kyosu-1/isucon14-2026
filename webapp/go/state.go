@@ -391,6 +391,25 @@ func (s *memState) assignChair(ctx context.Context, rideID, chairID string, upda
 	return nil
 }
 
+// マッチング結果をまとめてメモリに反映し、割り当て時刻を返す。
+// 時刻はロックの中で決める。nearby-chairs の retrieved_at もロックの中で取るので、
+// 「retrieved_at より前にマッチした椅子を空きとして返す」ことが起きない。
+func (s *memState) assignChairs(ctx context.Context, plans []matchingPlan) (time.Time, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	now := time.Now().UTC().Truncate(time.Microsecond)
+	for _, p := range plans {
+		rs, err := s.rideLocked(ctx, p.RideID)
+		if err != nil {
+			return now, err
+		}
+		rs.ChairID = p.ChairID
+		rs.UpdatedAt = now
+		s.chairLatestRide[p.ChairID] = rs
+	}
+	return now, nil
+}
+
 // 状態遷移を記録した（ride_statuses にコミット済み）。
 func (s *memState) addStatus(ctx context.Context, rideID, statusID, status string) error {
 	s.mu.Lock()

@@ -860,6 +860,8 @@ func appGetNearbyChairs(w http.ResponseWriter, r *http.Request) {
 	// すべてメモリ上の状態から返す（座標は POST /api/chair/coordinate のコミット直後に反映済み）。
 	nearbyChairs := []appGetNearbyChairsResponseChair{}
 	st.mu.Lock()
+	// マッチングは割り当て時刻をロックの中で決めるので、ここもロックの中で取る
+	retrievedAt := time.Now()
 	for _, chair := range st.chairs {
 		if !chair.IsActive || !chair.HasLocation {
 			continue
@@ -886,7 +888,7 @@ func appGetNearbyChairs(w http.ResponseWriter, r *http.Request) {
 
 	writeJSON(w, http.StatusOK, &appGetNearbyChairsResponse{
 		Chairs:      nearbyChairs,
-		RetrievedAt: time.Now().UnixMilli(),
+		RetrievedAt: retrievedAt.UnixMilli(),
 	})
 }
 

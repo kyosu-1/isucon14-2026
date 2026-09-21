@@ -265,15 +265,16 @@ func chairPostRideStatus(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tx, err := db.Beginx()
-	if err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
+	// 割り当てと現在の状態はメモリで判定する（マッチングはメモリ→DBの順に反映するので、
+	// 通知を受け取った椅子がDBより先に来ても「割り当てられていない」にならない）
+	st.mu.Lock()
+	rs, err := st.rideLocked(ctx, rideID)
+	var assignedChair, latest string
+	if err == nil {
+		assignedChair, latest = rs.ChairID, rs.latestStatus()
 	}
-	defer tx.Rollback()
-
-	ride := &Ride{}
-	if err := tx.GetContext(ctx, ride, "SELECT * FROM rides WHERE id = ? FOR UPDATE", rideID); err != nil {
+	st.mu.Unlock()
+	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			writeError(w, http.StatusNotFound, errors.New("ride not found"))
 			return
@@ -281,37 +282,35 @@ func chairPostRideStatus(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-
-	if ride.ChairID.String != chair.ID {
+	if assignedChair != chair.ID {
 		writeError(w, http.StatusBadRequest, errors.New("not assigned to this ride"))
 		return
 	}
 
-	var newStatusID string
 	switch req.Status {
 	// Acknowledge the ride
 	case "ENROUTE":
-		if newStatusID, err = insertRideStatus(ctx, tx, ride.ID, "ENROUTE"); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
 	// After Picking up user
 	case "CARRYING":
-		status, err := getLatestRideStatus(ctx, tx, ride.ID)
-		if err != nil {
-			writeError(w, http.StatusInternalServerError, err)
-			return
-		}
-		if status != "PICKUP" {
+		if latest != "PICKUP" {
 			writeError(w, http.StatusBadRequest, errors.New("chair has not arrived yet"))
-			return
-		}
-		if newStatusID, err = insertRideStatus(ctx, tx, ride.ID, "CARRYING"); err != nil {
-			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
 	default:
 		writeError(w, http.StatusBadRequest, errors.New("invalid status"))
+		return
+	}
+
+	tx, err := db.Beginx()
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, err)
+		return
+	}
+	defer tx.Rollback()
+	newStatusID, err := insertRideStatus(ctx, tx, rideID, req.Status)
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, err)
+		return
 	}
 
 	if err := tx.Commit(); err != nil {
@@ -319,7 +318,7 @@ func chairPostRideStatus(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if newStatusID != "" {
-		if err := st.addStatus(ctx, ride.ID, newStatusID, req.Status); err != nil {
+		if err := st.addStatus(ctx, rideID, newStatusID, req.Status); err != nil {
 			writeError(w, http.StatusInternalServerError, err)
 			return
 		}
