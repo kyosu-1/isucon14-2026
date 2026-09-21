@@ -1,0 +1,96 @@
+{
+  "pass": true,
+  "score": 121498,
+  "error_codes": {
+    "1": 2,
+    "17": 22,
+    "19": 2,
+    "22": 1,
+    "25": 1,
+    "30": 2
+  },
+  "dissatisfied": {
+    "matching": 66.5,
+    "pickup": 40.9,
+    "ride": 60.9
+  },
+  "registered": {
+    "reputation": 109,
+    "invitation": 369
+  },
+  "left": 186,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 273,
+      "active": 175
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 231,
+      "active": 142
+    }
+  ],
+  "owners": [
+    {
+      "name": "座和インダストリー",
+      "sales": 2408200,
+      "chairs": 58
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 1868700,
+      "chairs": 51
+    },
+    {
+      "name": "再座堂",
+      "sales": 1854000,
+      "chairs": 48
+    },
+    {
+      "name": "ゆったり号",
+      "sales": 2173900,
+      "chairs": 55
+    },
+    {
+      "name": "レトロ椅子館",
+      "sales": 2238000,
+      "chairs": 60
+    }
+  ],
+  "warn_count": 30,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 22,
+      "msg": "\"ユーザー登録に失敗しました (CODE=N): ユーザー登録に失敗しました (CODE=N): GET /clientのリクエストが失敗しました: Get \\\"https://isuride.xiv.isucon.net/client\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    },
+    {
+      "count": 2,
+      "msg": "\"椅子の座標送信に失敗しました (CODE=N): POST /api/chair/coordinateのリクエストが失敗しました: Post \\\"https://isuride.xiv.isucon.net/api/chair/coordinate\\\": EOF\""
+    },
+    {
+      "count": 2,
+      "msg": "\"椅子登録に失敗しました (CODE=N): POST /api/chair/chairsのリクエストが失敗しました: Post \\\"https://isuride.xiv.isucon.net/api/chair/chairs\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"オーナーの椅子一覧の取得に失敗しました (CODE=N): GET /ownerのリクエストが失敗しました: Get \\\"https://isuride.xiv.isucon.net/owner\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"オーナーの売り上げ情報の取得に失敗しました (CODE=N): GET /api/owner/salesのリクエストが失敗しました: Get \\\"https://isuride.xiv.isucon.net/api/owner/sales?until=N\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): GET /api/app/requests/nearby-chairsのリクエストが失敗しました: Get \\\"https://isuride.xiv.isucon.net/api/app/nearby-chairs?distance=N&latitude=-N&longitude=-N\\\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNDYZNRDZZMNRNNECNMWGXNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 10542800,
+  "total_chairs": 272
+}

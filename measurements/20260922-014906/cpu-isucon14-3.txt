@@ -1,0 +1,4 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.3
+multipathd                     0.0
+kworker/u8:1-events_power_efficient       0.0
