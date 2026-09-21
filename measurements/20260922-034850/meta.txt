@@ -1,0 +1,8 @@
+timestamp : 20260922-034850
+commit    : 67f5c74  Revert "計測: mutex プロファイルを有効に（ロック競合の確認用）"
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 再起動試験後
+dirty     : 0 files uncommitted (webapp/ etc/)

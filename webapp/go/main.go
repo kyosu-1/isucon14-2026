@@ -12,6 +12,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -70,9 +71,19 @@ func setup() http.Handler {
 	// プレースホルダをクライアント側で展開して、1クエリごとの PREPARE / CLOSE STMT の往復をなくす
 	dbConfig.InterpolateParams = true
 
-	_db, err := sqlx.Connect("mysql", dbConfig.FormatDSN())
-	if err != nil {
-		panic(err)
+	// 再起動直後は DB(isucon14-2) がまだ起動していないことがあるので、つながるまで待つ
+	// （panic して systemd の再起動待ちになると、その間 API が 502 になる）
+	var _db *sqlx.DB
+	for i := 0; ; i++ {
+		_db, err = sqlx.Connect("mysql", dbConfig.FormatDSN())
+		if err == nil {
+			break
+		}
+		if i >= 120 {
+			panic(err)
+		}
+		slog.Info("waiting for database", "err", err)
+		time.Sleep(500 * time.Millisecond)
 	}
 	db = _db
 	// DBを別ホストに出したら、ポーリングの同時実行ぶんだけ接続が開かれて
@@ -81,8 +92,16 @@ func setup() http.Handler {
 	db.SetMaxOpenConns(128)
 	db.SetMaxIdleConns(128)
 
-	if err := loadState(context.Background()); err != nil {
-		panic(err)
+	for i := 0; ; i++ {
+		err := loadState(context.Background())
+		if err == nil {
+			break
+		}
+		if i >= 120 {
+			panic(err)
+		}
+		slog.Info("waiting for loadState", "err", err)
+		time.Sleep(500 * time.Millisecond)
 	}
 	startFlusher()
 	startRideWriter()
