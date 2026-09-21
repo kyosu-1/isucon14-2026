@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"log/slog"
 	"net/http"
 	"sync"
@@ -67,17 +68,29 @@ type paymentGatewayGetPaymentsResponseOne struct {
 	Status string `json:"status"`
 }
 
-func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL string, token string, idempotencyKey string, param *paymentGatewayPostPaymentRequest, retrieveRidesOrderByCreatedAtAsc func() ([]Ride, error)) error {
+// 決済サーバーは約7割の確率で 500/502/504 を返す（1回 ~35ms）。
+// 元の実装は失敗のたびに 100ms 待ち + GET /payments で件数を照合していて、1件 avg 0.6〜0.8s かかっていた。
+// Idempotency-Key（ライドID）を付けているので、前の試行が実は成功していても同じキーの再送は二重請求にならない。
+// だから失敗したら待たずに POST を送り直すだけでよい。
+var paymentClient = &http.Client{
+	Timeout: 10 * time.Second,
+	Transport: &http.Transport{
+		MaxIdleConns:        512,
+		MaxIdleConnsPerHost: 512,
+		IdleConnTimeout:     90 * time.Second,
+	},
+}
+
+func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL string, token string, idempotencyKey string, param *paymentGatewayPostPaymentRequest, _ func() ([]Ride, error)) error {
 	b, err := json.Marshal(param)
 	if err != nil {
 		return err
 	}
 
-	// 失敗したらとりあえずリトライ
-	// FIXME: 社内決済マイクロサービスのインフラに異常が発生していて、同時にたくさんリクエストすると変なことになる可能性あり
 	started := time.Now()
 	retry := 0
 	defer func() { paymentStats.observe(time.Since(started), retry) }()
+	deadline := time.Now().Add(8 * time.Second)
 	for {
 		err := func() error {
 			req, err := http.NewRequestWithContext(ctx, http.MethodPost, paymentGatewayURL+"/payments", bytes.NewBuffer(b))
@@ -90,61 +103,25 @@ func requestPaymentGatewayPostPayment(ctx context.Context, paymentGatewayURL str
 			req.Header.Set("Idempotency-Key", idempotencyKey)
 
 			attemptStart := time.Now()
-			res, err := http.DefaultClient.Do(req)
+			res, err := paymentClient.Do(req)
 			if err != nil {
 				paymentStats.attempt(-1, time.Since(attemptStart))
 				return err
 			}
 			defer res.Body.Close()
+			io.Copy(io.Discard, res.Body)
 			paymentStats.attempt(res.StatusCode, time.Since(attemptStart))
-
 			if res.StatusCode != http.StatusNoContent {
-				// エラーが返ってきても成功している場合があるので、社内決済マイクロサービスに問い合わせ
-				getReq, err := http.NewRequestWithContext(ctx, http.MethodGet, paymentGatewayURL+"/payments", bytes.NewBuffer([]byte{}))
-				if err != nil {
-					return err
-				}
-				getReq.Header.Set("Authorization", "Bearer "+token)
-
-				getRes, err := http.DefaultClient.Do(getReq)
-				if err != nil {
-					return err
-				}
-				defer res.Body.Close()
-
-				// GET /payments は障害と関係なく200が返るので、200以外は回復不能なエラーとする
-				if getRes.StatusCode != http.StatusOK {
-					return fmt.Errorf("[GET /payments] unexpected status code (%d)", getRes.StatusCode)
-				}
-				var payments []paymentGatewayGetPaymentsResponseOne
-				if err := json.NewDecoder(getRes.Body).Decode(&payments); err != nil {
-					return err
-				}
-
-				rides, err := retrieveRidesOrderByCreatedAtAsc()
-				if err != nil {
-					return err
-				}
-
-				if len(rides) != len(payments) {
-					return fmt.Errorf("unexpected number of payments: %d != %d. %w", len(rides), len(payments), erroredUpstream)
-				}
-
-				return nil
+				return fmt.Errorf("[POST /payments] unexpected status code (%d): %w", res.StatusCode, erroredUpstream)
 			}
 			return nil
 		}()
-		if err != nil {
-			if retry < 5 {
-				retry++
-				time.Sleep(100 * time.Millisecond)
-				continue
-			} else {
-				return err
-			}
+		if err == nil {
+			return nil
 		}
-		break
+		if ctx.Err() != nil || time.Now().After(deadline) {
+			return err
+		}
+		retry++
 	}
-
-	return nil
 }
