@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+nginx                        132.4
+pidstat                        0.5
+rcu_sched                      0.2
+kworker/u8:2-events_power_efficient       0.1
+kworker/1:2-events             0.1
+kworker/0:2-events             0.1
+ksoftirqd/1                    0.1
+ksoftirqd/0                    0.1
+systemd-logind                 0.0
+systemd                        0.0
+kworker/u8:4-events_power_efficient       0.0
+kworker/u8:2+flush-259:0       0.0
+kworker/u8:2-events_unbound       0.0
+kworker/0:2+events             0.0
+irqbalance                     0.0
