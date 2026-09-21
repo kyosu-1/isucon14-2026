@@ -1,0 +1,8 @@
+timestamp : 20260922-005044
+commit    : 7892406  tooling: 計測・デプロイ・記録の仕組みと運用ルール
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-1
+bench     : isucon14-4 (10.100.0.90)
+note      : ベースライン(計測ON)
+dirty     : 0 files uncommitted (webapp/ etc/)

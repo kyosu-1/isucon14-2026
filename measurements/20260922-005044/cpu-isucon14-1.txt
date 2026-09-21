@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+mysqld                       166.2
+isuride                       13.0
+nginx                          4.1
+curl                           1.8
+systemd-journal                1.3
+rsyslogd                       0.7
+jbd2/nvme0n1p1-8               0.6
+pidstat                        0.5
+rcu_sched                      0.2
+mysql                          0.1
+kworker/u8:0-events_unbound       0.1
+ksoftirqd/1                    0.1
+ksoftirqd/0                    0.1
+udisksd                        0.0
+systemd-logind                 0.0

@@ -1,0 +1,16 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.5
+nginx                          0.5
+mysqld                         0.4
+systemd-journal                0.1
+landscape-sysin                0.1
+isuride                        0.1
+curl                           0.1
+sshd                           0.0
+snapd                          0.0
+sh                             0.0
+rsyslogd                       0.0
+rcu_sched                      0.0
+ModemManager                   0.0
+kworker/u8:1-flush-259:0       0.0
+kworker/1:3-events             0.0

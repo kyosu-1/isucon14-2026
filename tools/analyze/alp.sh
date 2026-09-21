@@ -10,7 +10,7 @@ set -euo pipefail
 HOST="${1:-isucon14-1}"
 LOG="${ACCESS_LOG:-/var/log/nginx/access.log}"
 
-MATCH='/api/app/rides/[0-9A-Z]+/evaluation,/api/chair/rides/[0-9A-Z]+/status,/assets/.+,/images/.+,/client.*,/owner.*,/simulator.*'
+MATCH='^/api/app/rides/[0-9A-Z]+/evaluation,^/api/chair/rides/[0-9A-Z]+/status,^/assets/.+,^/images/.+,^/client.*,^/owner.*,^/simulator.*'
 
 ssh "$HOST" "sudo alp ltsv --file '$LOG' \
   --sort sum -r \
