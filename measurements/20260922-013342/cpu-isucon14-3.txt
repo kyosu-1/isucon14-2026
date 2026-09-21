@@ -1,0 +1,5 @@
+COMMAND                   AVG_CPU%
+pidstat                        0.3
+udisksd                        0.0
+systemd-journal                0.0
+kworker/0:3-events             0.0

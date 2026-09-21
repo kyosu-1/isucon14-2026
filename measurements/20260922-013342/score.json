@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 74846,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 54.6,
+    "pickup": 35.7,
+    "ride": 73.2
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 198
+  },
+  "left": 142,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 208,
+      "active": 129
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 135,
+      "active": 70
+    }
+  ],
+  "owners": [
+    {
+      "name": "迅行タクシー",
+      "sales": 1310700,
+      "chairs": 54
+    },
+    {
+      "name": "椅子工藝舎",
+      "sales": 1393100,
+      "chairs": 55
+    },
+    {
+      "name": "つばさ交通",
+      "sales": 1370000,
+      "chairs": 55
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 1053100,
+      "chairs": 46
+    },
+    {
+      "name": "SitWell Designs",
+      "sales": 1391200,
+      "chairs": 56
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 6518100,
+  "total_chairs": 266
+}
