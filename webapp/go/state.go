@@ -5,6 +5,8 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"log/slog"
+	"strings"
 	"sync"
 	"time"
 )
@@ -61,10 +63,14 @@ type chairInfo struct {
 	Name    string
 	Model   string
 
+	CreatedAt   time.Time
 	IsActive    bool
 	HasLocation bool // 一度でも座標を送ってきたか
 	Latitude    int
 	Longitude   int
+
+	TotalDistance          int
+	TotalDistanceUpdatedAt time.Time
 }
 
 type chairStatsState struct {
@@ -79,8 +85,9 @@ type memState struct {
 	chairLatestRide map[string]*rideState // chair_id -> 最後に割り当てられたライド
 	chairs          map[string]*chairInfo
 	chairStats      map[string]*chairStatsState
-	userNames       map[string]string // user_id -> "firstname lastname"
-	modelSpeed      map[string]int    // chair_models: モデル名 -> speed（マスタデータ）
+	userNames       map[string]string   // user_id -> "firstname lastname"
+	modelSpeed      map[string]int      // chair_models: モデル名 -> speed（マスタデータ）
+	dirtyChairs     map[string]struct{} // 移動距離をまだDBに書き出していない椅子
 }
 
 // ロック保持中に呼ぶ
@@ -216,12 +223,14 @@ func loadState(ctx context.Context) error {
 		return fmt.Errorf("load users: %w", err)
 	}
 	type locRow struct {
-		ChairID   string `db:"chair_id"`
-		Latitude  int    `db:"latitude"`
-		Longitude int    `db:"longitude"`
+		ChairID                string    `db:"chair_id"`
+		TotalDistance          int       `db:"total_distance"`
+		TotalDistanceUpdatedAt time.Time `db:"total_distance_updated_at"`
+		Latitude               int       `db:"latitude"`
+		Longitude              int       `db:"longitude"`
 	}
 	locs := []locRow{}
-	if err := db.SelectContext(ctx, &locs, `SELECT chair_id, latitude, longitude FROM chair_distances`); err != nil {
+	if err := db.SelectContext(ctx, &locs, `SELECT chair_id, total_distance, total_distance_updated_at, latitude, longitude FROM chair_distances`); err != nil {
 		return fmt.Errorf("load chair_distances: %w", err)
 	}
 
@@ -280,11 +289,12 @@ func loadState(ctx context.Context) error {
 		}
 	}
 	for _, c := range chairs {
-		s.chairs[c.ID] = &chairInfo{ID: c.ID, OwnerID: c.OwnerID, Name: c.Name, Model: c.Model, IsActive: c.IsActive}
+		s.chairs[c.ID] = &chairInfo{ID: c.ID, OwnerID: c.OwnerID, Name: c.Name, Model: c.Model, CreatedAt: c.CreatedAt, IsActive: c.IsActive}
 	}
 	for _, l := range locs {
 		if c := s.chairs[l.ChairID]; c != nil {
 			c.HasLocation, c.Latitude, c.Longitude = true, l.Latitude, l.Longitude
+			c.TotalDistance, c.TotalDistanceUpdatedAt = l.TotalDistance, l.TotalDistanceUpdatedAt
 		}
 	}
 	for _, u := range users {
@@ -299,6 +309,7 @@ func loadState(ctx context.Context) error {
 	st.chairStats = s.chairStats
 	st.userNames = s.userNames
 	st.modelSpeed = s.modelSpeed
+	st.dirtyChairs = make(map[string]struct{})
 	st.mu.Unlock()
 	return nil
 }
@@ -430,12 +441,75 @@ func (s *memState) setChairActive(chairID string, active bool) {
 	}
 }
 
-func (s *memState) setChairLocation(chairID string, lat, lon int) {
+// 座標を記録する。移動距離の合計（owner/chairs 用）もここで積み上げ、DBへは flushChairDistances がまとめて書く。
+func (s *memState) setChairLocation(chairID string, lat, lon int, now time.Time) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	if c := s.chairs[chairID]; c != nil {
-		c.HasLocation, c.Latitude, c.Longitude = true, lat, lon
+	c := s.chairs[chairID]
+	if c == nil {
+		return
 	}
+	if c.HasLocation {
+		c.TotalDistance += abs(c.Latitude-lat) + abs(c.Longitude-lon)
+	}
+	c.HasLocation, c.Latitude, c.Longitude = true, lat, lon
+	c.TotalDistanceUpdatedAt = now
+	s.dirtyChairs[chairID] = struct{}{}
+}
+
+// flushMu: 書き出しと initialize を排他する。
+// initialize がテーブルを作り直した後に、前回のベンチの距離を書き戻さないため。
+var flushMu sync.Mutex
+
+func startChairDistanceFlusher() {
+	go func() {
+		t := time.NewTicker(200 * time.Millisecond)
+		defer t.Stop()
+		for range t.C {
+			if err := flushChairDistances(context.Background()); err != nil {
+				slog.Error("flush chair_distances", "err", err)
+			}
+		}
+	}()
+}
+
+// メモリ上の移動距離・最新座標を chair_distances にまとめて書く（再起動後の復元用）。
+func flushChairDistances(ctx context.Context) error {
+	flushMu.Lock()
+	defer flushMu.Unlock()
+
+	type row struct {
+		id        string
+		total     int
+		updatedAt time.Time
+		lat, lon  int
+	}
+	st.mu.Lock()
+	rows := make([]row, 0, len(st.dirtyChairs))
+	for id := range st.dirtyChairs {
+		if c := st.chairs[id]; c != nil {
+			rows = append(rows, row{id, c.TotalDistance, c.TotalDistanceUpdatedAt, c.Latitude, c.Longitude})
+		}
+	}
+	st.dirtyChairs = make(map[string]struct{})
+	st.mu.Unlock()
+
+	for len(rows) > 0 {
+		n := min(len(rows), 500)
+		chunk := rows[:n]
+		rows = rows[n:]
+		query := "INSERT INTO chair_distances (chair_id, total_distance, total_distance_updated_at, latitude, longitude) VALUES " +
+			strings.TrimSuffix(strings.Repeat("(?, ?, ?, ?, ?),", len(chunk)), ",") +
+			" AS new ON DUPLICATE KEY UPDATE total_distance = new.total_distance, total_distance_updated_at = new.total_distance_updated_at, latitude = new.latitude, longitude = new.longitude"
+		args := make([]any, 0, len(chunk)*5)
+		for _, r := range chunk {
+			args = append(args, r.id, r.total, r.updatedAt, r.lat, r.lon)
+		}
+		if _, err := db.ExecContext(ctx, query, args...); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *memState) addUser(id, firstname, lastname string) {

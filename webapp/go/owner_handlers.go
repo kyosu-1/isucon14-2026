@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"net/http"
+	"sort"
 	"strconv"
 	"time"
 
@@ -194,27 +195,14 @@ func ownerGetChairs(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	owner := ctx.Value("owner").(*Owner)
 
-	chairs := []chairWithDetail{}
-	if err := db.SelectContext(ctx, &chairs, `SELECT id,
-       owner_id,
-       name,
-       access_token,
-       model,
-       is_active,
-       created_at,
-       updated_at,
-       IFNULL(total_distance, 0) AS total_distance,
-       total_distance_updated_at
-FROM chairs
-       LEFT JOIN chair_distances distance_table ON distance_table.chair_id = chairs.id
-WHERE owner_id = ?
-`, owner.ID); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-
+	// 移動距離は POST /api/chair/coordinate がメモリ上で積み上げている（DBへの書き出しは非同期）ので、
+	// メモリから返す。並びは元のSQL（owner_id のインデックス順 = 椅子ID順）に揃える。
 	res := ownerGetChairResponse{}
-	for _, chair := range chairs {
+	st.mu.Lock()
+	for _, chair := range st.chairs {
+		if chair.OwnerID != owner.ID {
+			continue
+		}
 		c := ownerGetChairResponseChair{
 			ID:            chair.ID,
 			Name:          chair.Name,
@@ -223,11 +211,13 @@ WHERE owner_id = ?
 			RegisteredAt:  chair.CreatedAt.UnixMilli(),
 			TotalDistance: chair.TotalDistance,
 		}
-		if chair.TotalDistanceUpdatedAt.Valid {
-			t := chair.TotalDistanceUpdatedAt.Time.UnixMilli()
+		if chair.HasLocation {
+			t := chair.TotalDistanceUpdatedAt.UnixMilli()
 			c.TotalDistanceUpdatedAt = &t
 		}
 		res.Chairs = append(res.Chairs, c)
 	}
+	st.mu.Unlock()
+	sort.Slice(res.Chairs, func(i, j int) bool { return res.Chairs[i].ID < res.Chairs[j].ID })
 	writeJSON(w, http.StatusOK, res)
 }

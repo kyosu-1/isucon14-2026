@@ -46,16 +46,17 @@ func chairPostChairs(w http.ResponseWriter, r *http.Request) {
 	chairID := ulid.Make().String()
 	accessToken := secureRandomStr(32)
 
+	now := time.Now().UTC().Truncate(time.Microsecond)
 	_, err := db.ExecContext(
 		ctx,
-		"INSERT INTO chairs (id, owner_id, name, model, is_active, access_token) VALUES (?, ?, ?, ?, ?, ?)",
-		chairID, owner.ID, req.Name, req.Model, false, accessToken,
+		"INSERT INTO chairs (id, owner_id, name, model, is_active, access_token, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+		chairID, owner.ID, req.Name, req.Model, false, accessToken, now, now,
 	)
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-	st.addChair(&chairInfo{ID: chairID, OwnerID: owner.ID, Name: req.Name, Model: req.Model})
+	st.addChair(&chairInfo{ID: chairID, OwnerID: owner.ID, Name: req.Name, Model: req.Model, CreatedAt: now})
 
 	http.SetCookie(w, &http.Cookie{
 		Path:  "/",
@@ -108,26 +109,11 @@ func chairPostCoordinate(w http.ResponseWriter, r *http.Request) {
 	chair := ctx.Value("chair").(*Chair)
 
 	// 椅子は座標更新の成功を確認するまで移動しないので、ここの応答時間がそのまま椅子の速さになる。
-	// DBへは owner/chairs 用の移動距離の積み上げ1文だけ（状態遷移があるときだけトランザクション）。
+	// 座標と移動距離はメモリに記録し、DB(chair_distances)へは 200ms ごとにまとめて書く。
+	// 状態遷移（乗車位置・目的地に到着）があるときだけ同期でトランザクションを張る。
 	// 位置履歴(chair_locations)はどこからも読まないので書かない。
 	now := time.Now().UTC().Truncate(time.Microsecond)
-
-	// 移動距離合計を差分で積み上げる。代入は左から評価されるので、
-	// total_distance の式の latitude/longitude は更新前（=直前の座標）を指す。
-	if _, err := db.ExecContext(
-		ctx,
-		`INSERT INTO chair_distances (chair_id, total_distance, total_distance_updated_at, latitude, longitude) VALUES (?, 0, ?, ?, ?) AS new
-		 ON DUPLICATE KEY UPDATE
-		   total_distance = chair_distances.total_distance + ABS(chair_distances.latitude - new.latitude) + ABS(chair_distances.longitude - new.longitude),
-		   total_distance_updated_at = new.total_distance_updated_at,
-		   latitude = new.latitude,
-		   longitude = new.longitude`,
-		chair.ID, now, req.Latitude, req.Longitude,
-	); err != nil {
-		writeError(w, http.StatusInternalServerError, err)
-		return
-	}
-	st.setChairLocation(chair.ID, req.Latitude, req.Longitude)
+	st.setChairLocation(chair.ID, req.Latitude, req.Longitude, now)
 
 	// 割り当て中のライドが乗車位置・目的地に着いたか（ライドと状態はメモリから）
 	var rideID, newStatus string

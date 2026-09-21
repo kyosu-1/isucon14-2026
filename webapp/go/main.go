@@ -78,6 +78,7 @@ func setup() http.Handler {
 	if err := loadState(context.Background()); err != nil {
 		panic(err)
 	}
+	startChairDistanceFlusher()
 
 	mux := chi.NewRouter()
 	// middleware.Logger は全リクエストを stdout → journald → rsyslog に流し、
@@ -142,6 +143,9 @@ func postInitialize(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, err)
 		return
 	}
+	// 初期化中に前回ベンチの移動距離を書き戻されないよう、書き出しを止める
+	flushMu.Lock()
+	defer flushMu.Unlock()
 
 	if out, err := exec.Command("../sql/init.sh").CombinedOutput(); err != nil {
 		writeError(w, http.StatusInternalServerError, fmt.Errorf("failed to initialize: %s: %w", string(out), err))
