@@ -1,0 +1,8 @@
+timestamp : 20260922-071042
+commit    : 6a6931a  bench: 割り当てを FIFO へ 1
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 割り当てを FIFO へ 2
+dirty     : 0 files uncommitted (webapp/ etc/)
