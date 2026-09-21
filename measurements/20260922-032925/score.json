@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 940818,
+  "error_codes": {
+    "30": 4
+  },
+  "dissatisfied": {
+    "matching": 85.9,
+    "pickup": 1.1,
+    "ride": 33.0
+  },
+  "registered": {
+    "reputation": 161,
+    "invitation": 4732
+  },
+  "left": 51,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2989,
+      "active": 2964
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 2198,
+      "active": 2170
+    }
+  ],
+  "owners": [
+    {
+      "name": "ふたたび椅子堂",
+      "sales": 18703300,
+      "chairs": 420
+    },
+    {
+      "name": "ZenDrive",
+      "sales": 20211200,
+      "chairs": 474
+    },
+    {
+      "name": "つばさ交通",
+      "sales": 16937600,
+      "chairs": 411
+    },
+    {
+      "name": "Vintage Vibe Seats",
+      "sales": 17139900,
+      "chairs": 414
+    },
+    {
+      "name": "椅子のふるさと",
+      "sales": 18338600,
+      "chairs": 409
+    }
+  ],
+  "warn_count": 4,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 4,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKPYNDNMNQTZDDNYGFGの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 91330600,
+  "total_chairs": 2128
+}
