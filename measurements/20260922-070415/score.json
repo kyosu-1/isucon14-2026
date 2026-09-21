@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "score": 1206308,
+  "error_codes": {
+    "30": 3
+  },
+  "dissatisfied": {
+    "matching": 87.4,
+    "pickup": 2.8,
+    "ride": 45.7
+  },
+  "registered": {
+    "reputation": 162,
+    "invitation": 3506
+  },
+  "left": 168,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2354,
+      "active": 2242
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1397,
+      "active": 1327
+    }
+  ],
+  "owners": [
+    {
+      "name": "快旅タクシー",
+      "sales": 19346700,
+      "chairs": 381
+    },
+    {
+      "name": "街のりタクシー",
+      "sales": 23869600,
+      "chairs": 326
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 25476500,
+      "chairs": 348
+    },
+    {
+      "name": "PreLoved Chairs",
+      "sales": 23142300,
+      "chairs": 592
+    },
+    {
+      "name": "ゆったり号",
+      "sales": 23475000,
+      "chairs": 598
+    }
+  ],
+  "warn_count": 3,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNTZBNPAPJTTGNYKFRの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNWNFMNMNFRNGNENBCNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 115310100,
+  "total_chairs": 2245
+}
