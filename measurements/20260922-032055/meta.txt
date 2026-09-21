@@ -1,0 +1,8 @@
+timestamp : 20260922-032055
+commit    : cfd9514  evaluation: 決済トークン・決済サーバーURLをメモリから
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : 決済トークン/URLをメモリ
+dirty     : 0 files uncommitted (webapp/ etc/)
