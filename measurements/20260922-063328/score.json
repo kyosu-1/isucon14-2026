@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "score": 1111020,
+  "error_codes": {
+    "30": 8
+  },
+  "dissatisfied": {
+    "matching": 71.2,
+    "pickup": 2.7,
+    "ride": 45.4
+  },
+  "registered": {
+    "reputation": 153,
+    "invitation": 4466
+  },
+  "left": 212,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 3080,
+      "active": 2964
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1834,
+      "active": 1735
+    }
+  ],
+  "owners": [
+    {
+      "name": "和やか交通",
+      "sales": 22801800,
+      "chairs": 514
+    },
+    {
+      "name": "PulseRide",
+      "sales": 21544600,
+      "chairs": 521
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 19926200,
+      "chairs": 423
+    },
+    {
+      "name": "座心工房",
+      "sales": 17724700,
+      "chairs": 377
+    },
+    {
+      "name": "木座デザイン",
+      "sales": 23503600,
+      "chairs": 567
+    }
+  ],
+  "warn_count": 8,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 6,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYNHAGGJJNRNQNMNKMNの椅子は既にライド中です\""
+    },
+    {
+      "count": 2,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNYNZNFVTPXJPHDNTJYSTNの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 105500900,
+  "total_chairs": 2402
+}
