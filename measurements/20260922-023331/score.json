@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 413478,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 90.6,
+    "pickup": 1.4,
+    "ride": 18.4
+  },
+  "registered": {
+    "reputation": 127,
+    "invitation": 3761
+  },
+  "left": 69,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2315,
+      "active": 2274
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1681,
+      "active": 1651
+    }
+  ],
+  "owners": [
+    {
+      "name": "ChairCycle",
+      "sales": 8231700,
+      "chairs": 206
+    },
+    {
+      "name": "快旅タクシー",
+      "sales": 8931200,
+      "chairs": 222
+    },
+    {
+      "name": "再座堂",
+      "sales": 7777600,
+      "chairs": 189
+    },
+    {
+      "name": "おもてなしタクシー",
+      "sales": 7735100,
+      "chairs": 170
+    },
+    {
+      "name": "瞬道タクシー",
+      "sales": 7695700,
+      "chairs": 205
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 40371300,
+  "total_chairs": 992
+}
