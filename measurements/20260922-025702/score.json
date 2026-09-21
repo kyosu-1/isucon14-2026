@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "score": 622088,
+  "error_codes": {
+    "3": 136
+  },
+  "dissatisfied": {
+    "matching": 88.7,
+    "pickup": 0.7,
+    "ride": 18.9
+  },
+  "registered": {
+    "reputation": 116,
+    "invitation": 5232
+  },
+  "left": 72,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 3371,
+      "active": 3296
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 2500,
+      "active": 2452
+    }
+  ],
+  "owners": [
+    {
+      "name": "Chair Charm",
+      "sales": 12996800,
+      "chairs": 314
+    },
+    {
+      "name": "Urban Wheels",
+      "sales": 11563500,
+      "chairs": 265
+    },
+    {
+      "name": "つばさ交通",
+      "sales": 13658500,
+      "chairs": 344
+    },
+    {
+      "name": "CraftChair Co., Ltd.",
+      "sales": 10429400,
+      "chairs": 267
+    },
+    {
+      "name": "いすの道",
+      "sales": 11414800,
+      "chairs": 290
+    }
+  ],
+  "warn_count": 136,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 136,
+      "msg": "\"椅子がライドを受理できませんでした (CODE=N): POST /api/chair/rides/{rideID}/statusのリクエストが失敗しました: Post \\\"https://isuride.xiv.isucon.net/api/chair/rides/<ID>/status\\\": EOF\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 60063000,
+  "total_chairs": 1480
+}
