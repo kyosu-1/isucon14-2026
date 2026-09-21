@@ -1,0 +1,83 @@
+{
+  "pass": true,
+  "score": 1171600,
+  "error_codes": {
+    "30": 5
+  },
+  "dissatisfied": {
+    "matching": 80.0,
+    "pickup": 3.0,
+    "ride": 47.9
+  },
+  "registered": {
+    "reputation": 152,
+    "invitation": 3321
+  },
+  "left": 185,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 2452,
+      "active": 2363
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 1646,
+      "active": 1539
+    }
+  ],
+  "owners": [
+    {
+      "name": "ComfortWorks",
+      "sales": 24452200,
+      "chairs": 567
+    },
+    {
+      "name": "ひまわり交通",
+      "sales": 23560000,
+      "chairs": 368
+    },
+    {
+      "name": "GoEase",
+      "sales": 23816900,
+      "chairs": 430
+    },
+    {
+      "name": "座り心地再生所",
+      "sales": 19792400,
+      "chairs": 464
+    },
+    {
+      "name": "レトロ椅子館",
+      "sales": 18910200,
+      "chairs": 408
+    }
+  ],
+  "warn_count": 5,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNGNZSNNANNBNCNPBGSの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNNPKNPFNYSRNPWHNWの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNAJNVQANSCQNZNTNFNBの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNBPWNZFNWVPTHMYCDYYNの椅子は既にライド中です\""
+    },
+    {
+      "count": 1,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNRNJDFNXPYJNJYKEの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 110531700,
+  "total_chairs": 2237
+}
