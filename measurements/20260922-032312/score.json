@@ -1,0 +1,71 @@
+{
+  "pass": true,
+  "score": 326635,
+  "error_codes": {
+    "30": 45
+  },
+  "dissatisfied": {
+    "matching": 33.2,
+    "pickup": 15.5,
+    "ride": 42.8
+  },
+  "registered": {
+    "reputation": 130,
+    "invitation": 2296
+  },
+  "left": 275,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 1958,
+      "active": 1735
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 653,
+      "active": 568
+    }
+  ],
+  "owners": [
+    {
+      "name": "迅行タクシー",
+      "sales": 7092400,
+      "chairs": 198
+    },
+    {
+      "name": "椅子のふるさと",
+      "sales": 4451200,
+      "chairs": 132
+    },
+    {
+      "name": "Skyline Taxis",
+      "sales": 5410000,
+      "chairs": 156
+    },
+    {
+      "name": "ChairCycle",
+      "sales": 4403400,
+      "chairs": 131
+    },
+    {
+      "name": "座心工房",
+      "sales": 7336600,
+      "chairs": 204
+    }
+  ],
+  "warn_count": 45,
+  "error_count": 0,
+  "warnings": [
+    {
+      "count": 42,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKBHCNWPENJDTPBHZMNHXの椅子は既にライド中です\""
+    },
+    {
+      "count": 3,
+      "msg": "\"取得した付近の椅子情報に不備があります (CODE=N): ID:NMNKBNGPDNDQVPNFWWDDFGの椅子は既にライド中です\""
+    }
+  ],
+  "errors": [],
+  "total_sales": 28693600,
+  "total_chairs": 821
+}

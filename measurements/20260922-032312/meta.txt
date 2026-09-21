@@ -1,0 +1,8 @@
+timestamp : 20260922-032312
+commit    : 836a8ad  nearby-chairs: COMPLETED 通知から 300ms は空き椅子として出さない
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-2
+bench     : isucon14-4 (10.100.0.90)
+note      : nearby 猶予 300ms
+dirty     : 0 files uncommitted (webapp/ etc/)
