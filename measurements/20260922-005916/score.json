@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "score": 4362,
+  "error_codes": {},
+  "dissatisfied": {
+    "matching": 57.1,
+    "pickup": 93.9,
+    "ride": 96.9
+  },
+  "registered": {
+    "reputation": 51,
+    "invitation": 0
+  },
+  "left": 30,
+  "regions": [
+    {
+      "name": "チェアタウン",
+      "users": 35,
+      "active": 14
+    },
+    {
+      "name": "コシカケシティ",
+      "users": 28,
+      "active": 18
+    }
+  ],
+  "owners": [
+    {
+      "name": "迅行タクシー",
+      "sales": 24900,
+      "chairs": 5
+    },
+    {
+      "name": "LuxeLine Taxi",
+      "sales": 45600,
+      "chairs": 6
+    },
+    {
+      "name": "椅子やいちば",
+      "sales": 20500,
+      "chairs": 5
+    },
+    {
+      "name": "風座プロダクツ",
+      "sales": 97900,
+      "chairs": 9
+    },
+    {
+      "name": "いすの道",
+      "sales": 62800,
+      "chairs": 8
+    }
+  ],
+  "warn_count": 0,
+  "error_count": 0,
+  "warnings": [],
+  "errors": [],
+  "total_sales": 251700,
+  "total_chairs": 33
+}

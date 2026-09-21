@@ -1,0 +1,8 @@
+timestamp : 20260922-005916
+commit    : 05540b3  mysql: binlog無効化 + innodb_flush_log_at_trx_commit=2
+entry     : isucon14-1 (10.100.0.235)
+app_hosts : isucon14-1 isucon14-2 isucon14-3
+db_host   : isucon14-1
+bench     : isucon14-4 (10.100.0.90)
+note      : mysql binlog off / flush=2
+dirty     : 0 files uncommitted (webapp/ etc/)
