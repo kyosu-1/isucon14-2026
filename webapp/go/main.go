@@ -58,6 +58,8 @@ func setup() http.Handler {
 	dbConfig.Net = "tcp"
 	dbConfig.DBName = dbname
 	dbConfig.ParseTime = true
+	// プレースホルダをクライアント側で展開して、1クエリごとの PREPARE / CLOSE STMT の往復をなくす
+	dbConfig.InterpolateParams = true
 
 	_db, err := sqlx.Connect("mysql", dbConfig.FormatDSN())
 	if err != nil {
