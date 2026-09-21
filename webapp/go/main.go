@@ -64,6 +64,10 @@ func setup() http.Handler {
 		panic(err)
 	}
 	db = _db
+	// DBを別ホストに出したら、ポーリングの同時実行ぶんだけ接続が開かれて
+	// max_connections(151) を超え 1040 Too many connections が出た。上限を決めて使い回す。
+	db.SetMaxOpenConns(64)
+	db.SetMaxIdleConns(64)
 
 	mux := chi.NewRouter()
 	mux.Use(middleware.Logger)
