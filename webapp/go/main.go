@@ -11,6 +11,7 @@ import (
 	_ "net/http/pprof"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 
 	"github.com/go-chi/chi/v5"
@@ -26,6 +27,8 @@ const notificationRetryAfterMs = 100
 
 func main() {
 	// プロファイル取得用（127.0.0.1 のみ。tools/analyze/pprof.sh で取る）
+	// ロック競合も見られるように mutex プロファイルを有効にする（1/100 をサンプリング）
+	runtime.SetMutexProfileFraction(100)
 	go func() {
 		_ = http.ListenAndServe("127.0.0.1:6060", nil)
 	}()
