@@ -26,8 +26,10 @@ AIエージェント（Claude Code）が主体で「計測 → 改善」のル�
 ### 構成
 
 - 競技サーバーは **c5.large（2 vCPU / 4GB）× 3台**。**この3台だけ**で処理する。
-  - isuenv では `isucon14-1..3` が競技サーバー、`isucon14-4`（c5.xlarge）は**ベンチマーカー専用**。
+  - isuenv では `isucon14-1..3` が競技サーバー、`isucon14-4`（c5.2xlarge）は**ベンチマーカー専用**。
     ベンチ機にアプリの処理を載せるのは禁止（外部リソースの利用にあたる）。
+  - 現在の役割: **isu1 = nginx のみ / isu2 = MySQL / isu3 = Go アプリ + マッチャー**
+    （`etc/isuN/services` が正。アプリは状態をメモリに持つので1プロセスだけ）
 - 3台の役割分担（DBを別ノードに出す、アプリを複数台に置く等）は自由。
 - ベンチマーカーは `isucon14-1:443` にアクセスする（`make bench` の `ENTRY`）。
 
@@ -168,7 +170,7 @@ git add measurements scores && git commit -m "bench: ..."
 # AWSセッション（切れていたら人間がブラウザでサインイン）
 aws login --profile personal
 
-# 作成（競技3台 c5.large + ベンチ1台 c5.xlarge）
+# 作成（競技3台 c5.large + ベンチ1台 c5.2xlarge）
 AWS_PROFILE=personal isuenv up isucon14 --nodes 3 --bench-instance-type c5.2xlarge --ttl 8h
 make setup      # hosts生成 → ベンチ機のサービス停止 → 計測ツール導入 → deploy → 計測ON
 make bench
