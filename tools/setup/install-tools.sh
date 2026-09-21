@@ -35,6 +35,9 @@ for HOST in "${HOSTS[@]}"; do
     fi
     command -v pidstat >/dev/null 2>&1 || sudo apt-get install -y -qq sysstat >/dev/null
 
+    # 自動アップデートがベンチ中にCPUを食う（実測 isucon14-3 で 78%）ので止める
+    sudo systemctl disable --now unattended-upgrades apt-daily.timer apt-daily-upgrade.timer >/dev/null 2>&1 || true
+
     sudo mkdir -p /var/log/mysql
     sudo chown mysql:adm /var/log/mysql
 
